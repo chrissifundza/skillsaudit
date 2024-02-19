@@ -16918,27 +16918,53 @@ function SaveLanguage() {
   const query = window.location.search;
 	const url = new URLSearchParams(query);
 	const ID = url.get("User");
-    var entry = document.getElementsByClassName("checks1");
-    console.log(entry);
-	var str = "";
-	for (i = 0; i < 1; i++) {
+    var entry = document.getElementsByClassName("checks7");
+  var other = document.getElementById("otherLanguage").value;
+	var str = [];
+	for (i = 0; i < entry.length; i++) {
 		if (entry[i].checked === true) {
 			console.log(entry[i].value);
-			str += entry[i].value;
-			axios.post('/language', {
-				language:entry[i].value,
-				ID:ID
-			  })
-			  .then(function (response) {
-				console.log(response);
-				alert("Saved successfully")
-			  })
-			  .catch(function (error) {
-				console.log(error);
-			  });
-      
+      str.push(entry[i].value)
 		} 
 	}
+  if( other!==""){
+    document.getElementById("OtherListLanguage").innerHTML=`
+    <input class="form-check-input checks7" type="checkbox" value="${other}" id="" checked >
+    <label class="form-check-label" for="flexCheckDefault">
+    ${other}
+</label>
+    `
+    let lang=[]
+    lang.push(other)
+    axios.post('/otherlanguage', {
+      language:lang,
+      ID:ID
+      })
+      .then(function (response) {
+      console.log(response);
+      alert("Saved successfully")
+      })
+      .catch(function (error) {
+      console.log(error);
+      });
+  }else{
+
+    axios.post('/language', {
+      language:str,
+      ID:ID
+      })
+      .then(function (response) {
+      console.log(response);
+      alert("Saved successfully")
+      })
+      .catch(function (error) {
+      console.log(error);
+      });
+  }
+
+
+
+
 }
 function UpdateProfessional() {
   const query = window.location.search;
@@ -17137,9 +17163,29 @@ function getData(userData) {
             if(typeof userData.Duration!=="undefined"){
               document.getElementById("memberistitute").value=userData.memberistitute
             }
-         
-        
-          
+         console.log( userData.language);
+            if(typeof userData.language!=="undefined"){
+              var entry = document.getElementsByClassName("checks7");
+              var other = document.getElementById("otherLanguage").value;
+              var str = [];
+              for (i = 0; i < entry.length; i++) {
+              for (let index = 0; index < userData.language.length; index++) {
+                if (entry[i].value ==  userData.language[index]) {
+                  entry[i].checked=true
+                 
+                 } 
+             
+              }
+              }
+            }
+            if(typeof userData.otherlanguage[0]!=="undefined"){
+              document.getElementById("OtherListLanguage").innerHTML=`
+              <input class="form-check-input checks7" type="checkbox" value="${userData.otherlanguage[0]}" id="" checked >
+              <label class="form-check-label" for="flexCheckDefault">
+              ${userData.otherlanguage[0]}
+          </label>
+              `
+            }
           
                   
 }

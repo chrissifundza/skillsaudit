@@ -1,4 +1,4 @@
-import {UpdateUser, User, accept, department, forgot, getcompetencies, highestqualification, login, division, position, register, signout, uploadqualifications, addCompetency, getRate, updateArea, language, experience, member, fetchcomp, uploadqualifications2, highestqualification2, getotherqualification, displayqualification, updatequalification, deletequalification, fetchUser, updatexperience, getotherexperience, displayexperience, upadteaddexperience, deleteperience, addmembership} from "./controller/register.js";
+import {UpdateUser, User, accept, department, forgot, getcompetencies, highestqualification, login, division, position, register, signout, uploadqualifications, addCompetency, getRate, updateArea, language, experience, member, fetchcomp, uploadqualifications2, highestqualification2, getotherqualification, displayqualification, updatequalification, deletequalification, fetchUser, updatexperience, getotherexperience, displayexperience, upadteaddexperience, deleteperience, addmembership, otherlanguage} from "./controller/register.js";
 import  Express  from 'express';
 const app = Express();
 app.use(Express.static("public"));
@@ -71,6 +71,7 @@ app.post("/addcompetency",addCompetency)
 app.post("/getRate",getRate)
 app.post("/updatearea",updateArea)
 app.post("/language",language)
+app.post("/otherlanguage",otherlanguage)
 app.post("/experience",experience)
 app.post("/addexperience",updatexperience)
 app.post("/getotherexperience",getotherexperience)

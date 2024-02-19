@@ -154,6 +154,24 @@ export const  language= async (req, res)=>{
 
   }
 
+  export const  otherlanguage= async (req, res)=>{
+    let info = req.body.data;
+    
+    setDoc(doc(db, "users2", req.body.ID), {
+      otherlanguage:req.body.language
+  },{ merge: true }).then(()=>{
+    const status ="success"
+      const response={
+        status:status,
+      }
+      res.status(200).json(response);
+  }).catch((error) => {
+       
+    res.json(error)
+  });
+  
+    }
+  
   export const  member= async (req, res)=>{
     let info = req.body.data;
     

@@ -6,19 +6,19 @@ export const SendEmail = (email)=>{
             const transporter = nodemailer.createTransport({
                 service: "gmail",
                 auth: {
-                    user: "cookitup2023@gmail.com",
-                    pass: "qlxqjmceogwaqzkf"
+                    user: "skillsaudit.za@gmail.com",
+                    pass: "ohdwdixjoeitbwtv"
                 }
             });
     
             const mailOptions = {
                 from: "cookitup2023@gmail.com",
                 to: email,
-                subject: "CookITUP Account Successfully Created",
+                subject: "Skills Audit Account Successfully Created",
                 html: `     
                             <h3>Hi</h3>
                             <h3>Your Account Has Been Successfully created</h3>
-                            <h3>Regards</h3> <h3> CookITUP</h3>`
+                            <h3>Regards</h3> <h3> Skills Audit</h3>`
             };
     
             transporter.sendMail(mailOptions, (error, info) => {
