@@ -16547,6 +16547,8 @@ function Position() {
       document.querySelector(".flush-heading30").style.display="none"
       document.querySelector(".flush-heading31").style.display="none"
       document.querySelector(".flush-heading32").style.display="none"
+     
+
       console.log(response.data);
      
     
