@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Audit | Login</title>
+<link rel="stylesheet" href="/css/login.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/77f72af182.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="body">
+    <nav>
+        <div class="title">
+        <h3>Skills Audit</h3> 
+    </div>
+    <div class="user-details">
+        <div class="input-search">
+            <input type="text" placeholder="Search"><button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        
+        <div class="profile">
+            <img src="img/profile.jpg" alt="">
+        </div>
+
+    </div>
+    
+    </nav>
+<div class="container">
+    <div class="form">
+        <div class="title-login">
+            <h3>Forgot Password</h3>
+            <p>Reset your password</p>
+        </div>
+
+        <div class="input-container">
+            <label for="">
+                USERNAME/EMPLOYEE NUMBER
+            </label> <br>
+            <input type="text" class="form-control" id="email" name="" value="" placeholder="SS0001">
+        </div>
+
+       
+
+        <button onclick="Forgot()"  type="button" class="btn  btn-dark" style="width:100%; font-size: 15px;">REQUEST NEW PASSWORD</button>
+        <a href="/login" >BACK TO LOGIN</a>
+    </div>
+<script src="/javascript/forgot.js"></script>
+
+</div>
+</body>
+</html>
