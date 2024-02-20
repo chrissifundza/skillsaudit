@@ -471,12 +471,12 @@ res.status(200).json(data);
 }
 export const UpdateUser =(req, res)=>{
   setDoc(doc(db, "users2", req.body.ID), {
-    MiddleName:req.body.middlename,
-  Surname:req.body.surname,
-  Name:req.body.Name,
-  Birth:req.body.birth,
-  EmployeeNumber:req.body.employeeNumber,
-  Age:req.body.age
+    employeeMiddleNameS:req.body.middlename,
+    employeeSurname:req.body.surname,
+    employeeNameS:req.body.Name,
+    dateOfBirth:req.body.birth,
+  empCode:req.body.employeeNumber,
+  age:req.body.age
 },{ merge: true }).then(()=>{
   const status ="success"
     const response={
