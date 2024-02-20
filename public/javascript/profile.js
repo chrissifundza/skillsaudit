@@ -40,8 +40,12 @@ function HighestQualification() {
   
 })
 .then(async function (response) {
+  Swal.fire({
+    title: "Good job!",
+    text: "You clicked the button!",
+    icon: "success"
+  });
  console.log(response.data);
-
 
 })
 .catch(function (error) {

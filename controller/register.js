@@ -314,7 +314,7 @@ export const  uploadqualifications= async (req, res)=>{
 
     export const  highestqualification2= async (req, res)=>{
   
-      setDoc(doc(db, "users2", req.body.ID, "otherqualification",req.body.docid), {
+      addDoc(collection(db, "users2", req.body.ID, "otherqualification"), {
         QualificationName:req.body.Qualification,
         Institution:req.body.Institution,
         Level:req.body.Level
