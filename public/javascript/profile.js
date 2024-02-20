@@ -25132,14 +25132,14 @@ function getData(userData) {
               }
               }
             }
-            if(typeof userData.otherlanguage[0]!=="undefined"){
-              document.getElementById("OtherListLanguage").innerHTML=`
-              <input class="form-check-input checks7" type="checkbox" value="${userData.otherlanguage[0]}" id="" checked >
-              <label class="form-check-label" for="flexCheckDefault">
-              ${userData.otherlanguage[0]}
-          </label>
-              `
-            }
+          //   if(typeof userData.otherlanguage[0]!=="undefined"){
+          //     document.getElementById("OtherListLanguage").innerHTML=`
+          //     <input class="form-check-input checks7" type="checkbox" value="${userData.otherlanguage[0]}" id="" checked >
+          //     <label class="form-check-label" for="flexCheckDefault">
+          //     ${userData.otherlanguage[0]}
+          // </label>
+          //     `
+          //   }
           
                   
 }
