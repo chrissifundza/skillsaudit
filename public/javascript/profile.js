@@ -537,6 +537,74 @@ function Audit(data){
   // If the checkbox is checked, display the output text
  
 }
+
+
+// function ListLevels1(result) {
+//   let option = "";
+//   let html = "";
+//   let list = document.querySelector(".listdata121");
+
+//   result.forEach((department) => {
+//     option = `
+//       <tr>
+//         <td scope="col-10" class="details">
+//           ${department.info.details}
+//         </td>
+//         <td class="rating form-group">
+//           <span>1</span>
+//           <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" id="${department.id}1">
+//         </td>
+//         <!-- Add similar lines for other radio inputs -->
+//       </tr>
+//     `;
+
+//     html += option;
+//     list.innerHTML = html;
+//   });
+
+//   // Add event listener to validate radio inputs
+//   result.forEach((department) => {
+//     document.getElementById(department.id + '1').addEventListener('click', () => {
+//       validateRadioInputs(department.id);
+//     });
+//     // Add similar event listeners for other radio inputs
+//   });
+// }
+
+
+
+// Define a variable to store the selected radio input for each department
+const selectedOptions = {};
+
+// Function to validate and audit radio input
+function validateAndAudit(departmentId, value, areas, levels, details, code, competencyDivision, division, title) {
+  if (selectedOptions.hasOwnProperty(departmentId)) {
+    const previousValue = selectedOptions[departmentId];
+    // Check if a previous option was selected
+    if (previousValue !== value) {
+      // Perform validation for the previous option
+      const isValid = validateRadioInputs(departmentId);
+      if (!isValid) {
+        // If the previous selection is not valid, alert the user or handle the error accordingly
+        alert("Please select an option for the previous question.");
+        // Revert the selection to the previous value
+        document.getElementById(departmentId + previousValue).checked = true;
+        return;
+      }
+    }
+  }
+  // Store the current selection
+  selectedOptions[departmentId] = value;
+  // Perform auditing for the current selection
+  Audit(`${departmentId}${value},${areas},${levels},${details},${code},${competencyDivision},${division},${title},${departmentId}`);
+}
+
+// Function to validate radio inputs
+function validateRadioInputs(departmentId) {
+  const radioInputs = document.querySelectorAll(`input[name="${departmentId}"]:checked`);
+  return radioInputs.length > 0;
+}
+
 function ListLevels1(result) {
 
   console.log(result);
@@ -555,23 +623,23 @@ function ListLevels1(result) {
       </td>
       <td class="rating form-group">
         <span>1</span>
-        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+        <input type="radio"  name="${department.id}" onclick="validateAndAudit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
       </td>
       <td class="rating form-group">
         <span>2</span>
-        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+        <input type="radio"   name="${department.id}" onclick="validateAndAudit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
       </td>
       <td class="rating form-group">
         <span>3</span>
-        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+        <input type="radio"   name="${department.id}" onclick="validateAndAudit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
       </td>
       <td class="rating form-group">
         <span>4</span>
-        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+        <input type="radio"   name="${department.id}" onclick="validateAndAudit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
       </td>
       <td class="rating form-group">
         <span>5</span>
-        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+        <input type="radio"  name="${department.id}" onclick="validateAndAudit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
       </td>
     </tr>
 
@@ -579,10 +647,11 @@ function ListLevels1(result) {
       `;
       html +=option;
       list.innerHTML=html;
-     
       
   });
 }
+
+
 function ListLevels2(result) {
   let option =""
   let html =""
@@ -664,6 +733,7 @@ function ListLevels3(result) {
       
   });
 }
+
 function ListLevels4(result) {
   let option =""
   let html =""
@@ -7184,8 +7254,11669 @@ function ccListLevels4(result) {
   });
 }
 
+function manaListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".manalistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function manaListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".manalistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function manaListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".manalistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function manaListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".manalistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function wcdListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".wcdlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function wcdListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".wcdlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function wcdListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".wcdlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function wcdListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".wcdlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function accountListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".accountlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function accountListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".accountlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function accountListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".accountlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function accountListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".accountlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function procurementListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".procurementlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function procurementListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".procurementlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function procurementListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".procurementlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function procurementListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".procurementlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function budgetListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".budgetlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function budgetListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".budgetlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function budgetListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".budgetlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function budgetListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".budgetlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+function financeListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".financelistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function financeListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".financelistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function financeListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".financelistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function financeListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".financelistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+function costListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".costlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function costListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".costlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function costListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".costlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function costListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".costlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function freportListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".freportlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function freportListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".freportlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function freportListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".freportlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function freportListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".freportlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+function fmListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".fmlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function fmListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".fmlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function fmListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".fmlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function fmListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".fmlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+function spListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".splistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function spListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".splistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function spListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".splistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function spListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".splistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+function atdListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".atdlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function atdListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".atdlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function atdListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".atdlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function atdListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".atdlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+function intflListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".intfllistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function intflListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".intfllistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function intflListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".intfllistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function intflListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".intfllistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+
+function bppListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".bpplistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function bppListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".bpplistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function bppListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".bpplistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function bppListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".bpplistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function useListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".uselistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function useListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".uselistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function useListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".uselistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function useListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".uselistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function dpaListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".dpalistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function dpaListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".dpalistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function dpaListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".dpalistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function dpaListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".dpalistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function coListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".colistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function coListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".colistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function coListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".colistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function coListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".colistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+function asListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".aslistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function asListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".aslistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function asListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".aslistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function asListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".aslistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function qoListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".qolistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function qoListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".qolistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function qoListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".qolistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function qoListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".qolistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+function dsListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".dslistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function dsListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".dslistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function dsListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".dslistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function dsListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".dslistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function wriListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".wrilistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function wriListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".wrilistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function wriListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".wrilistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function wriListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".wrilistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function sdListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".sdlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function sdListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".sdlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function sdListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".sdlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function sdListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".sdlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function mwListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".mwlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function mwListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".mwlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function mwListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".mwlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function mwListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".mwlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
 
 function Professional(response) {
+  console.log(response);
+ 
+  const  written = response.filter((d) => d.info.areas=="Written Communication");
+  if (written.length>0) {
+   document.querySelector(".flush-heading0").style.display="block"
+   const level1 = written.filter((d)=>d.info.levels=="Level 1")
+       
+   if(level1.length >0){
+     console.log(level1);
+     ListLevels1(level1)
+   
+     document.querySelector(".listBull1").style.display='block'
+   }else{
+     document.querySelector(".listBull1").style.display='none'
+   }
+  const level2 = written.filter((d)=>d.info.levels=="Level 2")
+  if(level2.length!==0){
+   document.querySelector(".listBull2").style.display='block'
+   ListLevels2(level2)
+  
+  }else{
+   document.querySelector(".listBull2").style.display='none'
+  }
+  const level3 = written.filter((d)=>d.info.levels=="Level 3")
+  if(level3.length!==0){
+   document.querySelector(".listBull3").style.display='block'
+   ListLevels3(level3)
+  
+  }else{
+   document.querySelector(".listBull3").style.display='none'
+  }
+  const level4 = written.filter((d)=>d.info.levels=="Level 4")
+  if(level4.length!==0){
+   document.querySelector(".listBull4").style.display='block'
+  
+   ListLevels4(level4)
+  
+  }else{
+   document.querySelector(".listBull4").style.display='none'
+  }
+  }
+ 
+  const Organisational = response.filter((d) => d.info.areas=="Organisational Awareness");
+  if (Organisational.length>0) {
+   document.querySelector(".flush-heading1").style.display="block"
+   const level1 = Organisational.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               oListLevels1(level1)
+               document.querySelector(".olistBull1").style.display='block'
+             }else{
+               document.querySelector(".olistBull1").style.display='none'
+             }
+           const level2 = Organisational.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".olistBull2").style.display='block'
+             console.log(level2);
+             oListLevels2(level2)
+           
+           }else{
+             document.querySelector(".olistBull2").style.display='none'
+           }
+           const level3 = Organisational.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".olistBull3").style.display='block'
+             oListLevels3(level3)
+         
+           }else{
+             document.querySelector(".olistBull3").style.display='none'
+           }
+           const level4 = Organisational.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".olistBull4").style.display='block'
+       
+             oListLevels4(level4)
+           
+           }else{
+             document.querySelector(".olistBull4").style.display='none'
+           }
+   
+  }
+  
+  const  Plannning = response.filter((d) => d.info.areas=="Planning and Organising");
+  if (Plannning.length>0) {
+   document.querySelector(".flush-heading2").style.display="block"
+ 
+     const level1 = Plannning.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 pListLevels1(level1)
+                 document.querySelector(".plistBull1").style.display='block'
+               }else{
+                 document.querySelector(".plistBull1").style.display='none'
+               }
+             const level2 = Plannning.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".plistBull2").style.display='block'
+               console.log(level2);
+               pListLevels2(level2)
+             
+             }else{
+               document.querySelector(".plistBull2").style.display='none'
+             }
+             const level3 = Plannning.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".plistBull3").style.display='block'
+               pListLevels3(level3)
+           
+             }else{
+               document.querySelector(".plistBull3").style.display='none'
+             }
+             const level4 = Plannning.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".plistBull4").style.display='block'
+         
+               pListLevels4(level4)
+             
+             }else{
+               document.querySelector(".plistBull4").style.display='none'
+             }
+     
+    
+  }
+  const  Monitoring = response.filter((d) => d.info.areas=="Monitoring and Control");
+  if (Monitoring.length>0) {
+   document.querySelector(".flush-heading3").style.display="block"
+   const level1 = Monitoring.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 mListLevels1(level1)
+                 document.querySelector(".mlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".mlistBull1").style.display='none'
+               }
+             const level2 = Monitoring.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".mlistBull2").style.display='block'
+               console.log(level2);
+               mListLevels2(level2)
+             
+             }else{
+               document.querySelector(".mlistBull2").style.display='none'
+             }
+             const level3 = Monitoring.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".mlistBull3").style.display='block'
+               mListLevels3(level3)
+           
+             }else{
+               document.querySelector(".mlistBull3").style.display='none'
+             }
+             const level4 = Monitoring.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".mlistBull4").style.display='block'
+         
+               mListLevels4(level4)
+             
+             }else{
+               document.querySelector(".mlistBull4").style.display='none'
+             }
+     
+  }
+ 
+  const  Consulting = response.filter((d) => d.info.areas=="Consulting");
+  if (Consulting.length>0) {
+   document.querySelector(".flush-heading4").style.display="block"
+   const level1 = Consulting.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 cListLevels1(level1)
+                 document.querySelector(".clistBull1").style.display='block'
+               }else{
+                 document.querySelector(".clistBull1").style.display='none'
+               }
+             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".clistBull2").style.display='block'
+               console.log(level2);
+               cListLevels2(level2)
+             
+             }else{
+               document.querySelector(".clistBull2").style.display='none'
+             }
+             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".clistBull3").style.display='block'
+               cListLevels3(level3)
+           
+             }else{
+               document.querySelector(".clistBull3").style.display='none'
+             }
+             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".clistBull4").style.display='block'
+         
+               cListLevels4(level4)
+             
+             }else{
+               document.querySelector(".clistBull4").style.display='none'
+             }
+     
+  }
+  const  Negotiation = response.filter((d) => d.info.areas=="Negotiation");
+  if (Negotiation.length>0) {
+   document.querySelector(".flush-heading5").style.display="block"
+   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 nListLevels1(level1)
+                 document.querySelector(".nlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".nlistBull1").style.display='none'
+               }
+             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".nlistBull2").style.display='block'
+               console.log(level2);
+               nListLevels2(level2)
+             
+             }else{
+               document.querySelector(".nlistBull2").style.display='none'
+             }
+             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".nlistBull3").style.display='block'
+               nListLevels3(level3)
+           
+             }else{
+               document.querySelector(".nlistBull3").style.display='none'
+             }
+             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".nlistBull4").style.display='block'
+         
+               nListLevels4(level4)
+             
+             }else{
+               document.querySelector(".nlistBull4").style.display='none'
+             }
+     
+  }
+  const  Oral = response.filter((d) => d.info.areas=="Oral Communication");
+  if (Oral.length>0) {
+   document.querySelector(".flush-heading6").style.display="block"
+   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 orListLevels1(level1)
+                 document.querySelector(".orlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".orlistBull1").style.display='none'
+               }
+             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".orlistBull2").style.display='block'
+               console.log(level2);
+               orListLevels2(level2)
+             
+             }else{
+               document.querySelector(".orlistBull2").style.display='none'
+             }
+             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".orlistBull3").style.display='block'
+               orListLevels3(level3)
+           
+             }else{
+               document.querySelector(".orlistBull3").style.display='none'
+             }
+             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".orlistBull4").style.display='block'
+         
+               orListLevels4(level4)
+             
+             }else{
+               document.querySelector(".orlistBull4").style.display='none'
+             }
+ 
+              
+  const Learning = response.filter((d) => d.info.areas=="Learning and Development ");
+  if (Learning.length>0) {
+   document.querySelector(".flush-heading7").style.display="block"
+   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ldListLevels1(level1)
+               document.querySelector(".ldlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ldlistBull1").style.display='none'
+             }
+           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ldlistBull2").style.display='block'
+             console.log(level2);
+             ldListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ldlistBull2").style.display='none'
+           }
+           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ldlistBull3").style.display='block'
+             ldListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ldlistBull3").style.display='none'
+           }
+           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ldlistBull4").style.display='block'
+       
+             ldListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ldlistBull4").style.display='none'
+           }
+   
+  }
+     
+  }
+ 
+  const Learning = response.filter((d) => d.info.areas=="Learning and Development");
+  if (Learning.length>0) {
+   document.querySelector(".flush-heading7").style.display="block"
+   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ldListLevels1(level1)
+               document.querySelector(".ldlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ldlistBull1").style.display='none'
+             }
+           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ldlistBull2").style.display='block'
+             console.log(level2);
+             ldListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ldlistBull2").style.display='none'
+           }
+           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ldlistBull3").style.display='block'
+             ldListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ldlistBull3").style.display='none'
+           }
+           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ldlistBull4").style.display='block'
+       
+             ldListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ldlistBull4").style.display='none'
+           }
+   
+  }
+  
+ // const Awareness = response.filter((d) => d.areas=="Organisational Awareness");
+ 
+ // if (Awareness.length>0) {
+ //   document.querySelector(".flush-heading8").style.display="block"
+ //   const level1 = Awareness.filter((d)=>d.levels=="Level 1")
+      
+ //             if(level1.length >0){
+ //               console.log(level1);
+ //               aListLevels1(level1)
+ //               document.querySelector(".alistBull1").style.display='block'
+ //             }else{
+ //               document.querySelector(".alistBull1").style.display='none'
+ //             }
+ //           const level2 = Awareness.filter((d)=>d.levels=="Level 2")
+ //           if(level2.length>0){
+ //             document.querySelector(".alistBull2").style.display='block'
+ //             console.log(level2);
+ //             aListLevels2(level2)
+           
+ //           }else{
+ //             document.querySelector(".alistBull2").style.display='none'
+ //           }
+ //           const level3 = Awareness.filter((d)=>d.levels=="Level 3")
+ //           if(level3.length!==0){
+ //             document.querySelector(".alistBull3").style.display='block'
+ //             aListLevels3(level3)
+         
+ //           }else{
+ //             document.querySelector(".alistBull3").style.display='none'
+ //           }
+ //           const level4 = Awareness.filter((d)=>d.levels=="Level 4")
+ //           if(level4.length!==0){
+ //             console.log(level4);
+ //             document.querySelector(".alistBull4").style.display='block'
+       
+ //             aListLevels4(level4)
+           
+ //           }else{
+ //             document.querySelector(".alistBull4").style.display='none'
+ //           }
+   
+ //  }
+ 
+ const  Change = response.filter((d) => d.info.areas=="Change Movement");
+ 
+ if (Change.length>0) {
+   document.querySelector(".flush-heading9").style.display="block"
+   const level1 = Change.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               cmListLevels1(level1)
+               document.querySelector(".cmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".cmlistBull1").style.display='none'
+             }
+           const level2 = Change.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".cmlistBull2").style.display='block'
+             console.log(level2);
+             cmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".cmlistBull2").style.display='none'
+           }
+           const level3 = Change.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".cmlistBull3").style.display='block'
+             cmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".cmlistBull3").style.display='none'
+           }
+           const level4 = Change.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".cmlistBull4").style.display='block'
+       
+             cmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".cmlistBull4").style.display='none'
+           }
+   
+  }
+ 
+ 
+ const  Technology = response.filter((d) => d.info.areas=="HR Technology information Management");
+ 
+ 
+ if (Technology.length>0) {
+   document.querySelector(".flush-heading10").style.display="block"
+   const level1 = Technology.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               tListLevels1(level1)
+               document.querySelector(".tlistBull1").style.display='block'
+             }else{
+               document.querySelector(".tlistBull1").style.display='none'
+             }
+           const level2 = Technology.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".tlistBull2").style.display='block'
+             console.log(level2);
+             tListLevels2(level2)
+           
+           }else{
+             document.querySelector(".tlistBull2").style.display='none'
+           }
+           const level3 = Technology.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".tlistBull3").style.display='block'
+             tListLevels3(level3)
+         
+           }else{
+             document.querySelector(".tlistBull3").style.display='none'
+           }
+           const level4 = Technology.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".tlistBull4").style.display='block'
+       
+             tListLevels4(level4)
+           
+           }else{
+             document.querySelector(".tlistBull4").style.display='none'
+           }
+   
+  }
+ 
+ const  Service = response.filter((d) => d.info.areas=="HR Service Delivery");
+ if (Service.length>0) {
+   document.querySelector(".flush-heading11").style.display="block"
+   const level1 = Service.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               sListLevels1(level1)
+               document.querySelector(".slistBull1").style.display='block'
+             }else{
+               document.querySelector(".slistBull1").style.display='none'
+             }
+           const level2 = Service.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".slistBull2").style.display='block'
+             console.log(level2);
+             sListLevels2(level2)
+           
+           }else{
+             document.querySelector(".slistBull2").style.display='none'
+           }
+           const level3 = Service.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".slistBull3").style.display='block'
+             sListLevels3(level3)
+         
+           }else{
+             document.querySelector(".slistBull3").style.display='none'
+           }
+           const level4 = Service.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".slistBull4").style.display='block'
+       
+             sListLevels4(level4)
+           
+           }else{
+             document.querySelector(".slistBull4").style.display='none'
+           }
+   
+  }
+ const  Talent = response.filter((d) => d.info.areas=="Talent Management");
+ if (Talent.length>0) {
+   document.querySelector(".flush-heading12").style.display="block"
+   const level1 = Talent.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               tmListLevels1(level1)
+               document.querySelector(".tmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".tmlistBull1").style.display='none'
+             }
+           const level2 = Talent.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".tmlistBull2").style.display='block'
+             console.log(level2);
+             tmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".tmlistBull2").style.display='none'
+           }
+           const level3 = Talent.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".tmlistBull3").style.display='block'
+             tmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".tmlistBull3").style.display='none'
+           }
+           const level4 = Talent.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".tmlistBull4").style.display='block'
+       
+             tmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".tmlistBull4").style.display='none'
+           }
+   
+  }
+ const  Workforce = response.filter((d) => d.info.areas=="Workforce Planning");
+ 
+ if (Workforce.length>0) {
+   document.querySelector(".flush-heading13").style.display="block"
+   const level1 = Workforce.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               wListLevels1(level1)
+               document.querySelector(".wlistBull1").style.display='block'
+             }else{
+               document.querySelector(".wlistBull1").style.display='none'
+             }
+           const level2 = Workforce.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".wlistBull2").style.display='block'
+             console.log(level2);
+             wListLevels2(level2)
+           
+           }else{
+             document.querySelector(".wlistBull2").style.display='none'
+           }
+           const level3 = Workforce.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".wlistBull3").style.display='block'
+             wListLevels3(level3)
+         
+           }else{
+             document.querySelector(".wlistBull3").style.display='none'
+           }
+           const level4 = Workforce.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".wlistBull4").style.display='block'
+       
+             wListLevels4(level4)
+           
+           }else{
+             document.querySelector(".wlistBull4").style.display='none'
+           }
+   
+  }
+  const  Learningdevelopment = response.filter((d) => d.info.areas=="Learning and Develepment");
+  if (Learningdevelopment.length>0) {
+   document.querySelector(".flush-heading14").style.display="block"
+   const level1 = Learningdevelopment.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               dlListLevels1(level1)
+               document.querySelector(".dllistBull1").style.display='block'
+             }else{
+               document.querySelector(".dllistBull1").style.display='none'
+             }
+           const level2 = Learningdevelopment.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".dllistBull2").style.display='block'
+             console.log(level2);
+             dlListLevels2(level2)
+           
+           }else{
+             document.querySelector(".dllistBull2").style.display='none'
+           }
+           const level3 = Learningdevelopment.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".dllistBull3").style.display='block'
+             dlListLevels3(level3)
+         
+           }else{
+             document.querySelector(".dllistBull3").style.display='none'
+           }
+           const level4 = Learningdevelopment.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".dllistBull4").style.display='block'
+       
+             dlListLevels4(level4)
+           
+           }else{
+             document.querySelector(".dllistBull4").style.display='none'
+           }
+   
+  }
+  
+  const  Occupational = response.filter((d) => d.info.areas=="Occupational Health and Safety");
+  
+  if (Occupational.length>0) {
+   document.querySelector(".flush-heading15").style.display="block"
+   const level1 = Occupational.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ohListLevels1(level1)
+               document.querySelector(".ohlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ohlistBull1").style.display='none'
+             }
+           const level2 = Occupational.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ohlistBull2").style.display='block'
+             console.log(level2);
+             ohListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ohlistBull2").style.display='none'
+           }
+           const level3 = Occupational.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ohlistBull3").style.display='block'
+             ohListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ohlistBull3").style.display='none'
+           }
+           const level4 = Occupational.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ohlistBull4").style.display='block'
+       
+             ohListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ohlistBull4").style.display='none'
+           }
+   
+  }
+   const Perfomance = response.filter((d) => d.info.areas=="Performance Management");
+ 
+ if (Perfomance.length>0) {
+     document.querySelector(".flush-heading16").style.display="block"
+     const level1 = Perfomance.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 peListLevels1(level1)
+                 document.querySelector(".pelistBull1").style.display='block'
+               }else{
+                 document.querySelector(".pelistBull1").style.display='none'
+               }
+             const level2 = Perfomance.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".pelistBull2").style.display='block'
+               console.log(level2);
+               peListLevels2(level2)
+             
+             }else{
+               document.querySelector(".pelistBull2").style.display='none'
+             }
+             const level3 = Perfomance.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".pelistBull3").style.display='block'
+               peListLevels3(level3)
+           
+             }else{
+               document.querySelector(".pelistBull3").style.display='none'
+             }
+             const level4 = Perfomance.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".pelistBull4").style.display='block'
+         
+               peListLevels4(level4)
+             
+             }else{
+               document.querySelector(".pelistBull4").style.display='none'
+             }
+     
+    }
+ const  Industrial = response.filter((d) => d.info.areas=="Industrial and Labour Relations");
+ 
+   if (Industrial.length>0) {
+     document.querySelector(".flush-heading17").style.display="block"
+     const level1 = Industrial.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 inListLevels1(level1)
+                 document.querySelector(".inlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".inlistBull1").style.display='none'
+               }
+             const level2 = Industrial.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".inlistBull2").style.display='block'
+               console.log(level2);
+               inListLevels2(level2)
+             
+             }else{
+               document.querySelector(".inlistBull2").style.display='none'
+             }
+             const level3 = Industrial.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".inlistBull3").style.display='block'
+               inListLevels3(level3)
+           
+             }else{
+               document.querySelector(".inlistBull3").style.display='none'
+             }
+             const level4 = Industrial.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".inlistBull4").style.display='block'
+         
+               inListLevels4(level4)
+             
+             }else{
+               document.querySelector(".inlistBull4").style.display='none'
+             }
+     
+    }
+ const  Interpersonal = response.filter((d) => d.info.areas=="Interpersonal Relationships");
+ 
+ if (Interpersonal.length>0) {
+     document.querySelector(".flush-heading18").style.display="block"
+     const level1 = Interpersonal.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 intListLevels1(level1)
+                 document.querySelector(".intlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".intlistBull1").style.display='none'
+               }
+             const level2 = Interpersonal.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".intlistBull2").style.display='block'
+               console.log(level2);
+               intListLevels2(level2)
+             
+             }else{
+               document.querySelector(".intlistBull2").style.display='none'
+             }
+             const level3 = Interpersonal.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".intlistBull3").style.display='block'
+               intListLevels3(level3)
+           
+             }else{
+               document.querySelector(".intlistBull3").style.display='none'
+             }
+             const level4 = Interpersonal.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".intlistBull4").style.display='block'
+         
+               intListLevels4(level4)
+             
+             }else{
+               document.querySelector(".intlistBull4").style.display='none'
+             }
+     
+    }
+ 
+ const  Communication = response.filter((d) => d.info.areas=="Communication");
+ if (Communication.length>0) {
+   document.querySelector(".flush-heading19").style.display="block"
+   const level1 = Communication.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               comListLevels1(level1)
+               document.querySelector(".comlistBull1").style.display='block'
+             }else{
+               document.querySelector(".comlistBull1").style.display='none'
+             }
+           const level2 = Communication.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".comlistBull2").style.display='block'
+             console.log(level2);
+             comListLevels2(level2)
+           
+           }else{
+             document.querySelector(".comlistBull2").style.display='none'
+           }
+           const level3 = Communication.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".comlistBull3").style.display='block'
+             comListLevels3(level3)
+         
+           }else{
+             document.querySelector(".comlistBull3").style.display='none'
+           }
+           const level4 = Communication.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".comlistBull4").style.display='block'
+       
+             comListLevels4(level4)
+           
+           }else{
+             document.querySelector(".comlistBull4").style.display='none'
+           }
+   
+  }
+   const Delivery = response.filter((d) => d.info.areas=="Service Delivery Orientation");
+   if (Delivery.length>0) {
+     document.querySelector(".flush-heading20").style.display="block"
+     const level1 = Delivery.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 sdoListLevels1(level1)
+                 document.querySelector(".sdolistBull1").style.display='block'
+               }else{
+                 document.querySelector(".sdolistBull1").style.display='none'
+               }
+             const level2 = Delivery.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".sdolistBull2").style.display='block'
+               console.log(level2);
+               sdoListLevels2(level2)
+             
+             }else{
+               document.querySelector(".sdolistBull2").style.display='none'
+             }
+             const level3 = Delivery.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".sdolistBull3").style.display='block'
+               sdoListLevels3(level3)
+           
+             }else{
+               document.querySelector(".sdolistBull3").style.display='none'
+             }
+             const level4 = Delivery.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".sdolistBull4").style.display='block'
+         
+               sdoListLevels4(level4)
+             
+             }else{
+               document.querySelector(".sdolistBull4").style.display='none'
+             }
+     
+    }
+   const  Action = response.filter((d) => d.info.areas=="Action and Outcome Orientation");
+   if (Action.length>0) {
+     document.querySelector(".flush-heading21").style.display="block"
+     const level1 = Action.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 actListLevels1(level1)
+                 document.querySelector(".actlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".actlistBull1").style.display='none'
+               }
+             const level2 = Action.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".actlistBull2").style.display='block'
+               console.log(level2);
+               actListLevels2(level2)
+             
+             }else{
+               document.querySelector(".actlistBull2").style.display='none'
+             }
+             const level3 = Action.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".actlistBull3").style.display='block'
+               actListLevels3(level3)
+           
+             }else{
+               document.querySelector(".actlistBull3").style.display='none'
+             }
+             const level4 = Action.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".actlistBull4").style.display='block'
+         
+               actListLevels4(level4)
+             
+             }else{
+               document.querySelector(".actlistBull4").style.display='none'
+             }
+     
+    }
+ const  Conflict = response.filter((d) => d.info.areas=="Conflict Management");
+ if (Conflict.length>0) {
+   document.querySelector(".flush-heading22").style.display="block"
+   const level1 = Conflict.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               conListLevels1(level1)
+               document.querySelector(".conlistBull1").style.display='block'
+             }else{
+               document.querySelector(".conlistBull1").style.display='none'
+             }
+           const level2 = Conflict.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".conlistBull2").style.display='block'
+             console.log(level2);
+             conListLevels2(level2)
+           
+           }else{
+             document.querySelector(".conlistBull2").style.display='none'
+           }
+           const level3 = Conflict.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".conlistBull3").style.display='block'
+             conListLevels3(level3)
+         
+           }else{
+             document.querySelector(".conlistBull3").style.display='none'
+           }
+           const level4 = Conflict.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".conlistBull4").style.display='block'
+       
+             conListLevels4(level4)
+           
+           }else{
+             document.querySelector(".conlistBull4").style.display='none'
+           }
+   
+  }
+  const  Orientation = response.filter((d) => d.info.areas=="Learning Orientation");
+  if (Orientation.length>0) {
+   document.querySelector(".flush-heading23").style.display="block"
+   const level1 = Orientation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               loListLevels1(level1)
+               document.querySelector(".lolistBull1").style.display='block'
+             }else{
+               document.querySelector(".lolistBull1").style.display='none'
+             }
+           const level2 = Orientation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".lolistBull2").style.display='block'
+             console.log(level2);
+             loListLevels2(level2)
+           
+           }else{
+             document.querySelector(".lolistBull2").style.display='none'
+           }
+           const level3 = Orientation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".lolistBull3").style.display='block'
+             loListLevels3(level3)
+         
+           }else{
+             document.querySelector(".lolistBull3").style.display='none'
+           }
+           const level4 = Orientation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".lolistBull4").style.display='block'
+       
+             loListLevels4(level4)
+           
+           }else{
+             document.querySelector(".lolistBull4").style.display='none'
+           }
+   
+  }
+ const  Accountability = response.filter((d) => d.info.areas=="Accountability and Ethical Conduct");
+ if (Accountability.length>0) {
+   document.querySelector(".flush-heading24").style.display="block"
+   const level1 = Accountability.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               aeListLevels1(level1)
+               document.querySelector(".aelistBull1").style.display='block'
+             }else{
+               document.querySelector(".aelistBull1").style.display='none'
+             }
+           const level2 = Accountability.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".aelistBull2").style.display='block'
+             console.log(level2);
+             aeListLevels2(level2)
+           
+           }else{
+             document.querySelector(".aelistBull2").style.display='none'
+           }
+           const level3 = Accountability.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".aelistBull3").style.display='block'
+             aeListLevels3(level3)
+         
+           }else{
+             document.querySelector(".aelistBull3").style.display='none'
+           }
+           const level4 = Accountability.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".aelistBull4").style.display='block'
+       
+             aeListLevels4(level4)
+           
+           }else{
+             document.querySelector(".aelistBull4").style.display='none'
+           }
+   
+  }
+  const   Problem = response.filter((d) => d.info.areas=="Problem Solving and Analysis");
+  if (Problem.length>0) {
+   document.querySelector(".flush-heading25").style.display="block"
+   const level1 = Problem.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               psListLevels1(level1)
+               document.querySelector(".pslistBull1").style.display='block'
+             }else{
+               document.querySelector(".pslistBull1").style.display='none'
+             }
+           const level2 = Problem.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".pslistBull2").style.display='block'
+             console.log(level2);
+             psListLevels2(level2)
+           
+           }else{
+             document.querySelector(".pslistBull2").style.display='none'
+           }
+           const level3 = Problem.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".pslistBull3").style.display='block'
+             psListLevels3(level3)
+         
+           }else{
+             document.querySelector(".pslistBull3").style.display='none'
+           }
+           const level4 = Problem.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".pslistBull4").style.display='block'
+       
+             psListLevels4(level4)
+           
+           }else{
+             document.querySelector(".pslistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   Compensation = response.filter((d) => d.info.areas=="Compensation and Benefits Management");
+  if (Compensation.length>0) {
+   document.querySelector(".flush-heading26").style.display="block"
+   const level1 = Compensation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               cbListLevels1(level1)
+               document.querySelector(".cblistBull1").style.display='block'
+             }else{
+               document.querySelector(".cblistBull1").style.display='none'
+             }
+           const level2 = Compensation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".cblistBull2").style.display='block'
+             console.log(level2);
+             cbListLevels2(level2)
+           
+           }else{
+             document.querySelector(".cblistBull2").style.display='none'
+           }
+           const level3 = Compensation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".cblistBull3").style.display='block'
+             cbListLevels3(level3)
+         
+           }else{
+             document.querySelector(".cblistBull3").style.display='none'
+           }
+           const level4 = Compensation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".cblistBull4").style.display='block'
+       
+             cbListLevels4(level4)
+           
+           }else{
+             document.querySelector(".cblistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   EmployeeWellness = response.filter((d) => d.info.areas=="Employee Wellness");
+  if (EmployeeWellness.length>0) {
+   document.querySelector(".flush-heading27").style.display="block"
+   const level1 = EmployeeWellness.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ewListLevels1(level1)
+               document.querySelector(".ewlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ewlistBull1").style.display='none'
+             }
+           const level2 = EmployeeWellness.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ewlistBull2").style.display='block'
+             console.log(level2);
+             ewListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ewlistBull2").style.display='none'
+           }
+           const level3 = EmployeeWellness.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ewlistBull3").style.display='block'
+             ewListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ewlistBull3").style.display='none'
+           }
+           const level4 = EmployeeWellness.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ewlistBull4").style.display='block'
+       
+             ewListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ewlistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   Resilience = response.filter((d) => d.info.areas=="Resilience");
+  if (Resilience.length>0) {
+   document.querySelector(".flush-heading28").style.display="block"
+   const level1 = Resilience.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               rsListLevels1(level1)
+               document.querySelector(".rslistBull1").style.display='block'
+             }else{
+               document.querySelector(".rslistBull1").style.display='none'
+             }
+           const level2 = Resilience.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".rslistBull2").style.display='block'
+             console.log(level2);
+             rsListLevels2(level2)
+           
+           }else{
+             document.querySelector(".rslistBull2").style.display='none'
+           }
+           const level3 = Resilience.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".rslistBull3").style.display='block'
+             rsListLevels3(level3)
+         
+           }else{
+             document.querySelector(".rslistBull3").style.display='none'
+           }
+           const level4 = Resilience.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".rslistBull4").style.display='block'
+       
+             rsListLevels4(level4)
+           
+           }else{
+             document.querySelector(".rslistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   DirectionSetting = response.filter((d) => d.info.areas=="Direction Setting");
+  if (DirectionSetting.length>0) {
+   document.querySelector(".flush-heading29").style.display="block"
+   const level1 = DirectionSetting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               drListLevels1(level1)
+               document.querySelector(".drlistBull1").style.display='block'
+             }else{
+               document.querySelector(".drlistBull1").style.display='none'
+             }
+           const level2 = DirectionSetting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".drlistBull2").style.display='block'
+             console.log(level2);
+             drListLevels2(level2)
+           
+           }else{
+             document.querySelector(".drlistBull2").style.display='none'
+           }
+           const level3 = DirectionSetting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".drlistBull3").style.display='block'
+             drListLevels3(level3)
+         
+           }else{
+             document.querySelector(".drlistBull3").style.display='none'
+           }
+           const level4 = DirectionSetting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".drlistBull4").style.display='block'
+       
+             drListLevels4(level4)
+           
+           }else{
+             document.querySelector(".drlistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   ImpactandInfluence = response.filter((d) => d.info.areas=="Impact and Influence");
+  if (ImpactandInfluence.length>0) {
+   document.querySelector(".flush-heading30").style.display="block"
+   const level1 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               iiListLevels1(level1)
+               document.querySelector(".iilistBull1").style.display='block'
+             }else{
+               document.querySelector(".iilistBull1").style.display='none'
+             }
+           const level2 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".iilistBull2").style.display='block'
+             console.log(level2);
+             iiListLevels2(level2)
+           
+           }else{
+             document.querySelector(".iilistBull2").style.display='none'
+           }
+           const level3 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".iilistBull3").style.display='block'
+             iiListLevels3(level3)
+         
+           }else{
+             document.querySelector(".iilistBull3").style.display='none'
+           }
+           const level4 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".iilistBull4").style.display='block'
+       
+             iiListLevels4(level4)
+           
+           }else{
+             document.querySelector(".iilistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   CoachingandMentoring = response.filter((d) => d.info.areas=="Coaching and Mentoring");
+  if (CoachingandMentoring.length>0) {
+   document.querySelector(".flush-heading31").style.display="block"
+   const level1 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               menListLevels1(level1)
+               document.querySelector(".menlistBull1").style.display='block'
+             }else{
+               document.querySelector(".menlistBull1").style.display='none'
+             }
+           const level2 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".menlistBull2").style.display='block'
+             console.log(level2);
+             menListLevels2(level2)
+           
+           }else{
+             document.querySelector(".menlistBull2").style.display='none'
+           }
+           const level3 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".menlistBull3").style.display='block'
+             menListLevels3(level3)
+         
+           }else{
+             document.querySelector(".menlistBull3").style.display='none'
+           }
+           const level4 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".menlistBull4").style.display='block'
+       
+             menListLevels4(level4)
+           
+           }else{
+             document.querySelector(".menlistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   TeamOrientation= response.filter((d) => d.info.areas=="Team Orientation");
+  if (TeamOrientation.length>0) {
+   document.querySelector(".flush-heading32").style.display="block"
+   const level1 = TeamOrientation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               toListLevels1(level1)
+               document.querySelector(".tolistBull1").style.display='block'
+             }else{
+               document.querySelector(".tolistBull1").style.display='none'
+             }
+           const level2 = TeamOrientation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".tolistBull2").style.display='block'
+             console.log(level2);
+             toListLevels2(level2)
+           
+           }else{
+             document.querySelector(".tolistBull2").style.display='none'
+           }
+           const level3 = TeamOrientation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".tolistBull3").style.display='block'
+             toListLevels3(level3)
+         
+           }else{
+             document.querySelector(".tolistBull3").style.display='none'
+           }
+           const level4 = TeamOrientation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".tolistBull4").style.display='block'
+       
+             toListLevels4(level4)
+           
+           }else{
+             document.querySelector(".tolistBull4").style.display='none'
+           }
+   
+  }
+
+  const   InternalAuditing  = response.filter((d) => d.info.areas=="Internal Auditing");
+  if (InternalAuditing.length>0) {
+   document.querySelector(".flush-heading33").style.display="block"
+   const level1 = InternalAuditing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ioListLevels1(level1)
+               document.querySelector(".iolistBull1").style.display='block'
+             }else{
+               document.querySelector(".iolistBull1").style.display='none'
+             }
+           const level2 = InternalAuditing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".iolistBull2").style.display='block'
+             console.log(level2);
+             ioListLevels2(level2)
+           
+           }else{
+             document.querySelector(".iolistBull2").style.display='none'
+           }
+           const level3 = InternalAuditing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".iolistBull3").style.display='block'
+             ioListLevels3(level3)
+         
+           }else{
+             document.querySelector(".iolistBull3").style.display='none'
+           }
+           const level4 = InternalAuditing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".iolistBull4").style.display='block'
+       
+             ioListLevels4(level4)
+           
+           }else{
+             document.querySelector(".iolistBull4").style.display='none'
+           }
+   
+  }
+
+  const   EngagementManagement  = response.filter((d) => d.info.areas=="Engagement Management");
+  if (EngagementManagement.length>0) {
+   document.querySelector(".flush-heading34").style.display="block"
+   const level1 = EngagementManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               emListLevels1(level1)
+               document.querySelector(".emlistBull1").style.display='block'
+             }else{
+               document.querySelector(".emlistBull1").style.display='none'
+             }
+           const level2 = EngagementManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".emlistBull2").style.display='block'
+             console.log(level2);
+             emListLevels2(level2)
+           
+           }else{
+             document.querySelector(".emlistBull2").style.display='none'
+           }
+           const level3 = EngagementManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".emlistBull3").style.display='block'
+             emListLevels3(level3)
+         
+           }else{
+             document.querySelector(".emlistBull3").style.display='none'
+           }
+           const level4 = EngagementManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".emlistBull4").style.display='block'
+       
+             emListLevels4(level4)
+           
+           }else{
+             document.querySelector(".emlistBull4").style.display='none'
+           }
+   
+  }
+  
+  const   InformationManagement  = response.filter((d) => d.info.areas=="Information Management");
+  if (InformationManagement.length>0) {
+   document.querySelector(".flush-heading35").style.display="block"
+   const level1 = InformationManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               imListLevels1(level1)
+               document.querySelector(".imlistBull1").style.display='block'
+             }else{
+               document.querySelector(".imlistBull1").style.display='none'
+             }
+           const level2 = InformationManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".imlistBull2").style.display='block'
+             console.log(level2);
+             imListLevels2(level2)
+           
+           }else{
+             document.querySelector(".imlistBull2").style.display='none'
+           }
+           const level3 = InformationManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".imlistBull3").style.display='block'
+             imListLevels3(level3)
+         
+           }else{
+             document.querySelector(".imlistBull3").style.display='none'
+           }
+           const level4 = InformationManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".imlistBull4").style.display='block'
+       
+             imListLevels4(level4)
+           
+           }else{
+             document.querySelector(".imlistBull4").style.display='none'
+           }
+   
+  }
+  const   ResearchandAnalysis  = response.filter((d) => d.info.areas=="Research and Analysis");
+  if (ResearchandAnalysis.length>0) {
+   document.querySelector(".flush-heading36").style.display="block"
+   const level1 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               raListLevels1(level1)
+               document.querySelector(".ralistBull1").style.display='block'
+             }else{
+               document.querySelector(".ralistBull1").style.display='none'
+             }
+           const level2 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ralistBull2").style.display='block'
+             console.log(level2);
+             raListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ralistBull2").style.display='none'
+           }
+           const level3 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ralistBull3").style.display='block'
+             raListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ralistBull3").style.display='none'
+           }
+           const level4 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ralistBull4").style.display='block'
+       
+             raListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ralistBull4").style.display='none'
+           }
+   
+  }
+
+  const   AdvocacyNegotiation  = response.filter((d) => d.info.areas=="Advocacy / Negotiation");
+  if (AdvocacyNegotiation.length>0) {
+   document.querySelector(".flush-heading37").style.display="block"
+   const level1 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               anListLevels1(level1)
+               document.querySelector(".anlistBull1").style.display='block'
+             }else{
+               document.querySelector(".anlistBull1").style.display='none'
+             }
+           const level2 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".anlistBull2").style.display='block'
+             console.log(level2);
+             anListLevels2(level2)
+           
+           }else{
+             document.querySelector(".anlistBull2").style.display='none'
+           }
+           const level3 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".anlistBull3").style.display='block'
+             anListLevels3(level3)
+         
+           }else{
+             document.querySelector(".anlistBull3").style.display='none'
+           }
+           const level4 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".anlistBull4").style.display='block'
+       
+             anListLevels4(level4)
+           
+           }else{
+             document.querySelector(".anlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   EthicsandProfessionalism  = response.filter((d) => d.info.areas=="Ethics and Professionalism");
+  if (EthicsandProfessionalism.length>0) {
+   document.querySelector(".flush-heading38").style.display="block"
+   const level1 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               epListLevels1(level1)
+               document.querySelector(".eplistBull1").style.display='block'
+             }else{
+               document.querySelector(".eplistBull1").style.display='none'
+             }
+           const level2 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".eplistBull2").style.display='block'
+             console.log(level2);
+             epListLevels2(level2)
+           
+           }else{
+             document.querySelector(".eplistBull2").style.display='none'
+           }
+           const level3 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".eplistBull3").style.display='block'
+             epListLevels3(level3)
+         
+           }else{
+             document.querySelector(".eplistBull3").style.display='none'
+           }
+           const level4 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".eplistBull4").style.display='block'
+       
+             epListLevels4(level4)
+           
+           }else{
+             document.querySelector(".eplistBull4").style.display='none'
+           }
+   
+  }
+  const   StrategicCapability  = response.filter((d) => d.info.areas=="Strategic Capability / Leadership or Direction Setting");
+  if (StrategicCapability.length>0) {
+   document.querySelector(".flush-heading39").style.display="block"
+   const level1 = StrategicCapability.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               scListLevels1(level1)
+               document.querySelector(".sclistBull1").style.display='block'
+             }else{
+               document.querySelector(".sclistBull1").style.display='none'
+             }
+           const level2 = StrategicCapability.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".sclistBull2").style.display='block'
+             console.log(level2);
+             scListLevels2(level2)
+           
+           }else{
+             document.querySelector(".sclistBull2").style.display='none'
+           }
+           const level3 = StrategicCapability.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".sclistBull3").style.display='block'
+             scListLevels3(level3)
+         
+           }else{
+             document.querySelector(".sclistBull3").style.display='none'
+           }
+           const level4 = StrategicCapability.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".sclistBull4").style.display='block'
+       
+             scListLevels4(level4)
+           
+           }else{
+             document.querySelector(".sclistBull4").style.display='none'
+           }
+   
+  }
+
+  const   ChangeReadiness  = response.filter((d) => d.info.areas=="Change Readiness");
+  if (ChangeReadiness.length>0) {
+   document.querySelector(".flush-heading40").style.display="block"
+   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               crListLevels1(level1)
+               document.querySelector(".crlistBull1").style.display='block'
+             }else{
+               document.querySelector(".crlistBull1").style.display='none'
+             }
+           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".crlistBull2").style.display='block'
+             console.log(level2);
+             crListLevels2(level2)
+           
+           }else{
+             document.querySelector(".crlistBull2").style.display='none'
+           }
+           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".crlistBull3").style.display='block'
+             crListLevels3(level3)
+         
+           }else{
+             document.querySelector(".crlistBull3").style.display='none'
+           }
+           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".crlistBull4").style.display='block'
+       
+             crListLevels4(level4)
+           
+           }else{
+             document.querySelector(".crlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   CognitiveAbility  = response.filter((d) => d.info.areas=="Cognitive Ability");
+  if (CognitiveAbility.length>0) {
+   document.querySelector(".flush-heading41").style.display="block"
+   const level1 = CognitiveAbility.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               caListLevels1(level1)
+               document.querySelector(".calistBull1").style.display='block'
+             }else{
+               document.querySelector(".calistBull1").style.display='none'
+             }
+           const level2 = CognitiveAbility.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".calistBull2").style.display='block'
+             console.log(level2);
+             caListLevels2(level2)
+           
+           }else{
+             document.querySelector(".calistBull2").style.display='none'
+           }
+           const level3 = CognitiveAbility.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".calistBull3").style.display='block'
+             caListLevels3(level3)
+         
+           }else{
+             document.querySelector(".calistBull3").style.display='none'
+           }
+           const level4 = CognitiveAbility.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".calistBull4").style.display='block'
+       
+             caListLevels4(level4)
+           
+           }else{
+             document.querySelector(".calistBull4").style.display='none'
+           }
+   
+  }
+
+  const   CustomerOrientation  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
+  if (CustomerOrientation.length>0) {
+   document.querySelector(".flush-heading42").style.display="block"
+   const level1 = CustomerOrientation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ccListLevels1(level1)
+               document.querySelector(".cclistBull1").style.display='block'
+             }else{
+               document.querySelector(".cclistBull1").style.display='none'
+             }
+           const level2 = CustomerOrientation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".cclistBull2").style.display='block'
+             console.log(level2);
+             ccListLevels2(level2)
+           
+           }else{
+             document.querySelector(".cclistBull2").style.display='none'
+           }
+           const level3 = CustomerOrientation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".cclistBull3").style.display='block'
+             ccListLevels3(level3)
+         
+           }else{
+             document.querySelector(".cclistBull3").style.display='none'
+           }
+           const level4 = CustomerOrientation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".cclistBull4").style.display='block'
+       
+             ccListLevels4(level4)
+           
+           }else{
+             document.querySelector(".cclistBull4").style.display='none'
+           }
+   
+  }
+
+  const   LitigationManagement  = response.filter((d) => d.info.areas=="Litigation Management");
+  if (LitigationManagement.length>0) {
+   document.querySelector(".flush-heading43").style.display="block"
+   const level1 = LitigationManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               manaListLevels1(level1)
+               document.querySelector(".manalistBull1").style.display='block'
+             }else{
+               document.querySelector(".manalistBull1").style.display='none'
+             }
+           const level2 = LitigationManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".manalistBull2").style.display='block'
+             console.log(level2);
+             manaListLevels2(level2)
+           
+           }else{
+             document.querySelector(".manalistBull2").style.display='none'
+           }
+           const level3 = LitigationManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".manalistBull3").style.display='block'
+             manaListLevels3(level3)
+         
+           }else{
+             document.querySelector(".manalistBull3").style.display='none'
+           }
+           const level4 = LitigationManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".manalistBull4").style.display='block'
+       
+             manaListLevels4(level4)
+           
+           }else{
+             document.querySelector(".manalistBull4").style.display='none'
+           }
+   
+  }
+
+  
+  const   WrittenCommunicationDrafting  = response.filter((d) => d.info.areas=="Written Communication / Drafting");
+  if (WrittenCommunicationDrafting.length>0) {
+   document.querySelector(".flush-heading44").style.display="block"
+   const level1 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               wcdListLevels1(level1)
+               document.querySelector(".wcdlistBull1").style.display='block'
+             }else{
+               document.querySelector(".wcdlistBull1").style.display='none'
+             }
+           const level2 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".wcdlistBull2").style.display='block'
+             console.log(level2);
+             wcdListLevels2(level2)
+           
+           }else{
+             document.querySelector(".wcdlistBull2").style.display='none'
+           }
+           const level3 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".wcdlistBull3").style.display='block'
+             wcdListLevels3(level3)
+         
+           }else{
+             document.querySelector(".wcdlistBull3").style.display='none'
+           }
+           const level4 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".wcdlistBull4").style.display='block'
+       
+             wcdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".wcdlistBull4").style.display='none'
+           }
+   
+  }
+
+
+  const   Accounting  = response.filter((d) => d.info.areas=="Accounting");
+  if (Accounting.length>0) {
+   document.querySelector(".flush-heading45").style.display="block"
+   const level1 = Accounting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               accountListLevels1(level1)
+               document.querySelector(".accountlistBull1").style.display='block'
+             }else{
+               document.querySelector(".accountlistBull1").style.display='none'
+             }
+           const level2 = Accounting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".accountlistBull2").style.display='block'
+             console.log(level2);
+             accountListLevels2(level2)
+           
+           }else{
+             document.querySelector(".accountlistBull2").style.display='none'
+           }
+           const level3 = Accounting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".accountlistBull3").style.display='block'
+             accountListLevels3(level3)
+         
+           }else{
+             document.querySelector(".accountlistBull3").style.display='none'
+           }
+           const level4 = Accounting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".accountlistBull4").style.display='block'
+       
+             accountListLevels4(level4)
+           
+           }else{
+             document.querySelector(".accountlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Procurement  = response.filter((d) => d.info.areas=="Procurement");
+  if (Procurement.length>0) {
+   document.querySelector(".flush-heading46").style.display="block"
+   const level1 = Procurement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               procurementListLevels1(level1)
+               document.querySelector(".procurementlistBull1").style.display='block'
+             }else{
+               document.querySelector(".procurementlistBull1").style.display='none'
+             }
+           const level2 = Procurement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".procurementlistBull2").style.display='block'
+             console.log(level2);
+             procurementListLevels2(level2)
+           
+           }else{
+             document.querySelector(".procurementlistBull2").style.display='none'
+           }
+           const level3 = Procurement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".procurementlistBull3").style.display='block'
+             procurementListLevels3(level3)
+         
+           }else{
+             document.querySelector(".procurementlistBull3").style.display='none'
+           }
+           const level4 = Procurement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".procurementlistBull4").style.display='block'
+       
+             procurementListLevels4(level4)
+           
+           }else{
+             document.querySelector(".procurementlistBull4").style.display='none'
+           }
+   
+  }
+
+   const   Budgeting = response.filter((d) => d.info.areas=="Budgeting");
+  if (Budgeting.length>0) {
+   document.querySelector(".flush-heading47").style.display="block"
+   const level1 = Budgeting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               budgetListLevels1(level1)
+               document.querySelector(".budgetlistBull1").style.display='block'
+             }else{
+               document.querySelector(".budgetlistBull1").style.display='none'
+             }
+           const level2 = Budgeting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".budgetlistBull2").style.display='block'
+             console.log(level2);
+             budgetListLevels2(level2)
+           
+           }else{
+             document.querySelector(".budgetlistBull2").style.display='none'
+           }
+           const level3 = Budgeting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".budgetlistBull3").style.display='block'
+             budgetListLevels3(level3)
+         
+           }else{
+             document.querySelector(".budgetlistBull3").style.display='none'
+           }
+           const level4 = Budgeting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".budgetlistBull4").style.display='block'
+       
+             budgetListLevels4(level4)
+           
+           }else{
+             document.querySelector(".budgetlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialManagement = response.filter((d) => d.info.areas=="Financial Management");
+  if (FinancialManagement.length>0) {
+   document.querySelector(".flush-heading48").style.display="block"
+   const level1 = FinancialManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               financeListLevels1(level1)
+               document.querySelector(".financelistBull1").style.display='block'
+             }else{
+               document.querySelector(".financelistBull1").style.display='none'
+             }
+           const level2 = FinancialManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".financelistBull2").style.display='block'
+             console.log(level2);
+             financeListLevels2(level2)
+           
+           }else{
+             document.querySelector(".financelistBull2").style.display='none'
+           }
+           const level3 = FinancialManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".financelistBull3").style.display='block'
+             financeListLevels3(level3)
+         
+           }else{
+             document.querySelector(".financelistBull3").style.display='none'
+           }
+           const level4 = FinancialManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".financelistBull4").style.display='block'
+       
+             financeListLevels4(level4)
+           
+           }else{
+             document.querySelector(".financelistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Costing = response.filter((d) => d.info.areas=="Costing");
+  if (Costing.length>0) {
+   document.querySelector(".flush-heading49").style.display="block"
+   const level1 = Costing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               costListLevels1(level1)
+               document.querySelector(".costlistBull1").style.display='block'
+             }else{
+               document.querySelector(".costlistBull1").style.display='none'
+             }
+           const level2 = Costing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".costlistBull2").style.display='block'
+             console.log(level2);
+             costListLevels2(level2)
+           
+           }else{
+             document.querySelector(".costlistBull2").style.display='none'
+           }
+           const level3 = Costing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".costlistBull3").style.display='block'
+             costListLevels3(level3)
+         
+           }else{
+             document.querySelector(".costlistBull3").style.display='none'
+           }
+           const level4 = Costing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".costlistBull4").style.display='block'
+       
+             costListLevels4(level4)
+           
+           }else{
+             document.querySelector(".costlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialReporting = response.filter((d) => d.info.areas=="Financial Reporting");
+  if (FinancialReporting.length>0) {
+   document.querySelector(".flush-heading50").style.display="block"
+   const level1 = FinancialReporting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               freportListLevels1(level1)
+               document.querySelector(".freportlistBull1").style.display='block'
+             }else{
+               document.querySelector(".freportlistBull1").style.display='none'
+             }
+           const level2 = FinancialReporting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".freportlistBull2").style.display='block'
+             console.log(level2);
+             freportListLevels2(level2)
+           
+           }else{
+             document.querySelector(".freportlistBull2").style.display='none'
+           }
+           const level3 = FinancialReporting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".freportlistBull3").style.display='block'
+             freportListLevels3(level3)
+         
+           }else{
+             document.querySelector(".freportlistBull3").style.display='none'
+           }
+           const level4 = FinancialReporting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".freportlistBull4").style.display='block'
+       
+             freportListLevels4(level4)
+           
+           }else{
+             document.querySelector(".freportlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialProcessManagement = response.filter((d) => d.info.areas=="Financial Process Management");
+  if (FinancialProcessManagement.length>0) {
+   document.querySelector(".flush-heading51").style.display="block"
+   const level1 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               fmListLevels1(level1)
+               document.querySelector(".fmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".fmlistBull1").style.display='none'
+             }
+           const level2 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".fmlistBull2").style.display='block'
+             console.log(level2);
+             fmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".fmlistBull2").style.display='none'
+           }
+           const level3 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".fmlistBull3").style.display='block'
+             fmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".fmlistBull3").style.display='none'
+           }
+           const level4 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".fmlistBull4").style.display='block'
+       
+             fmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".fmlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   ProblemSolving = response.filter((d) => d.info.areas=="Problem Solving");
+  if (ProblemSolving.length>0) {
+   document.querySelector(".flush-heading52").style.display="block"
+   const level1 = ProblemSolving.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               spListLevels1(level1)
+               document.querySelector(".splistBull1").style.display='block'
+             }else{
+               document.querySelector(".splistBull1").style.display='none'
+             }
+           const level2 = ProblemSolving.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".splistBull2").style.display='block'
+             console.log(level2);
+             spListLevels2(level2)
+           
+           }else{
+             document.querySelector(".splistBull2").style.display='none'
+           }
+           const level3 = ProblemSolving.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".splistBull3").style.display='block'
+             spListLevels3(level3)
+         
+           }else{
+             document.querySelector(".splistBull3").style.display='none'
+           }
+           const level4 = ProblemSolving.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".splistBull4").style.display='block'
+       
+             spListLevels4(level4)
+           
+           }else{
+             document.querySelector(".splistBull4").style.display='none'
+           }
+   
+  }
+
+  const   AttentiontoDetail = response.filter((d) => d.info.areas=="Attention to Detail");
+  if (AttentiontoDetail.length>0) {
+   document.querySelector(".flush-heading53").style.display="block"
+   const level1 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               atdListLevels1(level1)
+               document.querySelector(".atdlistBull1").style.display='block'
+             }else{
+               document.querySelector(".atdlistBull1").style.display='none'
+             }
+           const level2 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".atdlistBull2").style.display='block'
+             console.log(level2);
+             atdListLevels2(level2)
+           
+           }else{
+             document.querySelector(".atdlistBull2").style.display='none'
+           }
+           const level3 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".atdlistBull3").style.display='block'
+             atdListLevels3(level3)
+         
+           }else{
+             document.querySelector(".atdlistBull3").style.display='none'
+           }
+           const level4 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".atdlistBull4").style.display='block'
+       
+             atdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".atdlistBull4").style.display='none'
+           }
+   
+  }
+
+  
+  const   Influencing = response.filter((d) => d.info.areas=="Influencing");
+  
+  if (Influencing.length>0) {
+   document.querySelector(".flush-heading54").style.display="block"
+   const level1 = Influencing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               intflListLevels1(level1)
+               document.querySelector(".intfllistBull1").style.display='block'
+             }else{
+               document.querySelector(".intfllistBull1").style.display='none'
+             }
+           const level2 = Influencing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".intfllistBull2").style.display='block'
+             console.log(level2);
+             intflListLevels2(level2)
+           
+           }else{
+             document.querySelector(".intfllistBull2").style.display='none'
+           }
+           const level3 = Influencing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".intfllistBull3").style.display='block'
+             intflListLevels3(level3)
+         
+           }else{
+             document.querySelector(".intfllistBull3").style.display='none'
+           }
+           const level4 = Influencing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".intfllistBull4").style.display='block'
+       
+             intflListLevels4(level4)
+           
+           }else{
+             document.querySelector(".intfllistBull4").style.display='none'
+           }
+   
+  }
+
+  const   BusinessProcess = response.filter((d) => d.info.areas=="Business Process");
+  if (BusinessProcess.length>0) {
+    document.querySelector(".flush-heading55").style.display="block"
+    const level1 = BusinessProcess.filter((d)=>d.info.levels=="Level 1")
+       
+              if(level1.length >0){
+                console.log(level1);
+                bppListLevels1(level1)
+                document.querySelector(".bpplistBull1").style.display='block'
+              }else{
+                document.querySelector(".bpplistBull1").style.display='none'
+              }
+            const level2 = BusinessProcess.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".bpplistBull2").style.display='block'
+              console.log(level2);
+              bppListLevels2(level2)
+            
+            }else{
+              document.querySelector(".bpplistBull2").style.display='none'
+            }
+            const level3 = BusinessProcess.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".bpplistBull3").style.display='block'
+              bppListLevels3(level3)
+          
+            }else{
+              document.querySelector(".bpplistBull3").style.display='none'
+            }
+            const level4 = BusinessProcess.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".bpplistBull4").style.display='block'
+        
+              bppListLevels4(level4)
+            
+            }else{
+              document.querySelector(".bpplistBull4").style.display='none'
+            }
+    
+   }
+
+   const   UseofTechnology = response.filter((d) => d.info.areas=="Use of Technology");
+  if (UseofTechnology.length>0) {
+    document.querySelector(".flush-heading56").style.display="block"
+    const level1 = UseofTechnology.filter((d)=>d.info.levels=="Level 1")
+       
+              if(level1.length >0){
+                console.log(level1);
+                useListLevels1(level1)
+                document.querySelector(".uselistBull1").style.display='block'
+              }else{
+                document.querySelector(".uselistBull1").style.display='none'
+              }
+            const level2 = UseofTechnology.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".uselistBull2").style.display='block'
+              console.log(level2);
+              useListLevels2(level2)
+            
+            }else{
+              document.querySelector(".uselistBull2").style.display='none'
+            }
+            const level3 = UseofTechnology.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".uselistBull3").style.display='block'
+              useListLevels3(level3)
+          
+            }else{
+              document.querySelector(".uselistBull3").style.display='none'
+            }
+            const level4 = UseofTechnology.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".uselistBull4").style.display='block'
+        
+              useListLevels4(level4)
+            
+            }else{
+              document.querySelector(".uselistBull4").style.display='none'
+            }
+    
+   }
+
+   const   DataProcessingAnalysis   = response.filter((d) => d.info.areas=="Data Processing & Analysis");
+   if (DataProcessingAnalysis.length>0) {
+     document.querySelector(".flush-heading57").style.display="block"
+     const level1 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 dpaListLevels1(level1)
+                 document.querySelector(".dpalistBull1").style.display='block'
+               }else{
+                 document.querySelector(".dpalistBull1").style.display='none'
+               }
+             const level2 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".dpalistBull2").style.display='block'
+               console.log(level2);
+               dpaListLevels2(level2)
+             
+             }else{
+               document.querySelector(".dpalistBull2").style.display='none'
+             }
+             const level3 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".dpalistBull3").style.display='block'
+               dpaListLevels3(level3)
+           
+             }else{
+               document.querySelector(".dpalistBull3").style.display='none'
+             }
+             const level4 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".dpalistBull4").style.display='block'
+         
+               dpaListLevels4(level4)
+             
+             }else{
+               document.querySelector(".dpalistBull4").style.display='none'
+             }
+     
+    }
+
+    const   ClientOrientationandCustomerFocus    = response.filter((d) => d.info.areas=="Client Orientation and Customer Focus");
+   if (ClientOrientationandCustomerFocus.length>0) {
+     document.querySelector(".flush-heading58").style.display="block"
+     const level1 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 coListLevels1(level1)
+                 document.querySelector(".colistBull1").style.display='block'
+               }else{
+                 document.querySelector(".colistBull1").style.display='none'
+               }
+             const level2 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".colistBull2").style.display='block'
+               console.log(level2);
+               coListLevels2(level2)
+             
+             }else{
+               document.querySelector(".colistBull2").style.display='none'
+             }
+             const level3 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".colistBull3").style.display='block'
+               coListLevels3(level3)
+           
+             }else{
+               document.querySelector(".colistBull3").style.display='none'
+             }
+             const level4 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".colistBull4").style.display='block'
+         
+               coListLevels4(level4)
+             
+             }else{
+               document.querySelector(".colistBull4").style.display='none'
+             }
+     
+    }
+
+    const    ActionOrientation    = response.filter((d) => d.info.areas=="Action Orientation");
+    if (ActionOrientation.length>0) {
+      document.querySelector(".flush-heading59").style.display="block"
+      const level1 = ActionOrientation.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  asListLevels1(level1)
+                  document.querySelector(".aslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".aslistBull1").style.display='none'
+                }
+              const level2 = ActionOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".aslistBull2").style.display='block'
+                console.log(level2);
+                asListLevels2(level2)
+              
+              }else{
+                document.querySelector(".aslistBull2").style.display='none'
+              }
+              const level3 = ActionOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".aslistBull3").style.display='block'
+                asListLevels3(level3)
+            
+              }else{
+                document.querySelector(".aslistBull3").style.display='none'
+              }
+              const level4 = ActionOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".aslistBull4").style.display='block'
+          
+                asListLevels4(level4)
+              
+              }else{
+                document.querySelector(".aslistBull4").style.display='none'
+              }
+      
+     }
+
+     const    QualityOrientation    = response.filter((d) => d.info.areas=="Quality Orientation");
+    if (QualityOrientation.length>0) {
+      document.querySelector(".flush-heading60").style.display="block"
+      const level1 = QualityOrientation.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  qoListLevels1(level1)
+                  document.querySelector(".qolistBull1").style.display='block'
+                }else{
+                  document.querySelector(".qolistBull1").style.display='none'
+                }
+              const level2 = QualityOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".qolistBull2").style.display='block'
+                console.log(level2);
+                qoListLevels2(level2)
+              
+              }else{
+                document.querySelector(".qolistBull2").style.display='none'
+              }
+              const level3 = QualityOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".qolistBull3").style.display='block'
+                qoListLevels3(level3)
+            
+              }else{
+                document.querySelector(".qolistBull3").style.display='none'
+              }
+              const level4 = QualityOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".qolistBull4").style.display='block'
+          
+                qoListLevels4(level4)
+              
+              }else{
+                document.querySelector(".qolistBull4").style.display='none'
+              }
+      
+     }
+
+       const    DisciplineSpecificSkills    = response.filter((d) => d.info.areas=="Discipline Specific Skills");
+    if (DisciplineSpecificSkills.length>0) {
+      document.querySelector(".flush-heading62").style.display="block"
+      const level1 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  dsListLevels1(level1)
+                  document.querySelector(".dslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".dslistBull1").style.display='none'
+                }
+              const level2 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".dslistBull2").style.display='block'
+                console.log(level2);
+                dsListLevels2(level2)
+              
+              }else{
+                document.querySelector(".dslistBull2").style.display='none'
+              }
+              const level3 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".dslistBull3").style.display='block'
+                dsListLevels3(level3)
+            
+              }else{
+                document.querySelector(".dslistBull3").style.display='none'
+              }
+              const level4 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".dslistBull4").style.display='block'
+          
+                dsListLevels4(level4)
+              
+              }else{
+                document.querySelector(".dslistBull4").style.display='none'
+              }
+      
+     }
+
+         const    CustomerOrientationandCustomerFocus  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
+    if (CustomerOrientationandCustomerFocus.length>0) {
+      document.querySelector(".flush-heading63").style.display="block"
+      const level1 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  wriListLevels1(level1)
+                  document.querySelector(".wrilistBull1").style.display='block'
+                }else{
+                  document.querySelector(".wrilistBull1").style.display='none'
+                }
+              const level2 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".wrilistBull2").style.display='block'
+                console.log(level2);
+                wriListLevels2(level2)
+              
+              }else{
+                document.querySelector(".wrilistBull2").style.display='none'
+              }
+              const level3 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".wrilistBull3").style.display='block'
+                wriListLevels3(level3)
+            
+              }else{
+                document.querySelector(".wrilistBull3").style.display='none'
+              }
+              const level4 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".wrilistBull4").style.display='block'
+          
+                wriListLevels4(level4)
+              
+              }else{
+                document.querySelector(".wrilistBull4").style.display='none'
+              }
+      
+     }
+
+     const MangingWork  = response.filter((d) => d.info.areas=="Managing Work");
+     if (MangingWork.length>0) {
+       document.querySelector(".flush-heading64").style.display="block"
+       const level1 = MangingWork.filter((d)=>d.info.levels=="Level 1")
+          
+                 if(level1.length >0){
+                   console.log(level1);
+                   mwListLevels1(level1)
+                   document.querySelector(".mwlistBull1").style.display='block'
+                 }else{
+                   document.querySelector(".mwlistBull1").style.display='none'
+                 }
+               const level2 = MangingWork.filter((d)=>d.info.levels=="Level 2")
+               if(level2.length>0){
+                 document.querySelector(".mwlistBull2").style.display='block'
+                 console.log(level2);
+                 mwListLevels2(level2)
+               
+               }else{
+                 document.querySelector(".mwlistBull2").style.display='none'
+               }
+               const level3 = MangingWork.filter((d)=>d.info.levels=="Level 3")
+               if(level3.length!==0){
+                 document.querySelector(".mwlistBull3").style.display='block'
+                 mwListLevels3(level3)
+             
+               }else{
+                 document.querySelector(".mwlistBull3").style.display='none'
+               }
+               const level4 = MangingWork.filter((d)=>d.info.levels=="Level 4")
+               if(level4.length!==0){
+                 console.log(level4);
+                 document.querySelector(".mwlistBull4").style.display='block'
+           
+                 mwListLevels4(level4)
+               
+               }else{
+                 document.querySelector(".mwlistBull4").style.display='none'
+               }
+       
+      }
+
+    //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
+    //  console.log(ServiceDeliveryOrientation);
+    //  if (ServiceDeliveryOrientation.length>0) {
+    //    document.querySelector(".flush-heading64").style.display="block"
+    //    const level1 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 1")
+          
+    //              if(level1.length >0){
+    //                console.log(level1);
+    //                sdListLevels1(level1)
+    //                document.querySelector(".sdlistBull1").style.display='block'
+    //              }else{
+    //                document.querySelector(".sdlistBull1").style.display='none'
+    //              }
+    //            const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
+    //            if(level2.length>0){
+    //              document.querySelector(".sdlistBull2").style.display='block'
+    //              console.log(level2);
+    //              sdListLevels2(level2)
+               
+    //            }else{
+    //              document.querySelector(".sdlistBull2").style.display='none'
+    //            }
+    //            const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
+    //            if(level3.length!==0){
+    //              document.querySelector(".sdlistBull3").style.display='block'
+    //              sdListLevels3(level3)
+             
+    //            }else{
+    //              document.querySelector(".sdlistBull3").style.display='none'
+    //            }
+    //            const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
+    //            if(level4.length!==0){
+    //              console.log(level4);
+    //              document.querySelector(".sdlistBull4").style.display='block'
+           
+    //              sdListLevels4(level4)
+               
+    //            }else{
+    //              document.querySelector(".sdlistBull4").style.display='none'
+    //            }
+       
+    //   }
+//   // let option =""
+//   // let html =""
+//   // let list = document.querySelector(".listdata124")
+ 
+//   // result.forEach(department => {
+//   //     option=` <li>${department.details}</li>`;
+//   //     html +=option;
+//   //     list.innerHTML=html;
+     
+      
+//   // });
+
+}
+
+function Functional(response) {
+  
+  console.log(response);
+ 
+  const  written = response.filter((d) => d.info.areas=="Written Communication");
+  if (written.length>0) {
+   document.querySelector(".flush-heading0").style.display="block"
+   const level1 = written.filter((d)=>d.info.levels=="Level 1")
+       
+   if(level1.length >0){
+     console.log(level1);
+     ListLevels1(level1)
+   
+     document.querySelector(".listBull1").style.display='block'
+   }else{
+     document.querySelector(".listBull1").style.display='none'
+   }
+  const level2 = written.filter((d)=>d.info.levels=="Level 2")
+  if(level2.length!==0){
+   document.querySelector(".listBull2").style.display='block'
+   ListLevels2(level2)
+  
+  }else{
+   document.querySelector(".listBull2").style.display='none'
+  }
+  const level3 = written.filter((d)=>d.info.levels=="Level 3")
+  if(level3.length!==0){
+   document.querySelector(".listBull3").style.display='block'
+   ListLevels3(level3)
+  
+  }else{
+   document.querySelector(".listBull3").style.display='none'
+  }
+  const level4 = written.filter((d)=>d.info.levels=="Level 4")
+  if(level4.length!==0){
+   document.querySelector(".listBull4").style.display='block'
+  
+   ListLevels4(level4)
+  
+  }else{
+   document.querySelector(".listBull4").style.display='none'
+  }
+  }
+ 
+  const Organisational = response.filter((d) => d.info.areas=="Organisational Awareness");
+  if (Organisational.length>0) {
+   document.querySelector(".flush-heading1").style.display="block"
+   const level1 = Organisational.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               oListLevels1(level1)
+               document.querySelector(".olistBull1").style.display='block'
+             }else{
+               document.querySelector(".olistBull1").style.display='none'
+             }
+           const level2 = Organisational.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".olistBull2").style.display='block'
+             console.log(level2);
+             oListLevels2(level2)
+           
+           }else{
+             document.querySelector(".olistBull2").style.display='none'
+           }
+           const level3 = Organisational.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".olistBull3").style.display='block'
+             oListLevels3(level3)
+         
+           }else{
+             document.querySelector(".olistBull3").style.display='none'
+           }
+           const level4 = Organisational.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".olistBull4").style.display='block'
+       
+             oListLevels4(level4)
+           
+           }else{
+             document.querySelector(".olistBull4").style.display='none'
+           }
+   
+  }
+  
+  const  Plannning = response.filter((d) => d.info.areas=="Planning and Organising");
+  if (Plannning.length>0) {
+   document.querySelector(".flush-heading2").style.display="block"
+ 
+     const level1 = Plannning.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 pListLevels1(level1)
+                 document.querySelector(".plistBull1").style.display='block'
+               }else{
+                 document.querySelector(".plistBull1").style.display='none'
+               }
+             const level2 = Plannning.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".plistBull2").style.display='block'
+               console.log(level2);
+               pListLevels2(level2)
+             
+             }else{
+               document.querySelector(".plistBull2").style.display='none'
+             }
+             const level3 = Plannning.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".plistBull3").style.display='block'
+               pListLevels3(level3)
+           
+             }else{
+               document.querySelector(".plistBull3").style.display='none'
+             }
+             const level4 = Plannning.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".plistBull4").style.display='block'
+         
+               pListLevels4(level4)
+             
+             }else{
+               document.querySelector(".plistBull4").style.display='none'
+             }
+     
+    
+  }
+  const  Monitoring = response.filter((d) => d.info.areas=="Monitoring and Control");
+  if (Monitoring.length>0) {
+   document.querySelector(".flush-heading3").style.display="block"
+   const level1 = Monitoring.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 mListLevels1(level1)
+                 document.querySelector(".mlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".mlistBull1").style.display='none'
+               }
+             const level2 = Monitoring.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".mlistBull2").style.display='block'
+               console.log(level2);
+               mListLevels2(level2)
+             
+             }else{
+               document.querySelector(".mlistBull2").style.display='none'
+             }
+             const level3 = Monitoring.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".mlistBull3").style.display='block'
+               mListLevels3(level3)
+           
+             }else{
+               document.querySelector(".mlistBull3").style.display='none'
+             }
+             const level4 = Monitoring.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".mlistBull4").style.display='block'
+         
+               mListLevels4(level4)
+             
+             }else{
+               document.querySelector(".mlistBull4").style.display='none'
+             }
+     
+  }
+ 
+  const  Consulting = response.filter((d) => d.info.areas=="Consulting");
+  if (Consulting.length>0) {
+   document.querySelector(".flush-heading4").style.display="block"
+   const level1 = Consulting.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 cListLevels1(level1)
+                 document.querySelector(".clistBull1").style.display='block'
+               }else{
+                 document.querySelector(".clistBull1").style.display='none'
+               }
+             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".clistBull2").style.display='block'
+               console.log(level2);
+               cListLevels2(level2)
+             
+             }else{
+               document.querySelector(".clistBull2").style.display='none'
+             }
+             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".clistBull3").style.display='block'
+               cListLevels3(level3)
+           
+             }else{
+               document.querySelector(".clistBull3").style.display='none'
+             }
+             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".clistBull4").style.display='block'
+         
+               cListLevels4(level4)
+             
+             }else{
+               document.querySelector(".clistBull4").style.display='none'
+             }
+     
+  }
+  const  Negotiation = response.filter((d) => d.info.areas=="Negotiation");
+  if (Negotiation.length>0) {
+   document.querySelector(".flush-heading5").style.display="block"
+   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 nListLevels1(level1)
+                 document.querySelector(".nlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".nlistBull1").style.display='none'
+               }
+             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".nlistBull2").style.display='block'
+               console.log(level2);
+               nListLevels2(level2)
+             
+             }else{
+               document.querySelector(".nlistBull2").style.display='none'
+             }
+             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".nlistBull3").style.display='block'
+               nListLevels3(level3)
+           
+             }else{
+               document.querySelector(".nlistBull3").style.display='none'
+             }
+             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".nlistBull4").style.display='block'
+         
+               nListLevels4(level4)
+             
+             }else{
+               document.querySelector(".nlistBull4").style.display='none'
+             }
+     
+  }
+  const  Oral = response.filter((d) => d.info.areas=="Oral Communication");
+  if (Oral.length>0) {
+   document.querySelector(".flush-heading6").style.display="block"
+   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 orListLevels1(level1)
+                 document.querySelector(".orlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".orlistBull1").style.display='none'
+               }
+             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".orlistBull2").style.display='block'
+               console.log(level2);
+               orListLevels2(level2)
+             
+             }else{
+               document.querySelector(".orlistBull2").style.display='none'
+             }
+             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".orlistBull3").style.display='block'
+               orListLevels3(level3)
+           
+             }else{
+               document.querySelector(".orlistBull3").style.display='none'
+             }
+             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".orlistBull4").style.display='block'
+         
+               orListLevels4(level4)
+             
+             }else{
+               document.querySelector(".orlistBull4").style.display='none'
+             }
+ 
+              
+  const Learning = response.filter((d) => d.info.areas=="Learning and Development ");
+  if (Learning.length>0) {
+   document.querySelector(".flush-heading7").style.display="block"
+   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ldListLevels1(level1)
+               document.querySelector(".ldlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ldlistBull1").style.display='none'
+             }
+           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ldlistBull2").style.display='block'
+             console.log(level2);
+             ldListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ldlistBull2").style.display='none'
+           }
+           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ldlistBull3").style.display='block'
+             ldListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ldlistBull3").style.display='none'
+           }
+           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ldlistBull4").style.display='block'
+       
+             ldListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ldlistBull4").style.display='none'
+           }
+   
+  }
+     
+  }
+ 
+  const Learning = response.filter((d) => d.info.areas=="Learning and Development");
+  if (Learning.length>0) {
+   document.querySelector(".flush-heading7").style.display="block"
+   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ldListLevels1(level1)
+               document.querySelector(".ldlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ldlistBull1").style.display='none'
+             }
+           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ldlistBull2").style.display='block'
+             console.log(level2);
+             ldListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ldlistBull2").style.display='none'
+           }
+           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ldlistBull3").style.display='block'
+             ldListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ldlistBull3").style.display='none'
+           }
+           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ldlistBull4").style.display='block'
+       
+             ldListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ldlistBull4").style.display='none'
+           }
+   
+  }
+  
+ // const Awareness = response.filter((d) => d.areas=="Organisational Awareness");
+ 
+ // if (Awareness.length>0) {
+ //   document.querySelector(".flush-heading8").style.display="block"
+ //   const level1 = Awareness.filter((d)=>d.levels=="Level 1")
+      
+ //             if(level1.length >0){
+ //               console.log(level1);
+ //               aListLevels1(level1)
+ //               document.querySelector(".alistBull1").style.display='block'
+ //             }else{
+ //               document.querySelector(".alistBull1").style.display='none'
+ //             }
+ //           const level2 = Awareness.filter((d)=>d.levels=="Level 2")
+ //           if(level2.length>0){
+ //             document.querySelector(".alistBull2").style.display='block'
+ //             console.log(level2);
+ //             aListLevels2(level2)
+           
+ //           }else{
+ //             document.querySelector(".alistBull2").style.display='none'
+ //           }
+ //           const level3 = Awareness.filter((d)=>d.levels=="Level 3")
+ //           if(level3.length!==0){
+ //             document.querySelector(".alistBull3").style.display='block'
+ //             aListLevels3(level3)
+         
+ //           }else{
+ //             document.querySelector(".alistBull3").style.display='none'
+ //           }
+ //           const level4 = Awareness.filter((d)=>d.levels=="Level 4")
+ //           if(level4.length!==0){
+ //             console.log(level4);
+ //             document.querySelector(".alistBull4").style.display='block'
+       
+ //             aListLevels4(level4)
+           
+ //           }else{
+ //             document.querySelector(".alistBull4").style.display='none'
+ //           }
+   
+ //  }
+ 
+ const  Change = response.filter((d) => d.info.areas=="Change Movement");
+ 
+ if (Change.length>0) {
+   document.querySelector(".flush-heading9").style.display="block"
+   const level1 = Change.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               cmListLevels1(level1)
+               document.querySelector(".cmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".cmlistBull1").style.display='none'
+             }
+           const level2 = Change.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".cmlistBull2").style.display='block'
+             console.log(level2);
+             cmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".cmlistBull2").style.display='none'
+           }
+           const level3 = Change.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".cmlistBull3").style.display='block'
+             cmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".cmlistBull3").style.display='none'
+           }
+           const level4 = Change.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".cmlistBull4").style.display='block'
+       
+             cmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".cmlistBull4").style.display='none'
+           }
+   
+  }
+ 
+ 
+ const  Technology = response.filter((d) => d.info.areas=="HR Technology information Management");
+ 
+ 
+ if (Technology.length>0) {
+   document.querySelector(".flush-heading10").style.display="block"
+   const level1 = Technology.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               tListLevels1(level1)
+               document.querySelector(".tlistBull1").style.display='block'
+             }else{
+               document.querySelector(".tlistBull1").style.display='none'
+             }
+           const level2 = Technology.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".tlistBull2").style.display='block'
+             console.log(level2);
+             tListLevels2(level2)
+           
+           }else{
+             document.querySelector(".tlistBull2").style.display='none'
+           }
+           const level3 = Technology.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".tlistBull3").style.display='block'
+             tListLevels3(level3)
+         
+           }else{
+             document.querySelector(".tlistBull3").style.display='none'
+           }
+           const level4 = Technology.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".tlistBull4").style.display='block'
+       
+             tListLevels4(level4)
+           
+           }else{
+             document.querySelector(".tlistBull4").style.display='none'
+           }
+   
+  }
+ 
+ const  Service = response.filter((d) => d.info.areas=="HR Service Delivery");
+ if (Service.length>0) {
+   document.querySelector(".flush-heading11").style.display="block"
+   const level1 = Service.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               sListLevels1(level1)
+               document.querySelector(".slistBull1").style.display='block'
+             }else{
+               document.querySelector(".slistBull1").style.display='none'
+             }
+           const level2 = Service.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".slistBull2").style.display='block'
+             console.log(level2);
+             sListLevels2(level2)
+           
+           }else{
+             document.querySelector(".slistBull2").style.display='none'
+           }
+           const level3 = Service.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".slistBull3").style.display='block'
+             sListLevels3(level3)
+         
+           }else{
+             document.querySelector(".slistBull3").style.display='none'
+           }
+           const level4 = Service.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".slistBull4").style.display='block'
+       
+             sListLevels4(level4)
+           
+           }else{
+             document.querySelector(".slistBull4").style.display='none'
+           }
+   
+  }
+ const  Talent = response.filter((d) => d.info.areas=="Talent Management");
+ if (Talent.length>0) {
+   document.querySelector(".flush-heading12").style.display="block"
+   const level1 = Talent.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               tmListLevels1(level1)
+               document.querySelector(".tmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".tmlistBull1").style.display='none'
+             }
+           const level2 = Talent.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".tmlistBull2").style.display='block'
+             console.log(level2);
+             tmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".tmlistBull2").style.display='none'
+           }
+           const level3 = Talent.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".tmlistBull3").style.display='block'
+             tmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".tmlistBull3").style.display='none'
+           }
+           const level4 = Talent.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".tmlistBull4").style.display='block'
+       
+             tmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".tmlistBull4").style.display='none'
+           }
+   
+  }
+ const  Workforce = response.filter((d) => d.info.areas=="Workforce Planning");
+ 
+ if (Workforce.length>0) {
+   document.querySelector(".flush-heading13").style.display="block"
+   const level1 = Workforce.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               wListLevels1(level1)
+               document.querySelector(".wlistBull1").style.display='block'
+             }else{
+               document.querySelector(".wlistBull1").style.display='none'
+             }
+           const level2 = Workforce.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".wlistBull2").style.display='block'
+             console.log(level2);
+             wListLevels2(level2)
+           
+           }else{
+             document.querySelector(".wlistBull2").style.display='none'
+           }
+           const level3 = Workforce.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".wlistBull3").style.display='block'
+             wListLevels3(level3)
+         
+           }else{
+             document.querySelector(".wlistBull3").style.display='none'
+           }
+           const level4 = Workforce.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".wlistBull4").style.display='block'
+       
+             wListLevels4(level4)
+           
+           }else{
+             document.querySelector(".wlistBull4").style.display='none'
+           }
+   
+  }
+  const  Learningdevelopment = response.filter((d) => d.info.areas=="Learning and Develepment");
+  if (Learningdevelopment.length>0) {
+   document.querySelector(".flush-heading14").style.display="block"
+   const level1 = Learningdevelopment.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               dlListLevels1(level1)
+               document.querySelector(".dllistBull1").style.display='block'
+             }else{
+               document.querySelector(".dllistBull1").style.display='none'
+             }
+           const level2 = Learningdevelopment.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".dllistBull2").style.display='block'
+             console.log(level2);
+             dlListLevels2(level2)
+           
+           }else{
+             document.querySelector(".dllistBull2").style.display='none'
+           }
+           const level3 = Learningdevelopment.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".dllistBull3").style.display='block'
+             dlListLevels3(level3)
+         
+           }else{
+             document.querySelector(".dllistBull3").style.display='none'
+           }
+           const level4 = Learningdevelopment.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".dllistBull4").style.display='block'
+       
+             dlListLevels4(level4)
+           
+           }else{
+             document.querySelector(".dllistBull4").style.display='none'
+           }
+   
+  }
+  
+  const  Occupational = response.filter((d) => d.info.areas=="Occupational Health and Safety");
+  
+  if (Occupational.length>0) {
+   document.querySelector(".flush-heading15").style.display="block"
+   const level1 = Occupational.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ohListLevels1(level1)
+               document.querySelector(".ohlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ohlistBull1").style.display='none'
+             }
+           const level2 = Occupational.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ohlistBull2").style.display='block'
+             console.log(level2);
+             ohListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ohlistBull2").style.display='none'
+           }
+           const level3 = Occupational.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ohlistBull3").style.display='block'
+             ohListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ohlistBull3").style.display='none'
+           }
+           const level4 = Occupational.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ohlistBull4").style.display='block'
+       
+             ohListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ohlistBull4").style.display='none'
+           }
+   
+  }
+   const Perfomance = response.filter((d) => d.info.areas=="Performance Management");
+ 
+ if (Perfomance.length>0) {
+     document.querySelector(".flush-heading16").style.display="block"
+     const level1 = Perfomance.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 peListLevels1(level1)
+                 document.querySelector(".pelistBull1").style.display='block'
+               }else{
+                 document.querySelector(".pelistBull1").style.display='none'
+               }
+             const level2 = Perfomance.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".pelistBull2").style.display='block'
+               console.log(level2);
+               peListLevels2(level2)
+             
+             }else{
+               document.querySelector(".pelistBull2").style.display='none'
+             }
+             const level3 = Perfomance.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".pelistBull3").style.display='block'
+               peListLevels3(level3)
+           
+             }else{
+               document.querySelector(".pelistBull3").style.display='none'
+             }
+             const level4 = Perfomance.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".pelistBull4").style.display='block'
+         
+               peListLevels4(level4)
+             
+             }else{
+               document.querySelector(".pelistBull4").style.display='none'
+             }
+     
+    }
+ const  Industrial = response.filter((d) => d.info.areas=="Industrial and Labour Relations");
+ 
+   if (Industrial.length>0) {
+     document.querySelector(".flush-heading17").style.display="block"
+     const level1 = Industrial.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 inListLevels1(level1)
+                 document.querySelector(".inlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".inlistBull1").style.display='none'
+               }
+             const level2 = Industrial.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".inlistBull2").style.display='block'
+               console.log(level2);
+               inListLevels2(level2)
+             
+             }else{
+               document.querySelector(".inlistBull2").style.display='none'
+             }
+             const level3 = Industrial.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".inlistBull3").style.display='block'
+               inListLevels3(level3)
+           
+             }else{
+               document.querySelector(".inlistBull3").style.display='none'
+             }
+             const level4 = Industrial.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".inlistBull4").style.display='block'
+         
+               inListLevels4(level4)
+             
+             }else{
+               document.querySelector(".inlistBull4").style.display='none'
+             }
+     
+    }
+ const  Interpersonal = response.filter((d) => d.info.areas=="Interpersonal Relationships");
+ 
+ if (Interpersonal.length>0) {
+     document.querySelector(".flush-heading18").style.display="block"
+     const level1 = Interpersonal.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 intListLevels1(level1)
+                 document.querySelector(".intlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".intlistBull1").style.display='none'
+               }
+             const level2 = Interpersonal.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".intlistBull2").style.display='block'
+               console.log(level2);
+               intListLevels2(level2)
+             
+             }else{
+               document.querySelector(".intlistBull2").style.display='none'
+             }
+             const level3 = Interpersonal.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".intlistBull3").style.display='block'
+               intListLevels3(level3)
+           
+             }else{
+               document.querySelector(".intlistBull3").style.display='none'
+             }
+             const level4 = Interpersonal.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".intlistBull4").style.display='block'
+         
+               intListLevels4(level4)
+             
+             }else{
+               document.querySelector(".intlistBull4").style.display='none'
+             }
+     
+    }
+ 
+ const  Communication = response.filter((d) => d.info.areas=="Communication");
+ if (Communication.length>0) {
+   document.querySelector(".flush-heading19").style.display="block"
+   const level1 = Communication.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               comListLevels1(level1)
+               document.querySelector(".comlistBull1").style.display='block'
+             }else{
+               document.querySelector(".comlistBull1").style.display='none'
+             }
+           const level2 = Communication.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".comlistBull2").style.display='block'
+             console.log(level2);
+             comListLevels2(level2)
+           
+           }else{
+             document.querySelector(".comlistBull2").style.display='none'
+           }
+           const level3 = Communication.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".comlistBull3").style.display='block'
+             comListLevels3(level3)
+         
+           }else{
+             document.querySelector(".comlistBull3").style.display='none'
+           }
+           const level4 = Communication.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".comlistBull4").style.display='block'
+       
+             comListLevels4(level4)
+           
+           }else{
+             document.querySelector(".comlistBull4").style.display='none'
+           }
+   
+  }
+   const Delivery = response.filter((d) => d.info.areas=="Service Delivery Orientation");
+   if (Delivery.length>0) {
+     document.querySelector(".flush-heading20").style.display="block"
+     const level1 = Delivery.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 sdoListLevels1(level1)
+                 document.querySelector(".sdolistBull1").style.display='block'
+               }else{
+                 document.querySelector(".sdolistBull1").style.display='none'
+               }
+             const level2 = Delivery.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".sdolistBull2").style.display='block'
+               console.log(level2);
+               sdoListLevels2(level2)
+             
+             }else{
+               document.querySelector(".sdolistBull2").style.display='none'
+             }
+             const level3 = Delivery.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".sdolistBull3").style.display='block'
+               sdoListLevels3(level3)
+           
+             }else{
+               document.querySelector(".sdolistBull3").style.display='none'
+             }
+             const level4 = Delivery.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".sdolistBull4").style.display='block'
+         
+               sdoListLevels4(level4)
+             
+             }else{
+               document.querySelector(".sdolistBull4").style.display='none'
+             }
+     
+    }
+   const  Action = response.filter((d) => d.info.areas=="Action and Outcome Orientation");
+   if (Action.length>0) {
+     document.querySelector(".flush-heading21").style.display="block"
+     const level1 = Action.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 actListLevels1(level1)
+                 document.querySelector(".actlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".actlistBull1").style.display='none'
+               }
+             const level2 = Action.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".actlistBull2").style.display='block'
+               console.log(level2);
+               actListLevels2(level2)
+             
+             }else{
+               document.querySelector(".actlistBull2").style.display='none'
+             }
+             const level3 = Action.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".actlistBull3").style.display='block'
+               actListLevels3(level3)
+           
+             }else{
+               document.querySelector(".actlistBull3").style.display='none'
+             }
+             const level4 = Action.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".actlistBull4").style.display='block'
+         
+               actListLevels4(level4)
+             
+             }else{
+               document.querySelector(".actlistBull4").style.display='none'
+             }
+     
+    }
+ const  Conflict = response.filter((d) => d.info.areas=="Conflict Management");
+ if (Conflict.length>0) {
+   document.querySelector(".flush-heading22").style.display="block"
+   const level1 = Conflict.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               conListLevels1(level1)
+               document.querySelector(".conlistBull1").style.display='block'
+             }else{
+               document.querySelector(".conlistBull1").style.display='none'
+             }
+           const level2 = Conflict.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".conlistBull2").style.display='block'
+             console.log(level2);
+             conListLevels2(level2)
+           
+           }else{
+             document.querySelector(".conlistBull2").style.display='none'
+           }
+           const level3 = Conflict.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".conlistBull3").style.display='block'
+             conListLevels3(level3)
+         
+           }else{
+             document.querySelector(".conlistBull3").style.display='none'
+           }
+           const level4 = Conflict.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".conlistBull4").style.display='block'
+       
+             conListLevels4(level4)
+           
+           }else{
+             document.querySelector(".conlistBull4").style.display='none'
+           }
+   
+  }
+  const  Orientation = response.filter((d) => d.info.areas=="Learning Orientation");
+  if (Orientation.length>0) {
+   document.querySelector(".flush-heading23").style.display="block"
+   const level1 = Orientation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               loListLevels1(level1)
+               document.querySelector(".lolistBull1").style.display='block'
+             }else{
+               document.querySelector(".lolistBull1").style.display='none'
+             }
+           const level2 = Orientation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".lolistBull2").style.display='block'
+             console.log(level2);
+             loListLevels2(level2)
+           
+           }else{
+             document.querySelector(".lolistBull2").style.display='none'
+           }
+           const level3 = Orientation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".lolistBull3").style.display='block'
+             loListLevels3(level3)
+         
+           }else{
+             document.querySelector(".lolistBull3").style.display='none'
+           }
+           const level4 = Orientation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".lolistBull4").style.display='block'
+       
+             loListLevels4(level4)
+           
+           }else{
+             document.querySelector(".lolistBull4").style.display='none'
+           }
+   
+  }
+ const  Accountability = response.filter((d) => d.info.areas=="Accountability and Ethical Conduct");
+ if (Accountability.length>0) {
+   document.querySelector(".flush-heading24").style.display="block"
+   const level1 = Accountability.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               aeListLevels1(level1)
+               document.querySelector(".aelistBull1").style.display='block'
+             }else{
+               document.querySelector(".aelistBull1").style.display='none'
+             }
+           const level2 = Accountability.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".aelistBull2").style.display='block'
+             console.log(level2);
+             aeListLevels2(level2)
+           
+           }else{
+             document.querySelector(".aelistBull2").style.display='none'
+           }
+           const level3 = Accountability.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".aelistBull3").style.display='block'
+             aeListLevels3(level3)
+         
+           }else{
+             document.querySelector(".aelistBull3").style.display='none'
+           }
+           const level4 = Accountability.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".aelistBull4").style.display='block'
+       
+             aeListLevels4(level4)
+           
+           }else{
+             document.querySelector(".aelistBull4").style.display='none'
+           }
+   
+  }
+  const   Problem = response.filter((d) => d.info.areas=="Problem Solving and Analysis");
+  if (Problem.length>0) {
+   document.querySelector(".flush-heading25").style.display="block"
+   const level1 = Problem.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               psListLevels1(level1)
+               document.querySelector(".pslistBull1").style.display='block'
+             }else{
+               document.querySelector(".pslistBull1").style.display='none'
+             }
+           const level2 = Problem.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".pslistBull2").style.display='block'
+             console.log(level2);
+             psListLevels2(level2)
+           
+           }else{
+             document.querySelector(".pslistBull2").style.display='none'
+           }
+           const level3 = Problem.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".pslistBull3").style.display='block'
+             psListLevels3(level3)
+         
+           }else{
+             document.querySelector(".pslistBull3").style.display='none'
+           }
+           const level4 = Problem.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".pslistBull4").style.display='block'
+       
+             psListLevels4(level4)
+           
+           }else{
+             document.querySelector(".pslistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   Compensation = response.filter((d) => d.info.areas=="Compensation and Benefits Management");
+  if (Compensation.length>0) {
+   document.querySelector(".flush-heading26").style.display="block"
+   const level1 = Compensation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               cbListLevels1(level1)
+               document.querySelector(".cblistBull1").style.display='block'
+             }else{
+               document.querySelector(".cblistBull1").style.display='none'
+             }
+           const level2 = Compensation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".cblistBull2").style.display='block'
+             console.log(level2);
+             cbListLevels2(level2)
+           
+           }else{
+             document.querySelector(".cblistBull2").style.display='none'
+           }
+           const level3 = Compensation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".cblistBull3").style.display='block'
+             cbListLevels3(level3)
+         
+           }else{
+             document.querySelector(".cblistBull3").style.display='none'
+           }
+           const level4 = Compensation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".cblistBull4").style.display='block'
+       
+             cbListLevels4(level4)
+           
+           }else{
+             document.querySelector(".cblistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   EmployeeWellness = response.filter((d) => d.info.areas=="Employee Wellness");
+  if (EmployeeWellness.length>0) {
+   document.querySelector(".flush-heading27").style.display="block"
+   const level1 = EmployeeWellness.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ewListLevels1(level1)
+               document.querySelector(".ewlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ewlistBull1").style.display='none'
+             }
+           const level2 = EmployeeWellness.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ewlistBull2").style.display='block'
+             console.log(level2);
+             ewListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ewlistBull2").style.display='none'
+           }
+           const level3 = EmployeeWellness.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ewlistBull3").style.display='block'
+             ewListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ewlistBull3").style.display='none'
+           }
+           const level4 = EmployeeWellness.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ewlistBull4").style.display='block'
+       
+             ewListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ewlistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   Resilience = response.filter((d) => d.info.areas=="Resilience");
+  if (Resilience.length>0) {
+   document.querySelector(".flush-heading28").style.display="block"
+   const level1 = Resilience.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               rsListLevels1(level1)
+               document.querySelector(".rslistBull1").style.display='block'
+             }else{
+               document.querySelector(".rslistBull1").style.display='none'
+             }
+           const level2 = Resilience.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".rslistBull2").style.display='block'
+             console.log(level2);
+             rsListLevels2(level2)
+           
+           }else{
+             document.querySelector(".rslistBull2").style.display='none'
+           }
+           const level3 = Resilience.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".rslistBull3").style.display='block'
+             rsListLevels3(level3)
+         
+           }else{
+             document.querySelector(".rslistBull3").style.display='none'
+           }
+           const level4 = Resilience.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".rslistBull4").style.display='block'
+       
+             rsListLevels4(level4)
+           
+           }else{
+             document.querySelector(".rslistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   DirectionSetting = response.filter((d) => d.info.areas=="Direction Setting");
+  if (DirectionSetting.length>0) {
+   document.querySelector(".flush-heading29").style.display="block"
+   const level1 = DirectionSetting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               drListLevels1(level1)
+               document.querySelector(".drlistBull1").style.display='block'
+             }else{
+               document.querySelector(".drlistBull1").style.display='none'
+             }
+           const level2 = DirectionSetting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".drlistBull2").style.display='block'
+             console.log(level2);
+             drListLevels2(level2)
+           
+           }else{
+             document.querySelector(".drlistBull2").style.display='none'
+           }
+           const level3 = DirectionSetting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".drlistBull3").style.display='block'
+             drListLevels3(level3)
+         
+           }else{
+             document.querySelector(".drlistBull3").style.display='none'
+           }
+           const level4 = DirectionSetting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".drlistBull4").style.display='block'
+       
+             drListLevels4(level4)
+           
+           }else{
+             document.querySelector(".drlistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   ImpactandInfluence = response.filter((d) => d.info.areas=="Impact and Influence");
+  if (ImpactandInfluence.length>0) {
+   document.querySelector(".flush-heading30").style.display="block"
+   const level1 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               iiListLevels1(level1)
+               document.querySelector(".iilistBull1").style.display='block'
+             }else{
+               document.querySelector(".iilistBull1").style.display='none'
+             }
+           const level2 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".iilistBull2").style.display='block'
+             console.log(level2);
+             iiListLevels2(level2)
+           
+           }else{
+             document.querySelector(".iilistBull2").style.display='none'
+           }
+           const level3 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".iilistBull3").style.display='block'
+             iiListLevels3(level3)
+         
+           }else{
+             document.querySelector(".iilistBull3").style.display='none'
+           }
+           const level4 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".iilistBull4").style.display='block'
+       
+             iiListLevels4(level4)
+           
+           }else{
+             document.querySelector(".iilistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   CoachingandMentoring = response.filter((d) => d.info.areas=="Coaching and Mentoring");
+  if (CoachingandMentoring.length>0) {
+   document.querySelector(".flush-heading31").style.display="block"
+   const level1 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               menListLevels1(level1)
+               document.querySelector(".menlistBull1").style.display='block'
+             }else{
+               document.querySelector(".menlistBull1").style.display='none'
+             }
+           const level2 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".menlistBull2").style.display='block'
+             console.log(level2);
+             menListLevels2(level2)
+           
+           }else{
+             document.querySelector(".menlistBull2").style.display='none'
+           }
+           const level3 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".menlistBull3").style.display='block'
+             menListLevels3(level3)
+         
+           }else{
+             document.querySelector(".menlistBull3").style.display='none'
+           }
+           const level4 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".menlistBull4").style.display='block'
+       
+             menListLevels4(level4)
+           
+           }else{
+             document.querySelector(".menlistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   TeamOrientation= response.filter((d) => d.info.areas=="Team Orientation");
+  if (TeamOrientation.length>0) {
+   document.querySelector(".flush-heading32").style.display="block"
+   const level1 = TeamOrientation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               toListLevels1(level1)
+               document.querySelector(".tolistBull1").style.display='block'
+             }else{
+               document.querySelector(".tolistBull1").style.display='none'
+             }
+           const level2 = TeamOrientation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".tolistBull2").style.display='block'
+             console.log(level2);
+             toListLevels2(level2)
+           
+           }else{
+             document.querySelector(".tolistBull2").style.display='none'
+           }
+           const level3 = TeamOrientation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".tolistBull3").style.display='block'
+             toListLevels3(level3)
+         
+           }else{
+             document.querySelector(".tolistBull3").style.display='none'
+           }
+           const level4 = TeamOrientation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".tolistBull4").style.display='block'
+       
+             toListLevels4(level4)
+           
+           }else{
+             document.querySelector(".tolistBull4").style.display='none'
+           }
+   
+  }
+
+  const   InternalAuditing  = response.filter((d) => d.info.areas=="Internal Auditing");
+  if (InternalAuditing.length>0) {
+   document.querySelector(".flush-heading33").style.display="block"
+   const level1 = InternalAuditing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ioListLevels1(level1)
+               document.querySelector(".iolistBull1").style.display='block'
+             }else{
+               document.querySelector(".iolistBull1").style.display='none'
+             }
+           const level2 = InternalAuditing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".iolistBull2").style.display='block'
+             console.log(level2);
+             ioListLevels2(level2)
+           
+           }else{
+             document.querySelector(".iolistBull2").style.display='none'
+           }
+           const level3 = InternalAuditing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".iolistBull3").style.display='block'
+             ioListLevels3(level3)
+         
+           }else{
+             document.querySelector(".iolistBull3").style.display='none'
+           }
+           const level4 = InternalAuditing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".iolistBull4").style.display='block'
+       
+             ioListLevels4(level4)
+           
+           }else{
+             document.querySelector(".iolistBull4").style.display='none'
+           }
+   
+  }
+
+  const   EngagementManagement  = response.filter((d) => d.info.areas=="Engagement Management");
+  if (EngagementManagement.length>0) {
+   document.querySelector(".flush-heading34").style.display="block"
+   const level1 = EngagementManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               emListLevels1(level1)
+               document.querySelector(".emlistBull1").style.display='block'
+             }else{
+               document.querySelector(".emlistBull1").style.display='none'
+             }
+           const level2 = EngagementManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".emlistBull2").style.display='block'
+             console.log(level2);
+             emListLevels2(level2)
+           
+           }else{
+             document.querySelector(".emlistBull2").style.display='none'
+           }
+           const level3 = EngagementManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".emlistBull3").style.display='block'
+             emListLevels3(level3)
+         
+           }else{
+             document.querySelector(".emlistBull3").style.display='none'
+           }
+           const level4 = EngagementManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".emlistBull4").style.display='block'
+       
+             emListLevels4(level4)
+           
+           }else{
+             document.querySelector(".emlistBull4").style.display='none'
+           }
+   
+  }
+  
+  const   InformationManagement  = response.filter((d) => d.info.areas=="Information Management");
+  if (InformationManagement.length>0) {
+   document.querySelector(".flush-heading35").style.display="block"
+   const level1 = InformationManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               imListLevels1(level1)
+               document.querySelector(".imlistBull1").style.display='block'
+             }else{
+               document.querySelector(".imlistBull1").style.display='none'
+             }
+           const level2 = InformationManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".imlistBull2").style.display='block'
+             console.log(level2);
+             imListLevels2(level2)
+           
+           }else{
+             document.querySelector(".imlistBull2").style.display='none'
+           }
+           const level3 = InformationManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".imlistBull3").style.display='block'
+             imListLevels3(level3)
+         
+           }else{
+             document.querySelector(".imlistBull3").style.display='none'
+           }
+           const level4 = InformationManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".imlistBull4").style.display='block'
+       
+             imListLevels4(level4)
+           
+           }else{
+             document.querySelector(".imlistBull4").style.display='none'
+           }
+   
+  }
+  const   ResearchandAnalysis  = response.filter((d) => d.info.areas=="Research and Analysis");
+  if (ResearchandAnalysis.length>0) {
+   document.querySelector(".flush-heading36").style.display="block"
+   const level1 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               raListLevels1(level1)
+               document.querySelector(".ralistBull1").style.display='block'
+             }else{
+               document.querySelector(".ralistBull1").style.display='none'
+             }
+           const level2 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ralistBull2").style.display='block'
+             console.log(level2);
+             raListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ralistBull2").style.display='none'
+           }
+           const level3 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ralistBull3").style.display='block'
+             raListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ralistBull3").style.display='none'
+           }
+           const level4 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ralistBull4").style.display='block'
+       
+             raListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ralistBull4").style.display='none'
+           }
+   
+  }
+
+  const   AdvocacyNegotiation  = response.filter((d) => d.info.areas=="Advocacy / Negotiation");
+  if (AdvocacyNegotiation.length>0) {
+   document.querySelector(".flush-heading37").style.display="block"
+   const level1 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               anListLevels1(level1)
+               document.querySelector(".anlistBull1").style.display='block'
+             }else{
+               document.querySelector(".anlistBull1").style.display='none'
+             }
+           const level2 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".anlistBull2").style.display='block'
+             console.log(level2);
+             anListLevels2(level2)
+           
+           }else{
+             document.querySelector(".anlistBull2").style.display='none'
+           }
+           const level3 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".anlistBull3").style.display='block'
+             anListLevels3(level3)
+         
+           }else{
+             document.querySelector(".anlistBull3").style.display='none'
+           }
+           const level4 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".anlistBull4").style.display='block'
+       
+             anListLevels4(level4)
+           
+           }else{
+             document.querySelector(".anlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   EthicsandProfessionalism  = response.filter((d) => d.info.areas=="Ethics and Professionalism");
+  if (EthicsandProfessionalism.length>0) {
+   document.querySelector(".flush-heading38").style.display="block"
+   const level1 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               epListLevels1(level1)
+               document.querySelector(".eplistBull1").style.display='block'
+             }else{
+               document.querySelector(".eplistBull1").style.display='none'
+             }
+           const level2 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".eplistBull2").style.display='block'
+             console.log(level2);
+             epListLevels2(level2)
+           
+           }else{
+             document.querySelector(".eplistBull2").style.display='none'
+           }
+           const level3 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".eplistBull3").style.display='block'
+             epListLevels3(level3)
+         
+           }else{
+             document.querySelector(".eplistBull3").style.display='none'
+           }
+           const level4 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".eplistBull4").style.display='block'
+       
+             epListLevels4(level4)
+           
+           }else{
+             document.querySelector(".eplistBull4").style.display='none'
+           }
+   
+  }
+  const   StrategicCapability  = response.filter((d) => d.info.areas=="Strategic Capability / Leadership or Direction Setting");
+  if (StrategicCapability.length>0) {
+   document.querySelector(".flush-heading39").style.display="block"
+   const level1 = StrategicCapability.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               scListLevels1(level1)
+               document.querySelector(".sclistBull1").style.display='block'
+             }else{
+               document.querySelector(".sclistBull1").style.display='none'
+             }
+           const level2 = StrategicCapability.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".sclistBull2").style.display='block'
+             console.log(level2);
+             scListLevels2(level2)
+           
+           }else{
+             document.querySelector(".sclistBull2").style.display='none'
+           }
+           const level3 = StrategicCapability.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".sclistBull3").style.display='block'
+             scListLevels3(level3)
+         
+           }else{
+             document.querySelector(".sclistBull3").style.display='none'
+           }
+           const level4 = StrategicCapability.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".sclistBull4").style.display='block'
+       
+             scListLevels4(level4)
+           
+           }else{
+             document.querySelector(".sclistBull4").style.display='none'
+           }
+   
+  }
+
+  const   ChangeReadiness  = response.filter((d) => d.info.areas=="Change Readiness");
+  if (ChangeReadiness.length>0) {
+   document.querySelector(".flush-heading40").style.display="block"
+   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               crListLevels1(level1)
+               document.querySelector(".crlistBull1").style.display='block'
+             }else{
+               document.querySelector(".crlistBull1").style.display='none'
+             }
+           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".crlistBull2").style.display='block'
+             console.log(level2);
+             crListLevels2(level2)
+           
+           }else{
+             document.querySelector(".crlistBull2").style.display='none'
+           }
+           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".crlistBull3").style.display='block'
+             crListLevels3(level3)
+         
+           }else{
+             document.querySelector(".crlistBull3").style.display='none'
+           }
+           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".crlistBull4").style.display='block'
+       
+             crListLevels4(level4)
+           
+           }else{
+             document.querySelector(".crlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   CognitiveAbility  = response.filter((d) => d.info.areas=="Cognitive Ability");
+  if (CognitiveAbility.length>0) {
+   document.querySelector(".flush-heading41").style.display="block"
+   const level1 = CognitiveAbility.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               caListLevels1(level1)
+               document.querySelector(".calistBull1").style.display='block'
+             }else{
+               document.querySelector(".calistBull1").style.display='none'
+             }
+           const level2 = CognitiveAbility.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".calistBull2").style.display='block'
+             console.log(level2);
+             caListLevels2(level2)
+           
+           }else{
+             document.querySelector(".calistBull2").style.display='none'
+           }
+           const level3 = CognitiveAbility.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".calistBull3").style.display='block'
+             caListLevels3(level3)
+         
+           }else{
+             document.querySelector(".calistBull3").style.display='none'
+           }
+           const level4 = CognitiveAbility.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".calistBull4").style.display='block'
+       
+             caListLevels4(level4)
+           
+           }else{
+             document.querySelector(".calistBull4").style.display='none'
+           }
+   
+  }
+
+  const   CustomerOrientation  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
+  if (CustomerOrientation.length>0) {
+   document.querySelector(".flush-heading42").style.display="block"
+   const level1 = CustomerOrientation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ccListLevels1(level1)
+               document.querySelector(".cclistBull1").style.display='block'
+             }else{
+               document.querySelector(".cclistBull1").style.display='none'
+             }
+           const level2 = CustomerOrientation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".cclistBull2").style.display='block'
+             console.log(level2);
+             ccListLevels2(level2)
+           
+           }else{
+             document.querySelector(".cclistBull2").style.display='none'
+           }
+           const level3 = CustomerOrientation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".cclistBull3").style.display='block'
+             ccListLevels3(level3)
+         
+           }else{
+             document.querySelector(".cclistBull3").style.display='none'
+           }
+           const level4 = CustomerOrientation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".cclistBull4").style.display='block'
+       
+             ccListLevels4(level4)
+           
+           }else{
+             document.querySelector(".cclistBull4").style.display='none'
+           }
+   
+  }
+
+  const   LitigationManagement  = response.filter((d) => d.info.areas=="Litigation Management");
+  if (LitigationManagement.length>0) {
+   document.querySelector(".flush-heading43").style.display="block"
+   const level1 = LitigationManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               manaListLevels1(level1)
+               document.querySelector(".manalistBull1").style.display='block'
+             }else{
+               document.querySelector(".manalistBull1").style.display='none'
+             }
+           const level2 = LitigationManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".manalistBull2").style.display='block'
+             console.log(level2);
+             manaListLevels2(level2)
+           
+           }else{
+             document.querySelector(".manalistBull2").style.display='none'
+           }
+           const level3 = LitigationManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".manalistBull3").style.display='block'
+             manaListLevels3(level3)
+         
+           }else{
+             document.querySelector(".manalistBull3").style.display='none'
+           }
+           const level4 = LitigationManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".manalistBull4").style.display='block'
+       
+             manaListLevels4(level4)
+           
+           }else{
+             document.querySelector(".manalistBull4").style.display='none'
+           }
+   
+  }
+
+  
+  const   WrittenCommunicationDrafting  = response.filter((d) => d.info.areas=="Written Communication / Drafting");
+  if (WrittenCommunicationDrafting.length>0) {
+   document.querySelector(".flush-heading44").style.display="block"
+   const level1 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               wcdListLevels1(level1)
+               document.querySelector(".wcdlistBull1").style.display='block'
+             }else{
+               document.querySelector(".wcdlistBull1").style.display='none'
+             }
+           const level2 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".wcdlistBull2").style.display='block'
+             console.log(level2);
+             wcdListLevels2(level2)
+           
+           }else{
+             document.querySelector(".wcdlistBull2").style.display='none'
+           }
+           const level3 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".wcdlistBull3").style.display='block'
+             wcdListLevels3(level3)
+         
+           }else{
+             document.querySelector(".wcdlistBull3").style.display='none'
+           }
+           const level4 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".wcdlistBull4").style.display='block'
+       
+             wcdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".wcdlistBull4").style.display='none'
+           }
+   
+  }
+
+
+  const   Accounting  = response.filter((d) => d.info.areas=="Accounting");
+  if (Accounting.length>0) {
+   document.querySelector(".flush-heading45").style.display="block"
+   const level1 = Accounting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               accountListLevels1(level1)
+               document.querySelector(".accountlistBull1").style.display='block'
+             }else{
+               document.querySelector(".accountlistBull1").style.display='none'
+             }
+           const level2 = Accounting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".accountlistBull2").style.display='block'
+             console.log(level2);
+             accountListLevels2(level2)
+           
+           }else{
+             document.querySelector(".accountlistBull2").style.display='none'
+           }
+           const level3 = Accounting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".accountlistBull3").style.display='block'
+             accountListLevels3(level3)
+         
+           }else{
+             document.querySelector(".accountlistBull3").style.display='none'
+           }
+           const level4 = Accounting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".accountlistBull4").style.display='block'
+       
+             accountListLevels4(level4)
+           
+           }else{
+             document.querySelector(".accountlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Procurement  = response.filter((d) => d.info.areas=="Procurement");
+  if (Procurement.length>0) {
+   document.querySelector(".flush-heading46").style.display="block"
+   const level1 = Procurement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               procurementListLevels1(level1)
+               document.querySelector(".procurementlistBull1").style.display='block'
+             }else{
+               document.querySelector(".procurementlistBull1").style.display='none'
+             }
+           const level2 = Procurement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".procurementlistBull2").style.display='block'
+             console.log(level2);
+             procurementListLevels2(level2)
+           
+           }else{
+             document.querySelector(".procurementlistBull2").style.display='none'
+           }
+           const level3 = Procurement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".procurementlistBull3").style.display='block'
+             procurementListLevels3(level3)
+         
+           }else{
+             document.querySelector(".procurementlistBull3").style.display='none'
+           }
+           const level4 = Procurement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".procurementlistBull4").style.display='block'
+       
+             procurementListLevels4(level4)
+           
+           }else{
+             document.querySelector(".procurementlistBull4").style.display='none'
+           }
+   
+  }
+
+   const   Budgeting = response.filter((d) => d.info.areas=="Budgeting");
+  if (Budgeting.length>0) {
+   document.querySelector(".flush-heading47").style.display="block"
+   const level1 = Budgeting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               budgetListLevels1(level1)
+               document.querySelector(".budgetlistBull1").style.display='block'
+             }else{
+               document.querySelector(".budgetlistBull1").style.display='none'
+             }
+           const level2 = Budgeting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".budgetlistBull2").style.display='block'
+             console.log(level2);
+             budgetListLevels2(level2)
+           
+           }else{
+             document.querySelector(".budgetlistBull2").style.display='none'
+           }
+           const level3 = Budgeting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".budgetlistBull3").style.display='block'
+             budgetListLevels3(level3)
+         
+           }else{
+             document.querySelector(".budgetlistBull3").style.display='none'
+           }
+           const level4 = Budgeting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".budgetlistBull4").style.display='block'
+       
+             budgetListLevels4(level4)
+           
+           }else{
+             document.querySelector(".budgetlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialManagement = response.filter((d) => d.info.areas=="Financial Management");
+  if (FinancialManagement.length>0) {
+   document.querySelector(".flush-heading48").style.display="block"
+   const level1 = FinancialManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               financeListLevels1(level1)
+               document.querySelector(".financelistBull1").style.display='block'
+             }else{
+               document.querySelector(".financelistBull1").style.display='none'
+             }
+           const level2 = FinancialManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".financelistBull2").style.display='block'
+             console.log(level2);
+             financeListLevels2(level2)
+           
+           }else{
+             document.querySelector(".financelistBull2").style.display='none'
+           }
+           const level3 = FinancialManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".financelistBull3").style.display='block'
+             financeListLevels3(level3)
+         
+           }else{
+             document.querySelector(".financelistBull3").style.display='none'
+           }
+           const level4 = FinancialManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".financelistBull4").style.display='block'
+       
+             financeListLevels4(level4)
+           
+           }else{
+             document.querySelector(".financelistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Costing = response.filter((d) => d.info.areas=="Costing");
+  if (Costing.length>0) {
+   document.querySelector(".flush-heading49").style.display="block"
+   const level1 = Costing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               costListLevels1(level1)
+               document.querySelector(".costlistBull1").style.display='block'
+             }else{
+               document.querySelector(".costlistBull1").style.display='none'
+             }
+           const level2 = Costing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".costlistBull2").style.display='block'
+             console.log(level2);
+             costListLevels2(level2)
+           
+           }else{
+             document.querySelector(".costlistBull2").style.display='none'
+           }
+           const level3 = Costing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".costlistBull3").style.display='block'
+             costListLevels3(level3)
+         
+           }else{
+             document.querySelector(".costlistBull3").style.display='none'
+           }
+           const level4 = Costing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".costlistBull4").style.display='block'
+       
+             costListLevels4(level4)
+           
+           }else{
+             document.querySelector(".costlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialReporting = response.filter((d) => d.info.areas=="Financial Reporting");
+  if (FinancialReporting.length>0) {
+   document.querySelector(".flush-heading50").style.display="block"
+   const level1 = FinancialReporting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               freportListLevels1(level1)
+               document.querySelector(".freportlistBull1").style.display='block'
+             }else{
+               document.querySelector(".freportlistBull1").style.display='none'
+             }
+           const level2 = FinancialReporting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".freportlistBull2").style.display='block'
+             console.log(level2);
+             freportListLevels2(level2)
+           
+           }else{
+             document.querySelector(".freportlistBull2").style.display='none'
+           }
+           const level3 = FinancialReporting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".freportlistBull3").style.display='block'
+             freportListLevels3(level3)
+         
+           }else{
+             document.querySelector(".freportlistBull3").style.display='none'
+           }
+           const level4 = FinancialReporting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".freportlistBull4").style.display='block'
+       
+             freportListLevels4(level4)
+           
+           }else{
+             document.querySelector(".freportlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialProcessManagement = response.filter((d) => d.info.areas=="Financial Process Management");
+  if (FinancialProcessManagement.length>0) {
+   document.querySelector(".flush-heading51").style.display="block"
+   const level1 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               fmListLevels1(level1)
+               document.querySelector(".fmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".fmlistBull1").style.display='none'
+             }
+           const level2 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".fmlistBull2").style.display='block'
+             console.log(level2);
+             fmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".fmlistBull2").style.display='none'
+           }
+           const level3 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".fmlistBull3").style.display='block'
+             fmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".fmlistBull3").style.display='none'
+           }
+           const level4 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".fmlistBull4").style.display='block'
+       
+             fmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".fmlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   ProblemSolving = response.filter((d) => d.info.areas=="Problem Solving");
+  if (ProblemSolving.length>0) {
+   document.querySelector(".flush-heading52").style.display="block"
+   const level1 = ProblemSolving.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               spListLevels1(level1)
+               document.querySelector(".splistBull1").style.display='block'
+             }else{
+               document.querySelector(".splistBull1").style.display='none'
+             }
+           const level2 = ProblemSolving.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".splistBull2").style.display='block'
+             console.log(level2);
+             spListLevels2(level2)
+           
+           }else{
+             document.querySelector(".splistBull2").style.display='none'
+           }
+           const level3 = ProblemSolving.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".splistBull3").style.display='block'
+             spListLevels3(level3)
+         
+           }else{
+             document.querySelector(".splistBull3").style.display='none'
+           }
+           const level4 = ProblemSolving.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".splistBull4").style.display='block'
+       
+             spListLevels4(level4)
+           
+           }else{
+             document.querySelector(".splistBull4").style.display='none'
+           }
+   
+  }
+
+  const   AttentiontoDetail = response.filter((d) => d.info.areas=="Attention to Detail");
+  if (AttentiontoDetail.length>0) {
+   document.querySelector(".flush-heading53").style.display="block"
+   const level1 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               atdListLevels1(level1)
+               document.querySelector(".atdlistBull1").style.display='block'
+             }else{
+               document.querySelector(".atdlistBull1").style.display='none'
+             }
+           const level2 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".atdlistBull2").style.display='block'
+             console.log(level2);
+             atdListLevels2(level2)
+           
+           }else{
+             document.querySelector(".atdlistBull2").style.display='none'
+           }
+           const level3 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".atdlistBull3").style.display='block'
+             atdListLevels3(level3)
+         
+           }else{
+             document.querySelector(".atdlistBull3").style.display='none'
+           }
+           const level4 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".atdlistBull4").style.display='block'
+       
+             atdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".atdlistBull4").style.display='none'
+           }
+   
+  }
+
+  
+  const   Influencing = response.filter((d) => d.info.areas=="Influencing");
+  
+  if (Influencing.length>0) {
+   document.querySelector(".flush-heading54").style.display="block"
+   const level1 = Influencing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               intflListLevels1(level1)
+               document.querySelector(".intfllistBull1").style.display='block'
+             }else{
+               document.querySelector(".intfllistBull1").style.display='none'
+             }
+           const level2 = Influencing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".intfllistBull2").style.display='block'
+             console.log(level2);
+             intflListLevels2(level2)
+           
+           }else{
+             document.querySelector(".intfllistBull2").style.display='none'
+           }
+           const level3 = Influencing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".intfllistBull3").style.display='block'
+             intflListLevels3(level3)
+         
+           }else{
+             document.querySelector(".intfllistBull3").style.display='none'
+           }
+           const level4 = Influencing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".intfllistBull4").style.display='block'
+       
+             intflListLevels4(level4)
+           
+           }else{
+             document.querySelector(".intfllistBull4").style.display='none'
+           }
+   
+  }
+
+  const   BusinessProcess = response.filter((d) => d.info.areas=="Business Process");
+  if (BusinessProcess.length>0) {
+    document.querySelector(".flush-heading55").style.display="block"
+    const level1 = BusinessProcess.filter((d)=>d.info.levels=="Level 1")
+       
+              if(level1.length >0){
+                console.log(level1);
+                bppListLevels1(level1)
+                document.querySelector(".bpplistBull1").style.display='block'
+              }else{
+                document.querySelector(".bpplistBull1").style.display='none'
+              }
+            const level2 = BusinessProcess.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".bpplistBull2").style.display='block'
+              console.log(level2);
+              bppListLevels2(level2)
+            
+            }else{
+              document.querySelector(".bpplistBull2").style.display='none'
+            }
+            const level3 = BusinessProcess.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".bpplistBull3").style.display='block'
+              bppListLevels3(level3)
+          
+            }else{
+              document.querySelector(".bpplistBull3").style.display='none'
+            }
+            const level4 = BusinessProcess.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".bpplistBull4").style.display='block'
+        
+              bppListLevels4(level4)
+            
+            }else{
+              document.querySelector(".bpplistBull4").style.display='none'
+            }
+    
+   }
+
+   const   UseofTechnology = response.filter((d) => d.info.areas=="Use of Technology");
+  if (UseofTechnology.length>0) {
+    document.querySelector(".flush-heading56").style.display="block"
+    const level1 = UseofTechnology.filter((d)=>d.info.levels=="Level 1")
+       
+              if(level1.length >0){
+                console.log(level1);
+                useListLevels1(level1)
+                document.querySelector(".uselistBull1").style.display='block'
+              }else{
+                document.querySelector(".uselistBull1").style.display='none'
+              }
+            const level2 = UseofTechnology.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".uselistBull2").style.display='block'
+              console.log(level2);
+              useListLevels2(level2)
+            
+            }else{
+              document.querySelector(".uselistBull2").style.display='none'
+            }
+            const level3 = UseofTechnology.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".uselistBull3").style.display='block'
+              useListLevels3(level3)
+          
+            }else{
+              document.querySelector(".uselistBull3").style.display='none'
+            }
+            const level4 = UseofTechnology.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".uselistBull4").style.display='block'
+        
+              useListLevels4(level4)
+            
+            }else{
+              document.querySelector(".uselistBull4").style.display='none'
+            }
+    
+   }
+
+   const   DataProcessingAnalysis   = response.filter((d) => d.info.areas=="Data Processing & Analysis");
+   if (DataProcessingAnalysis.length>0) {
+     document.querySelector(".flush-heading57").style.display="block"
+     const level1 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 dpaListLevels1(level1)
+                 document.querySelector(".dpalistBull1").style.display='block'
+               }else{
+                 document.querySelector(".dpalistBull1").style.display='none'
+               }
+             const level2 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".dpalistBull2").style.display='block'
+               console.log(level2);
+               dpaListLevels2(level2)
+             
+             }else{
+               document.querySelector(".dpalistBull2").style.display='none'
+             }
+             const level3 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".dpalistBull3").style.display='block'
+               dpaListLevels3(level3)
+           
+             }else{
+               document.querySelector(".dpalistBull3").style.display='none'
+             }
+             const level4 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".dpalistBull4").style.display='block'
+         
+               dpaListLevels4(level4)
+             
+             }else{
+               document.querySelector(".dpalistBull4").style.display='none'
+             }
+     
+    }
+
+    const   ClientOrientationandCustomerFocus    = response.filter((d) => d.info.areas=="Client Orientation and Customer Focus");
+   if (ClientOrientationandCustomerFocus.length>0) {
+     document.querySelector(".flush-heading58").style.display="block"
+     const level1 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 coListLevels1(level1)
+                 document.querySelector(".colistBull1").style.display='block'
+               }else{
+                 document.querySelector(".colistBull1").style.display='none'
+               }
+             const level2 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".colistBull2").style.display='block'
+               console.log(level2);
+               coListLevels2(level2)
+             
+             }else{
+               document.querySelector(".colistBull2").style.display='none'
+             }
+             const level3 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".colistBull3").style.display='block'
+               coListLevels3(level3)
+           
+             }else{
+               document.querySelector(".colistBull3").style.display='none'
+             }
+             const level4 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".colistBull4").style.display='block'
+         
+               coListLevels4(level4)
+             
+             }else{
+               document.querySelector(".colistBull4").style.display='none'
+             }
+     
+    }
+
+    const    ActionOrientation    = response.filter((d) => d.info.areas=="Action Orientation");
+    if (ActionOrientation.length>0) {
+      document.querySelector(".flush-heading59").style.display="block"
+      const level1 = ActionOrientation.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  asListLevels1(level1)
+                  document.querySelector(".aslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".aslistBull1").style.display='none'
+                }
+              const level2 = ActionOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".aslistBull2").style.display='block'
+                console.log(level2);
+                asListLevels2(level2)
+              
+              }else{
+                document.querySelector(".aslistBull2").style.display='none'
+              }
+              const level3 = ActionOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".aslistBull3").style.display='block'
+                asListLevels3(level3)
+            
+              }else{
+                document.querySelector(".aslistBull3").style.display='none'
+              }
+              const level4 = ActionOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".aslistBull4").style.display='block'
+          
+                asListLevels4(level4)
+              
+              }else{
+                document.querySelector(".aslistBull4").style.display='none'
+              }
+      
+     }
+
+     const    QualityOrientation    = response.filter((d) => d.info.areas=="Quality Orientation");
+    if (QualityOrientation.length>0) {
+      document.querySelector(".flush-heading60").style.display="block"
+      const level1 = QualityOrientation.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  qoListLevels1(level1)
+                  document.querySelector(".qolistBull1").style.display='block'
+                }else{
+                  document.querySelector(".qolistBull1").style.display='none'
+                }
+              const level2 = QualityOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".qolistBull2").style.display='block'
+                console.log(level2);
+                qoListLevels2(level2)
+              
+              }else{
+                document.querySelector(".qolistBull2").style.display='none'
+              }
+              const level3 = QualityOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".qolistBull3").style.display='block'
+                qoListLevels3(level3)
+            
+              }else{
+                document.querySelector(".qolistBull3").style.display='none'
+              }
+              const level4 = QualityOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".qolistBull4").style.display='block'
+          
+                qoListLevels4(level4)
+              
+              }else{
+                document.querySelector(".qolistBull4").style.display='none'
+              }
+      
+     }
+
+       const    DisciplineSpecificSkills    = response.filter((d) => d.info.areas=="Discipline Specific Skills");
+    if (DisciplineSpecificSkills.length>0) {
+      document.querySelector(".flush-heading62").style.display="block"
+      const level1 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  dsListLevels1(level1)
+                  document.querySelector(".dslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".dslistBull1").style.display='none'
+                }
+              const level2 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".dslistBull2").style.display='block'
+                console.log(level2);
+                dsListLevels2(level2)
+              
+              }else{
+                document.querySelector(".dslistBull2").style.display='none'
+              }
+              const level3 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".dslistBull3").style.display='block'
+                dsListLevels3(level3)
+            
+              }else{
+                document.querySelector(".dslistBull3").style.display='none'
+              }
+              const level4 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".dslistBull4").style.display='block'
+          
+                dsListLevels4(level4)
+              
+              }else{
+                document.querySelector(".dslistBull4").style.display='none'
+              }
+      
+     }
+
+         const    CustomerOrientationandCustomerFocus  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
+    if (CustomerOrientationandCustomerFocus.length>0) {
+      document.querySelector(".flush-heading63").style.display="block"
+      const level1 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  wriListLevels1(level1)
+                  document.querySelector(".wrilistBull1").style.display='block'
+                }else{
+                  document.querySelector(".wrilistBull1").style.display='none'
+                }
+              const level2 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".wrilistBull2").style.display='block'
+                console.log(level2);
+                wriListLevels2(level2)
+              
+              }else{
+                document.querySelector(".wrilistBull2").style.display='none'
+              }
+              const level3 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".wrilistBull3").style.display='block'
+                wriListLevels3(level3)
+            
+              }else{
+                document.querySelector(".wrilistBull3").style.display='none'
+              }
+              const level4 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".wrilistBull4").style.display='block'
+          
+                wriListLevels4(level4)
+              
+              }else{
+                document.querySelector(".wrilistBull4").style.display='none'
+              }
+      
+     }
+
+    //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientation");
+    //  console.log(ServiceDeliveryOrientation);
+    //  if (ServiceDeliveryOrientation.length>0) {
+    //    document.querySelector(".flush-heading64").style.display="block"
+    //    const level1 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 1")
+          
+    //              if(level1.length >0){
+    //                console.log(level1);
+    //                sdoListLevels1(level1)
+    //                document.querySelector(".sdolistBull1").style.display='block'
+    //              }else{
+    //                document.querySelector(".sdolistBull1").style.display='none'
+    //              }
+    //            const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
+    //            if(level2.length>0){
+    //              document.querySelector(".sdolistBull2").style.display='block'
+    //              console.log(level2);
+    //              sdoListLevels2(level2)
+               
+    //            }else{
+    //              document.querySelector(".sdolistBull2").style.display='none'
+    //            }
+    //            const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
+    //            if(level3.length!==0){
+    //              document.querySelector(".sdolistBull3").style.display='block'
+    //              sdoListLevels3(level3)
+             
+    //            }else{
+    //              document.querySelector(".sdolistBull3").style.display='none'
+    //            }
+    //            const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
+    //            if(level4.length!==0){
+    //              console.log(level4);
+    //              document.querySelector(".sdolistBull4").style.display='block'
+           
+    //              sdoListLevels4(level4)
+               
+    //            }else{
+    //              document.querySelector(".sdolistBull4").style.display='none'
+    //            }
+       
+    //   }
+//   // let option =""
+//   // let html =""
+//   // let list = document.querySelector(".listdata124")
+ 
+//   // result.forEach(department => {
+//   //     option=` <li>${department.details}</li>`;
+//   //     html +=option;
+//   //     list.innerHTML=html;
+     
+      
+//   // });
+
+
+}
+
+function PublicManagement(response) {
+  
+  console.log(response);
+ 
+  const  written = response.filter((d) => d.info.areas=="Written Communication");
+  if (written.length>0) {
+   document.querySelector(".flush-heading0").style.display="block"
+   const level1 = written.filter((d)=>d.info.levels=="Level 1")
+       
+   if(level1.length >0){
+     console.log(level1);
+     ListLevels1(level1)
+   
+     document.querySelector(".listBull1").style.display='block'
+   }else{
+     document.querySelector(".listBull1").style.display='none'
+   }
+  const level2 = written.filter((d)=>d.info.levels=="Level 2")
+  if(level2.length!==0){
+   document.querySelector(".listBull2").style.display='block'
+   ListLevels2(level2)
+  
+  }else{
+   document.querySelector(".listBull2").style.display='none'
+  }
+  const level3 = written.filter((d)=>d.info.levels=="Level 3")
+  if(level3.length!==0){
+   document.querySelector(".listBull3").style.display='block'
+   ListLevels3(level3)
+  
+  }else{
+   document.querySelector(".listBull3").style.display='none'
+  }
+  const level4 = written.filter((d)=>d.info.levels=="Level 4")
+  if(level4.length!==0){
+   document.querySelector(".listBull4").style.display='block'
+  
+   ListLevels4(level4)
+  
+  }else{
+   document.querySelector(".listBull4").style.display='none'
+  }
+  }
+ 
+  const Organisational = response.filter((d) => d.info.areas=="Organisational Awareness");
+  if (Organisational.length>0) {
+   document.querySelector(".flush-heading1").style.display="block"
+   const level1 = Organisational.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               oListLevels1(level1)
+               document.querySelector(".olistBull1").style.display='block'
+             }else{
+               document.querySelector(".olistBull1").style.display='none'
+             }
+           const level2 = Organisational.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".olistBull2").style.display='block'
+             console.log(level2);
+             oListLevels2(level2)
+           
+           }else{
+             document.querySelector(".olistBull2").style.display='none'
+           }
+           const level3 = Organisational.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".olistBull3").style.display='block'
+             oListLevels3(level3)
+         
+           }else{
+             document.querySelector(".olistBull3").style.display='none'
+           }
+           const level4 = Organisational.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".olistBull4").style.display='block'
+       
+             oListLevels4(level4)
+           
+           }else{
+             document.querySelector(".olistBull4").style.display='none'
+           }
+   
+  }
+  
+  const  Plannning = response.filter((d) => d.info.areas=="Planning and Organising");
+  if (Plannning.length>0) {
+   document.querySelector(".flush-heading2").style.display="block"
+ 
+     const level1 = Plannning.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 pListLevels1(level1)
+                 document.querySelector(".plistBull1").style.display='block'
+               }else{
+                 document.querySelector(".plistBull1").style.display='none'
+               }
+             const level2 = Plannning.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".plistBull2").style.display='block'
+               console.log(level2);
+               pListLevels2(level2)
+             
+             }else{
+               document.querySelector(".plistBull2").style.display='none'
+             }
+             const level3 = Plannning.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".plistBull3").style.display='block'
+               pListLevels3(level3)
+           
+             }else{
+               document.querySelector(".plistBull3").style.display='none'
+             }
+             const level4 = Plannning.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".plistBull4").style.display='block'
+         
+               pListLevels4(level4)
+             
+             }else{
+               document.querySelector(".plistBull4").style.display='none'
+             }
+     
+    
+  }
+  const  Monitoring = response.filter((d) => d.info.areas=="Monitoring and Control");
+  if (Monitoring.length>0) {
+   document.querySelector(".flush-heading3").style.display="block"
+   const level1 = Monitoring.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 mListLevels1(level1)
+                 document.querySelector(".mlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".mlistBull1").style.display='none'
+               }
+             const level2 = Monitoring.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".mlistBull2").style.display='block'
+               console.log(level2);
+               mListLevels2(level2)
+             
+             }else{
+               document.querySelector(".mlistBull2").style.display='none'
+             }
+             const level3 = Monitoring.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".mlistBull3").style.display='block'
+               mListLevels3(level3)
+           
+             }else{
+               document.querySelector(".mlistBull3").style.display='none'
+             }
+             const level4 = Monitoring.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".mlistBull4").style.display='block'
+         
+               mListLevels4(level4)
+             
+             }else{
+               document.querySelector(".mlistBull4").style.display='none'
+             }
+     
+  }
+ 
+  const  Consulting = response.filter((d) => d.info.areas=="Consulting");
+  if (Consulting.length>0) {
+   document.querySelector(".flush-heading4").style.display="block"
+   const level1 = Consulting.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 cListLevels1(level1)
+                 document.querySelector(".clistBull1").style.display='block'
+               }else{
+                 document.querySelector(".clistBull1").style.display='none'
+               }
+             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".clistBull2").style.display='block'
+               console.log(level2);
+               cListLevels2(level2)
+             
+             }else{
+               document.querySelector(".clistBull2").style.display='none'
+             }
+             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".clistBull3").style.display='block'
+               cListLevels3(level3)
+           
+             }else{
+               document.querySelector(".clistBull3").style.display='none'
+             }
+             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".clistBull4").style.display='block'
+         
+               cListLevels4(level4)
+             
+             }else{
+               document.querySelector(".clistBull4").style.display='none'
+             }
+     
+  }
+  const  Negotiation = response.filter((d) => d.info.areas=="Negotiation");
+  if (Negotiation.length>0) {
+   document.querySelector(".flush-heading5").style.display="block"
+   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 nListLevels1(level1)
+                 document.querySelector(".nlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".nlistBull1").style.display='none'
+               }
+             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".nlistBull2").style.display='block'
+               console.log(level2);
+               nListLevels2(level2)
+             
+             }else{
+               document.querySelector(".nlistBull2").style.display='none'
+             }
+             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".nlistBull3").style.display='block'
+               nListLevels3(level3)
+           
+             }else{
+               document.querySelector(".nlistBull3").style.display='none'
+             }
+             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".nlistBull4").style.display='block'
+         
+               nListLevels4(level4)
+             
+             }else{
+               document.querySelector(".nlistBull4").style.display='none'
+             }
+     
+  }
+  const  Oral = response.filter((d) => d.info.areas=="Oral Communication");
+  if (Oral.length>0) {
+   document.querySelector(".flush-heading6").style.display="block"
+   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 orListLevels1(level1)
+                 document.querySelector(".orlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".orlistBull1").style.display='none'
+               }
+             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".orlistBull2").style.display='block'
+               console.log(level2);
+               orListLevels2(level2)
+             
+             }else{
+               document.querySelector(".orlistBull2").style.display='none'
+             }
+             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".orlistBull3").style.display='block'
+               orListLevels3(level3)
+           
+             }else{
+               document.querySelector(".orlistBull3").style.display='none'
+             }
+             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".orlistBull4").style.display='block'
+         
+               orListLevels4(level4)
+             
+             }else{
+               document.querySelector(".orlistBull4").style.display='none'
+             }
+ 
+              
+  const Learning = response.filter((d) => d.info.areas=="Learning and Development ");
+  if (Learning.length>0) {
+   document.querySelector(".flush-heading7").style.display="block"
+   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ldListLevels1(level1)
+               document.querySelector(".ldlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ldlistBull1").style.display='none'
+             }
+           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ldlistBull2").style.display='block'
+             console.log(level2);
+             ldListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ldlistBull2").style.display='none'
+           }
+           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ldlistBull3").style.display='block'
+             ldListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ldlistBull3").style.display='none'
+           }
+           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ldlistBull4").style.display='block'
+       
+             ldListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ldlistBull4").style.display='none'
+           }
+   
+  }
+     
+  }
+ 
+  const Learning = response.filter((d) => d.info.areas=="Learning and Development");
+  if (Learning.length>0) {
+   document.querySelector(".flush-heading7").style.display="block"
+   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ldListLevels1(level1)
+               document.querySelector(".ldlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ldlistBull1").style.display='none'
+             }
+           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ldlistBull2").style.display='block'
+             console.log(level2);
+             ldListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ldlistBull2").style.display='none'
+           }
+           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ldlistBull3").style.display='block'
+             ldListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ldlistBull3").style.display='none'
+           }
+           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ldlistBull4").style.display='block'
+       
+             ldListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ldlistBull4").style.display='none'
+           }
+   
+  }
+  
+ // const Awareness = response.filter((d) => d.areas=="Organisational Awareness");
+ 
+ // if (Awareness.length>0) {
+ //   document.querySelector(".flush-heading8").style.display="block"
+ //   const level1 = Awareness.filter((d)=>d.levels=="Level 1")
+      
+ //             if(level1.length >0){
+ //               console.log(level1);
+ //               aListLevels1(level1)
+ //               document.querySelector(".alistBull1").style.display='block'
+ //             }else{
+ //               document.querySelector(".alistBull1").style.display='none'
+ //             }
+ //           const level2 = Awareness.filter((d)=>d.levels=="Level 2")
+ //           if(level2.length>0){
+ //             document.querySelector(".alistBull2").style.display='block'
+ //             console.log(level2);
+ //             aListLevels2(level2)
+           
+ //           }else{
+ //             document.querySelector(".alistBull2").style.display='none'
+ //           }
+ //           const level3 = Awareness.filter((d)=>d.levels=="Level 3")
+ //           if(level3.length!==0){
+ //             document.querySelector(".alistBull3").style.display='block'
+ //             aListLevels3(level3)
+         
+ //           }else{
+ //             document.querySelector(".alistBull3").style.display='none'
+ //           }
+ //           const level4 = Awareness.filter((d)=>d.levels=="Level 4")
+ //           if(level4.length!==0){
+ //             console.log(level4);
+ //             document.querySelector(".alistBull4").style.display='block'
+       
+ //             aListLevels4(level4)
+           
+ //           }else{
+ //             document.querySelector(".alistBull4").style.display='none'
+ //           }
+   
+ //  }
+ 
+ const  Change = response.filter((d) => d.info.areas=="Change Movement");
+ 
+ if (Change.length>0) {
+   document.querySelector(".flush-heading9").style.display="block"
+   const level1 = Change.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               cmListLevels1(level1)
+               document.querySelector(".cmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".cmlistBull1").style.display='none'
+             }
+           const level2 = Change.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".cmlistBull2").style.display='block'
+             console.log(level2);
+             cmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".cmlistBull2").style.display='none'
+           }
+           const level3 = Change.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".cmlistBull3").style.display='block'
+             cmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".cmlistBull3").style.display='none'
+           }
+           const level4 = Change.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".cmlistBull4").style.display='block'
+       
+             cmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".cmlistBull4").style.display='none'
+           }
+   
+  }
+ 
+ 
+ const  Technology = response.filter((d) => d.info.areas=="HR Technology information Management");
+ 
+ 
+ if (Technology.length>0) {
+   document.querySelector(".flush-heading10").style.display="block"
+   const level1 = Technology.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               tListLevels1(level1)
+               document.querySelector(".tlistBull1").style.display='block'
+             }else{
+               document.querySelector(".tlistBull1").style.display='none'
+             }
+           const level2 = Technology.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".tlistBull2").style.display='block'
+             console.log(level2);
+             tListLevels2(level2)
+           
+           }else{
+             document.querySelector(".tlistBull2").style.display='none'
+           }
+           const level3 = Technology.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".tlistBull3").style.display='block'
+             tListLevels3(level3)
+         
+           }else{
+             document.querySelector(".tlistBull3").style.display='none'
+           }
+           const level4 = Technology.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".tlistBull4").style.display='block'
+       
+             tListLevels4(level4)
+           
+           }else{
+             document.querySelector(".tlistBull4").style.display='none'
+           }
+   
+  }
+ 
+ const  Service = response.filter((d) => d.info.areas=="HR Service Delivery");
+ if (Service.length>0) {
+   document.querySelector(".flush-heading11").style.display="block"
+   const level1 = Service.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               sListLevels1(level1)
+               document.querySelector(".slistBull1").style.display='block'
+             }else{
+               document.querySelector(".slistBull1").style.display='none'
+             }
+           const level2 = Service.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".slistBull2").style.display='block'
+             console.log(level2);
+             sListLevels2(level2)
+           
+           }else{
+             document.querySelector(".slistBull2").style.display='none'
+           }
+           const level3 = Service.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".slistBull3").style.display='block'
+             sListLevels3(level3)
+         
+           }else{
+             document.querySelector(".slistBull3").style.display='none'
+           }
+           const level4 = Service.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".slistBull4").style.display='block'
+       
+             sListLevels4(level4)
+           
+           }else{
+             document.querySelector(".slistBull4").style.display='none'
+           }
+   
+  }
+ const  Talent = response.filter((d) => d.info.areas=="Talent Management");
+ if (Talent.length>0) {
+   document.querySelector(".flush-heading12").style.display="block"
+   const level1 = Talent.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               tmListLevels1(level1)
+               document.querySelector(".tmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".tmlistBull1").style.display='none'
+             }
+           const level2 = Talent.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".tmlistBull2").style.display='block'
+             console.log(level2);
+             tmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".tmlistBull2").style.display='none'
+           }
+           const level3 = Talent.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".tmlistBull3").style.display='block'
+             tmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".tmlistBull3").style.display='none'
+           }
+           const level4 = Talent.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".tmlistBull4").style.display='block'
+       
+             tmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".tmlistBull4").style.display='none'
+           }
+   
+  }
+ const  Workforce = response.filter((d) => d.info.areas=="Workforce Planning");
+ 
+ if (Workforce.length>0) {
+   document.querySelector(".flush-heading13").style.display="block"
+   const level1 = Workforce.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               wListLevels1(level1)
+               document.querySelector(".wlistBull1").style.display='block'
+             }else{
+               document.querySelector(".wlistBull1").style.display='none'
+             }
+           const level2 = Workforce.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".wlistBull2").style.display='block'
+             console.log(level2);
+             wListLevels2(level2)
+           
+           }else{
+             document.querySelector(".wlistBull2").style.display='none'
+           }
+           const level3 = Workforce.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".wlistBull3").style.display='block'
+             wListLevels3(level3)
+         
+           }else{
+             document.querySelector(".wlistBull3").style.display='none'
+           }
+           const level4 = Workforce.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".wlistBull4").style.display='block'
+       
+             wListLevels4(level4)
+           
+           }else{
+             document.querySelector(".wlistBull4").style.display='none'
+           }
+   
+  }
+  const  Learningdevelopment = response.filter((d) => d.info.areas=="Learning and Develepment");
+  if (Learningdevelopment.length>0) {
+   document.querySelector(".flush-heading14").style.display="block"
+   const level1 = Learningdevelopment.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               dlListLevels1(level1)
+               document.querySelector(".dllistBull1").style.display='block'
+             }else{
+               document.querySelector(".dllistBull1").style.display='none'
+             }
+           const level2 = Learningdevelopment.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".dllistBull2").style.display='block'
+             console.log(level2);
+             dlListLevels2(level2)
+           
+           }else{
+             document.querySelector(".dllistBull2").style.display='none'
+           }
+           const level3 = Learningdevelopment.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".dllistBull3").style.display='block'
+             dlListLevels3(level3)
+         
+           }else{
+             document.querySelector(".dllistBull3").style.display='none'
+           }
+           const level4 = Learningdevelopment.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".dllistBull4").style.display='block'
+       
+             dlListLevels4(level4)
+           
+           }else{
+             document.querySelector(".dllistBull4").style.display='none'
+           }
+   
+  }
+  
+  const  Occupational = response.filter((d) => d.info.areas=="Occupational Health and Safety");
+  
+  if (Occupational.length>0) {
+   document.querySelector(".flush-heading15").style.display="block"
+   const level1 = Occupational.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ohListLevels1(level1)
+               document.querySelector(".ohlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ohlistBull1").style.display='none'
+             }
+           const level2 = Occupational.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ohlistBull2").style.display='block'
+             console.log(level2);
+             ohListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ohlistBull2").style.display='none'
+           }
+           const level3 = Occupational.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ohlistBull3").style.display='block'
+             ohListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ohlistBull3").style.display='none'
+           }
+           const level4 = Occupational.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ohlistBull4").style.display='block'
+       
+             ohListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ohlistBull4").style.display='none'
+           }
+   
+  }
+   const Perfomance = response.filter((d) => d.info.areas=="Performance Management");
+ 
+ if (Perfomance.length>0) {
+     document.querySelector(".flush-heading16").style.display="block"
+     const level1 = Perfomance.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 peListLevels1(level1)
+                 document.querySelector(".pelistBull1").style.display='block'
+               }else{
+                 document.querySelector(".pelistBull1").style.display='none'
+               }
+             const level2 = Perfomance.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".pelistBull2").style.display='block'
+               console.log(level2);
+               peListLevels2(level2)
+             
+             }else{
+               document.querySelector(".pelistBull2").style.display='none'
+             }
+             const level3 = Perfomance.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".pelistBull3").style.display='block'
+               peListLevels3(level3)
+           
+             }else{
+               document.querySelector(".pelistBull3").style.display='none'
+             }
+             const level4 = Perfomance.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".pelistBull4").style.display='block'
+         
+               peListLevels4(level4)
+             
+             }else{
+               document.querySelector(".pelistBull4").style.display='none'
+             }
+     
+    }
+ const  Industrial = response.filter((d) => d.info.areas=="Industrial and Labour Relations");
+ 
+   if (Industrial.length>0) {
+     document.querySelector(".flush-heading17").style.display="block"
+     const level1 = Industrial.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 inListLevels1(level1)
+                 document.querySelector(".inlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".inlistBull1").style.display='none'
+               }
+             const level2 = Industrial.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".inlistBull2").style.display='block'
+               console.log(level2);
+               inListLevels2(level2)
+             
+             }else{
+               document.querySelector(".inlistBull2").style.display='none'
+             }
+             const level3 = Industrial.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".inlistBull3").style.display='block'
+               inListLevels3(level3)
+           
+             }else{
+               document.querySelector(".inlistBull3").style.display='none'
+             }
+             const level4 = Industrial.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".inlistBull4").style.display='block'
+         
+               inListLevels4(level4)
+             
+             }else{
+               document.querySelector(".inlistBull4").style.display='none'
+             }
+     
+    }
+ const  Interpersonal = response.filter((d) => d.info.areas=="Interpersonal Relationships");
+ 
+ if (Interpersonal.length>0) {
+     document.querySelector(".flush-heading18").style.display="block"
+     const level1 = Interpersonal.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 intListLevels1(level1)
+                 document.querySelector(".intlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".intlistBull1").style.display='none'
+               }
+             const level2 = Interpersonal.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".intlistBull2").style.display='block'
+               console.log(level2);
+               intListLevels2(level2)
+             
+             }else{
+               document.querySelector(".intlistBull2").style.display='none'
+             }
+             const level3 = Interpersonal.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".intlistBull3").style.display='block'
+               intListLevels3(level3)
+           
+             }else{
+               document.querySelector(".intlistBull3").style.display='none'
+             }
+             const level4 = Interpersonal.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".intlistBull4").style.display='block'
+         
+               intListLevels4(level4)
+             
+             }else{
+               document.querySelector(".intlistBull4").style.display='none'
+             }
+     
+    }
+ 
+ const  Communication = response.filter((d) => d.info.areas=="Communication");
+ if (Communication.length>0) {
+   document.querySelector(".flush-heading19").style.display="block"
+   const level1 = Communication.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               comListLevels1(level1)
+               document.querySelector(".comlistBull1").style.display='block'
+             }else{
+               document.querySelector(".comlistBull1").style.display='none'
+             }
+           const level2 = Communication.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".comlistBull2").style.display='block'
+             console.log(level2);
+             comListLevels2(level2)
+           
+           }else{
+             document.querySelector(".comlistBull2").style.display='none'
+           }
+           const level3 = Communication.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".comlistBull3").style.display='block'
+             comListLevels3(level3)
+         
+           }else{
+             document.querySelector(".comlistBull3").style.display='none'
+           }
+           const level4 = Communication.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".comlistBull4").style.display='block'
+       
+             comListLevels4(level4)
+           
+           }else{
+             document.querySelector(".comlistBull4").style.display='none'
+           }
+   
+  }
+   const Delivery = response.filter((d) => d.info.areas=="Service Delivery Orientation");
+   if (Delivery.length>0) {
+     document.querySelector(".flush-heading20").style.display="block"
+     const level1 = Delivery.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 sdoListLevels1(level1)
+                 document.querySelector(".sdolistBull1").style.display='block'
+               }else{
+                 document.querySelector(".sdolistBull1").style.display='none'
+               }
+             const level2 = Delivery.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".sdolistBull2").style.display='block'
+               console.log(level2);
+               sdoListLevels2(level2)
+             
+             }else{
+               document.querySelector(".sdolistBull2").style.display='none'
+             }
+             const level3 = Delivery.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".sdolistBull3").style.display='block'
+               sdoListLevels3(level3)
+           
+             }else{
+               document.querySelector(".sdolistBull3").style.display='none'
+             }
+             const level4 = Delivery.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".sdolistBull4").style.display='block'
+         
+               sdoListLevels4(level4)
+             
+             }else{
+               document.querySelector(".sdolistBull4").style.display='none'
+             }
+     
+    }
+   const  Action = response.filter((d) => d.info.areas=="Action and Outcome Orientation");
+   if (Action.length>0) {
+     document.querySelector(".flush-heading21").style.display="block"
+     const level1 = Action.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 actListLevels1(level1)
+                 document.querySelector(".actlistBull1").style.display='block'
+               }else{
+                 document.querySelector(".actlistBull1").style.display='none'
+               }
+             const level2 = Action.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".actlistBull2").style.display='block'
+               console.log(level2);
+               actListLevels2(level2)
+             
+             }else{
+               document.querySelector(".actlistBull2").style.display='none'
+             }
+             const level3 = Action.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".actlistBull3").style.display='block'
+               actListLevels3(level3)
+           
+             }else{
+               document.querySelector(".actlistBull3").style.display='none'
+             }
+             const level4 = Action.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".actlistBull4").style.display='block'
+         
+               actListLevels4(level4)
+             
+             }else{
+               document.querySelector(".actlistBull4").style.display='none'
+             }
+     
+    }
+ const  Conflict = response.filter((d) => d.info.areas=="Conflict Management");
+ if (Conflict.length>0) {
+   document.querySelector(".flush-heading22").style.display="block"
+   const level1 = Conflict.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               conListLevels1(level1)
+               document.querySelector(".conlistBull1").style.display='block'
+             }else{
+               document.querySelector(".conlistBull1").style.display='none'
+             }
+           const level2 = Conflict.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".conlistBull2").style.display='block'
+             console.log(level2);
+             conListLevels2(level2)
+           
+           }else{
+             document.querySelector(".conlistBull2").style.display='none'
+           }
+           const level3 = Conflict.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".conlistBull3").style.display='block'
+             conListLevels3(level3)
+         
+           }else{
+             document.querySelector(".conlistBull3").style.display='none'
+           }
+           const level4 = Conflict.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".conlistBull4").style.display='block'
+       
+             conListLevels4(level4)
+           
+           }else{
+             document.querySelector(".conlistBull4").style.display='none'
+           }
+   
+  }
+  const  Orientation = response.filter((d) => d.info.areas=="Learning Orientation");
+  if (Orientation.length>0) {
+   document.querySelector(".flush-heading23").style.display="block"
+   const level1 = Orientation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               loListLevels1(level1)
+               document.querySelector(".lolistBull1").style.display='block'
+             }else{
+               document.querySelector(".lolistBull1").style.display='none'
+             }
+           const level2 = Orientation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".lolistBull2").style.display='block'
+             console.log(level2);
+             loListLevels2(level2)
+           
+           }else{
+             document.querySelector(".lolistBull2").style.display='none'
+           }
+           const level3 = Orientation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".lolistBull3").style.display='block'
+             loListLevels3(level3)
+         
+           }else{
+             document.querySelector(".lolistBull3").style.display='none'
+           }
+           const level4 = Orientation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".lolistBull4").style.display='block'
+       
+             loListLevels4(level4)
+           
+           }else{
+             document.querySelector(".lolistBull4").style.display='none'
+           }
+   
+  }
+ const  Accountability = response.filter((d) => d.info.areas=="Accountability and Ethical Conduct");
+ if (Accountability.length>0) {
+   document.querySelector(".flush-heading24").style.display="block"
+   const level1 = Accountability.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               aeListLevels1(level1)
+               document.querySelector(".aelistBull1").style.display='block'
+             }else{
+               document.querySelector(".aelistBull1").style.display='none'
+             }
+           const level2 = Accountability.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".aelistBull2").style.display='block'
+             console.log(level2);
+             aeListLevels2(level2)
+           
+           }else{
+             document.querySelector(".aelistBull2").style.display='none'
+           }
+           const level3 = Accountability.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".aelistBull3").style.display='block'
+             aeListLevels3(level3)
+         
+           }else{
+             document.querySelector(".aelistBull3").style.display='none'
+           }
+           const level4 = Accountability.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".aelistBull4").style.display='block'
+       
+             aeListLevels4(level4)
+           
+           }else{
+             document.querySelector(".aelistBull4").style.display='none'
+           }
+   
+  }
+  const   Problem = response.filter((d) => d.info.areas=="Problem Solving and Analysis");
+  if (Problem.length>0) {
+   document.querySelector(".flush-heading25").style.display="block"
+   const level1 = Problem.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               psListLevels1(level1)
+               document.querySelector(".pslistBull1").style.display='block'
+             }else{
+               document.querySelector(".pslistBull1").style.display='none'
+             }
+           const level2 = Problem.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".pslistBull2").style.display='block'
+             console.log(level2);
+             psListLevels2(level2)
+           
+           }else{
+             document.querySelector(".pslistBull2").style.display='none'
+           }
+           const level3 = Problem.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".pslistBull3").style.display='block'
+             psListLevels3(level3)
+         
+           }else{
+             document.querySelector(".pslistBull3").style.display='none'
+           }
+           const level4 = Problem.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".pslistBull4").style.display='block'
+       
+             psListLevels4(level4)
+           
+           }else{
+             document.querySelector(".pslistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   Compensation = response.filter((d) => d.info.areas=="Compensation and Benefits Management");
+  if (Compensation.length>0) {
+   document.querySelector(".flush-heading26").style.display="block"
+   const level1 = Compensation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               cbListLevels1(level1)
+               document.querySelector(".cblistBull1").style.display='block'
+             }else{
+               document.querySelector(".cblistBull1").style.display='none'
+             }
+           const level2 = Compensation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".cblistBull2").style.display='block'
+             console.log(level2);
+             cbListLevels2(level2)
+           
+           }else{
+             document.querySelector(".cblistBull2").style.display='none'
+           }
+           const level3 = Compensation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".cblistBull3").style.display='block'
+             cbListLevels3(level3)
+         
+           }else{
+             document.querySelector(".cblistBull3").style.display='none'
+           }
+           const level4 = Compensation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".cblistBull4").style.display='block'
+       
+             cbListLevels4(level4)
+           
+           }else{
+             document.querySelector(".cblistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   EmployeeWellness = response.filter((d) => d.info.areas=="Employee Wellness");
+  if (EmployeeWellness.length>0) {
+   document.querySelector(".flush-heading27").style.display="block"
+   const level1 = EmployeeWellness.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ewListLevels1(level1)
+               document.querySelector(".ewlistBull1").style.display='block'
+             }else{
+               document.querySelector(".ewlistBull1").style.display='none'
+             }
+           const level2 = EmployeeWellness.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ewlistBull2").style.display='block'
+             console.log(level2);
+             ewListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ewlistBull2").style.display='none'
+           }
+           const level3 = EmployeeWellness.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ewlistBull3").style.display='block'
+             ewListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ewlistBull3").style.display='none'
+           }
+           const level4 = EmployeeWellness.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ewlistBull4").style.display='block'
+       
+             ewListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ewlistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   Resilience = response.filter((d) => d.info.areas=="Resilience");
+  if (Resilience.length>0) {
+   document.querySelector(".flush-heading28").style.display="block"
+   const level1 = Resilience.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               rsListLevels1(level1)
+               document.querySelector(".rslistBull1").style.display='block'
+             }else{
+               document.querySelector(".rslistBull1").style.display='none'
+             }
+           const level2 = Resilience.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".rslistBull2").style.display='block'
+             console.log(level2);
+             rsListLevels2(level2)
+           
+           }else{
+             document.querySelector(".rslistBull2").style.display='none'
+           }
+           const level3 = Resilience.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".rslistBull3").style.display='block'
+             rsListLevels3(level3)
+         
+           }else{
+             document.querySelector(".rslistBull3").style.display='none'
+           }
+           const level4 = Resilience.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".rslistBull4").style.display='block'
+       
+             rsListLevels4(level4)
+           
+           }else{
+             document.querySelector(".rslistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   DirectionSetting = response.filter((d) => d.info.areas=="Direction Setting");
+  if (DirectionSetting.length>0) {
+   document.querySelector(".flush-heading29").style.display="block"
+   const level1 = DirectionSetting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               drListLevels1(level1)
+               document.querySelector(".drlistBull1").style.display='block'
+             }else{
+               document.querySelector(".drlistBull1").style.display='none'
+             }
+           const level2 = DirectionSetting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".drlistBull2").style.display='block'
+             console.log(level2);
+             drListLevels2(level2)
+           
+           }else{
+             document.querySelector(".drlistBull2").style.display='none'
+           }
+           const level3 = DirectionSetting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".drlistBull3").style.display='block'
+             drListLevels3(level3)
+         
+           }else{
+             document.querySelector(".drlistBull3").style.display='none'
+           }
+           const level4 = DirectionSetting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".drlistBull4").style.display='block'
+       
+             drListLevels4(level4)
+           
+           }else{
+             document.querySelector(".drlistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   ImpactandInfluence = response.filter((d) => d.info.areas=="Impact and Influence");
+  if (ImpactandInfluence.length>0) {
+   document.querySelector(".flush-heading30").style.display="block"
+   const level1 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               iiListLevels1(level1)
+               document.querySelector(".iilistBull1").style.display='block'
+             }else{
+               document.querySelector(".iilistBull1").style.display='none'
+             }
+           const level2 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".iilistBull2").style.display='block'
+             console.log(level2);
+             iiListLevels2(level2)
+           
+           }else{
+             document.querySelector(".iilistBull2").style.display='none'
+           }
+           const level3 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".iilistBull3").style.display='block'
+             iiListLevels3(level3)
+         
+           }else{
+             document.querySelector(".iilistBull3").style.display='none'
+           }
+           const level4 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".iilistBull4").style.display='block'
+       
+             iiListLevels4(level4)
+           
+           }else{
+             document.querySelector(".iilistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   CoachingandMentoring = response.filter((d) => d.info.areas=="Coaching and Mentoring");
+  if (CoachingandMentoring.length>0) {
+   document.querySelector(".flush-heading31").style.display="block"
+   const level1 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               menListLevels1(level1)
+               document.querySelector(".menlistBull1").style.display='block'
+             }else{
+               document.querySelector(".menlistBull1").style.display='none'
+             }
+           const level2 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".menlistBull2").style.display='block'
+             console.log(level2);
+             menListLevels2(level2)
+           
+           }else{
+             document.querySelector(".menlistBull2").style.display='none'
+           }
+           const level3 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".menlistBull3").style.display='block'
+             menListLevels3(level3)
+         
+           }else{
+             document.querySelector(".menlistBull3").style.display='none'
+           }
+           const level4 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".menlistBull4").style.display='block'
+       
+             menListLevels4(level4)
+           
+           }else{
+             document.querySelector(".menlistBull4").style.display='none'
+           }
+   
+  }
+ 
+  const   TeamOrientation= response.filter((d) => d.info.areas=="Team Orientation");
+  if (TeamOrientation.length>0) {
+   document.querySelector(".flush-heading32").style.display="block"
+   const level1 = TeamOrientation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               toListLevels1(level1)
+               document.querySelector(".tolistBull1").style.display='block'
+             }else{
+               document.querySelector(".tolistBull1").style.display='none'
+             }
+           const level2 = TeamOrientation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".tolistBull2").style.display='block'
+             console.log(level2);
+             toListLevels2(level2)
+           
+           }else{
+             document.querySelector(".tolistBull2").style.display='none'
+           }
+           const level3 = TeamOrientation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".tolistBull3").style.display='block'
+             toListLevels3(level3)
+         
+           }else{
+             document.querySelector(".tolistBull3").style.display='none'
+           }
+           const level4 = TeamOrientation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".tolistBull4").style.display='block'
+       
+             toListLevels4(level4)
+           
+           }else{
+             document.querySelector(".tolistBull4").style.display='none'
+           }
+   
+  }
+
+  const   InternalAuditing  = response.filter((d) => d.info.areas=="Internal Auditing");
+  if (InternalAuditing.length>0) {
+   document.querySelector(".flush-heading33").style.display="block"
+   const level1 = InternalAuditing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ioListLevels1(level1)
+               document.querySelector(".iolistBull1").style.display='block'
+             }else{
+               document.querySelector(".iolistBull1").style.display='none'
+             }
+           const level2 = InternalAuditing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".iolistBull2").style.display='block'
+             console.log(level2);
+             ioListLevels2(level2)
+           
+           }else{
+             document.querySelector(".iolistBull2").style.display='none'
+           }
+           const level3 = InternalAuditing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".iolistBull3").style.display='block'
+             ioListLevels3(level3)
+         
+           }else{
+             document.querySelector(".iolistBull3").style.display='none'
+           }
+           const level4 = InternalAuditing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".iolistBull4").style.display='block'
+       
+             ioListLevels4(level4)
+           
+           }else{
+             document.querySelector(".iolistBull4").style.display='none'
+           }
+   
+  }
+
+  const   EngagementManagement  = response.filter((d) => d.info.areas=="Engagement Management");
+  if (EngagementManagement.length>0) {
+   document.querySelector(".flush-heading34").style.display="block"
+   const level1 = EngagementManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               emListLevels1(level1)
+               document.querySelector(".emlistBull1").style.display='block'
+             }else{
+               document.querySelector(".emlistBull1").style.display='none'
+             }
+           const level2 = EngagementManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".emlistBull2").style.display='block'
+             console.log(level2);
+             emListLevels2(level2)
+           
+           }else{
+             document.querySelector(".emlistBull2").style.display='none'
+           }
+           const level3 = EngagementManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".emlistBull3").style.display='block'
+             emListLevels3(level3)
+         
+           }else{
+             document.querySelector(".emlistBull3").style.display='none'
+           }
+           const level4 = EngagementManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".emlistBull4").style.display='block'
+       
+             emListLevels4(level4)
+           
+           }else{
+             document.querySelector(".emlistBull4").style.display='none'
+           }
+   
+  }
+  
+  const   InformationManagement  = response.filter((d) => d.info.areas=="Information Management");
+  if (InformationManagement.length>0) {
+   document.querySelector(".flush-heading35").style.display="block"
+   const level1 = InformationManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               imListLevels1(level1)
+               document.querySelector(".imlistBull1").style.display='block'
+             }else{
+               document.querySelector(".imlistBull1").style.display='none'
+             }
+           const level2 = InformationManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".imlistBull2").style.display='block'
+             console.log(level2);
+             imListLevels2(level2)
+           
+           }else{
+             document.querySelector(".imlistBull2").style.display='none'
+           }
+           const level3 = InformationManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".imlistBull3").style.display='block'
+             imListLevels3(level3)
+         
+           }else{
+             document.querySelector(".imlistBull3").style.display='none'
+           }
+           const level4 = InformationManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".imlistBull4").style.display='block'
+       
+             imListLevels4(level4)
+           
+           }else{
+             document.querySelector(".imlistBull4").style.display='none'
+           }
+   
+  }
+  const   ResearchandAnalysis  = response.filter((d) => d.info.areas=="Research and Analysis");
+  if (ResearchandAnalysis.length>0) {
+   document.querySelector(".flush-heading36").style.display="block"
+   const level1 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               raListLevels1(level1)
+               document.querySelector(".ralistBull1").style.display='block'
+             }else{
+               document.querySelector(".ralistBull1").style.display='none'
+             }
+           const level2 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".ralistBull2").style.display='block'
+             console.log(level2);
+             raListLevels2(level2)
+           
+           }else{
+             document.querySelector(".ralistBull2").style.display='none'
+           }
+           const level3 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".ralistBull3").style.display='block'
+             raListLevels3(level3)
+         
+           }else{
+             document.querySelector(".ralistBull3").style.display='none'
+           }
+           const level4 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".ralistBull4").style.display='block'
+       
+             raListLevels4(level4)
+           
+           }else{
+             document.querySelector(".ralistBull4").style.display='none'
+           }
+   
+  }
+
+  const   AdvocacyNegotiation  = response.filter((d) => d.info.areas=="Advocacy / Negotiation");
+  if (AdvocacyNegotiation.length>0) {
+   document.querySelector(".flush-heading37").style.display="block"
+   const level1 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               anListLevels1(level1)
+               document.querySelector(".anlistBull1").style.display='block'
+             }else{
+               document.querySelector(".anlistBull1").style.display='none'
+             }
+           const level2 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".anlistBull2").style.display='block'
+             console.log(level2);
+             anListLevels2(level2)
+           
+           }else{
+             document.querySelector(".anlistBull2").style.display='none'
+           }
+           const level3 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".anlistBull3").style.display='block'
+             anListLevels3(level3)
+         
+           }else{
+             document.querySelector(".anlistBull3").style.display='none'
+           }
+           const level4 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".anlistBull4").style.display='block'
+       
+             anListLevels4(level4)
+           
+           }else{
+             document.querySelector(".anlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   EthicsandProfessionalism  = response.filter((d) => d.info.areas=="Ethics and Professionalism");
+  if (EthicsandProfessionalism.length>0) {
+   document.querySelector(".flush-heading38").style.display="block"
+   const level1 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               epListLevels1(level1)
+               document.querySelector(".eplistBull1").style.display='block'
+             }else{
+               document.querySelector(".eplistBull1").style.display='none'
+             }
+           const level2 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".eplistBull2").style.display='block'
+             console.log(level2);
+             epListLevels2(level2)
+           
+           }else{
+             document.querySelector(".eplistBull2").style.display='none'
+           }
+           const level3 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".eplistBull3").style.display='block'
+             epListLevels3(level3)
+         
+           }else{
+             document.querySelector(".eplistBull3").style.display='none'
+           }
+           const level4 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".eplistBull4").style.display='block'
+       
+             epListLevels4(level4)
+           
+           }else{
+             document.querySelector(".eplistBull4").style.display='none'
+           }
+   
+  }
+  const   StrategicCapability  = response.filter((d) => d.info.areas=="Strategic Capability / Leadership or Direction Setting");
+  if (StrategicCapability.length>0) {
+   document.querySelector(".flush-heading39").style.display="block"
+   const level1 = StrategicCapability.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               scListLevels1(level1)
+               document.querySelector(".sclistBull1").style.display='block'
+             }else{
+               document.querySelector(".sclistBull1").style.display='none'
+             }
+           const level2 = StrategicCapability.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".sclistBull2").style.display='block'
+             console.log(level2);
+             scListLevels2(level2)
+           
+           }else{
+             document.querySelector(".sclistBull2").style.display='none'
+           }
+           const level3 = StrategicCapability.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".sclistBull3").style.display='block'
+             scListLevels3(level3)
+         
+           }else{
+             document.querySelector(".sclistBull3").style.display='none'
+           }
+           const level4 = StrategicCapability.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".sclistBull4").style.display='block'
+       
+             scListLevels4(level4)
+           
+           }else{
+             document.querySelector(".sclistBull4").style.display='none'
+           }
+   
+  }
+
+  const   ChangeReadiness  = response.filter((d) => d.info.areas=="Change Readiness");
+  if (ChangeReadiness.length>0) {
+   document.querySelector(".flush-heading40").style.display="block"
+   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               crListLevels1(level1)
+               document.querySelector(".crlistBull1").style.display='block'
+             }else{
+               document.querySelector(".crlistBull1").style.display='none'
+             }
+           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".crlistBull2").style.display='block'
+             console.log(level2);
+             crListLevels2(level2)
+           
+           }else{
+             document.querySelector(".crlistBull2").style.display='none'
+           }
+           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".crlistBull3").style.display='block'
+             crListLevels3(level3)
+         
+           }else{
+             document.querySelector(".crlistBull3").style.display='none'
+           }
+           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".crlistBull4").style.display='block'
+       
+             crListLevels4(level4)
+           
+           }else{
+             document.querySelector(".crlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   CognitiveAbility  = response.filter((d) => d.info.areas=="Cognitive Ability");
+  if (CognitiveAbility.length>0) {
+   document.querySelector(".flush-heading41").style.display="block"
+   const level1 = CognitiveAbility.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               caListLevels1(level1)
+               document.querySelector(".calistBull1").style.display='block'
+             }else{
+               document.querySelector(".calistBull1").style.display='none'
+             }
+           const level2 = CognitiveAbility.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".calistBull2").style.display='block'
+             console.log(level2);
+             caListLevels2(level2)
+           
+           }else{
+             document.querySelector(".calistBull2").style.display='none'
+           }
+           const level3 = CognitiveAbility.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".calistBull3").style.display='block'
+             caListLevels3(level3)
+         
+           }else{
+             document.querySelector(".calistBull3").style.display='none'
+           }
+           const level4 = CognitiveAbility.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".calistBull4").style.display='block'
+       
+             caListLevels4(level4)
+           
+           }else{
+             document.querySelector(".calistBull4").style.display='none'
+           }
+   
+  }
+
+  const   CustomerOrientation  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
+  if (CustomerOrientation.length>0) {
+   document.querySelector(".flush-heading42").style.display="block"
+   const level1 = CustomerOrientation.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               ccListLevels1(level1)
+               document.querySelector(".cclistBull1").style.display='block'
+             }else{
+               document.querySelector(".cclistBull1").style.display='none'
+             }
+           const level2 = CustomerOrientation.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".cclistBull2").style.display='block'
+             console.log(level2);
+             ccListLevels2(level2)
+           
+           }else{
+             document.querySelector(".cclistBull2").style.display='none'
+           }
+           const level3 = CustomerOrientation.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".cclistBull3").style.display='block'
+             ccListLevels3(level3)
+         
+           }else{
+             document.querySelector(".cclistBull3").style.display='none'
+           }
+           const level4 = CustomerOrientation.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".cclistBull4").style.display='block'
+       
+             ccListLevels4(level4)
+           
+           }else{
+             document.querySelector(".cclistBull4").style.display='none'
+           }
+   
+  }
+
+  const   LitigationManagement  = response.filter((d) => d.info.areas=="Litigation Management");
+  if (LitigationManagement.length>0) {
+   document.querySelector(".flush-heading43").style.display="block"
+   const level1 = LitigationManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               manaListLevels1(level1)
+               document.querySelector(".manalistBull1").style.display='block'
+             }else{
+               document.querySelector(".manalistBull1").style.display='none'
+             }
+           const level2 = LitigationManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".manalistBull2").style.display='block'
+             console.log(level2);
+             manaListLevels2(level2)
+           
+           }else{
+             document.querySelector(".manalistBull2").style.display='none'
+           }
+           const level3 = LitigationManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".manalistBull3").style.display='block'
+             manaListLevels3(level3)
+         
+           }else{
+             document.querySelector(".manalistBull3").style.display='none'
+           }
+           const level4 = LitigationManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".manalistBull4").style.display='block'
+       
+             manaListLevels4(level4)
+           
+           }else{
+             document.querySelector(".manalistBull4").style.display='none'
+           }
+   
+  }
+
+  
+  const   WrittenCommunicationDrafting  = response.filter((d) => d.info.areas=="Written Communication / Drafting");
+  if (WrittenCommunicationDrafting.length>0) {
+   document.querySelector(".flush-heading44").style.display="block"
+   const level1 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               wcdListLevels1(level1)
+               document.querySelector(".wcdlistBull1").style.display='block'
+             }else{
+               document.querySelector(".wcdlistBull1").style.display='none'
+             }
+           const level2 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".wcdlistBull2").style.display='block'
+             console.log(level2);
+             wcdListLevels2(level2)
+           
+           }else{
+             document.querySelector(".wcdlistBull2").style.display='none'
+           }
+           const level3 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".wcdlistBull3").style.display='block'
+             wcdListLevels3(level3)
+         
+           }else{
+             document.querySelector(".wcdlistBull3").style.display='none'
+           }
+           const level4 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".wcdlistBull4").style.display='block'
+       
+             wcdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".wcdlistBull4").style.display='none'
+           }
+   
+  }
+
+
+  const   Accounting  = response.filter((d) => d.info.areas=="Accounting");
+  if (Accounting.length>0) {
+   document.querySelector(".flush-heading45").style.display="block"
+   const level1 = Accounting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               accountListLevels1(level1)
+               document.querySelector(".accountlistBull1").style.display='block'
+             }else{
+               document.querySelector(".accountlistBull1").style.display='none'
+             }
+           const level2 = Accounting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".accountlistBull2").style.display='block'
+             console.log(level2);
+             accountListLevels2(level2)
+           
+           }else{
+             document.querySelector(".accountlistBull2").style.display='none'
+           }
+           const level3 = Accounting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".accountlistBull3").style.display='block'
+             accountListLevels3(level3)
+         
+           }else{
+             document.querySelector(".accountlistBull3").style.display='none'
+           }
+           const level4 = Accounting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".accountlistBull4").style.display='block'
+       
+             accountListLevels4(level4)
+           
+           }else{
+             document.querySelector(".accountlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Procurement  = response.filter((d) => d.info.areas=="Procurement");
+  if (Procurement.length>0) {
+   document.querySelector(".flush-heading46").style.display="block"
+   const level1 = Procurement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               procurementListLevels1(level1)
+               document.querySelector(".procurementlistBull1").style.display='block'
+             }else{
+               document.querySelector(".procurementlistBull1").style.display='none'
+             }
+           const level2 = Procurement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".procurementlistBull2").style.display='block'
+             console.log(level2);
+             procurementListLevels2(level2)
+           
+           }else{
+             document.querySelector(".procurementlistBull2").style.display='none'
+           }
+           const level3 = Procurement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".procurementlistBull3").style.display='block'
+             procurementListLevels3(level3)
+         
+           }else{
+             document.querySelector(".procurementlistBull3").style.display='none'
+           }
+           const level4 = Procurement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".procurementlistBull4").style.display='block'
+       
+             procurementListLevels4(level4)
+           
+           }else{
+             document.querySelector(".procurementlistBull4").style.display='none'
+           }
+   
+  }
+
+   const   Budgeting = response.filter((d) => d.info.areas=="Budgeting");
+  if (Budgeting.length>0) {
+   document.querySelector(".flush-heading47").style.display="block"
+   const level1 = Budgeting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               budgetListLevels1(level1)
+               document.querySelector(".budgetlistBull1").style.display='block'
+             }else{
+               document.querySelector(".budgetlistBull1").style.display='none'
+             }
+           const level2 = Budgeting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".budgetlistBull2").style.display='block'
+             console.log(level2);
+             budgetListLevels2(level2)
+           
+           }else{
+             document.querySelector(".budgetlistBull2").style.display='none'
+           }
+           const level3 = Budgeting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".budgetlistBull3").style.display='block'
+             budgetListLevels3(level3)
+         
+           }else{
+             document.querySelector(".budgetlistBull3").style.display='none'
+           }
+           const level4 = Budgeting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".budgetlistBull4").style.display='block'
+       
+             budgetListLevels4(level4)
+           
+           }else{
+             document.querySelector(".budgetlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialManagement = response.filter((d) => d.info.areas=="Financial Management");
+  if (FinancialManagement.length>0) {
+   document.querySelector(".flush-heading48").style.display="block"
+   const level1 = FinancialManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               financeListLevels1(level1)
+               document.querySelector(".financelistBull1").style.display='block'
+             }else{
+               document.querySelector(".financelistBull1").style.display='none'
+             }
+           const level2 = FinancialManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".financelistBull2").style.display='block'
+             console.log(level2);
+             financeListLevels2(level2)
+           
+           }else{
+             document.querySelector(".financelistBull2").style.display='none'
+           }
+           const level3 = FinancialManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".financelistBull3").style.display='block'
+             financeListLevels3(level3)
+         
+           }else{
+             document.querySelector(".financelistBull3").style.display='none'
+           }
+           const level4 = FinancialManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".financelistBull4").style.display='block'
+       
+             financeListLevels4(level4)
+           
+           }else{
+             document.querySelector(".financelistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Costing = response.filter((d) => d.info.areas=="Costing");
+  if (Costing.length>0) {
+   document.querySelector(".flush-heading49").style.display="block"
+   const level1 = Costing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               costListLevels1(level1)
+               document.querySelector(".costlistBull1").style.display='block'
+             }else{
+               document.querySelector(".costlistBull1").style.display='none'
+             }
+           const level2 = Costing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".costlistBull2").style.display='block'
+             console.log(level2);
+             costListLevels2(level2)
+           
+           }else{
+             document.querySelector(".costlistBull2").style.display='none'
+           }
+           const level3 = Costing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".costlistBull3").style.display='block'
+             costListLevels3(level3)
+         
+           }else{
+             document.querySelector(".costlistBull3").style.display='none'
+           }
+           const level4 = Costing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".costlistBull4").style.display='block'
+       
+             costListLevels4(level4)
+           
+           }else{
+             document.querySelector(".costlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialReporting = response.filter((d) => d.info.areas=="Financial Reporting");
+  if (FinancialReporting.length>0) {
+   document.querySelector(".flush-heading50").style.display="block"
+   const level1 = FinancialReporting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               freportListLevels1(level1)
+               document.querySelector(".freportlistBull1").style.display='block'
+             }else{
+               document.querySelector(".freportlistBull1").style.display='none'
+             }
+           const level2 = FinancialReporting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".freportlistBull2").style.display='block'
+             console.log(level2);
+             freportListLevels2(level2)
+           
+           }else{
+             document.querySelector(".freportlistBull2").style.display='none'
+           }
+           const level3 = FinancialReporting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".freportlistBull3").style.display='block'
+             freportListLevels3(level3)
+         
+           }else{
+             document.querySelector(".freportlistBull3").style.display='none'
+           }
+           const level4 = FinancialReporting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".freportlistBull4").style.display='block'
+       
+             freportListLevels4(level4)
+           
+           }else{
+             document.querySelector(".freportlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialProcessManagement = response.filter((d) => d.info.areas=="Financial Process Management");
+  if (FinancialProcessManagement.length>0) {
+   document.querySelector(".flush-heading51").style.display="block"
+   const level1 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               fmListLevels1(level1)
+               document.querySelector(".fmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".fmlistBull1").style.display='none'
+             }
+           const level2 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".fmlistBull2").style.display='block'
+             console.log(level2);
+             fmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".fmlistBull2").style.display='none'
+           }
+           const level3 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".fmlistBull3").style.display='block'
+             fmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".fmlistBull3").style.display='none'
+           }
+           const level4 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".fmlistBull4").style.display='block'
+       
+             fmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".fmlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   ProblemSolving = response.filter((d) => d.info.areas=="Problem Solving");
+  if (ProblemSolving.length>0) {
+   document.querySelector(".flush-heading52").style.display="block"
+   const level1 = ProblemSolving.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               spListLevels1(level1)
+               document.querySelector(".splistBull1").style.display='block'
+             }else{
+               document.querySelector(".splistBull1").style.display='none'
+             }
+           const level2 = ProblemSolving.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".splistBull2").style.display='block'
+             console.log(level2);
+             spListLevels2(level2)
+           
+           }else{
+             document.querySelector(".splistBull2").style.display='none'
+           }
+           const level3 = ProblemSolving.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".splistBull3").style.display='block'
+             spListLevels3(level3)
+         
+           }else{
+             document.querySelector(".splistBull3").style.display='none'
+           }
+           const level4 = ProblemSolving.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".splistBull4").style.display='block'
+       
+             spListLevels4(level4)
+           
+           }else{
+             document.querySelector(".splistBull4").style.display='none'
+           }
+   
+  }
+
+  const   AttentiontoDetail = response.filter((d) => d.info.areas=="Attention to Detail");
+  if (AttentiontoDetail.length>0) {
+   document.querySelector(".flush-heading53").style.display="block"
+   const level1 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               atdListLevels1(level1)
+               document.querySelector(".atdlistBull1").style.display='block'
+             }else{
+               document.querySelector(".atdlistBull1").style.display='none'
+             }
+           const level2 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".atdlistBull2").style.display='block'
+             console.log(level2);
+             atdListLevels2(level2)
+           
+           }else{
+             document.querySelector(".atdlistBull2").style.display='none'
+           }
+           const level3 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".atdlistBull3").style.display='block'
+             atdListLevels3(level3)
+         
+           }else{
+             document.querySelector(".atdlistBull3").style.display='none'
+           }
+           const level4 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".atdlistBull4").style.display='block'
+       
+             atdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".atdlistBull4").style.display='none'
+           }
+   
+  }
+
+  
+  const   Influencing = response.filter((d) => d.info.areas=="Influencing");
+  
+  if (Influencing.length>0) {
+   document.querySelector(".flush-heading54").style.display="block"
+   const level1 = Influencing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               intflListLevels1(level1)
+               document.querySelector(".intfllistBull1").style.display='block'
+             }else{
+               document.querySelector(".intfllistBull1").style.display='none'
+             }
+           const level2 = Influencing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".intfllistBull2").style.display='block'
+             console.log(level2);
+             intflListLevels2(level2)
+           
+           }else{
+             document.querySelector(".intfllistBull2").style.display='none'
+           }
+           const level3 = Influencing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".intfllistBull3").style.display='block'
+             intflListLevels3(level3)
+         
+           }else{
+             document.querySelector(".intfllistBull3").style.display='none'
+           }
+           const level4 = Influencing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".intfllistBull4").style.display='block'
+       
+             intflListLevels4(level4)
+           
+           }else{
+             document.querySelector(".intfllistBull4").style.display='none'
+           }
+   
+  }
+
+  const   BusinessProcess = response.filter((d) => d.info.areas=="Business Process");
+  if (BusinessProcess.length>0) {
+    document.querySelector(".flush-heading55").style.display="block"
+    const level1 = BusinessProcess.filter((d)=>d.info.levels=="Level 1")
+       
+              if(level1.length >0){
+                console.log(level1);
+                bppListLevels1(level1)
+                document.querySelector(".bpplistBull1").style.display='block'
+              }else{
+                document.querySelector(".bpplistBull1").style.display='none'
+              }
+            const level2 = BusinessProcess.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".bpplistBull2").style.display='block'
+              console.log(level2);
+              bppListLevels2(level2)
+            
+            }else{
+              document.querySelector(".bpplistBull2").style.display='none'
+            }
+            const level3 = BusinessProcess.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".bpplistBull3").style.display='block'
+              bppListLevels3(level3)
+          
+            }else{
+              document.querySelector(".bpplistBull3").style.display='none'
+            }
+            const level4 = BusinessProcess.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".bpplistBull4").style.display='block'
+        
+              bppListLevels4(level4)
+            
+            }else{
+              document.querySelector(".bpplistBull4").style.display='none'
+            }
+    
+   }
+
+   const   UseofTechnology = response.filter((d) => d.info.areas=="Use of Technology");
+  if (UseofTechnology.length>0) {
+    document.querySelector(".flush-heading56").style.display="block"
+    const level1 = UseofTechnology.filter((d)=>d.info.levels=="Level 1")
+       
+              if(level1.length >0){
+                console.log(level1);
+                useListLevels1(level1)
+                document.querySelector(".uselistBull1").style.display='block'
+              }else{
+                document.querySelector(".uselistBull1").style.display='none'
+              }
+            const level2 = UseofTechnology.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".uselistBull2").style.display='block'
+              console.log(level2);
+              useListLevels2(level2)
+            
+            }else{
+              document.querySelector(".uselistBull2").style.display='none'
+            }
+            const level3 = UseofTechnology.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".uselistBull3").style.display='block'
+              useListLevels3(level3)
+          
+            }else{
+              document.querySelector(".uselistBull3").style.display='none'
+            }
+            const level4 = UseofTechnology.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".uselistBull4").style.display='block'
+        
+              useListLevels4(level4)
+            
+            }else{
+              document.querySelector(".uselistBull4").style.display='none'
+            }
+    
+   }
+
+   const   DataProcessingAnalysis   = response.filter((d) => d.info.areas=="Data Processing & Analysis");
+   if (DataProcessingAnalysis.length>0) {
+     document.querySelector(".flush-heading57").style.display="block"
+     const level1 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 dpaListLevels1(level1)
+                 document.querySelector(".dpalistBull1").style.display='block'
+               }else{
+                 document.querySelector(".dpalistBull1").style.display='none'
+               }
+             const level2 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".dpalistBull2").style.display='block'
+               console.log(level2);
+               dpaListLevels2(level2)
+             
+             }else{
+               document.querySelector(".dpalistBull2").style.display='none'
+             }
+             const level3 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".dpalistBull3").style.display='block'
+               dpaListLevels3(level3)
+           
+             }else{
+               document.querySelector(".dpalistBull3").style.display='none'
+             }
+             const level4 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".dpalistBull4").style.display='block'
+         
+               dpaListLevels4(level4)
+             
+             }else{
+               document.querySelector(".dpalistBull4").style.display='none'
+             }
+     
+    }
+
+    const   ClientOrientationandCustomerFocus    = response.filter((d) => d.info.areas=="Client Orientation and Customer Focus");
+   if (ClientOrientationandCustomerFocus.length>0) {
+     document.querySelector(".flush-heading58").style.display="block"
+     const level1 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 coListLevels1(level1)
+                 document.querySelector(".colistBull1").style.display='block'
+               }else{
+                 document.querySelector(".colistBull1").style.display='none'
+               }
+             const level2 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".colistBull2").style.display='block'
+               console.log(level2);
+               coListLevels2(level2)
+             
+             }else{
+               document.querySelector(".colistBull2").style.display='none'
+             }
+             const level3 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".colistBull3").style.display='block'
+               coListLevels3(level3)
+           
+             }else{
+               document.querySelector(".colistBull3").style.display='none'
+             }
+             const level4 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".colistBull4").style.display='block'
+         
+               coListLevels4(level4)
+             
+             }else{
+               document.querySelector(".colistBull4").style.display='none'
+             }
+     
+    }
+
+    const    ActionOrientation    = response.filter((d) => d.info.areas=="Action Orientation");
+    if (ActionOrientation.length>0) {
+      document.querySelector(".flush-heading59").style.display="block"
+      const level1 = ActionOrientation.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  asListLevels1(level1)
+                  document.querySelector(".aslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".aslistBull1").style.display='none'
+                }
+              const level2 = ActionOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".aslistBull2").style.display='block'
+                console.log(level2);
+                asListLevels2(level2)
+              
+              }else{
+                document.querySelector(".aslistBull2").style.display='none'
+              }
+              const level3 = ActionOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".aslistBull3").style.display='block'
+                asListLevels3(level3)
+            
+              }else{
+                document.querySelector(".aslistBull3").style.display='none'
+              }
+              const level4 = ActionOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".aslistBull4").style.display='block'
+          
+                asListLevels4(level4)
+              
+              }else{
+                document.querySelector(".aslistBull4").style.display='none'
+              }
+      
+     }
+
+     const    QualityOrientation    = response.filter((d) => d.info.areas=="Quality Orientation");
+    if (QualityOrientation.length>0) {
+      document.querySelector(".flush-heading60").style.display="block"
+      const level1 = QualityOrientation.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  qoListLevels1(level1)
+                  document.querySelector(".qolistBull1").style.display='block'
+                }else{
+                  document.querySelector(".qolistBull1").style.display='none'
+                }
+              const level2 = QualityOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".qolistBull2").style.display='block'
+                console.log(level2);
+                qoListLevels2(level2)
+              
+              }else{
+                document.querySelector(".qolistBull2").style.display='none'
+              }
+              const level3 = QualityOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".qolistBull3").style.display='block'
+                qoListLevels3(level3)
+            
+              }else{
+                document.querySelector(".qolistBull3").style.display='none'
+              }
+              const level4 = QualityOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".qolistBull4").style.display='block'
+          
+                qoListLevels4(level4)
+              
+              }else{
+                document.querySelector(".qolistBull4").style.display='none'
+              }
+      
+     }
+
+       const    DisciplineSpecificSkills    = response.filter((d) => d.info.areas=="Discipline Specific Skills");
+    if (DisciplineSpecificSkills.length>0) {
+      document.querySelector(".flush-heading62").style.display="block"
+      const level1 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  dsListLevels1(level1)
+                  document.querySelector(".dslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".dslistBull1").style.display='none'
+                }
+              const level2 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".dslistBull2").style.display='block'
+                console.log(level2);
+                dsListLevels2(level2)
+              
+              }else{
+                document.querySelector(".dslistBull2").style.display='none'
+              }
+              const level3 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".dslistBull3").style.display='block'
+                dsListLevels3(level3)
+            
+              }else{
+                document.querySelector(".dslistBull3").style.display='none'
+              }
+              const level4 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".dslistBull4").style.display='block'
+          
+                dsListLevels4(level4)
+              
+              }else{
+                document.querySelector(".dslistBull4").style.display='none'
+              }
+      
+     }
+
+         const    CustomerOrientationandCustomerFocus  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
+    if (CustomerOrientationandCustomerFocus.length>0) {
+      document.querySelector(".flush-heading63").style.display="block"
+      const level1 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  wriListLevels1(level1)
+                  document.querySelector(".wrilistBull1").style.display='block'
+                }else{
+                  document.querySelector(".wrilistBull1").style.display='none'
+                }
+              const level2 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".wrilistBull2").style.display='block'
+                console.log(level2);
+                wriListLevels2(level2)
+              
+              }else{
+                document.querySelector(".wrilistBull2").style.display='none'
+              }
+              const level3 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".wrilistBull3").style.display='block'
+                wriListLevels3(level3)
+            
+              }else{
+                document.querySelector(".wrilistBull3").style.display='none'
+              }
+              const level4 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".wrilistBull4").style.display='block'
+          
+                wriListLevels4(level4)
+              
+              }else{
+                document.querySelector(".wrilistBull4").style.display='none'
+              }
+      
+     }
+
+    //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
+    //  if (ServiceDeliveryOrientation.length>0) {
+    //    document.querySelector(".flush-heading64").style.display="block"
+    //    const level1 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 1")
+          
+    //              if(level1.length >0){
+    //                console.log(level1);
+    //                sdoListLevels1(level1)
+    //                document.querySelector(".sdolistBull1").style.display='block'
+    //              }else{
+    //                document.querySelector(".sdolistBull1").style.display='none'
+    //              }
+    //            const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
+    //            if(level2.length>0){
+    //              document.querySelector(".sdolistBull2").style.display='block'
+    //              console.log(level2);
+    //              sdoListLevels2(level2)
+               
+    //            }else{
+    //              document.querySelector(".sdolistBull2").style.display='none'
+    //            }
+    //            const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
+    //            if(level3.length!==0){
+    //              document.querySelector(".sdolistBull3").style.display='block'
+    //              sdoListLevels3(level3)
+             
+    //            }else{
+    //              document.querySelector(".sdolistBull3").style.display='none'
+    //            }
+    //            const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
+    //            if(level4.length!==0){
+    //              console.log(level4);
+    //              document.querySelector(".sdolistBull4").style.display='block'
+           
+    //              sdoListLevels4(level4)
+               
+    //            }else{
+    //              document.querySelector(".sdolistBull4").style.display='none'
+    //            }
+       
+    //   }
+//   // let option =""
+//   // let html =""
+//   // let list = document.querySelector(".listdata124")
+ 
+//   // result.forEach(department => {
+//   //     option=` <li>${department.details}</li>`;
+//   //     html +=option;
+//   //     list.innerHTML=html;
+     
+      
+//   // });
+
+
+}
+function Leadership(response) {
+  
   console.log(response);
  
   const  written = response.filter((d) => d.info.areas=="Written Communication");
@@ -9029,5583 +20760,892 @@ function Professional(response) {
            }
    
   }
-//   // let option =""
-//   // let html =""
-//   // let list = document.querySelector(".listdata124")
- 
-//   // result.forEach(department => {
-//   //     option=` <li>${department.details}</li>`;
-//   //     html +=option;
-//   //     list.innerHTML=html;
-     
-      
-//   // });
 
-}
-function Functional(response) {
-  
-  console.log(response);
- 
-  const  written = response.filter((d) => d.info.areas=="Written Communication");
-  if (written.length>0) {
-   document.querySelector(".flush-heading0").style.display="block"
-   const level1 = written.filter((d)=>d.info.levels=="Level 1")
-       
-   if(level1.length >0){
-     console.log(level1);
-     ListLevels1(level1)
-   
-     document.querySelector(".listBull1").style.display='block'
-   }else{
-     document.querySelector(".listBull1").style.display='none'
-   }
-  const level2 = written.filter((d)=>d.info.levels=="Level 2")
-  if(level2.length!==0){
-   document.querySelector(".listBull2").style.display='block'
-   ListLevels2(level2)
-  
-  }else{
-   document.querySelector(".listBull2").style.display='none'
-  }
-  const level3 = written.filter((d)=>d.levels=="Level 3")
-  if(level3.length!==0){
-   document.querySelector(".listBull3").style.display='block'
-   ListLevels3(level3)
-  
-  }else{
-   document.querySelector(".listBull3").style.display='none'
-  }
-  const level4 = written.filter((d)=>d.levels=="Level 4")
-  if(level4.length!==0){
-   document.querySelector(".listBull4").style.display='block'
-  
-   ListLevels4(level4)
-  
-  }else{
-   document.querySelector(".listBull4").style.display='none'
-  }
-  }
- 
-  const Organisational = response.filter((d) => d.info.areas=="Organisational Awareness");
-  if (Organisational.length>0) {
-   document.querySelector(".flush-heading1").style.display="block"
-   const level1 = Organisational.filter((d)=>d.info.levels=="Level 1")
+  const   LitigationManagement  = response.filter((d) => d.info.areas=="Litigation Management");
+  if (LitigationManagement.length>0) {
+   document.querySelector(".flush-heading43").style.display="block"
+   const level1 = LitigationManagement.filter((d)=>d.info.levels=="Level 1")
       
              if(level1.length >0){
                console.log(level1);
-               oListLevels1(level1)
-               document.querySelector(".olistBull1").style.display='block'
+               manaListLevels1(level1)
+               document.querySelector(".manalistBull1").style.display='block'
              }else{
-               document.querySelector(".olistBull1").style.display='none'
+               document.querySelector(".manalistBull1").style.display='none'
              }
-           const level2 = Organisational.filter((d)=>d.info.levels=="Level 2")
+           const level2 = LitigationManagement.filter((d)=>d.info.levels=="Level 2")
            if(level2.length>0){
-             document.querySelector(".olistBull2").style.display='block'
+             document.querySelector(".manalistBull2").style.display='block'
              console.log(level2);
-             oListLevels2(level2)
+             manaListLevels2(level2)
            
            }else{
-             document.querySelector(".olistBull2").style.display='none'
+             document.querySelector(".manalistBull2").style.display='none'
            }
-           const level3 = Organisational.filter((d)=>d.info.levels=="Level 3")
+           const level3 = LitigationManagement.filter((d)=>d.info.levels=="Level 3")
            if(level3.length!==0){
-             document.querySelector(".olistBull3").style.display='block'
-             oListLevels3(level3)
+             document.querySelector(".manalistBull3").style.display='block'
+             manaListLevels3(level3)
          
            }else{
-             document.querySelector(".olistBull3").style.display='none'
+             document.querySelector(".manalistBull3").style.display='none'
            }
-           const level4 = Organisational.filter((d)=>d.info.levels=="Level 4")
+           const level4 = LitigationManagement.filter((d)=>d.info.levels=="Level 4")
            if(level4.length!==0){
              console.log(level4);
-             document.querySelector(".olistBull4").style.display='block'
+             document.querySelector(".manalistBull4").style.display='block'
        
-             oListLevels4(level4)
+             manaListLevels4(level4)
            
            }else{
-             document.querySelector(".olistBull4").style.display='none'
+             document.querySelector(".manalistBull4").style.display='none'
            }
    
   }
+
   
-  const  Plannning = response.filter((d) => d.info.areas=="Planning and Organising");
-  if (Plannning.length>0) {
-   document.querySelector(".flush-heading2").style.display="block"
- 
-     const level1 = Plannning.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 pListLevels1(level1)
-                 document.querySelector(".plistBull1").style.display='block'
-               }else{
-                 document.querySelector(".plistBull1").style.display='none'
-               }
-             const level2 = Plannning.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".plistBull2").style.display='block'
-               console.log(level2);
-               pListLevels2(level2)
-             
+  const   WrittenCommunicationDrafting  = response.filter((d) => d.info.areas=="Written Communication / Drafting");
+  if (WrittenCommunicationDrafting.length>0) {
+   document.querySelector(".flush-heading44").style.display="block"
+   const level1 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               wcdListLevels1(level1)
+               document.querySelector(".wcdlistBull1").style.display='block'
              }else{
-               document.querySelector(".plistBull2").style.display='none'
+               document.querySelector(".wcdlistBull1").style.display='none'
              }
-             const level3 = Plannning.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".plistBull3").style.display='block'
-               pListLevels3(level3)
+           const level2 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".wcdlistBull2").style.display='block'
+             console.log(level2);
+             wcdListLevels2(level2)
            
-             }else{
-               document.querySelector(".plistBull3").style.display='none'
-             }
-             const level4 = Plannning.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".plistBull4").style.display='block'
+           }else{
+             document.querySelector(".wcdlistBull2").style.display='none'
+           }
+           const level3 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".wcdlistBull3").style.display='block'
+             wcdListLevels3(level3)
          
-               pListLevels4(level4)
-             
+           }else{
+             document.querySelector(".wcdlistBull3").style.display='none'
+           }
+           const level4 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".wcdlistBull4").style.display='block'
+       
+             wcdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".wcdlistBull4").style.display='none'
+           }
+   
+  }
+
+
+  const   Accounting  = response.filter((d) => d.info.areas=="Accounting");
+  if (Accounting.length>0) {
+   document.querySelector(".flush-heading45").style.display="block"
+   const level1 = Accounting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               accountListLevels1(level1)
+               document.querySelector(".accountlistBull1").style.display='block'
              }else{
-               document.querySelector(".plistBull4").style.display='none'
+               document.querySelector(".accountlistBull1").style.display='none'
              }
-     
+           const level2 = Accounting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".accountlistBull2").style.display='block'
+             console.log(level2);
+             accountListLevels2(level2)
+           
+           }else{
+             document.querySelector(".accountlistBull2").style.display='none'
+           }
+           const level3 = Accounting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".accountlistBull3").style.display='block'
+             accountListLevels3(level3)
+         
+           }else{
+             document.querySelector(".accountlistBull3").style.display='none'
+           }
+           const level4 = Accounting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".accountlistBull4").style.display='block'
+       
+             accountListLevels4(level4)
+           
+           }else{
+             document.querySelector(".accountlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Procurement  = response.filter((d) => d.info.areas=="Procurement");
+  if (Procurement.length>0) {
+   document.querySelector(".flush-heading46").style.display="block"
+   const level1 = Procurement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               procurementListLevels1(level1)
+               document.querySelector(".procurementlistBull1").style.display='block'
+             }else{
+               document.querySelector(".procurementlistBull1").style.display='none'
+             }
+           const level2 = Procurement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".procurementlistBull2").style.display='block'
+             console.log(level2);
+             procurementListLevels2(level2)
+           
+           }else{
+             document.querySelector(".procurementlistBull2").style.display='none'
+           }
+           const level3 = Procurement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".procurementlistBull3").style.display='block'
+             procurementListLevels3(level3)
+         
+           }else{
+             document.querySelector(".procurementlistBull3").style.display='none'
+           }
+           const level4 = Procurement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".procurementlistBull4").style.display='block'
+       
+             procurementListLevels4(level4)
+           
+           }else{
+             document.querySelector(".procurementlistBull4").style.display='none'
+           }
+   
+  }
+
+   const   Budgeting = response.filter((d) => d.info.areas=="Budgeting");
+  if (Budgeting.length>0) {
+   document.querySelector(".flush-heading47").style.display="block"
+   const level1 = Budgeting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               budgetListLevels1(level1)
+               document.querySelector(".budgetlistBull1").style.display='block'
+             }else{
+               document.querySelector(".budgetlistBull1").style.display='none'
+             }
+           const level2 = Budgeting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".budgetlistBull2").style.display='block'
+             console.log(level2);
+             budgetListLevels2(level2)
+           
+           }else{
+             document.querySelector(".budgetlistBull2").style.display='none'
+           }
+           const level3 = Budgeting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".budgetlistBull3").style.display='block'
+             budgetListLevels3(level3)
+         
+           }else{
+             document.querySelector(".budgetlistBull3").style.display='none'
+           }
+           const level4 = Budgeting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".budgetlistBull4").style.display='block'
+       
+             budgetListLevels4(level4)
+           
+           }else{
+             document.querySelector(".budgetlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialManagement = response.filter((d) => d.info.areas=="Financial Management");
+  if (FinancialManagement.length>0) {
+   document.querySelector(".flush-heading48").style.display="block"
+   const level1 = FinancialManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               financeListLevels1(level1)
+               document.querySelector(".financelistBull1").style.display='block'
+             }else{
+               document.querySelector(".financelistBull1").style.display='none'
+             }
+           const level2 = FinancialManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".financelistBull2").style.display='block'
+             console.log(level2);
+             financeListLevels2(level2)
+           
+           }else{
+             document.querySelector(".financelistBull2").style.display='none'
+           }
+           const level3 = FinancialManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".financelistBull3").style.display='block'
+             financeListLevels3(level3)
+         
+           }else{
+             document.querySelector(".financelistBull3").style.display='none'
+           }
+           const level4 = FinancialManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".financelistBull4").style.display='block'
+       
+             financeListLevels4(level4)
+           
+           }else{
+             document.querySelector(".financelistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Costing = response.filter((d) => d.info.areas=="Costing");
+  if (Costing.length>0) {
+   document.querySelector(".flush-heading49").style.display="block"
+   const level1 = Costing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               costListLevels1(level1)
+               document.querySelector(".costlistBull1").style.display='block'
+             }else{
+               document.querySelector(".costlistBull1").style.display='none'
+             }
+           const level2 = Costing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".costlistBull2").style.display='block'
+             console.log(level2);
+             costListLevels2(level2)
+           
+           }else{
+             document.querySelector(".costlistBull2").style.display='none'
+           }
+           const level3 = Costing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".costlistBull3").style.display='block'
+             costListLevels3(level3)
+         
+           }else{
+             document.querySelector(".costlistBull3").style.display='none'
+           }
+           const level4 = Costing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".costlistBull4").style.display='block'
+       
+             costListLevels4(level4)
+           
+           }else{
+             document.querySelector(".costlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialReporting = response.filter((d) => d.info.areas=="Financial Reporting");
+  if (FinancialReporting.length>0) {
+   document.querySelector(".flush-heading50").style.display="block"
+   const level1 = FinancialReporting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               freportListLevels1(level1)
+               document.querySelector(".freportlistBull1").style.display='block'
+             }else{
+               document.querySelector(".freportlistBull1").style.display='none'
+             }
+           const level2 = FinancialReporting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".freportlistBull2").style.display='block'
+             console.log(level2);
+             freportListLevels2(level2)
+           
+           }else{
+             document.querySelector(".freportlistBull2").style.display='none'
+           }
+           const level3 = FinancialReporting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".freportlistBull3").style.display='block'
+             freportListLevels3(level3)
+         
+           }else{
+             document.querySelector(".freportlistBull3").style.display='none'
+           }
+           const level4 = FinancialReporting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".freportlistBull4").style.display='block'
+       
+             freportListLevels4(level4)
+           
+           }else{
+             document.querySelector(".freportlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialProcessManagement = response.filter((d) => d.info.areas=="Financial Process Management");
+  if (FinancialProcessManagement.length>0) {
+   document.querySelector(".flush-heading51").style.display="block"
+   const level1 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               fmListLevels1(level1)
+               document.querySelector(".fmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".fmlistBull1").style.display='none'
+             }
+           const level2 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".fmlistBull2").style.display='block'
+             console.log(level2);
+             fmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".fmlistBull2").style.display='none'
+           }
+           const level3 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".fmlistBull3").style.display='block'
+             fmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".fmlistBull3").style.display='none'
+           }
+           const level4 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".fmlistBull4").style.display='block'
+       
+             fmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".fmlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   ProblemSolving = response.filter((d) => d.info.areas=="Problem Solving");
+  if (ProblemSolving.length>0) {
+   document.querySelector(".flush-heading52").style.display="block"
+   const level1 = ProblemSolving.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               spListLevels1(level1)
+               document.querySelector(".splistBull1").style.display='block'
+             }else{
+               document.querySelector(".splistBull1").style.display='none'
+             }
+           const level2 = ProblemSolving.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".splistBull2").style.display='block'
+             console.log(level2);
+             spListLevels2(level2)
+           
+           }else{
+             document.querySelector(".splistBull2").style.display='none'
+           }
+           const level3 = ProblemSolving.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".splistBull3").style.display='block'
+             spListLevels3(level3)
+         
+           }else{
+             document.querySelector(".splistBull3").style.display='none'
+           }
+           const level4 = ProblemSolving.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".splistBull4").style.display='block'
+       
+             spListLevels4(level4)
+           
+           }else{
+             document.querySelector(".splistBull4").style.display='none'
+           }
+   
+  }
+
+  const   AttentiontoDetail = response.filter((d) => d.info.areas=="Attention to Detail");
+  if (AttentiontoDetail.length>0) {
+   document.querySelector(".flush-heading53").style.display="block"
+   const level1 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               atdListLevels1(level1)
+               document.querySelector(".atdlistBull1").style.display='block'
+             }else{
+               document.querySelector(".atdlistBull1").style.display='none'
+             }
+           const level2 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".atdlistBull2").style.display='block'
+             console.log(level2);
+             atdListLevels2(level2)
+           
+           }else{
+             document.querySelector(".atdlistBull2").style.display='none'
+           }
+           const level3 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".atdlistBull3").style.display='block'
+             atdListLevels3(level3)
+         
+           }else{
+             document.querySelector(".atdlistBull3").style.display='none'
+           }
+           const level4 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".atdlistBull4").style.display='block'
+       
+             atdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".atdlistBull4").style.display='none'
+           }
+   
+  }
+
+  
+  const   Influencing = response.filter((d) => d.info.areas=="Influencing");
+  
+  if (Influencing.length>0) {
+   document.querySelector(".flush-heading54").style.display="block"
+   const level1 = Influencing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               intflListLevels1(level1)
+               document.querySelector(".intfllistBull1").style.display='block'
+             }else{
+               document.querySelector(".intfllistBull1").style.display='none'
+             }
+           const level2 = Influencing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".intfllistBull2").style.display='block'
+             console.log(level2);
+             intflListLevels2(level2)
+           
+           }else{
+             document.querySelector(".intfllistBull2").style.display='none'
+           }
+           const level3 = Influencing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".intfllistBull3").style.display='block'
+             intflListLevels3(level3)
+         
+           }else{
+             document.querySelector(".intfllistBull3").style.display='none'
+           }
+           const level4 = Influencing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".intfllistBull4").style.display='block'
+       
+             intflListLevels4(level4)
+           
+           }else{
+             document.querySelector(".intfllistBull4").style.display='none'
+           }
+   
+  }
+
+  const   BusinessProcess = response.filter((d) => d.info.areas=="Business Process");
+  if (BusinessProcess.length>0) {
+    document.querySelector(".flush-heading55").style.display="block"
+    const level1 = BusinessProcess.filter((d)=>d.info.levels=="Level 1")
+       
+              if(level1.length >0){
+                console.log(level1);
+                bppListLevels1(level1)
+                document.querySelector(".bpplistBull1").style.display='block'
+              }else{
+                document.querySelector(".bpplistBull1").style.display='none'
+              }
+            const level2 = BusinessProcess.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".bpplistBull2").style.display='block'
+              console.log(level2);
+              bppListLevels2(level2)
+            
+            }else{
+              document.querySelector(".bpplistBull2").style.display='none'
+            }
+            const level3 = BusinessProcess.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".bpplistBull3").style.display='block'
+              bppListLevels3(level3)
+          
+            }else{
+              document.querySelector(".bpplistBull3").style.display='none'
+            }
+            const level4 = BusinessProcess.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".bpplistBull4").style.display='block'
+        
+              bppListLevels4(level4)
+            
+            }else{
+              document.querySelector(".bpplistBull4").style.display='none'
+            }
     
-  }
-  const  Monitoring = response.filter((d) => d.info.areas=="Monitoring and Control");
-  if (Monitoring.length>0) {
-   document.querySelector(".flush-heading3").style.display="block"
-   const level1 = Monitoring.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 mListLevels1(level1)
-                 document.querySelector(".mlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".mlistBull1").style.display='none'
-               }
-             const level2 = Monitoring.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".mlistBull2").style.display='block'
-               console.log(level2);
-               mListLevels2(level2)
-             
-             }else{
-               document.querySelector(".mlistBull2").style.display='none'
-             }
-             const level3 = Monitoring.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".mlistBull3").style.display='block'
-               mListLevels3(level3)
-           
-             }else{
-               document.querySelector(".mlistBull3").style.display='none'
-             }
-             const level4 = Monitoring.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".mlistBull4").style.display='block'
-         
-               mListLevels4(level4)
-             
-             }else{
-               document.querySelector(".mlistBull4").style.display='none'
-             }
-     
-  }
- 
-  const  Consulting = response.filter((d) => d.info.areas=="Consulting");
-  if (Consulting.length>0) {
-   document.querySelector(".flush-heading4").style.display="block"
-   const level1 = Consulting.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 cListLevels1(level1)
-                 document.querySelector(".clistBull1").style.display='block'
-               }else{
-                 document.querySelector(".clistBull1").style.display='none'
-               }
-             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".clistBull2").style.display='block'
-               console.log(level2);
-               cListLevels2(level2)
-             
-             }else{
-               document.querySelector(".clistBull2").style.display='none'
-             }
-             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".clistBull3").style.display='block'
-               cListLevels3(level3)
-           
-             }else{
-               document.querySelector(".clistBull3").style.display='none'
-             }
-             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".clistBull4").style.display='block'
-         
-               cListLevels4(level4)
-             
-             }else{
-               document.querySelector(".clistBull4").style.display='none'
-             }
-     
-  }
-  const  Negotiation = response.filter((d) => d.info.areas=="Negotiation");
-  if (Negotiation.length>0) {
-   document.querySelector(".flush-heading5").style.display="block"
-   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 nListLevels1(level1)
-                 document.querySelector(".nlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".nlistBull1").style.display='none'
-               }
-             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".nlistBull2").style.display='block'
-               console.log(level2);
-               nListLevels2(level2)
-             
-             }else{
-               document.querySelector(".nlistBull2").style.display='none'
-             }
-             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".nlistBull3").style.display='block'
-               nListLevels3(level3)
-           
-             }else{
-               document.querySelector(".nlistBull3").style.display='none'
-             }
-             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".nlistBull4").style.display='block'
-         
-               nListLevels4(level4)
-             
-             }else{
-               document.querySelector(".nlistBull4").style.display='none'
-             }
-     
-  }
-  const  Oral = response.filter((d) => d.info.areas=="Oral Communication");
-  if (Oral.length>0) {
-   document.querySelector(".flush-heading6").style.display="block"
-   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 orListLevels1(level1)
-                 document.querySelector(".orlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".orlistBull1").style.display='none'
-               }
-             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".orlistBull2").style.display='block'
-               console.log(level2);
-               orListLevels2(level2)
-             
-             }else{
-               document.querySelector(".orlistBull2").style.display='none'
-             }
-             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".orlistBull3").style.display='block'
-               orListLevels3(level3)
-           
-             }else{
-               document.querySelector(".orlistBull3").style.display='none'
-             }
-             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".orlistBull4").style.display='block'
-         
-               orListLevels4(level4)
-             
-             }else{
-               document.querySelector(".orlistBull4").style.display='none'
-             }
- 
-              
-  const Learning = response.filter((d) => d.info.areas=="Learning and Development ");
-  if (Learning.length>0) {
-   document.querySelector(".flush-heading7").style.display="block"
-   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ldListLevels1(level1)
-               document.querySelector(".ldlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ldlistBull1").style.display='none'
-             }
-           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ldlistBull2").style.display='block'
-             console.log(level2);
-             ldListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ldlistBull2").style.display='none'
-           }
-           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ldlistBull3").style.display='block'
-             ldListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ldlistBull3").style.display='none'
-           }
-           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ldlistBull4").style.display='block'
-       
-             ldListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ldlistBull4").style.display='none'
-           }
-   
-  }
-     
-  }
- 
-  const Learning = response.filter((d) => d.info.areas=="Learning and Development");
-  if (Learning.length>0) {
-   document.querySelector(".flush-heading7").style.display="block"
-   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ldListLevels1(level1)
-               document.querySelector(".ldlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ldlistBull1").style.display='none'
-             }
-           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ldlistBull2").style.display='block'
-             console.log(level2);
-             ldListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ldlistBull2").style.display='none'
-           }
-           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ldlistBull3").style.display='block'
-             ldListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ldlistBull3").style.display='none'
-           }
-           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ldlistBull4").style.display='block'
-       
-             ldListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ldlistBull4").style.display='none'
-           }
-   
-  }
-  
- // const Awareness = response.filter((d) => d.areas=="Organisational Awareness");
- 
- // if (Awareness.length>0) {
- //   document.querySelector(".flush-heading8").style.display="block"
- //   const level1 = Awareness.filter((d)=>d.levels=="Level 1")
-      
- //             if(level1.length >0){
- //               console.log(level1);
- //               aListLevels1(level1)
- //               document.querySelector(".alistBull1").style.display='block'
- //             }else{
- //               document.querySelector(".alistBull1").style.display='none'
- //             }
- //           const level2 = Awareness.filter((d)=>d.levels=="Level 2")
- //           if(level2.length>0){
- //             document.querySelector(".alistBull2").style.display='block'
- //             console.log(level2);
- //             aListLevels2(level2)
-           
- //           }else{
- //             document.querySelector(".alistBull2").style.display='none'
- //           }
- //           const level3 = Awareness.filter((d)=>d.levels=="Level 3")
- //           if(level3.length!==0){
- //             document.querySelector(".alistBull3").style.display='block'
- //             aListLevels3(level3)
-         
- //           }else{
- //             document.querySelector(".alistBull3").style.display='none'
- //           }
- //           const level4 = Awareness.filter((d)=>d.levels=="Level 4")
- //           if(level4.length!==0){
- //             console.log(level4);
- //             document.querySelector(".alistBull4").style.display='block'
-       
- //             aListLevels4(level4)
-           
- //           }else{
- //             document.querySelector(".alistBull4").style.display='none'
- //           }
-   
- //  }
- 
- const  Change = response.filter((d) => d.info.areas=="Change Movement");
- 
- if (Change.length>0) {
-   document.querySelector(".flush-heading9").style.display="block"
-   const level1 = Change.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               cmListLevels1(level1)
-               document.querySelector(".cmlistBull1").style.display='block'
-             }else{
-               document.querySelector(".cmlistBull1").style.display='none'
-             }
-           const level2 = Change.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".cmlistBull2").style.display='block'
-             console.log(level2);
-             cmListLevels2(level2)
-           
-           }else{
-             document.querySelector(".cmlistBull2").style.display='none'
-           }
-           const level3 = Change.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".cmlistBull3").style.display='block'
-             cmListLevels3(level3)
-         
-           }else{
-             document.querySelector(".cmlistBull3").style.display='none'
-           }
-           const level4 = Change.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".cmlistBull4").style.display='block'
-       
-             cmListLevels4(level4)
-           
-           }else{
-             document.querySelector(".cmlistBull4").style.display='none'
-           }
-   
-  }
- 
- 
- const  Technology = response.filter((d) => d.info.areas=="HR Technology information Management");
- 
- 
- if (Technology.length>0) {
-   document.querySelector(".flush-heading10").style.display="block"
-   const level1 = Technology.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               tListLevels1(level1)
-               document.querySelector(".tlistBull1").style.display='block'
-             }else{
-               document.querySelector(".tlistBull1").style.display='none'
-             }
-           const level2 = Technology.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".tlistBull2").style.display='block'
-             console.log(level2);
-             tListLevels2(level2)
-           
-           }else{
-             document.querySelector(".tlistBull2").style.display='none'
-           }
-           const level3 = Technology.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".tlistBull3").style.display='block'
-             tListLevels3(level3)
-         
-           }else{
-             document.querySelector(".tlistBull3").style.display='none'
-           }
-           const level4 = Technology.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".tlistBull4").style.display='block'
-       
-             tListLevels4(level4)
-           
-           }else{
-             document.querySelector(".tlistBull4").style.display='none'
-           }
-   
-  }
- 
- const  Service = response.filter((d) => d.info.areas=="HR Service Delivery");
- if (Service.length>0) {
-   document.querySelector(".flush-heading11").style.display="block"
-   const level1 = Service.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               sListLevels1(level1)
-               document.querySelector(".slistBull1").style.display='block'
-             }else{
-               document.querySelector(".slistBull1").style.display='none'
-             }
-           const level2 = Service.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".slistBull2").style.display='block'
-             console.log(level2);
-             sListLevels2(level2)
-           
-           }else{
-             document.querySelector(".slistBull2").style.display='none'
-           }
-           const level3 = Service.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".slistBull3").style.display='block'
-             sListLevels3(level3)
-         
-           }else{
-             document.querySelector(".slistBull3").style.display='none'
-           }
-           const level4 = Service.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".slistBull4").style.display='block'
-       
-             sListLevels4(level4)
-           
-           }else{
-             document.querySelector(".slistBull4").style.display='none'
-           }
-   
-  }
- const  Talent = response.filter((d) => d.info.areas=="Talent Management");
- if (Talent.length>0) {
-   document.querySelector(".flush-heading12").style.display="block"
-   const level1 = Talent.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               tmListLevels1(level1)
-               document.querySelector(".tmlistBull1").style.display='block'
-             }else{
-               document.querySelector(".tmlistBull1").style.display='none'
-             }
-           const level2 = Talent.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".tmlistBull2").style.display='block'
-             console.log(level2);
-             tmListLevels2(level2)
-           
-           }else{
-             document.querySelector(".tmlistBull2").style.display='none'
-           }
-           const level3 = Talent.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".tmlistBull3").style.display='block'
-             tmListLevels3(level3)
-         
-           }else{
-             document.querySelector(".tmlistBull3").style.display='none'
-           }
-           const level4 = Talent.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".tmlistBull4").style.display='block'
-       
-             tmListLevels4(level4)
-           
-           }else{
-             document.querySelector(".tmlistBull4").style.display='none'
-           }
-   
-  }
- const  Workforce = response.filter((d) => d.info.areas=="Workforce Planning");
- 
- if (Workforce.length>0) {
-   document.querySelector(".flush-heading13").style.display="block"
-   const level1 = Workforce.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               wListLevels1(level1)
-               document.querySelector(".wlistBull1").style.display='block'
-             }else{
-               document.querySelector(".wlistBull1").style.display='none'
-             }
-           const level2 = Workforce.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".wlistBull2").style.display='block'
-             console.log(level2);
-             wListLevels2(level2)
-           
-           }else{
-             document.querySelector(".wlistBull2").style.display='none'
-           }
-           const level3 = Workforce.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".wlistBull3").style.display='block'
-             wListLevels3(level3)
-         
-           }else{
-             document.querySelector(".wlistBull3").style.display='none'
-           }
-           const level4 = Workforce.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".wlistBull4").style.display='block'
-       
-             wListLevels4(level4)
-           
-           }else{
-             document.querySelector(".wlistBull4").style.display='none'
-           }
-   
-  }
-  const  Learningdevelopment = response.filter((d) => d.info.areas=="Learning and Develepment");
-  if (Learningdevelopment.length>0) {
-   document.querySelector(".flush-heading14").style.display="block"
-   const level1 = Learningdevelopment.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               dlListLevels1(level1)
-               document.querySelector(".dllistBull1").style.display='block'
-             }else{
-               document.querySelector(".dllistBull1").style.display='none'
-             }
-           const level2 = Learningdevelopment.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".dllistBull2").style.display='block'
-             console.log(level2);
-             dlListLevels2(level2)
-           
-           }else{
-             document.querySelector(".dllistBull2").style.display='none'
-           }
-           const level3 = Learningdevelopment.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".dllistBull3").style.display='block'
-             dlListLevels3(level3)
-         
-           }else{
-             document.querySelector(".dllistBull3").style.display='none'
-           }
-           const level4 = Learningdevelopment.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".dllistBull4").style.display='block'
-       
-             dlListLevels4(level4)
-           
-           }else{
-             document.querySelector(".dllistBull4").style.display='none'
-           }
-   
-  }
-  
-  const  Occupational = response.filter((d) => d.info.areas=="Occupational Health and Safety");
-  
-  if (Occupational.length>0) {
-   document.querySelector(".flush-heading15").style.display="block"
-   const level1 = Occupational.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ohListLevels1(level1)
-               document.querySelector(".ohlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ohlistBull1").style.display='none'
-             }
-           const level2 = Occupational.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ohlistBull2").style.display='block'
-             console.log(level2);
-             ohListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ohlistBull2").style.display='none'
-           }
-           const level3 = Occupational.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ohlistBull3").style.display='block'
-             ohListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ohlistBull3").style.display='none'
-           }
-           const level4 = Occupational.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ohlistBull4").style.display='block'
-       
-             ohListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ohlistBull4").style.display='none'
-           }
-   
-  }
-   const Perfomance = response.filter((d) => d.info.areas=="Performance Management");
- 
- if (Perfomance.length>0) {
-     document.querySelector(".flush-heading16").style.display="block"
-     const level1 = Perfomance.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 peListLevels1(level1)
-                 document.querySelector(".pelistBull1").style.display='block'
-               }else{
-                 document.querySelector(".pelistBull1").style.display='none'
-               }
-             const level2 = Perfomance.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".pelistBull2").style.display='block'
-               console.log(level2);
-               peListLevels2(level2)
-             
-             }else{
-               document.querySelector(".pelistBull2").style.display='none'
-             }
-             const level3 = Perfomance.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".pelistBull3").style.display='block'
-               peListLevels3(level3)
-           
-             }else{
-               document.querySelector(".pelistBull3").style.display='none'
-             }
-             const level4 = Perfomance.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".pelistBull4").style.display='block'
-         
-               peListLevels4(level4)
-             
-             }else{
-               document.querySelector(".pelistBull4").style.display='none'
-             }
-     
-    }
- const  Industrial = response.filter((d) => d.info.areas=="Industrial and Labour Relations");
- 
-   if (Industrial.length>0) {
-     document.querySelector(".flush-heading17").style.display="block"
-     const level1 = Industrial.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 inListLevels1(level1)
-                 document.querySelector(".inlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".inlistBull1").style.display='none'
-               }
-             const level2 = Industrial.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".inlistBull2").style.display='block'
-               console.log(level2);
-               inListLevels2(level2)
-             
-             }else{
-               document.querySelector(".inlistBull2").style.display='none'
-             }
-             const level3 = Industrial.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".inlistBull3").style.display='block'
-               inListLevels3(level3)
-           
-             }else{
-               document.querySelector(".inlistBull3").style.display='none'
-             }
-             const level4 = Industrial.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".inlistBull4").style.display='block'
-         
-               inListLevels4(level4)
-             
-             }else{
-               document.querySelector(".inlistBull4").style.display='none'
-             }
-     
-    }
- const  Interpersonal = response.filter((d) => d.info.areas=="Interpersonal Relationships");
- 
- if (Interpersonal.length>0) {
-     document.querySelector(".flush-heading18").style.display="block"
-     const level1 = Interpersonal.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 intListLevels1(level1)
-                 document.querySelector(".intlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".intlistBull1").style.display='none'
-               }
-             const level2 = Interpersonal.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".intlistBull2").style.display='block'
-               console.log(level2);
-               intListLevels2(level2)
-             
-             }else{
-               document.querySelector(".intlistBull2").style.display='none'
-             }
-             const level3 = Interpersonal.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".intlistBull3").style.display='block'
-               intListLevels3(level3)
-           
-             }else{
-               document.querySelector(".intlistBull3").style.display='none'
-             }
-             const level4 = Interpersonal.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".intlistBull4").style.display='block'
-         
-               intListLevels4(level4)
-             
-             }else{
-               document.querySelector(".intlistBull4").style.display='none'
-             }
-     
-    }
- 
- const  Communication = response.filter((d) => d.info.areas=="Communication");
- if (Communication.length>0) {
-   document.querySelector(".flush-heading19").style.display="block"
-   const level1 = Communication.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               comListLevels1(level1)
-               document.querySelector(".comlistBull1").style.display='block'
-             }else{
-               document.querySelector(".comlistBull1").style.display='none'
-             }
-           const level2 = Communication.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".comlistBull2").style.display='block'
-             console.log(level2);
-             comListLevels2(level2)
-           
-           }else{
-             document.querySelector(".comlistBull2").style.display='none'
-           }
-           const level3 = Communication.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".comlistBull3").style.display='block'
-             comListLevels3(level3)
-         
-           }else{
-             document.querySelector(".comlistBull3").style.display='none'
-           }
-           const level4 = Communication.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".comlistBull4").style.display='block'
-       
-             comListLevels4(level4)
-           
-           }else{
-             document.querySelector(".comlistBull4").style.display='none'
-           }
-   
-  }
-   const Delivery = response.filter((d) => d.info.areas=="Service Delivery orientation");
-   if (Delivery.length>0) {
-     document.querySelector(".flush-heading20").style.display="block"
-     const level1 = Delivery.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 sdoListLevels1(level1)
-                 document.querySelector(".sdolistBull1").style.display='block'
-               }else{
-                 document.querySelector(".sdolistBull1").style.display='none'
-               }
-             const level2 = Delivery.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".sdolistBull2").style.display='block'
-               console.log(level2);
-               sdoListLevels2(level2)
-             
-             }else{
-               document.querySelector(".sdolistBull2").style.display='none'
-             }
-             const level3 = Delivery.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".sdolistBull3").style.display='block'
-               sdoListLevels3(level3)
-           
-             }else{
-               document.querySelector(".sdolistBull3").style.display='none'
-             }
-             const level4 = Delivery.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".sdolistBull4").style.display='block'
-         
-               sdoListLevels4(level4)
-             
-             }else{
-               document.querySelector(".sdolistBull4").style.display='none'
-             }
-     
-    }
-   const  Action = response.filter((d) => d.info.areas=="Action and Outcome Orientation");
-   if (Action.length>0) {
-     document.querySelector(".flush-heading21").style.display="block"
-     const level1 = Action.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 actListLevels1(level1)
-                 document.querySelector(".actlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".actlistBull1").style.display='none'
-               }
-             const level2 = Action.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".actlistBull2").style.display='block'
-               console.log(level2);
-               actListLevels2(level2)
-             
-             }else{
-               document.querySelector(".actlistBull2").style.display='none'
-             }
-             const level3 = Action.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".actlistBull3").style.display='block'
-               actListLevels3(level3)
-           
-             }else{
-               document.querySelector(".actlistBull3").style.display='none'
-             }
-             const level4 = Action.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".actlistBull4").style.display='block'
-         
-               actListLevels4(level4)
-             
-             }else{
-               document.querySelector(".actlistBull4").style.display='none'
-             }
-     
-    }
- const  Conflict = response.filter((d) => d.info.areas=="Conflict Management");
- if (Conflict.length>0) {
-   document.querySelector(".flush-heading22").style.display="block"
-   const level1 = Conflict.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               conListLevels1(level1)
-               document.querySelector(".conlistBull1").style.display='block'
-             }else{
-               document.querySelector(".conlistBull1").style.display='none'
-             }
-           const level2 = Conflict.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".conlistBull2").style.display='block'
-             console.log(level2);
-             conListLevels2(level2)
-           
-           }else{
-             document.querySelector(".conlistBull2").style.display='none'
-           }
-           const level3 = Conflict.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".conlistBull3").style.display='block'
-             conListLevels3(level3)
-         
-           }else{
-             document.querySelector(".conlistBull3").style.display='none'
-           }
-           const level4 = Conflict.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".conlistBull4").style.display='block'
-       
-             conListLevels4(level4)
-           
-           }else{
-             document.querySelector(".conlistBull4").style.display='none'
-           }
-   
-  }
-  const  Orientation = response.filter((d) => d.info.areas=="Learning Orientation");
-  if (Orientation.length>0) {
-   document.querySelector(".flush-heading23").style.display="block"
-   const level1 = Orientation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               loListLevels1(level1)
-               document.querySelector(".lolistBull1").style.display='block'
-             }else{
-               document.querySelector(".lolistBull1").style.display='none'
-             }
-           const level2 = Orientation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".lolistBull2").style.display='block'
-             console.log(level2);
-             loListLevels2(level2)
-           
-           }else{
-             document.querySelector(".lolistBull2").style.display='none'
-           }
-           const level3 = Orientation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".lolistBull3").style.display='block'
-             loListLevels3(level3)
-         
-           }else{
-             document.querySelector(".lolistBull3").style.display='none'
-           }
-           const level4 = Orientation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".lolistBull4").style.display='block'
-       
-             loListLevels4(level4)
-           
-           }else{
-             document.querySelector(".lolistBull4").style.display='none'
-           }
-   
-  }
- const  Accountability = response.filter((d) => d.info.areas=="Accountability and Ethical Conduct");
- if (Accountability.length>0) {
-   document.querySelector(".flush-heading24").style.display="block"
-   const level1 = Accountability.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               aeListLevels1(level1)
-               document.querySelector(".aelistBull1").style.display='block'
-             }else{
-               document.querySelector(".aelistBull1").style.display='none'
-             }
-           const level2 = Accountability.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".aelistBull2").style.display='block'
-             console.log(level2);
-             aeListLevels2(level2)
-           
-           }else{
-             document.querySelector(".aelistBull2").style.display='none'
-           }
-           const level3 = Accountability.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".aelistBull3").style.display='block'
-             aeListLevels3(level3)
-         
-           }else{
-             document.querySelector(".aelistBull3").style.display='none'
-           }
-           const level4 = Accountability.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".aelistBull4").style.display='block'
-       
-             aeListLevels4(level4)
-           
-           }else{
-             document.querySelector(".aelistBull4").style.display='none'
-           }
-   
-  }
-  const   Problem = response.filter((d) => d.info.areas=="Problem Solving and Analysis");
-  if (Problem.length>0) {
-   document.querySelector(".flush-heading25").style.display="block"
-   const level1 = Problem.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               psListLevels1(level1)
-               document.querySelector(".pslistBull1").style.display='block'
-             }else{
-               document.querySelector(".pslistBull1").style.display='none'
-             }
-           const level2 = Problem.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".pslistBull2").style.display='block'
-             console.log(level2);
-             psListLevels2(level2)
-           
-           }else{
-             document.querySelector(".pslistBull2").style.display='none'
-           }
-           const level3 = Problem.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".pslistBull3").style.display='block'
-             psListLevels3(level3)
-         
-           }else{
-             document.querySelector(".pslistBull3").style.display='none'
-           }
-           const level4 = Problem.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".pslistBull4").style.display='block'
-       
-             psListLevels4(level4)
-           
-           }else{
-             document.querySelector(".pslistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   Compensation = response.filter((d) => d.info.areas=="Compensation and Benefits Management");
-  if (Compensation.length>0) {
-   document.querySelector(".flush-heading26").style.display="block"
-   const level1 = Compensation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               cbListLevels1(level1)
-               document.querySelector(".cblistBull1").style.display='block'
-             }else{
-               document.querySelector(".cblistBull1").style.display='none'
-             }
-           const level2 = Compensation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".cblistBull2").style.display='block'
-             console.log(level2);
-             cbListLevels2(level2)
-           
-           }else{
-             document.querySelector(".cblistBull2").style.display='none'
-           }
-           const level3 = Compensation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".cblistBull3").style.display='block'
-             cbListLevels3(level3)
-         
-           }else{
-             document.querySelector(".cblistBull3").style.display='none'
-           }
-           const level4 = Compensation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".cblistBull4").style.display='block'
-       
-             cbListLevels4(level4)
-           
-           }else{
-             document.querySelector(".cblistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   EmployeeWellness = response.filter((d) => d.info.areas=="Employee Wellness");
-  if (EmployeeWellness.length>0) {
-   document.querySelector(".flush-heading27").style.display="block"
-   const level1 = EmployeeWellness.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ewListLevels1(level1)
-               document.querySelector(".ewlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ewlistBull1").style.display='none'
-             }
-           const level2 = EmployeeWellness.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ewlistBull2").style.display='block'
-             console.log(level2);
-             ewListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ewlistBull2").style.display='none'
-           }
-           const level3 = EmployeeWellness.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ewlistBull3").style.display='block'
-             ewListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ewlistBull3").style.display='none'
-           }
-           const level4 = EmployeeWellness.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ewlistBull4").style.display='block'
-       
-             ewListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ewlistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   Resilience = response.filter((d) => d.info.areas=="Resilience");
-  if (Resilience.length>0) {
-   document.querySelector(".flush-heading28").style.display="block"
-   const level1 = Resilience.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               rsListLevels1(level1)
-               document.querySelector(".rslistBull1").style.display='block'
-             }else{
-               document.querySelector(".rslistBull1").style.display='none'
-             }
-           const level2 = Resilience.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".rslistBull2").style.display='block'
-             console.log(level2);
-             rsListLevels2(level2)
-           
-           }else{
-             document.querySelector(".rslistBull2").style.display='none'
-           }
-           const level3 = Resilience.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".rslistBull3").style.display='block'
-             rsListLevels3(level3)
-         
-           }else{
-             document.querySelector(".rslistBull3").style.display='none'
-           }
-           const level4 = Resilience.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".rslistBull4").style.display='block'
-       
-             rsListLevels4(level4)
-           
-           }else{
-             document.querySelector(".rslistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   DirectionSetting = response.filter((d) => d.info.areas=="Direction Setting");
-  if (DirectionSetting.length>0) {
-   document.querySelector(".flush-heading29").style.display="block"
-   const level1 = DirectionSetting.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               drListLevels1(level1)
-               document.querySelector(".drlistBull1").style.display='block'
-             }else{
-               document.querySelector(".drlistBull1").style.display='none'
-             }
-           const level2 = DirectionSetting.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".drlistBull2").style.display='block'
-             console.log(level2);
-             drListLevels2(level2)
-           
-           }else{
-             document.querySelector(".drlistBull2").style.display='none'
-           }
-           const level3 = DirectionSetting.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".drlistBull3").style.display='block'
-             drListLevels3(level3)
-         
-           }else{
-             document.querySelector(".drlistBull3").style.display='none'
-           }
-           const level4 = DirectionSetting.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".drlistBull4").style.display='block'
-       
-             drListLevels4(level4)
-           
-           }else{
-             document.querySelector(".drlistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   ImpactandInfluence = response.filter((d) => d.info.areas=="Impact and Influence");
-  if (ImpactandInfluence.length>0) {
-   document.querySelector(".flush-heading30").style.display="block"
-   const level1 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               iiListLevels1(level1)
-               document.querySelector(".iilistBull1").style.display='block'
-             }else{
-               document.querySelector(".iilistBull1").style.display='none'
-             }
-           const level2 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".iilistBull2").style.display='block'
-             console.log(level2);
-             iiListLevels2(level2)
-           
-           }else{
-             document.querySelector(".iilistBull2").style.display='none'
-           }
-           const level3 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".iilistBull3").style.display='block'
-             iiListLevels3(level3)
-         
-           }else{
-             document.querySelector(".iilistBull3").style.display='none'
-           }
-           const level4 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".iilistBull4").style.display='block'
-       
-             iiListLevels4(level4)
-           
-           }else{
-             document.querySelector(".iilistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   CoachingandMentoring = response.filter((d) => d.info.areas=="Coaching and Mentoring");
-  if (CoachingandMentoring.length>0) {
-   document.querySelector(".flush-heading31").style.display="block"
-   const level1 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               menListLevels1(level1)
-               document.querySelector(".menlistBull1").style.display='block'
-             }else{
-               document.querySelector(".menlistBull1").style.display='none'
-             }
-           const level2 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".menlistBull2").style.display='block'
-             console.log(level2);
-             menListLevels2(level2)
-           
-           }else{
-             document.querySelector(".menlistBull2").style.display='none'
-           }
-           const level3 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".menlistBull3").style.display='block'
-             menListLevels3(level3)
-         
-           }else{
-             document.querySelector(".menlistBull3").style.display='none'
-           }
-           const level4 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".menlistBull4").style.display='block'
-       
-             menListLevels4(level4)
-           
-           }else{
-             document.querySelector(".menlistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   TeamOrientation= response.filter((d) => d.info.areas=="Team Orientation");
-  if (TeamOrientation.length>0) {
-   document.querySelector(".flush-heading32").style.display="block"
-   const level1 = TeamOrientation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               toListLevels1(level1)
-               document.querySelector(".tolistBull1").style.display='block'
-             }else{
-               document.querySelector(".tolistBull1").style.display='none'
-             }
-           const level2 = TeamOrientation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".tolistBull2").style.display='block'
-             console.log(level2);
-             toListLevels2(level2)
-           
-           }else{
-             document.querySelector(".tolistBull2").style.display='none'
-           }
-           const level3 = TeamOrientation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".tolistBull3").style.display='block'
-             toListLevels3(level3)
-         
-           }else{
-             document.querySelector(".tolistBull3").style.display='none'
-           }
-           const level4 = TeamOrientation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".tolistBull4").style.display='block'
-       
-             toListLevels4(level4)
-           
-           }else{
-             document.querySelector(".tolistBull4").style.display='none'
-           }
-   
-  }
-
-  const   InternalAuditing  = response.filter((d) => d.info.areas=="Internal Auditing");
-  if (InternalAuditing.length>0) {
-   document.querySelector(".flush-heading33").style.display="block"
-   const level1 = InternalAuditing.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ioListLevels1(level1)
-               document.querySelector(".iolistBull1").style.display='block'
-             }else{
-               document.querySelector(".iolistBull1").style.display='none'
-             }
-           const level2 = InternalAuditing.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".iolistBull2").style.display='block'
-             console.log(level2);
-             ioListLevels2(level2)
-           
-           }else{
-             document.querySelector(".iolistBull2").style.display='none'
-           }
-           const level3 = InternalAuditing.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".iolistBull3").style.display='block'
-             ioListLevels3(level3)
-         
-           }else{
-             document.querySelector(".iolistBull3").style.display='none'
-           }
-           const level4 = InternalAuditing.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".iolistBull4").style.display='block'
-       
-             ioListLevels4(level4)
-           
-           }else{
-             document.querySelector(".iolistBull4").style.display='none'
-           }
-   
-  }
-
-  const   EngagementManagement  = response.filter((d) => d.info.areas=="Engagement Management");
-  if (EngagementManagement.length>0) {
-   document.querySelector(".flush-heading34").style.display="block"
-   const level1 = EngagementManagement.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               emListLevels1(level1)
-               document.querySelector(".emlistBull1").style.display='block'
-             }else{
-               document.querySelector(".emlistBull1").style.display='none'
-             }
-           const level2 = EngagementManagement.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".emlistBull2").style.display='block'
-             console.log(level2);
-             emListLevels2(level2)
-           
-           }else{
-             document.querySelector(".emlistBull2").style.display='none'
-           }
-           const level3 = EngagementManagement.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".emlistBull3").style.display='block'
-             emListLevels3(level3)
-         
-           }else{
-             document.querySelector(".emlistBull3").style.display='none'
-           }
-           const level4 = EngagementManagement.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".emlistBull4").style.display='block'
-       
-             emListLevels4(level4)
-           
-           }else{
-             document.querySelector(".emlistBull4").style.display='none'
-           }
-   
-  }
-  
-  const   InformationManagement  = response.filter((d) => d.info.areas=="Information Management");
-  if (InformationManagement.length>0) {
-   document.querySelector(".flush-heading35").style.display="block"
-   const level1 = InformationManagement.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               imListLevels1(level1)
-               document.querySelector(".imlistBull1").style.display='block'
-             }else{
-               document.querySelector(".imlistBull1").style.display='none'
-             }
-           const level2 = InformationManagement.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".imlistBull2").style.display='block'
-             console.log(level2);
-             imListLevels2(level2)
-           
-           }else{
-             document.querySelector(".imlistBull2").style.display='none'
-           }
-           const level3 = InformationManagement.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".imlistBull3").style.display='block'
-             imListLevels3(level3)
-         
-           }else{
-             document.querySelector(".imlistBull3").style.display='none'
-           }
-           const level4 = InformationManagement.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".imlistBull4").style.display='block'
-       
-             imListLevels4(level4)
-           
-           }else{
-             document.querySelector(".imlistBull4").style.display='none'
-           }
-   
-  }
-  const   ResearchandAnalysis  = response.filter((d) => d.info.areas=="Research and Analysis");
-  if (ResearchandAnalysis.length>0) {
-   document.querySelector(".flush-heading36").style.display="block"
-   const level1 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               raListLevels1(level1)
-               document.querySelector(".ralistBull1").style.display='block'
-             }else{
-               document.querySelector(".ralistBull1").style.display='none'
-             }
-           const level2 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ralistBull2").style.display='block'
-             console.log(level2);
-             raListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ralistBull2").style.display='none'
-           }
-           const level3 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ralistBull3").style.display='block'
-             raListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ralistBull3").style.display='none'
-           }
-           const level4 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ralistBull4").style.display='block'
-       
-             raListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ralistBull4").style.display='none'
-           }
-   
-  }
-
-  const   AdvocacyNegotiation  = response.filter((d) => d.info.areas=="Advocacy / Negotiation");
-  if (AdvocacyNegotiation.length>0) {
-   document.querySelector(".flush-heading37").style.display="block"
-   const level1 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               anListLevels1(level1)
-               document.querySelector(".anlistBull1").style.display='block'
-             }else{
-               document.querySelector(".anlistBull1").style.display='none'
-             }
-           const level2 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".anlistBull2").style.display='block'
-             console.log(level2);
-             anListLevels2(level2)
-           
-           }else{
-             document.querySelector(".anlistBull2").style.display='none'
-           }
-           const level3 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".anlistBull3").style.display='block'
-             anListLevels3(level3)
-         
-           }else{
-             document.querySelector(".anlistBull3").style.display='none'
-           }
-           const level4 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".anlistBull4").style.display='block'
-       
-             anListLevels4(level4)
-           
-           }else{
-             document.querySelector(".anlistBull4").style.display='none'
-           }
-   
-  }
-
-  const   EthicsandProfessionalism  = response.filter((d) => d.info.areas=="Ethics and Professionalism");
-  if (EthicsandProfessionalism.length>0) {
-   document.querySelector(".flush-heading38").style.display="block"
-   const level1 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               epListLevels1(level1)
-               document.querySelector(".eplistBull1").style.display='block'
-             }else{
-               document.querySelector(".eplistBull1").style.display='none'
-             }
-           const level2 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".eplistBull2").style.display='block'
-             console.log(level2);
-             epListLevels2(level2)
-           
-           }else{
-             document.querySelector(".eplistBull2").style.display='none'
-           }
-           const level3 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".eplistBull3").style.display='block'
-             epListLevels3(level3)
-         
-           }else{
-             document.querySelector(".eplistBull3").style.display='none'
-           }
-           const level4 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".eplistBull4").style.display='block'
-       
-             epListLevels4(level4)
-           
-           }else{
-             document.querySelector(".eplistBull4").style.display='none'
-           }
-   
-  }
-  const   StrategicCapability  = response.filter((d) => d.info.areas=="Strategic Capability / Leadership or Direction Setting");
-  if (StrategicCapability.length>0) {
-   document.querySelector(".flush-heading39").style.display="block"
-   const level1 = StrategicCapability.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               scListLevels1(level1)
-               document.querySelector(".sclistBull1").style.display='block'
-             }else{
-               document.querySelector(".sclistBull1").style.display='none'
-             }
-           const level2 = StrategicCapability.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".sclistBull2").style.display='block'
-             console.log(level2);
-             scListLevels2(level2)
-           
-           }else{
-             document.querySelector(".sclistBull2").style.display='none'
-           }
-           const level3 = StrategicCapability.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".sclistBull3").style.display='block'
-             scListLevels3(level3)
-         
-           }else{
-             document.querySelector(".sclistBull3").style.display='none'
-           }
-           const level4 = StrategicCapability.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".sclistBull4").style.display='block'
-       
-             scListLevels4(level4)
-           
-           }else{
-             document.querySelector(".sclistBull4").style.display='none'
-           }
-   
-  }
-
-  const   ChangeReadiness  = response.filter((d) => d.info.areas=="Change Readiness");
-  if (ChangeReadiness.length>0) {
-   document.querySelector(".flush-heading40").style.display="block"
-   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               crListLevels1(level1)
-               document.querySelector(".crlistBull1").style.display='block'
-             }else{
-               document.querySelector(".crlistBull1").style.display='none'
-             }
-           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".crlistBull2").style.display='block'
-             console.log(level2);
-             crListLevels2(level2)
-           
-           }else{
-             document.querySelector(".crlistBull2").style.display='none'
-           }
-           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".crlistBull3").style.display='block'
-             crListLevels3(level3)
-         
-           }else{
-             document.querySelector(".crlistBull3").style.display='none'
-           }
-           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".crlistBull4").style.display='block'
-       
-             crListLevels4(level4)
-           
-           }else{
-             document.querySelector(".crlistBull4").style.display='none'
-           }
-   
-  }
-
-  const   CognitiveAbility  = response.filter((d) => d.info.areas=="Cognitive Ability");
-  if (CognitiveAbility.length>0) {
-   document.querySelector(".flush-heading41").style.display="block"
-   const level1 = CognitiveAbility.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               caListLevels1(level1)
-               document.querySelector(".calistBull1").style.display='block'
-             }else{
-               document.querySelector(".calistBull1").style.display='none'
-             }
-           const level2 = CognitiveAbility.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".calistBull2").style.display='block'
-             console.log(level2);
-             caListLevels2(level2)
-           
-           }else{
-             document.querySelector(".calistBull2").style.display='none'
-           }
-           const level3 = CognitiveAbility.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".calistBull3").style.display='block'
-             caListLevels3(level3)
-         
-           }else{
-             document.querySelector(".calistBull3").style.display='none'
-           }
-           const level4 = CognitiveAbility.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".calistBull4").style.display='block'
-       
-             caListLevels4(level4)
-           
-           }else{
-             document.querySelector(".calistBull4").style.display='none'
-           }
-   
-  }
-
-  const   CustomerOrientation  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
-  if (CustomerOrientation.length>0) {
-   document.querySelector(".flush-heading42").style.display="block"
-   const level1 = CustomerOrientation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ccListLevels1(level1)
-               document.querySelector(".cclistBull1").style.display='block'
-             }else{
-               document.querySelector(".cclistBull1").style.display='none'
-             }
-           const level2 = CustomerOrientation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".cclistBull2").style.display='block'
-             console.log(level2);
-             ccListLevels2(level2)
-           
-           }else{
-             document.querySelector(".cclistBull2").style.display='none'
-           }
-           const level3 = CustomerOrientation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".cclistBull3").style.display='block'
-             ccListLevels3(level3)
-         
-           }else{
-             document.querySelector(".cclistBull3").style.display='none'
-           }
-           const level4 = CustomerOrientation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".cclistBull4").style.display='block'
-       
-             ccListLevels4(level4)
-           
-           }else{
-             document.querySelector(".cclistBull4").style.display='none'
-           }
-   
-  }
-//   // let option =""
-//   // let html =""
-//   // let list = document.querySelector(".listdata124")
- 
-//   // result.forEach(department => {
-//   //     option=` <li>${department.details}</li>`;
-//   //     html +=option;
-//   //     list.innerHTML=html;
-     
-      
-//   // });
-
-
-}
-
-function PublicManagement(response) {
-  
-  console.log(response);
- 
-  const  written = response.filter((d) => d.info.areas=="Written Communication");
-  if (written.length>0) {
-   document.querySelector(".flush-heading0").style.display="block"
-   const level1 = written.filter((d)=>d.info.levels=="Level 1")
-       
-   if(level1.length >0){
-     console.log(level1);
-     ListLevels1(level1)
-   
-     document.querySelector(".listBull1").style.display='block'
-   }else{
-     document.querySelector(".listBull1").style.display='none'
    }
-  const level2 = written.filter((d)=>d.info.levels=="Level 2")
-  if(level2.length!==0){
-   document.querySelector(".listBull2").style.display='block'
-   ListLevels2(level2)
-  
-  }else{
-   document.querySelector(".listBull2").style.display='none'
-  }
-  const level3 = written.filter((d)=>d.levels=="Level 3")
-  if(level3.length!==0){
-   document.querySelector(".listBull3").style.display='block'
-   ListLevels3(level3)
-  
-  }else{
-   document.querySelector(".listBull3").style.display='none'
-  }
-  const level4 = written.filter((d)=>d.levels=="Level 4")
-  if(level4.length!==0){
-   document.querySelector(".listBull4").style.display='block'
-  
-   ListLevels4(level4)
-  
-  }else{
-   document.querySelector(".listBull4").style.display='none'
-  }
-  }
- 
-  const Organisational = response.filter((d) => d.info.areas=="Organisational Awareness");
-  if (Organisational.length>0) {
-   document.querySelector(".flush-heading1").style.display="block"
-   const level1 = Organisational.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               oListLevels1(level1)
-               document.querySelector(".olistBull1").style.display='block'
-             }else{
-               document.querySelector(".olistBull1").style.display='none'
-             }
-           const level2 = Organisational.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".olistBull2").style.display='block'
-             console.log(level2);
-             oListLevels2(level2)
-           
-           }else{
-             document.querySelector(".olistBull2").style.display='none'
-           }
-           const level3 = Organisational.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".olistBull3").style.display='block'
-             oListLevels3(level3)
-         
-           }else{
-             document.querySelector(".olistBull3").style.display='none'
-           }
-           const level4 = Organisational.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".olistBull4").style.display='block'
+
+   const   UseofTechnology = response.filter((d) => d.info.areas=="Use of Technology");
+  if (UseofTechnology.length>0) {
+    document.querySelector(".flush-heading56").style.display="block"
+    const level1 = UseofTechnology.filter((d)=>d.info.levels=="Level 1")
        
-             oListLevels4(level4)
-           
-           }else{
-             document.querySelector(".olistBull4").style.display='none'
-           }
-   
-  }
-  
-  const  Plannning = response.filter((d) => d.info.areas=="Planning and Organising");
-  if (Plannning.length>0) {
-   document.querySelector(".flush-heading2").style.display="block"
- 
-     const level1 = Plannning.filter((d)=>d.info.levels=="Level 1")
+              if(level1.length >0){
+                console.log(level1);
+                useListLevels1(level1)
+                document.querySelector(".uselistBull1").style.display='block'
+              }else{
+                document.querySelector(".uselistBull1").style.display='none'
+              }
+            const level2 = UseofTechnology.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".uselistBull2").style.display='block'
+              console.log(level2);
+              useListLevels2(level2)
+            
+            }else{
+              document.querySelector(".uselistBull2").style.display='none'
+            }
+            const level3 = UseofTechnology.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".uselistBull3").style.display='block'
+              useListLevels3(level3)
+          
+            }else{
+              document.querySelector(".uselistBull3").style.display='none'
+            }
+            const level4 = UseofTechnology.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".uselistBull4").style.display='block'
         
-               if(level1.length >0){
-                 console.log(level1);
-                 pListLevels1(level1)
-                 document.querySelector(".plistBull1").style.display='block'
-               }else{
-                 document.querySelector(".plistBull1").style.display='none'
-               }
-             const level2 = Plannning.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".plistBull2").style.display='block'
-               console.log(level2);
-               pListLevels2(level2)
-             
-             }else{
-               document.querySelector(".plistBull2").style.display='none'
-             }
-             const level3 = Plannning.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".plistBull3").style.display='block'
-               pListLevels3(level3)
-           
-             }else{
-               document.querySelector(".plistBull3").style.display='none'
-             }
-             const level4 = Plannning.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".plistBull4").style.display='block'
-         
-               pListLevels4(level4)
-             
-             }else{
-               document.querySelector(".plistBull4").style.display='none'
-             }
-     
+              useListLevels4(level4)
+            
+            }else{
+              document.querySelector(".uselistBull4").style.display='none'
+            }
     
-  }
-  const  Monitoring = response.filter((d) => d.info.areas=="Monitoring and Control");
-  if (Monitoring.length>0) {
-   document.querySelector(".flush-heading3").style.display="block"
-   const level1 = Monitoring.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 mListLevels1(level1)
-                 document.querySelector(".mlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".mlistBull1").style.display='none'
-               }
-             const level2 = Monitoring.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".mlistBull2").style.display='block'
-               console.log(level2);
-               mListLevels2(level2)
-             
-             }else{
-               document.querySelector(".mlistBull2").style.display='none'
-             }
-             const level3 = Monitoring.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".mlistBull3").style.display='block'
-               mListLevels3(level3)
-           
-             }else{
-               document.querySelector(".mlistBull3").style.display='none'
-             }
-             const level4 = Monitoring.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".mlistBull4").style.display='block'
-         
-               mListLevels4(level4)
-             
-             }else{
-               document.querySelector(".mlistBull4").style.display='none'
-             }
-     
-  }
- 
-  const  Consulting = response.filter((d) => d.info.areas=="Consulting");
-  if (Consulting.length>0) {
-   document.querySelector(".flush-heading4").style.display="block"
-   const level1 = Consulting.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 cListLevels1(level1)
-                 document.querySelector(".clistBull1").style.display='block'
-               }else{
-                 document.querySelector(".clistBull1").style.display='none'
-               }
-             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".clistBull2").style.display='block'
-               console.log(level2);
-               cListLevels2(level2)
-             
-             }else{
-               document.querySelector(".clistBull2").style.display='none'
-             }
-             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".clistBull3").style.display='block'
-               cListLevels3(level3)
-           
-             }else{
-               document.querySelector(".clistBull3").style.display='none'
-             }
-             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".clistBull4").style.display='block'
-         
-               cListLevels4(level4)
-             
-             }else{
-               document.querySelector(".clistBull4").style.display='none'
-             }
-     
-  }
-  const  Negotiation = response.filter((d) => d.info.areas=="Negotiation");
-  if (Negotiation.length>0) {
-   document.querySelector(".flush-heading5").style.display="block"
-   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 nListLevels1(level1)
-                 document.querySelector(".nlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".nlistBull1").style.display='none'
-               }
-             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".nlistBull2").style.display='block'
-               console.log(level2);
-               nListLevels2(level2)
-             
-             }else{
-               document.querySelector(".nlistBull2").style.display='none'
-             }
-             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".nlistBull3").style.display='block'
-               nListLevels3(level3)
-           
-             }else{
-               document.querySelector(".nlistBull3").style.display='none'
-             }
-             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".nlistBull4").style.display='block'
-         
-               nListLevels4(level4)
-             
-             }else{
-               document.querySelector(".nlistBull4").style.display='none'
-             }
-     
-  }
-  const  Oral = response.filter((d) => d.info.areas=="Oral Communication");
-  if (Oral.length>0) {
-   document.querySelector(".flush-heading6").style.display="block"
-   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 orListLevels1(level1)
-                 document.querySelector(".orlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".orlistBull1").style.display='none'
-               }
-             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".orlistBull2").style.display='block'
-               console.log(level2);
-               orListLevels2(level2)
-             
-             }else{
-               document.querySelector(".orlistBull2").style.display='none'
-             }
-             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".orlistBull3").style.display='block'
-               orListLevels3(level3)
-           
-             }else{
-               document.querySelector(".orlistBull3").style.display='none'
-             }
-             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".orlistBull4").style.display='block'
-         
-               orListLevels4(level4)
-             
-             }else{
-               document.querySelector(".orlistBull4").style.display='none'
-             }
- 
-              
-  const Learning = response.filter((d) => d.info.areas=="Learning and Development ");
-  if (Learning.length>0) {
-   document.querySelector(".flush-heading7").style.display="block"
-   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ldListLevels1(level1)
-               document.querySelector(".ldlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ldlistBull1").style.display='none'
-             }
-           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ldlistBull2").style.display='block'
-             console.log(level2);
-             ldListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ldlistBull2").style.display='none'
-           }
-           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ldlistBull3").style.display='block'
-             ldListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ldlistBull3").style.display='none'
-           }
-           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ldlistBull4").style.display='block'
-       
-             ldListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ldlistBull4").style.display='none'
-           }
-   
-  }
-     
-  }
- 
-  const Learning = response.filter((d) => d.info.areas=="Learning and Development");
-  if (Learning.length>0) {
-   document.querySelector(".flush-heading7").style.display="block"
-   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ldListLevels1(level1)
-               document.querySelector(".ldlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ldlistBull1").style.display='none'
-             }
-           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ldlistBull2").style.display='block'
-             console.log(level2);
-             ldListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ldlistBull2").style.display='none'
-           }
-           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ldlistBull3").style.display='block'
-             ldListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ldlistBull3").style.display='none'
-           }
-           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ldlistBull4").style.display='block'
-       
-             ldListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ldlistBull4").style.display='none'
-           }
-   
-  }
-  
- // const Awareness = response.filter((d) => d.areas=="Organisational Awareness");
- 
- // if (Awareness.length>0) {
- //   document.querySelector(".flush-heading8").style.display="block"
- //   const level1 = Awareness.filter((d)=>d.levels=="Level 1")
-      
- //             if(level1.length >0){
- //               console.log(level1);
- //               aListLevels1(level1)
- //               document.querySelector(".alistBull1").style.display='block'
- //             }else{
- //               document.querySelector(".alistBull1").style.display='none'
- //             }
- //           const level2 = Awareness.filter((d)=>d.levels=="Level 2")
- //           if(level2.length>0){
- //             document.querySelector(".alistBull2").style.display='block'
- //             console.log(level2);
- //             aListLevels2(level2)
-           
- //           }else{
- //             document.querySelector(".alistBull2").style.display='none'
- //           }
- //           const level3 = Awareness.filter((d)=>d.levels=="Level 3")
- //           if(level3.length!==0){
- //             document.querySelector(".alistBull3").style.display='block'
- //             aListLevels3(level3)
-         
- //           }else{
- //             document.querySelector(".alistBull3").style.display='none'
- //           }
- //           const level4 = Awareness.filter((d)=>d.levels=="Level 4")
- //           if(level4.length!==0){
- //             console.log(level4);
- //             document.querySelector(".alistBull4").style.display='block'
-       
- //             aListLevels4(level4)
-           
- //           }else{
- //             document.querySelector(".alistBull4").style.display='none'
- //           }
-   
- //  }
- 
- const  Change = response.filter((d) => d.info.areas=="Change Movement");
- 
- if (Change.length>0) {
-   document.querySelector(".flush-heading9").style.display="block"
-   const level1 = Change.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               cmListLevels1(level1)
-               document.querySelector(".cmlistBull1").style.display='block'
-             }else{
-               document.querySelector(".cmlistBull1").style.display='none'
-             }
-           const level2 = Change.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".cmlistBull2").style.display='block'
-             console.log(level2);
-             cmListLevels2(level2)
-           
-           }else{
-             document.querySelector(".cmlistBull2").style.display='none'
-           }
-           const level3 = Change.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".cmlistBull3").style.display='block'
-             cmListLevels3(level3)
-         
-           }else{
-             document.querySelector(".cmlistBull3").style.display='none'
-           }
-           const level4 = Change.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".cmlistBull4").style.display='block'
-       
-             cmListLevels4(level4)
-           
-           }else{
-             document.querySelector(".cmlistBull4").style.display='none'
-           }
-   
-  }
- 
- 
- const  Technology = response.filter((d) => d.info.areas=="HR Technology information Management");
- 
- 
- if (Technology.length>0) {
-   document.querySelector(".flush-heading10").style.display="block"
-   const level1 = Technology.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               tListLevels1(level1)
-               document.querySelector(".tlistBull1").style.display='block'
-             }else{
-               document.querySelector(".tlistBull1").style.display='none'
-             }
-           const level2 = Technology.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".tlistBull2").style.display='block'
-             console.log(level2);
-             tListLevels2(level2)
-           
-           }else{
-             document.querySelector(".tlistBull2").style.display='none'
-           }
-           const level3 = Technology.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".tlistBull3").style.display='block'
-             tListLevels3(level3)
-         
-           }else{
-             document.querySelector(".tlistBull3").style.display='none'
-           }
-           const level4 = Technology.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".tlistBull4").style.display='block'
-       
-             tListLevels4(level4)
-           
-           }else{
-             document.querySelector(".tlistBull4").style.display='none'
-           }
-   
-  }
- 
- const  Service = response.filter((d) => d.info.areas=="HR Service Delivery");
- if (Service.length>0) {
-   document.querySelector(".flush-heading11").style.display="block"
-   const level1 = Service.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               sListLevels1(level1)
-               document.querySelector(".slistBull1").style.display='block'
-             }else{
-               document.querySelector(".slistBull1").style.display='none'
-             }
-           const level2 = Service.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".slistBull2").style.display='block'
-             console.log(level2);
-             sListLevels2(level2)
-           
-           }else{
-             document.querySelector(".slistBull2").style.display='none'
-           }
-           const level3 = Service.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".slistBull3").style.display='block'
-             sListLevels3(level3)
-         
-           }else{
-             document.querySelector(".slistBull3").style.display='none'
-           }
-           const level4 = Service.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".slistBull4").style.display='block'
-       
-             sListLevels4(level4)
-           
-           }else{
-             document.querySelector(".slistBull4").style.display='none'
-           }
-   
-  }
- const  Talent = response.filter((d) => d.info.areas=="Talent Management");
- if (Talent.length>0) {
-   document.querySelector(".flush-heading12").style.display="block"
-   const level1 = Talent.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               tmListLevels1(level1)
-               document.querySelector(".tmlistBull1").style.display='block'
-             }else{
-               document.querySelector(".tmlistBull1").style.display='none'
-             }
-           const level2 = Talent.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".tmlistBull2").style.display='block'
-             console.log(level2);
-             tmListLevels2(level2)
-           
-           }else{
-             document.querySelector(".tmlistBull2").style.display='none'
-           }
-           const level3 = Talent.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".tmlistBull3").style.display='block'
-             tmListLevels3(level3)
-         
-           }else{
-             document.querySelector(".tmlistBull3").style.display='none'
-           }
-           const level4 = Talent.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".tmlistBull4").style.display='block'
-       
-             tmListLevels4(level4)
-           
-           }else{
-             document.querySelector(".tmlistBull4").style.display='none'
-           }
-   
-  }
- const  Workforce = response.filter((d) => d.info.areas=="Workforce Planning");
- 
- if (Workforce.length>0) {
-   document.querySelector(".flush-heading13").style.display="block"
-   const level1 = Workforce.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               wListLevels1(level1)
-               document.querySelector(".wlistBull1").style.display='block'
-             }else{
-               document.querySelector(".wlistBull1").style.display='none'
-             }
-           const level2 = Workforce.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".wlistBull2").style.display='block'
-             console.log(level2);
-             wListLevels2(level2)
-           
-           }else{
-             document.querySelector(".wlistBull2").style.display='none'
-           }
-           const level3 = Workforce.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".wlistBull3").style.display='block'
-             wListLevels3(level3)
-         
-           }else{
-             document.querySelector(".wlistBull3").style.display='none'
-           }
-           const level4 = Workforce.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".wlistBull4").style.display='block'
-       
-             wListLevels4(level4)
-           
-           }else{
-             document.querySelector(".wlistBull4").style.display='none'
-           }
-   
-  }
-  const  Learningdevelopment = response.filter((d) => d.info.areas=="Learning and Develepment");
-  if (Learningdevelopment.length>0) {
-   document.querySelector(".flush-heading14").style.display="block"
-   const level1 = Learningdevelopment.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               dlListLevels1(level1)
-               document.querySelector(".dllistBull1").style.display='block'
-             }else{
-               document.querySelector(".dllistBull1").style.display='none'
-             }
-           const level2 = Learningdevelopment.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".dllistBull2").style.display='block'
-             console.log(level2);
-             dlListLevels2(level2)
-           
-           }else{
-             document.querySelector(".dllistBull2").style.display='none'
-           }
-           const level3 = Learningdevelopment.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".dllistBull3").style.display='block'
-             dlListLevels3(level3)
-         
-           }else{
-             document.querySelector(".dllistBull3").style.display='none'
-           }
-           const level4 = Learningdevelopment.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".dllistBull4").style.display='block'
-       
-             dlListLevels4(level4)
-           
-           }else{
-             document.querySelector(".dllistBull4").style.display='none'
-           }
-   
-  }
-  
-  const  Occupational = response.filter((d) => d.info.areas=="Occupational Health and Safety");
-  
-  if (Occupational.length>0) {
-   document.querySelector(".flush-heading15").style.display="block"
-   const level1 = Occupational.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ohListLevels1(level1)
-               document.querySelector(".ohlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ohlistBull1").style.display='none'
-             }
-           const level2 = Occupational.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ohlistBull2").style.display='block'
-             console.log(level2);
-             ohListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ohlistBull2").style.display='none'
-           }
-           const level3 = Occupational.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ohlistBull3").style.display='block'
-             ohListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ohlistBull3").style.display='none'
-           }
-           const level4 = Occupational.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ohlistBull4").style.display='block'
-       
-             ohListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ohlistBull4").style.display='none'
-           }
-   
-  }
-   const Perfomance = response.filter((d) => d.info.areas=="Performance Management");
- 
- if (Perfomance.length>0) {
-     document.querySelector(".flush-heading16").style.display="block"
-     const level1 = Perfomance.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 peListLevels1(level1)
-                 document.querySelector(".pelistBull1").style.display='block'
-               }else{
-                 document.querySelector(".pelistBull1").style.display='none'
-               }
-             const level2 = Perfomance.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".pelistBull2").style.display='block'
-               console.log(level2);
-               peListLevels2(level2)
-             
-             }else{
-               document.querySelector(".pelistBull2").style.display='none'
-             }
-             const level3 = Perfomance.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".pelistBull3").style.display='block'
-               peListLevels3(level3)
-           
-             }else{
-               document.querySelector(".pelistBull3").style.display='none'
-             }
-             const level4 = Perfomance.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".pelistBull4").style.display='block'
-         
-               peListLevels4(level4)
-             
-             }else{
-               document.querySelector(".pelistBull4").style.display='none'
-             }
-     
-    }
- const  Industrial = response.filter((d) => d.info.areas=="Industrial and Labour Relations");
- 
-   if (Industrial.length>0) {
-     document.querySelector(".flush-heading17").style.display="block"
-     const level1 = Industrial.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 inListLevels1(level1)
-                 document.querySelector(".inlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".inlistBull1").style.display='none'
-               }
-             const level2 = Industrial.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".inlistBull2").style.display='block'
-               console.log(level2);
-               inListLevels2(level2)
-             
-             }else{
-               document.querySelector(".inlistBull2").style.display='none'
-             }
-             const level3 = Industrial.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".inlistBull3").style.display='block'
-               inListLevels3(level3)
-           
-             }else{
-               document.querySelector(".inlistBull3").style.display='none'
-             }
-             const level4 = Industrial.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".inlistBull4").style.display='block'
-         
-               inListLevels4(level4)
-             
-             }else{
-               document.querySelector(".inlistBull4").style.display='none'
-             }
-     
-    }
- const  Interpersonal = response.filter((d) => d.info.areas=="Interpersonal Relationships");
- 
- if (Interpersonal.length>0) {
-     document.querySelector(".flush-heading18").style.display="block"
-     const level1 = Interpersonal.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 intListLevels1(level1)
-                 document.querySelector(".intlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".intlistBull1").style.display='none'
-               }
-             const level2 = Interpersonal.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".intlistBull2").style.display='block'
-               console.log(level2);
-               intListLevels2(level2)
-             
-             }else{
-               document.querySelector(".intlistBull2").style.display='none'
-             }
-             const level3 = Interpersonal.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".intlistBull3").style.display='block'
-               intListLevels3(level3)
-           
-             }else{
-               document.querySelector(".intlistBull3").style.display='none'
-             }
-             const level4 = Interpersonal.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".intlistBull4").style.display='block'
-         
-               intListLevels4(level4)
-             
-             }else{
-               document.querySelector(".intlistBull4").style.display='none'
-             }
-     
-    }
- 
- const  Communication = response.filter((d) => d.info.areas=="Communication");
- if (Communication.length>0) {
-   document.querySelector(".flush-heading19").style.display="block"
-   const level1 = Communication.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               comListLevels1(level1)
-               document.querySelector(".comlistBull1").style.display='block'
-             }else{
-               document.querySelector(".comlistBull1").style.display='none'
-             }
-           const level2 = Communication.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".comlistBull2").style.display='block'
-             console.log(level2);
-             comListLevels2(level2)
-           
-           }else{
-             document.querySelector(".comlistBull2").style.display='none'
-           }
-           const level3 = Communication.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".comlistBull3").style.display='block'
-             comListLevels3(level3)
-         
-           }else{
-             document.querySelector(".comlistBull3").style.display='none'
-           }
-           const level4 = Communication.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".comlistBull4").style.display='block'
-       
-             comListLevels4(level4)
-           
-           }else{
-             document.querySelector(".comlistBull4").style.display='none'
-           }
-   
-  }
-   const Delivery = response.filter((d) => d.info.areas=="Service Delivery orientation");
-   if (Delivery.length>0) {
-     document.querySelector(".flush-heading20").style.display="block"
-     const level1 = Delivery.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 sdoListLevels1(level1)
-                 document.querySelector(".sdolistBull1").style.display='block'
-               }else{
-                 document.querySelector(".sdolistBull1").style.display='none'
-               }
-             const level2 = Delivery.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".sdolistBull2").style.display='block'
-               console.log(level2);
-               sdoListLevels2(level2)
-             
-             }else{
-               document.querySelector(".sdolistBull2").style.display='none'
-             }
-             const level3 = Delivery.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".sdolistBull3").style.display='block'
-               sdoListLevels3(level3)
-           
-             }else{
-               document.querySelector(".sdolistBull3").style.display='none'
-             }
-             const level4 = Delivery.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".sdolistBull4").style.display='block'
-         
-               sdoListLevels4(level4)
-             
-             }else{
-               document.querySelector(".sdolistBull4").style.display='none'
-             }
-     
-    }
-   const  Action = response.filter((d) => d.info.areas=="Action and Outcome Orientation");
-   if (Action.length>0) {
-     document.querySelector(".flush-heading21").style.display="block"
-     const level1 = Action.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 actListLevels1(level1)
-                 document.querySelector(".actlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".actlistBull1").style.display='none'
-               }
-             const level2 = Action.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".actlistBull2").style.display='block'
-               console.log(level2);
-               actListLevels2(level2)
-             
-             }else{
-               document.querySelector(".actlistBull2").style.display='none'
-             }
-             const level3 = Action.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".actlistBull3").style.display='block'
-               actListLevels3(level3)
-           
-             }else{
-               document.querySelector(".actlistBull3").style.display='none'
-             }
-             const level4 = Action.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".actlistBull4").style.display='block'
-         
-               actListLevels4(level4)
-             
-             }else{
-               document.querySelector(".actlistBull4").style.display='none'
-             }
-     
-    }
- const  Conflict = response.filter((d) => d.info.areas=="Conflict Management");
- if (Conflict.length>0) {
-   document.querySelector(".flush-heading22").style.display="block"
-   const level1 = Conflict.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               conListLevels1(level1)
-               document.querySelector(".conlistBull1").style.display='block'
-             }else{
-               document.querySelector(".conlistBull1").style.display='none'
-             }
-           const level2 = Conflict.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".conlistBull2").style.display='block'
-             console.log(level2);
-             conListLevels2(level2)
-           
-           }else{
-             document.querySelector(".conlistBull2").style.display='none'
-           }
-           const level3 = Conflict.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".conlistBull3").style.display='block'
-             conListLevels3(level3)
-         
-           }else{
-             document.querySelector(".conlistBull3").style.display='none'
-           }
-           const level4 = Conflict.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".conlistBull4").style.display='block'
-       
-             conListLevels4(level4)
-           
-           }else{
-             document.querySelector(".conlistBull4").style.display='none'
-           }
-   
-  }
-  const  Orientation = response.filter((d) => d.info.areas=="Learning Orientation");
-  if (Orientation.length>0) {
-   document.querySelector(".flush-heading23").style.display="block"
-   const level1 = Orientation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               loListLevels1(level1)
-               document.querySelector(".lolistBull1").style.display='block'
-             }else{
-               document.querySelector(".lolistBull1").style.display='none'
-             }
-           const level2 = Orientation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".lolistBull2").style.display='block'
-             console.log(level2);
-             loListLevels2(level2)
-           
-           }else{
-             document.querySelector(".lolistBull2").style.display='none'
-           }
-           const level3 = Orientation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".lolistBull3").style.display='block'
-             loListLevels3(level3)
-         
-           }else{
-             document.querySelector(".lolistBull3").style.display='none'
-           }
-           const level4 = Orientation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".lolistBull4").style.display='block'
-       
-             loListLevels4(level4)
-           
-           }else{
-             document.querySelector(".lolistBull4").style.display='none'
-           }
-   
-  }
- const  Accountability = response.filter((d) => d.info.areas=="Accountability and Ethical Conduct");
- if (Accountability.length>0) {
-   document.querySelector(".flush-heading24").style.display="block"
-   const level1 = Accountability.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               aeListLevels1(level1)
-               document.querySelector(".aelistBull1").style.display='block'
-             }else{
-               document.querySelector(".aelistBull1").style.display='none'
-             }
-           const level2 = Accountability.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".aelistBull2").style.display='block'
-             console.log(level2);
-             aeListLevels2(level2)
-           
-           }else{
-             document.querySelector(".aelistBull2").style.display='none'
-           }
-           const level3 = Accountability.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".aelistBull3").style.display='block'
-             aeListLevels3(level3)
-         
-           }else{
-             document.querySelector(".aelistBull3").style.display='none'
-           }
-           const level4 = Accountability.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".aelistBull4").style.display='block'
-       
-             aeListLevels4(level4)
-           
-           }else{
-             document.querySelector(".aelistBull4").style.display='none'
-           }
-   
-  }
-  const   Problem = response.filter((d) => d.info.areas=="Problem Solving and Analysis");
-  if (Problem.length>0) {
-   document.querySelector(".flush-heading25").style.display="block"
-   const level1 = Problem.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               psListLevels1(level1)
-               document.querySelector(".pslistBull1").style.display='block'
-             }else{
-               document.querySelector(".pslistBull1").style.display='none'
-             }
-           const level2 = Problem.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".pslistBull2").style.display='block'
-             console.log(level2);
-             psListLevels2(level2)
-           
-           }else{
-             document.querySelector(".pslistBull2").style.display='none'
-           }
-           const level3 = Problem.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".pslistBull3").style.display='block'
-             psListLevels3(level3)
-         
-           }else{
-             document.querySelector(".pslistBull3").style.display='none'
-           }
-           const level4 = Problem.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".pslistBull4").style.display='block'
-       
-             psListLevels4(level4)
-           
-           }else{
-             document.querySelector(".pslistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   Compensation = response.filter((d) => d.info.areas=="Compensation and Benefits Management");
-  if (Compensation.length>0) {
-   document.querySelector(".flush-heading26").style.display="block"
-   const level1 = Compensation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               cbListLevels1(level1)
-               document.querySelector(".cblistBull1").style.display='block'
-             }else{
-               document.querySelector(".cblistBull1").style.display='none'
-             }
-           const level2 = Compensation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".cblistBull2").style.display='block'
-             console.log(level2);
-             cbListLevels2(level2)
-           
-           }else{
-             document.querySelector(".cblistBull2").style.display='none'
-           }
-           const level3 = Compensation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".cblistBull3").style.display='block'
-             cbListLevels3(level3)
-         
-           }else{
-             document.querySelector(".cblistBull3").style.display='none'
-           }
-           const level4 = Compensation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".cblistBull4").style.display='block'
-       
-             cbListLevels4(level4)
-           
-           }else{
-             document.querySelector(".cblistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   EmployeeWellness = response.filter((d) => d.info.areas=="Employee Wellness");
-  if (EmployeeWellness.length>0) {
-   document.querySelector(".flush-heading27").style.display="block"
-   const level1 = EmployeeWellness.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ewListLevels1(level1)
-               document.querySelector(".ewlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ewlistBull1").style.display='none'
-             }
-           const level2 = EmployeeWellness.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ewlistBull2").style.display='block'
-             console.log(level2);
-             ewListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ewlistBull2").style.display='none'
-           }
-           const level3 = EmployeeWellness.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ewlistBull3").style.display='block'
-             ewListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ewlistBull3").style.display='none'
-           }
-           const level4 = EmployeeWellness.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ewlistBull4").style.display='block'
-       
-             ewListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ewlistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   Resilience = response.filter((d) => d.info.areas=="Resilience");
-  if (Resilience.length>0) {
-   document.querySelector(".flush-heading28").style.display="block"
-   const level1 = Resilience.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               rsListLevels1(level1)
-               document.querySelector(".rslistBull1").style.display='block'
-             }else{
-               document.querySelector(".rslistBull1").style.display='none'
-             }
-           const level2 = Resilience.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".rslistBull2").style.display='block'
-             console.log(level2);
-             rsListLevels2(level2)
-           
-           }else{
-             document.querySelector(".rslistBull2").style.display='none'
-           }
-           const level3 = Resilience.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".rslistBull3").style.display='block'
-             rsListLevels3(level3)
-         
-           }else{
-             document.querySelector(".rslistBull3").style.display='none'
-           }
-           const level4 = Resilience.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".rslistBull4").style.display='block'
-       
-             rsListLevels4(level4)
-           
-           }else{
-             document.querySelector(".rslistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   DirectionSetting = response.filter((d) => d.info.areas=="Direction Setting");
-  if (DirectionSetting.length>0) {
-   document.querySelector(".flush-heading29").style.display="block"
-   const level1 = DirectionSetting.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               drListLevels1(level1)
-               document.querySelector(".drlistBull1").style.display='block'
-             }else{
-               document.querySelector(".drlistBull1").style.display='none'
-             }
-           const level2 = DirectionSetting.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".drlistBull2").style.display='block'
-             console.log(level2);
-             drListLevels2(level2)
-           
-           }else{
-             document.querySelector(".drlistBull2").style.display='none'
-           }
-           const level3 = DirectionSetting.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".drlistBull3").style.display='block'
-             drListLevels3(level3)
-         
-           }else{
-             document.querySelector(".drlistBull3").style.display='none'
-           }
-           const level4 = DirectionSetting.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".drlistBull4").style.display='block'
-       
-             drListLevels4(level4)
-           
-           }else{
-             document.querySelector(".drlistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   ImpactandInfluence = response.filter((d) => d.info.areas=="Impact and Influence");
-  if (ImpactandInfluence.length>0) {
-   document.querySelector(".flush-heading30").style.display="block"
-   const level1 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               iiListLevels1(level1)
-               document.querySelector(".iilistBull1").style.display='block'
-             }else{
-               document.querySelector(".iilistBull1").style.display='none'
-             }
-           const level2 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".iilistBull2").style.display='block'
-             console.log(level2);
-             iiListLevels2(level2)
-           
-           }else{
-             document.querySelector(".iilistBull2").style.display='none'
-           }
-           const level3 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".iilistBull3").style.display='block'
-             iiListLevels3(level3)
-         
-           }else{
-             document.querySelector(".iilistBull3").style.display='none'
-           }
-           const level4 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".iilistBull4").style.display='block'
-       
-             iiListLevels4(level4)
-           
-           }else{
-             document.querySelector(".iilistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   CoachingandMentoring = response.filter((d) => d.info.areas=="Coaching and Mentoring");
-  if (CoachingandMentoring.length>0) {
-   document.querySelector(".flush-heading31").style.display="block"
-   const level1 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               menListLevels1(level1)
-               document.querySelector(".menlistBull1").style.display='block'
-             }else{
-               document.querySelector(".menlistBull1").style.display='none'
-             }
-           const level2 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".menlistBull2").style.display='block'
-             console.log(level2);
-             menListLevels2(level2)
-           
-           }else{
-             document.querySelector(".menlistBull2").style.display='none'
-           }
-           const level3 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".menlistBull3").style.display='block'
-             menListLevels3(level3)
-         
-           }else{
-             document.querySelector(".menlistBull3").style.display='none'
-           }
-           const level4 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".menlistBull4").style.display='block'
-       
-             menListLevels4(level4)
-           
-           }else{
-             document.querySelector(".menlistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   TeamOrientation= response.filter((d) => d.info.areas=="Team Orientation");
-  if (TeamOrientation.length>0) {
-   document.querySelector(".flush-heading32").style.display="block"
-   const level1 = TeamOrientation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               toListLevels1(level1)
-               document.querySelector(".tolistBull1").style.display='block'
-             }else{
-               document.querySelector(".tolistBull1").style.display='none'
-             }
-           const level2 = TeamOrientation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".tolistBull2").style.display='block'
-             console.log(level2);
-             toListLevels2(level2)
-           
-           }else{
-             document.querySelector(".tolistBull2").style.display='none'
-           }
-           const level3 = TeamOrientation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".tolistBull3").style.display='block'
-             toListLevels3(level3)
-         
-           }else{
-             document.querySelector(".tolistBull3").style.display='none'
-           }
-           const level4 = TeamOrientation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".tolistBull4").style.display='block'
-       
-             toListLevels4(level4)
-           
-           }else{
-             document.querySelector(".tolistBull4").style.display='none'
-           }
-   
-  }
-
-  const   InternalAuditing  = response.filter((d) => d.info.areas=="Internal Auditing");
-  if (InternalAuditing.length>0) {
-   document.querySelector(".flush-heading33").style.display="block"
-   const level1 = InternalAuditing.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ioListLevels1(level1)
-               document.querySelector(".iolistBull1").style.display='block'
-             }else{
-               document.querySelector(".iolistBull1").style.display='none'
-             }
-           const level2 = InternalAuditing.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".iolistBull2").style.display='block'
-             console.log(level2);
-             ioListLevels2(level2)
-           
-           }else{
-             document.querySelector(".iolistBull2").style.display='none'
-           }
-           const level3 = InternalAuditing.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".iolistBull3").style.display='block'
-             ioListLevels3(level3)
-         
-           }else{
-             document.querySelector(".iolistBull3").style.display='none'
-           }
-           const level4 = InternalAuditing.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".iolistBull4").style.display='block'
-       
-             ioListLevels4(level4)
-           
-           }else{
-             document.querySelector(".iolistBull4").style.display='none'
-           }
-   
-  }
-
-  const   EngagementManagement  = response.filter((d) => d.info.areas=="Engagement Management");
-  if (EngagementManagement.length>0) {
-   document.querySelector(".flush-heading34").style.display="block"
-   const level1 = EngagementManagement.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               emListLevels1(level1)
-               document.querySelector(".emlistBull1").style.display='block'
-             }else{
-               document.querySelector(".emlistBull1").style.display='none'
-             }
-           const level2 = EngagementManagement.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".emlistBull2").style.display='block'
-             console.log(level2);
-             emListLevels2(level2)
-           
-           }else{
-             document.querySelector(".emlistBull2").style.display='none'
-           }
-           const level3 = EngagementManagement.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".emlistBull3").style.display='block'
-             emListLevels3(level3)
-         
-           }else{
-             document.querySelector(".emlistBull3").style.display='none'
-           }
-           const level4 = EngagementManagement.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".emlistBull4").style.display='block'
-       
-             emListLevels4(level4)
-           
-           }else{
-             document.querySelector(".emlistBull4").style.display='none'
-           }
-   
-  }
-  
-  const   InformationManagement  = response.filter((d) => d.info.areas=="Information Management");
-  if (InformationManagement.length>0) {
-   document.querySelector(".flush-heading35").style.display="block"
-   const level1 = InformationManagement.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               imListLevels1(level1)
-               document.querySelector(".imlistBull1").style.display='block'
-             }else{
-               document.querySelector(".imlistBull1").style.display='none'
-             }
-           const level2 = InformationManagement.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".imlistBull2").style.display='block'
-             console.log(level2);
-             imListLevels2(level2)
-           
-           }else{
-             document.querySelector(".imlistBull2").style.display='none'
-           }
-           const level3 = InformationManagement.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".imlistBull3").style.display='block'
-             imListLevels3(level3)
-         
-           }else{
-             document.querySelector(".imlistBull3").style.display='none'
-           }
-           const level4 = InformationManagement.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".imlistBull4").style.display='block'
-       
-             imListLevels4(level4)
-           
-           }else{
-             document.querySelector(".imlistBull4").style.display='none'
-           }
-   
-  }
-  const   ResearchandAnalysis  = response.filter((d) => d.info.areas=="Research and Analysis");
-  if (ResearchandAnalysis.length>0) {
-   document.querySelector(".flush-heading36").style.display="block"
-   const level1 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               raListLevels1(level1)
-               document.querySelector(".ralistBull1").style.display='block'
-             }else{
-               document.querySelector(".ralistBull1").style.display='none'
-             }
-           const level2 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ralistBull2").style.display='block'
-             console.log(level2);
-             raListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ralistBull2").style.display='none'
-           }
-           const level3 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ralistBull3").style.display='block'
-             raListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ralistBull3").style.display='none'
-           }
-           const level4 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ralistBull4").style.display='block'
-       
-             raListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ralistBull4").style.display='none'
-           }
-   
-  }
-
-  const   AdvocacyNegotiation  = response.filter((d) => d.info.areas=="Advocacy / Negotiation");
-  if (AdvocacyNegotiation.length>0) {
-   document.querySelector(".flush-heading37").style.display="block"
-   const level1 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               anListLevels1(level1)
-               document.querySelector(".anlistBull1").style.display='block'
-             }else{
-               document.querySelector(".anlistBull1").style.display='none'
-             }
-           const level2 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".anlistBull2").style.display='block'
-             console.log(level2);
-             anListLevels2(level2)
-           
-           }else{
-             document.querySelector(".anlistBull2").style.display='none'
-           }
-           const level3 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".anlistBull3").style.display='block'
-             anListLevels3(level3)
-         
-           }else{
-             document.querySelector(".anlistBull3").style.display='none'
-           }
-           const level4 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".anlistBull4").style.display='block'
-       
-             anListLevels4(level4)
-           
-           }else{
-             document.querySelector(".anlistBull4").style.display='none'
-           }
-   
-  }
-
-  const   EthicsandProfessionalism  = response.filter((d) => d.info.areas=="Ethics and Professionalism");
-  if (EthicsandProfessionalism.length>0) {
-   document.querySelector(".flush-heading38").style.display="block"
-   const level1 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               epListLevels1(level1)
-               document.querySelector(".eplistBull1").style.display='block'
-             }else{
-               document.querySelector(".eplistBull1").style.display='none'
-             }
-           const level2 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".eplistBull2").style.display='block'
-             console.log(level2);
-             epListLevels2(level2)
-           
-           }else{
-             document.querySelector(".eplistBull2").style.display='none'
-           }
-           const level3 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".eplistBull3").style.display='block'
-             epListLevels3(level3)
-         
-           }else{
-             document.querySelector(".eplistBull3").style.display='none'
-           }
-           const level4 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".eplistBull4").style.display='block'
-       
-             epListLevels4(level4)
-           
-           }else{
-             document.querySelector(".eplistBull4").style.display='none'
-           }
-   
-  }
-  const   StrategicCapability  = response.filter((d) => d.info.areas=="Strategic Capability / Leadership or Direction Setting");
-  if (StrategicCapability.length>0) {
-   document.querySelector(".flush-heading39").style.display="block"
-   const level1 = StrategicCapability.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               scListLevels1(level1)
-               document.querySelector(".sclistBull1").style.display='block'
-             }else{
-               document.querySelector(".sclistBull1").style.display='none'
-             }
-           const level2 = StrategicCapability.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".sclistBull2").style.display='block'
-             console.log(level2);
-             scListLevels2(level2)
-           
-           }else{
-             document.querySelector(".sclistBull2").style.display='none'
-           }
-           const level3 = StrategicCapability.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".sclistBull3").style.display='block'
-             scListLevels3(level3)
-         
-           }else{
-             document.querySelector(".sclistBull3").style.display='none'
-           }
-           const level4 = StrategicCapability.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".sclistBull4").style.display='block'
-       
-             scListLevels4(level4)
-           
-           }else{
-             document.querySelector(".sclistBull4").style.display='none'
-           }
-   
-  }
-
-  const   ChangeReadiness  = response.filter((d) => d.info.areas=="Change Readiness");
-  if (ChangeReadiness.length>0) {
-   document.querySelector(".flush-heading40").style.display="block"
-   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               crListLevels1(level1)
-               document.querySelector(".crlistBull1").style.display='block'
-             }else{
-               document.querySelector(".crlistBull1").style.display='none'
-             }
-           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".crlistBull2").style.display='block'
-             console.log(level2);
-             crListLevels2(level2)
-           
-           }else{
-             document.querySelector(".crlistBull2").style.display='none'
-           }
-           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".crlistBull3").style.display='block'
-             crListLevels3(level3)
-         
-           }else{
-             document.querySelector(".crlistBull3").style.display='none'
-           }
-           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".crlistBull4").style.display='block'
-       
-             crListLevels4(level4)
-           
-           }else{
-             document.querySelector(".crlistBull4").style.display='none'
-           }
-   
-  }
-
-  const   CognitiveAbility  = response.filter((d) => d.info.areas=="Cognitive Ability");
-  if (CognitiveAbility.length>0) {
-   document.querySelector(".flush-heading41").style.display="block"
-   const level1 = CognitiveAbility.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               caListLevels1(level1)
-               document.querySelector(".calistBull1").style.display='block'
-             }else{
-               document.querySelector(".calistBull1").style.display='none'
-             }
-           const level2 = CognitiveAbility.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".calistBull2").style.display='block'
-             console.log(level2);
-             caListLevels2(level2)
-           
-           }else{
-             document.querySelector(".calistBull2").style.display='none'
-           }
-           const level3 = CognitiveAbility.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".calistBull3").style.display='block'
-             caListLevels3(level3)
-         
-           }else{
-             document.querySelector(".calistBull3").style.display='none'
-           }
-           const level4 = CognitiveAbility.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".calistBull4").style.display='block'
-       
-             caListLevels4(level4)
-           
-           }else{
-             document.querySelector(".calistBull4").style.display='none'
-           }
-   
-  }
-
-  const   CustomerOrientation  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
-  if (CustomerOrientation.length>0) {
-   document.querySelector(".flush-heading42").style.display="block"
-   const level1 = CustomerOrientation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ccListLevels1(level1)
-               document.querySelector(".cclistBull1").style.display='block'
-             }else{
-               document.querySelector(".cclistBull1").style.display='none'
-             }
-           const level2 = CustomerOrientation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".cclistBull2").style.display='block'
-             console.log(level2);
-             ccListLevels2(level2)
-           
-           }else{
-             document.querySelector(".cclistBull2").style.display='none'
-           }
-           const level3 = CustomerOrientation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".cclistBull3").style.display='block'
-             ccListLevels3(level3)
-         
-           }else{
-             document.querySelector(".cclistBull3").style.display='none'
-           }
-           const level4 = CustomerOrientation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".cclistBull4").style.display='block'
-       
-             ccListLevels4(level4)
-           
-           }else{
-             document.querySelector(".cclistBull4").style.display='none'
-           }
-   
-  }
-//   // let option =""
-//   // let html =""
-//   // let list = document.querySelector(".listdata124")
- 
-//   // result.forEach(department => {
-//   //     option=` <li>${department.details}</li>`;
-//   //     html +=option;
-//   //     list.innerHTML=html;
-     
-      
-//   // });
-
-
-}
-function Leadership(response) {
-  
-  console.log(response);
- 
-  const  written = response.filter((d) => d.info.areas=="Written Communication");
-  if (written.length>0) {
-   document.querySelector(".flush-heading0").style.display="block"
-   const level1 = written.filter((d)=>d.info.levels=="Level 1")
-       
-   if(level1.length >0){
-     console.log(level1);
-     ListLevels1(level1)
-   
-     document.querySelector(".listBull1").style.display='block'
-   }else{
-     document.querySelector(".listBull1").style.display='none'
    }
-  const level2 = written.filter((d)=>d.info.levels=="Level 2")
-  if(level2.length!==0){
-   document.querySelector(".listBull2").style.display='block'
-   ListLevels2(level2)
-  
-  }else{
-   document.querySelector(".listBull2").style.display='none'
-  }
-  const level3 = written.filter((d)=>d.levels=="Level 3")
-  if(level3.length!==0){
-   document.querySelector(".listBull3").style.display='block'
-   ListLevels3(level3)
-  
-  }else{
-   document.querySelector(".listBull3").style.display='none'
-  }
-  const level4 = written.filter((d)=>d.levels=="Level 4")
-  if(level4.length!==0){
-   document.querySelector(".listBull4").style.display='block'
-  
-   ListLevels4(level4)
-  
-  }else{
-   document.querySelector(".listBull4").style.display='none'
-  }
-  }
- 
-  const Organisational = response.filter((d) => d.info.areas=="Organisational Awareness");
-  if (Organisational.length>0) {
-   document.querySelector(".flush-heading1").style.display="block"
-   const level1 = Organisational.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               oListLevels1(level1)
-               document.querySelector(".olistBull1").style.display='block'
-             }else{
-               document.querySelector(".olistBull1").style.display='none'
-             }
-           const level2 = Organisational.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".olistBull2").style.display='block'
-             console.log(level2);
-             oListLevels2(level2)
-           
-           }else{
-             document.querySelector(".olistBull2").style.display='none'
-           }
-           const level3 = Organisational.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".olistBull3").style.display='block'
-             oListLevels3(level3)
-         
-           }else{
-             document.querySelector(".olistBull3").style.display='none'
-           }
-           const level4 = Organisational.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".olistBull4").style.display='block'
-       
-             oListLevels4(level4)
-           
-           }else{
-             document.querySelector(".olistBull4").style.display='none'
-           }
-   
-  }
-  
-  const  Plannning = response.filter((d) => d.info.areas=="Planning and Organising");
-  if (Plannning.length>0) {
-   document.querySelector(".flush-heading2").style.display="block"
- 
-     const level1 = Plannning.filter((d)=>d.info.levels=="Level 1")
+
+   const   DataProcessingAnalysis   = response.filter((d) => d.info.areas=="Data Processing & Analysis");
+   if (DataProcessingAnalysis.length>0) {
+     document.querySelector(".flush-heading57").style.display="block"
+     const level1 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 1")
         
                if(level1.length >0){
                  console.log(level1);
-                 pListLevels1(level1)
-                 document.querySelector(".plistBull1").style.display='block'
+                 dpaListLevels1(level1)
+                 document.querySelector(".dpalistBull1").style.display='block'
                }else{
-                 document.querySelector(".plistBull1").style.display='none'
+                 document.querySelector(".dpalistBull1").style.display='none'
                }
-             const level2 = Plannning.filter((d)=>d.info.levels=="Level 2")
+             const level2 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 2")
              if(level2.length>0){
-               document.querySelector(".plistBull2").style.display='block'
+               document.querySelector(".dpalistBull2").style.display='block'
                console.log(level2);
-               pListLevels2(level2)
+               dpaListLevels2(level2)
              
              }else{
-               document.querySelector(".plistBull2").style.display='none'
+               document.querySelector(".dpalistBull2").style.display='none'
              }
-             const level3 = Plannning.filter((d)=>d.info.levels=="Level 3")
+             const level3 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 3")
              if(level3.length!==0){
-               document.querySelector(".plistBull3").style.display='block'
-               pListLevels3(level3)
+               document.querySelector(".dpalistBull3").style.display='block'
+               dpaListLevels3(level3)
            
              }else{
-               document.querySelector(".plistBull3").style.display='none'
+               document.querySelector(".dpalistBull3").style.display='none'
              }
-             const level4 = Plannning.filter((d)=>d.info.levels=="Level 4")
+             const level4 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 4")
              if(level4.length!==0){
                console.log(level4);
-               document.querySelector(".plistBull4").style.display='block'
+               document.querySelector(".dpalistBull4").style.display='block'
          
-               pListLevels4(level4)
+               dpaListLevels4(level4)
              
              }else{
-               document.querySelector(".plistBull4").style.display='none'
+               document.querySelector(".dpalistBull4").style.display='none'
              }
      
-    
-  }
-  const  Monitoring = response.filter((d) => d.info.areas=="Monitoring and Control");
-  if (Monitoring.length>0) {
-   document.querySelector(".flush-heading3").style.display="block"
-   const level1 = Monitoring.filter((d)=>d.info.levels=="Level 1")
+    }
+
+    const   ClientOrientationandCustomerFocus    = response.filter((d) => d.info.areas=="Client Orientation and Customer Focus");
+   if (ClientOrientationandCustomerFocus.length>0) {
+     document.querySelector(".flush-heading58").style.display="block"
+     const level1 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
         
                if(level1.length >0){
                  console.log(level1);
-                 mListLevels1(level1)
-                 document.querySelector(".mlistBull1").style.display='block'
+                 coListLevels1(level1)
+                 document.querySelector(".colistBull1").style.display='block'
                }else{
-                 document.querySelector(".mlistBull1").style.display='none'
+                 document.querySelector(".colistBull1").style.display='none'
                }
-             const level2 = Monitoring.filter((d)=>d.info.levels=="Level 2")
+             const level2 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
              if(level2.length>0){
-               document.querySelector(".mlistBull2").style.display='block'
+               document.querySelector(".colistBull2").style.display='block'
                console.log(level2);
-               mListLevels2(level2)
+               coListLevels2(level2)
              
              }else{
-               document.querySelector(".mlistBull2").style.display='none'
+               document.querySelector(".colistBull2").style.display='none'
              }
-             const level3 = Monitoring.filter((d)=>d.info.levels=="Level 3")
+             const level3 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
              if(level3.length!==0){
-               document.querySelector(".mlistBull3").style.display='block'
-               mListLevels3(level3)
+               document.querySelector(".colistBull3").style.display='block'
+               coListLevels3(level3)
            
              }else{
-               document.querySelector(".mlistBull3").style.display='none'
+               document.querySelector(".colistBull3").style.display='none'
              }
-             const level4 = Monitoring.filter((d)=>d.info.levels=="Level 4")
+             const level4 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
              if(level4.length!==0){
                console.log(level4);
-               document.querySelector(".mlistBull4").style.display='block'
+               document.querySelector(".colistBull4").style.display='block'
          
-               mListLevels4(level4)
+               coListLevels4(level4)
              
              }else{
-               document.querySelector(".mlistBull4").style.display='none'
+               document.querySelector(".colistBull4").style.display='none'
              }
      
-  }
- 
-  const  Consulting = response.filter((d) => d.info.areas=="Consulting");
-  if (Consulting.length>0) {
-   document.querySelector(".flush-heading4").style.display="block"
-   const level1 = Consulting.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 cListLevels1(level1)
-                 document.querySelector(".clistBull1").style.display='block'
-               }else{
-                 document.querySelector(".clistBull1").style.display='none'
-               }
-             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".clistBull2").style.display='block'
-               console.log(level2);
-               cListLevels2(level2)
-             
-             }else{
-               document.querySelector(".clistBull2").style.display='none'
-             }
-             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".clistBull3").style.display='block'
-               cListLevels3(level3)
-           
-             }else{
-               document.querySelector(".clistBull3").style.display='none'
-             }
-             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".clistBull4").style.display='block'
+    }
+
+    const    ActionOrientation    = response.filter((d) => d.info.areas=="Action Orientation");
+    if (ActionOrientation.length>0) {
+      document.querySelector(".flush-heading59").style.display="block"
+      const level1 = ActionOrientation.filter((d)=>d.info.levels=="Level 1")
          
-               cListLevels4(level4)
-             
-             }else{
-               document.querySelector(".clistBull4").style.display='none'
-             }
-     
-  }
-  const  Negotiation = response.filter((d) => d.info.areas=="Negotiation");
-  if (Negotiation.length>0) {
-   document.querySelector(".flush-heading5").style.display="block"
-   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 nListLevels1(level1)
-                 document.querySelector(".nlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".nlistBull1").style.display='none'
-               }
-             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".nlistBull2").style.display='block'
-               console.log(level2);
-               nListLevels2(level2)
-             
-             }else{
-               document.querySelector(".nlistBull2").style.display='none'
-             }
-             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".nlistBull3").style.display='block'
-               nListLevels3(level3)
-           
-             }else{
-               document.querySelector(".nlistBull3").style.display='none'
-             }
-             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".nlistBull4").style.display='block'
-         
-               nListLevels4(level4)
-             
-             }else{
-               document.querySelector(".nlistBull4").style.display='none'
-             }
-     
-  }
-  const  Oral = response.filter((d) => d.info.areas=="Oral Communication");
-  if (Oral.length>0) {
-   document.querySelector(".flush-heading6").style.display="block"
-   const level1 = Negotiation.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 orListLevels1(level1)
-                 document.querySelector(".orlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".orlistBull1").style.display='none'
-               }
-             const level2 = Consulting.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".orlistBull2").style.display='block'
-               console.log(level2);
-               orListLevels2(level2)
-             
-             }else{
-               document.querySelector(".orlistBull2").style.display='none'
-             }
-             const level3 = Consulting.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".orlistBull3").style.display='block'
-               orListLevels3(level3)
-           
-             }else{
-               document.querySelector(".orlistBull3").style.display='none'
-             }
-             const level4 = Consulting.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".orlistBull4").style.display='block'
-         
-               orListLevels4(level4)
-             
-             }else{
-               document.querySelector(".orlistBull4").style.display='none'
-             }
- 
+                if(level1.length >0){
+                  console.log(level1);
+                  asListLevels1(level1)
+                  document.querySelector(".aslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".aslistBull1").style.display='none'
+                }
+              const level2 = ActionOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".aslistBull2").style.display='block'
+                console.log(level2);
+                asListLevels2(level2)
               
-  const Learning = response.filter((d) => d.info.areas=="Learning and Development ");
-  if (Learning.length>0) {
-   document.querySelector(".flush-heading7").style.display="block"
-   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
+              }else{
+                document.querySelector(".aslistBull2").style.display='none'
+              }
+              const level3 = ActionOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".aslistBull3").style.display='block'
+                asListLevels3(level3)
+            
+              }else{
+                document.querySelector(".aslistBull3").style.display='none'
+              }
+              const level4 = ActionOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".aslistBull4").style.display='block'
+          
+                asListLevels4(level4)
+              
+              }else{
+                document.querySelector(".aslistBull4").style.display='none'
+              }
       
-             if(level1.length >0){
-               console.log(level1);
-               ldListLevels1(level1)
-               document.querySelector(".ldlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ldlistBull1").style.display='none'
-             }
-           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ldlistBull2").style.display='block'
-             console.log(level2);
-             ldListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ldlistBull2").style.display='none'
-           }
-           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ldlistBull3").style.display='block'
-             ldListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ldlistBull3").style.display='none'
-           }
-           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ldlistBull4").style.display='block'
-       
-             ldListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ldlistBull4").style.display='none'
-           }
-   
-  }
-     
-  }
- 
-  const Learning = response.filter((d) => d.info.areas=="Learning and Development");
-  if (Learning.length>0) {
-   document.querySelector(".flush-heading7").style.display="block"
-   const level1 = Learning.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ldListLevels1(level1)
-               document.querySelector(".ldlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ldlistBull1").style.display='none'
-             }
-           const level2 = Learning.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ldlistBull2").style.display='block'
-             console.log(level2);
-             ldListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ldlistBull2").style.display='none'
-           }
-           const level3 = Learning.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ldlistBull3").style.display='block'
-             ldListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ldlistBull3").style.display='none'
-           }
-           const level4 = Learning.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ldlistBull4").style.display='block'
-       
-             ldListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ldlistBull4").style.display='none'
-           }
-   
-  }
-  
- // const Awareness = response.filter((d) => d.areas=="Organisational Awareness");
- 
- // if (Awareness.length>0) {
- //   document.querySelector(".flush-heading8").style.display="block"
- //   const level1 = Awareness.filter((d)=>d.levels=="Level 1")
-      
- //             if(level1.length >0){
- //               console.log(level1);
- //               aListLevels1(level1)
- //               document.querySelector(".alistBull1").style.display='block'
- //             }else{
- //               document.querySelector(".alistBull1").style.display='none'
- //             }
- //           const level2 = Awareness.filter((d)=>d.levels=="Level 2")
- //           if(level2.length>0){
- //             document.querySelector(".alistBull2").style.display='block'
- //             console.log(level2);
- //             aListLevels2(level2)
-           
- //           }else{
- //             document.querySelector(".alistBull2").style.display='none'
- //           }
- //           const level3 = Awareness.filter((d)=>d.levels=="Level 3")
- //           if(level3.length!==0){
- //             document.querySelector(".alistBull3").style.display='block'
- //             aListLevels3(level3)
-         
- //           }else{
- //             document.querySelector(".alistBull3").style.display='none'
- //           }
- //           const level4 = Awareness.filter((d)=>d.levels=="Level 4")
- //           if(level4.length!==0){
- //             console.log(level4);
- //             document.querySelector(".alistBull4").style.display='block'
-       
- //             aListLevels4(level4)
-           
- //           }else{
- //             document.querySelector(".alistBull4").style.display='none'
- //           }
-   
- //  }
- 
- const  Change = response.filter((d) => d.info.areas=="Change Movement");
- 
- if (Change.length>0) {
-   document.querySelector(".flush-heading9").style.display="block"
-   const level1 = Change.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               cmListLevels1(level1)
-               document.querySelector(".cmlistBull1").style.display='block'
-             }else{
-               document.querySelector(".cmlistBull1").style.display='none'
-             }
-           const level2 = Change.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".cmlistBull2").style.display='block'
-             console.log(level2);
-             cmListLevels2(level2)
-           
-           }else{
-             document.querySelector(".cmlistBull2").style.display='none'
-           }
-           const level3 = Change.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".cmlistBull3").style.display='block'
-             cmListLevels3(level3)
-         
-           }else{
-             document.querySelector(".cmlistBull3").style.display='none'
-           }
-           const level4 = Change.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".cmlistBull4").style.display='block'
-       
-             cmListLevels4(level4)
-           
-           }else{
-             document.querySelector(".cmlistBull4").style.display='none'
-           }
-   
-  }
- 
- 
- const  Technology = response.filter((d) => d.info.areas=="HR Technology information Management");
- 
- 
- if (Technology.length>0) {
-   document.querySelector(".flush-heading10").style.display="block"
-   const level1 = Technology.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               tListLevels1(level1)
-               document.querySelector(".tlistBull1").style.display='block'
-             }else{
-               document.querySelector(".tlistBull1").style.display='none'
-             }
-           const level2 = Technology.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".tlistBull2").style.display='block'
-             console.log(level2);
-             tListLevels2(level2)
-           
-           }else{
-             document.querySelector(".tlistBull2").style.display='none'
-           }
-           const level3 = Technology.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".tlistBull3").style.display='block'
-             tListLevels3(level3)
-         
-           }else{
-             document.querySelector(".tlistBull3").style.display='none'
-           }
-           const level4 = Technology.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".tlistBull4").style.display='block'
-       
-             tListLevels4(level4)
-           
-           }else{
-             document.querySelector(".tlistBull4").style.display='none'
-           }
-   
-  }
- 
- const  Service = response.filter((d) => d.info.areas=="HR Service Delivery");
- if (Service.length>0) {
-   document.querySelector(".flush-heading11").style.display="block"
-   const level1 = Service.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               sListLevels1(level1)
-               document.querySelector(".slistBull1").style.display='block'
-             }else{
-               document.querySelector(".slistBull1").style.display='none'
-             }
-           const level2 = Service.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".slistBull2").style.display='block'
-             console.log(level2);
-             sListLevels2(level2)
-           
-           }else{
-             document.querySelector(".slistBull2").style.display='none'
-           }
-           const level3 = Service.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".slistBull3").style.display='block'
-             sListLevels3(level3)
-         
-           }else{
-             document.querySelector(".slistBull3").style.display='none'
-           }
-           const level4 = Service.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".slistBull4").style.display='block'
-       
-             sListLevels4(level4)
-           
-           }else{
-             document.querySelector(".slistBull4").style.display='none'
-           }
-   
-  }
- const  Talent = response.filter((d) => d.info.areas=="Talent Management");
- if (Talent.length>0) {
-   document.querySelector(".flush-heading12").style.display="block"
-   const level1 = Talent.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               tmListLevels1(level1)
-               document.querySelector(".tmlistBull1").style.display='block'
-             }else{
-               document.querySelector(".tmlistBull1").style.display='none'
-             }
-           const level2 = Talent.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".tmlistBull2").style.display='block'
-             console.log(level2);
-             tmListLevels2(level2)
-           
-           }else{
-             document.querySelector(".tmlistBull2").style.display='none'
-           }
-           const level3 = Talent.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".tmlistBull3").style.display='block'
-             tmListLevels3(level3)
-         
-           }else{
-             document.querySelector(".tmlistBull3").style.display='none'
-           }
-           const level4 = Talent.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".tmlistBull4").style.display='block'
-       
-             tmListLevels4(level4)
-           
-           }else{
-             document.querySelector(".tmlistBull4").style.display='none'
-           }
-   
-  }
- const  Workforce = response.filter((d) => d.info.areas=="Workforce Planning");
- 
- if (Workforce.length>0) {
-   document.querySelector(".flush-heading13").style.display="block"
-   const level1 = Workforce.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               wListLevels1(level1)
-               document.querySelector(".wlistBull1").style.display='block'
-             }else{
-               document.querySelector(".wlistBull1").style.display='none'
-             }
-           const level2 = Workforce.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".wlistBull2").style.display='block'
-             console.log(level2);
-             wListLevels2(level2)
-           
-           }else{
-             document.querySelector(".wlistBull2").style.display='none'
-           }
-           const level3 = Workforce.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".wlistBull3").style.display='block'
-             wListLevels3(level3)
-         
-           }else{
-             document.querySelector(".wlistBull3").style.display='none'
-           }
-           const level4 = Workforce.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".wlistBull4").style.display='block'
-       
-             wListLevels4(level4)
-           
-           }else{
-             document.querySelector(".wlistBull4").style.display='none'
-           }
-   
-  }
-  const  Learningdevelopment = response.filter((d) => d.info.areas=="Learning and Develepment");
-  if (Learningdevelopment.length>0) {
-   document.querySelector(".flush-heading14").style.display="block"
-   const level1 = Learningdevelopment.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               dlListLevels1(level1)
-               document.querySelector(".dllistBull1").style.display='block'
-             }else{
-               document.querySelector(".dllistBull1").style.display='none'
-             }
-           const level2 = Learningdevelopment.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".dllistBull2").style.display='block'
-             console.log(level2);
-             dlListLevels2(level2)
-           
-           }else{
-             document.querySelector(".dllistBull2").style.display='none'
-           }
-           const level3 = Learningdevelopment.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".dllistBull3").style.display='block'
-             dlListLevels3(level3)
-         
-           }else{
-             document.querySelector(".dllistBull3").style.display='none'
-           }
-           const level4 = Learningdevelopment.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".dllistBull4").style.display='block'
-       
-             dlListLevels4(level4)
-           
-           }else{
-             document.querySelector(".dllistBull4").style.display='none'
-           }
-   
-  }
-  
-  const  Occupational = response.filter((d) => d.info.areas=="Occupational Health and Safety");
-  
-  if (Occupational.length>0) {
-   document.querySelector(".flush-heading15").style.display="block"
-   const level1 = Occupational.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ohListLevels1(level1)
-               document.querySelector(".ohlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ohlistBull1").style.display='none'
-             }
-           const level2 = Occupational.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ohlistBull2").style.display='block'
-             console.log(level2);
-             ohListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ohlistBull2").style.display='none'
-           }
-           const level3 = Occupational.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ohlistBull3").style.display='block'
-             ohListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ohlistBull3").style.display='none'
-           }
-           const level4 = Occupational.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ohlistBull4").style.display='block'
-       
-             ohListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ohlistBull4").style.display='none'
-           }
-   
-  }
-   const Perfomance = response.filter((d) => d.info.areas=="Performance Management");
- 
- if (Perfomance.length>0) {
-     document.querySelector(".flush-heading16").style.display="block"
-     const level1 = Perfomance.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 peListLevels1(level1)
-                 document.querySelector(".pelistBull1").style.display='block'
-               }else{
-                 document.querySelector(".pelistBull1").style.display='none'
-               }
-             const level2 = Perfomance.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".pelistBull2").style.display='block'
-               console.log(level2);
-               peListLevels2(level2)
-             
-             }else{
-               document.querySelector(".pelistBull2").style.display='none'
-             }
-             const level3 = Perfomance.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".pelistBull3").style.display='block'
-               peListLevels3(level3)
-           
-             }else{
-               document.querySelector(".pelistBull3").style.display='none'
-             }
-             const level4 = Perfomance.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".pelistBull4").style.display='block'
-         
-               peListLevels4(level4)
-             
-             }else{
-               document.querySelector(".pelistBull4").style.display='none'
-             }
-     
-    }
- const  Industrial = response.filter((d) => d.info.areas=="Industrial and Labour Relations");
- 
-   if (Industrial.length>0) {
-     document.querySelector(".flush-heading17").style.display="block"
-     const level1 = Industrial.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 inListLevels1(level1)
-                 document.querySelector(".inlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".inlistBull1").style.display='none'
-               }
-             const level2 = Industrial.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".inlistBull2").style.display='block'
-               console.log(level2);
-               inListLevels2(level2)
-             
-             }else{
-               document.querySelector(".inlistBull2").style.display='none'
-             }
-             const level3 = Industrial.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".inlistBull3").style.display='block'
-               inListLevels3(level3)
-           
-             }else{
-               document.querySelector(".inlistBull3").style.display='none'
-             }
-             const level4 = Industrial.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".inlistBull4").style.display='block'
-         
-               inListLevels4(level4)
-             
-             }else{
-               document.querySelector(".inlistBull4").style.display='none'
-             }
-     
-    }
- const  Interpersonal = response.filter((d) => d.info.areas=="Interpersonal Relationships");
- 
- if (Interpersonal.length>0) {
-     document.querySelector(".flush-heading18").style.display="block"
-     const level1 = Interpersonal.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 intListLevels1(level1)
-                 document.querySelector(".intlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".intlistBull1").style.display='none'
-               }
-             const level2 = Interpersonal.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".intlistBull2").style.display='block'
-               console.log(level2);
-               intListLevels2(level2)
-             
-             }else{
-               document.querySelector(".intlistBull2").style.display='none'
-             }
-             const level3 = Interpersonal.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".intlistBull3").style.display='block'
-               intListLevels3(level3)
-           
-             }else{
-               document.querySelector(".intlistBull3").style.display='none'
-             }
-             const level4 = Interpersonal.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".intlistBull4").style.display='block'
-         
-               intListLevels4(level4)
-             
-             }else{
-               document.querySelector(".intlistBull4").style.display='none'
-             }
-     
-    }
- 
- const  Communication = response.filter((d) => d.info.areas=="Communication");
- if (Communication.length>0) {
-   document.querySelector(".flush-heading19").style.display="block"
-   const level1 = Communication.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               comListLevels1(level1)
-               document.querySelector(".comlistBull1").style.display='block'
-             }else{
-               document.querySelector(".comlistBull1").style.display='none'
-             }
-           const level2 = Communication.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".comlistBull2").style.display='block'
-             console.log(level2);
-             comListLevels2(level2)
-           
-           }else{
-             document.querySelector(".comlistBull2").style.display='none'
-           }
-           const level3 = Communication.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".comlistBull3").style.display='block'
-             comListLevels3(level3)
-         
-           }else{
-             document.querySelector(".comlistBull3").style.display='none'
-           }
-           const level4 = Communication.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".comlistBull4").style.display='block'
-       
-             comListLevels4(level4)
-           
-           }else{
-             document.querySelector(".comlistBull4").style.display='none'
-           }
-   
-  }
-   const Delivery = response.filter((d) => d.info.areas=="Service Delivery orientation");
-   if (Delivery.length>0) {
-     document.querySelector(".flush-heading20").style.display="block"
-     const level1 = Delivery.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 sdoListLevels1(level1)
-                 document.querySelector(".sdolistBull1").style.display='block'
-               }else{
-                 document.querySelector(".sdolistBull1").style.display='none'
-               }
-             const level2 = Delivery.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".sdolistBull2").style.display='block'
-               console.log(level2);
-               sdoListLevels2(level2)
-             
-             }else{
-               document.querySelector(".sdolistBull2").style.display='none'
-             }
-             const level3 = Delivery.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".sdolistBull3").style.display='block'
-               sdoListLevels3(level3)
-           
-             }else{
-               document.querySelector(".sdolistBull3").style.display='none'
-             }
-             const level4 = Delivery.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".sdolistBull4").style.display='block'
-         
-               sdoListLevels4(level4)
-             
-             }else{
-               document.querySelector(".sdolistBull4").style.display='none'
-             }
-     
-    }
-   const  Action = response.filter((d) => d.info.areas=="Action and Outcome Orientation");
-   if (Action.length>0) {
-     document.querySelector(".flush-heading21").style.display="block"
-     const level1 = Action.filter((d)=>d.info.levels=="Level 1")
-        
-               if(level1.length >0){
-                 console.log(level1);
-                 actListLevels1(level1)
-                 document.querySelector(".actlistBull1").style.display='block'
-               }else{
-                 document.querySelector(".actlistBull1").style.display='none'
-               }
-             const level2 = Action.filter((d)=>d.info.levels=="Level 2")
-             if(level2.length>0){
-               document.querySelector(".actlistBull2").style.display='block'
-               console.log(level2);
-               actListLevels2(level2)
-             
-             }else{
-               document.querySelector(".actlistBull2").style.display='none'
-             }
-             const level3 = Action.filter((d)=>d.info.levels=="Level 3")
-             if(level3.length!==0){
-               document.querySelector(".actlistBull3").style.display='block'
-               actListLevels3(level3)
-           
-             }else{
-               document.querySelector(".actlistBull3").style.display='none'
-             }
-             const level4 = Action.filter((d)=>d.info.levels=="Level 4")
-             if(level4.length!==0){
-               console.log(level4);
-               document.querySelector(".actlistBull4").style.display='block'
-         
-               actListLevels4(level4)
-             
-             }else{
-               document.querySelector(".actlistBull4").style.display='none'
-             }
-     
-    }
- const  Conflict = response.filter((d) => d.info.areas=="Conflict Management");
- if (Conflict.length>0) {
-   document.querySelector(".flush-heading22").style.display="block"
-   const level1 = Conflict.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               conListLevels1(level1)
-               document.querySelector(".conlistBull1").style.display='block'
-             }else{
-               document.querySelector(".conlistBull1").style.display='none'
-             }
-           const level2 = Conflict.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".conlistBull2").style.display='block'
-             console.log(level2);
-             conListLevels2(level2)
-           
-           }else{
-             document.querySelector(".conlistBull2").style.display='none'
-           }
-           const level3 = Conflict.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".conlistBull3").style.display='block'
-             conListLevels3(level3)
-         
-           }else{
-             document.querySelector(".conlistBull3").style.display='none'
-           }
-           const level4 = Conflict.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".conlistBull4").style.display='block'
-       
-             conListLevels4(level4)
-           
-           }else{
-             document.querySelector(".conlistBull4").style.display='none'
-           }
-   
-  }
-  const  Orientation = response.filter((d) => d.info.areas=="Learning Orientation");
-  if (Orientation.length>0) {
-   document.querySelector(".flush-heading23").style.display="block"
-   const level1 = Orientation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               loListLevels1(level1)
-               document.querySelector(".lolistBull1").style.display='block'
-             }else{
-               document.querySelector(".lolistBull1").style.display='none'
-             }
-           const level2 = Orientation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".lolistBull2").style.display='block'
-             console.log(level2);
-             loListLevels2(level2)
-           
-           }else{
-             document.querySelector(".lolistBull2").style.display='none'
-           }
-           const level3 = Orientation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".lolistBull3").style.display='block'
-             loListLevels3(level3)
-         
-           }else{
-             document.querySelector(".lolistBull3").style.display='none'
-           }
-           const level4 = Orientation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".lolistBull4").style.display='block'
-       
-             loListLevels4(level4)
-           
-           }else{
-             document.querySelector(".lolistBull4").style.display='none'
-           }
-   
-  }
- const  Accountability = response.filter((d) => d.info.areas=="Accountability and Ethical Conduct");
- if (Accountability.length>0) {
-   document.querySelector(".flush-heading24").style.display="block"
-   const level1 = Accountability.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               aeListLevels1(level1)
-               document.querySelector(".aelistBull1").style.display='block'
-             }else{
-               document.querySelector(".aelistBull1").style.display='none'
-             }
-           const level2 = Accountability.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".aelistBull2").style.display='block'
-             console.log(level2);
-             aeListLevels2(level2)
-           
-           }else{
-             document.querySelector(".aelistBull2").style.display='none'
-           }
-           const level3 = Accountability.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".aelistBull3").style.display='block'
-             aeListLevels3(level3)
-         
-           }else{
-             document.querySelector(".aelistBull3").style.display='none'
-           }
-           const level4 = Accountability.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".aelistBull4").style.display='block'
-       
-             aeListLevels4(level4)
-           
-           }else{
-             document.querySelector(".aelistBull4").style.display='none'
-           }
-   
-  }
-  const   Problem = response.filter((d) => d.info.areas=="Problem Solving and Analysis");
-  if (Problem.length>0) {
-   document.querySelector(".flush-heading25").style.display="block"
-   const level1 = Problem.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               psListLevels1(level1)
-               document.querySelector(".pslistBull1").style.display='block'
-             }else{
-               document.querySelector(".pslistBull1").style.display='none'
-             }
-           const level2 = Problem.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".pslistBull2").style.display='block'
-             console.log(level2);
-             psListLevels2(level2)
-           
-           }else{
-             document.querySelector(".pslistBull2").style.display='none'
-           }
-           const level3 = Problem.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".pslistBull3").style.display='block'
-             psListLevels3(level3)
-         
-           }else{
-             document.querySelector(".pslistBull3").style.display='none'
-           }
-           const level4 = Problem.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".pslistBull4").style.display='block'
-       
-             psListLevels4(level4)
-           
-           }else{
-             document.querySelector(".pslistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   Compensation = response.filter((d) => d.info.areas=="Compensation and Benefits Management");
-  if (Compensation.length>0) {
-   document.querySelector(".flush-heading26").style.display="block"
-   const level1 = Compensation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               cbListLevels1(level1)
-               document.querySelector(".cblistBull1").style.display='block'
-             }else{
-               document.querySelector(".cblistBull1").style.display='none'
-             }
-           const level2 = Compensation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".cblistBull2").style.display='block'
-             console.log(level2);
-             cbListLevels2(level2)
-           
-           }else{
-             document.querySelector(".cblistBull2").style.display='none'
-           }
-           const level3 = Compensation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".cblistBull3").style.display='block'
-             cbListLevels3(level3)
-         
-           }else{
-             document.querySelector(".cblistBull3").style.display='none'
-           }
-           const level4 = Compensation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".cblistBull4").style.display='block'
-       
-             cbListLevels4(level4)
-           
-           }else{
-             document.querySelector(".cblistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   EmployeeWellness = response.filter((d) => d.info.areas=="Employee Wellness");
-  if (EmployeeWellness.length>0) {
-   document.querySelector(".flush-heading27").style.display="block"
-   const level1 = EmployeeWellness.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ewListLevels1(level1)
-               document.querySelector(".ewlistBull1").style.display='block'
-             }else{
-               document.querySelector(".ewlistBull1").style.display='none'
-             }
-           const level2 = EmployeeWellness.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ewlistBull2").style.display='block'
-             console.log(level2);
-             ewListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ewlistBull2").style.display='none'
-           }
-           const level3 = EmployeeWellness.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ewlistBull3").style.display='block'
-             ewListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ewlistBull3").style.display='none'
-           }
-           const level4 = EmployeeWellness.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ewlistBull4").style.display='block'
-       
-             ewListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ewlistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   Resilience = response.filter((d) => d.info.areas=="Resilience");
-  if (Resilience.length>0) {
-   document.querySelector(".flush-heading28").style.display="block"
-   const level1 = Resilience.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               rsListLevels1(level1)
-               document.querySelector(".rslistBull1").style.display='block'
-             }else{
-               document.querySelector(".rslistBull1").style.display='none'
-             }
-           const level2 = Resilience.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".rslistBull2").style.display='block'
-             console.log(level2);
-             rsListLevels2(level2)
-           
-           }else{
-             document.querySelector(".rslistBull2").style.display='none'
-           }
-           const level3 = Resilience.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".rslistBull3").style.display='block'
-             rsListLevels3(level3)
-         
-           }else{
-             document.querySelector(".rslistBull3").style.display='none'
-           }
-           const level4 = Resilience.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".rslistBull4").style.display='block'
-       
-             rsListLevels4(level4)
-           
-           }else{
-             document.querySelector(".rslistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   DirectionSetting = response.filter((d) => d.info.areas=="Direction Setting");
-  if (DirectionSetting.length>0) {
-   document.querySelector(".flush-heading29").style.display="block"
-   const level1 = DirectionSetting.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               drListLevels1(level1)
-               document.querySelector(".drlistBull1").style.display='block'
-             }else{
-               document.querySelector(".drlistBull1").style.display='none'
-             }
-           const level2 = DirectionSetting.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".drlistBull2").style.display='block'
-             console.log(level2);
-             drListLevels2(level2)
-           
-           }else{
-             document.querySelector(".drlistBull2").style.display='none'
-           }
-           const level3 = DirectionSetting.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".drlistBull3").style.display='block'
-             drListLevels3(level3)
-         
-           }else{
-             document.querySelector(".drlistBull3").style.display='none'
-           }
-           const level4 = DirectionSetting.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".drlistBull4").style.display='block'
-       
-             drListLevels4(level4)
-           
-           }else{
-             document.querySelector(".drlistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   ImpactandInfluence = response.filter((d) => d.info.areas=="Impact and Influence");
-  if (ImpactandInfluence.length>0) {
-   document.querySelector(".flush-heading30").style.display="block"
-   const level1 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               iiListLevels1(level1)
-               document.querySelector(".iilistBull1").style.display='block'
-             }else{
-               document.querySelector(".iilistBull1").style.display='none'
-             }
-           const level2 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".iilistBull2").style.display='block'
-             console.log(level2);
-             iiListLevels2(level2)
-           
-           }else{
-             document.querySelector(".iilistBull2").style.display='none'
-           }
-           const level3 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".iilistBull3").style.display='block'
-             iiListLevels3(level3)
-         
-           }else{
-             document.querySelector(".iilistBull3").style.display='none'
-           }
-           const level4 = ImpactandInfluence.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".iilistBull4").style.display='block'
-       
-             iiListLevels4(level4)
-           
-           }else{
-             document.querySelector(".iilistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   CoachingandMentoring = response.filter((d) => d.info.areas=="Coaching and Mentoring");
-  if (CoachingandMentoring.length>0) {
-   document.querySelector(".flush-heading31").style.display="block"
-   const level1 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               menListLevels1(level1)
-               document.querySelector(".menlistBull1").style.display='block'
-             }else{
-               document.querySelector(".menlistBull1").style.display='none'
-             }
-           const level2 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".menlistBull2").style.display='block'
-             console.log(level2);
-             menListLevels2(level2)
-           
-           }else{
-             document.querySelector(".menlistBull2").style.display='none'
-           }
-           const level3 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".menlistBull3").style.display='block'
-             menListLevels3(level3)
-         
-           }else{
-             document.querySelector(".menlistBull3").style.display='none'
-           }
-           const level4 = CoachingandMentoring.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".menlistBull4").style.display='block'
-       
-             menListLevels4(level4)
-           
-           }else{
-             document.querySelector(".menlistBull4").style.display='none'
-           }
-   
-  }
- 
-  const   TeamOrientation= response.filter((d) => d.info.areas=="Team Orientation");
-  if (TeamOrientation.length>0) {
-   document.querySelector(".flush-heading32").style.display="block"
-   const level1 = TeamOrientation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               toListLevels1(level1)
-               document.querySelector(".tolistBull1").style.display='block'
-             }else{
-               document.querySelector(".tolistBull1").style.display='none'
-             }
-           const level2 = TeamOrientation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".tolistBull2").style.display='block'
-             console.log(level2);
-             toListLevels2(level2)
-           
-           }else{
-             document.querySelector(".tolistBull2").style.display='none'
-           }
-           const level3 = TeamOrientation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".tolistBull3").style.display='block'
-             toListLevels3(level3)
-         
-           }else{
-             document.querySelector(".tolistBull3").style.display='none'
-           }
-           const level4 = TeamOrientation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".tolistBull4").style.display='block'
-       
-             toListLevels4(level4)
-           
-           }else{
-             document.querySelector(".tolistBull4").style.display='none'
-           }
-   
-  }
+     }
 
-  const   InternalAuditing  = response.filter((d) => d.info.areas=="Internal Auditing");
-  if (InternalAuditing.length>0) {
-   document.querySelector(".flush-heading33").style.display="block"
-   const level1 = InternalAuditing.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ioListLevels1(level1)
-               document.querySelector(".iolistBull1").style.display='block'
-             }else{
-               document.querySelector(".iolistBull1").style.display='none'
-             }
-           const level2 = InternalAuditing.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".iolistBull2").style.display='block'
-             console.log(level2);
-             ioListLevels2(level2)
-           
-           }else{
-             document.querySelector(".iolistBull2").style.display='none'
-           }
-           const level3 = InternalAuditing.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".iolistBull3").style.display='block'
-             ioListLevels3(level3)
+     const    QualityOrientation    = response.filter((d) => d.info.areas=="Quality Orientation");
+    if (QualityOrientation.length>0) {
+      document.querySelector(".flush-heading60").style.display="block"
+      const level1 = QualityOrientation.filter((d)=>d.info.levels=="Level 1")
          
-           }else{
-             document.querySelector(".iolistBull3").style.display='none'
-           }
-           const level4 = InternalAuditing.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".iolistBull4").style.display='block'
-       
-             ioListLevels4(level4)
-           
-           }else{
-             document.querySelector(".iolistBull4").style.display='none'
-           }
-   
-  }
+                if(level1.length >0){
+                  console.log(level1);
+                  qoListLevels1(level1)
+                  document.querySelector(".qolistBull1").style.display='block'
+                }else{
+                  document.querySelector(".qolistBull1").style.display='none'
+                }
+              const level2 = QualityOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".qolistBull2").style.display='block'
+                console.log(level2);
+                qoListLevels2(level2)
+              
+              }else{
+                document.querySelector(".qolistBull2").style.display='none'
+              }
+              const level3 = QualityOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".qolistBull3").style.display='block'
+                qoListLevels3(level3)
+            
+              }else{
+                document.querySelector(".qolistBull3").style.display='none'
+              }
+              const level4 = QualityOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".qolistBull4").style.display='block'
+          
+                qoListLevels4(level4)
+              
+              }else{
+                document.querySelector(".qolistBull4").style.display='none'
+              }
+      
+     }
 
-  const   EngagementManagement  = response.filter((d) => d.info.areas=="Engagement Management");
-  if (EngagementManagement.length>0) {
-   document.querySelector(".flush-heading34").style.display="block"
-   const level1 = EngagementManagement.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               emListLevels1(level1)
-               document.querySelector(".emlistBull1").style.display='block'
-             }else{
-               document.querySelector(".emlistBull1").style.display='none'
-             }
-           const level2 = EngagementManagement.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".emlistBull2").style.display='block'
-             console.log(level2);
-             emListLevels2(level2)
-           
-           }else{
-             document.querySelector(".emlistBull2").style.display='none'
-           }
-           const level3 = EngagementManagement.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".emlistBull3").style.display='block'
-             emListLevels3(level3)
+       const    DisciplineSpecificSkills    = response.filter((d) => d.info.areas=="Discipline Specific Skills");
+    if (DisciplineSpecificSkills.length>0) {
+      document.querySelector(".flush-heading62").style.display="block"
+      const level1 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 1")
          
-           }else{
-             document.querySelector(".emlistBull3").style.display='none'
-           }
-           const level4 = EngagementManagement.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".emlistBull4").style.display='block'
-       
-             emListLevels4(level4)
-           
-           }else{
-             document.querySelector(".emlistBull4").style.display='none'
-           }
-   
-  }
-  
-  const   InformationManagement  = response.filter((d) => d.info.areas=="Information Management");
-  if (InformationManagement.length>0) {
-   document.querySelector(".flush-heading35").style.display="block"
-   const level1 = InformationManagement.filter((d)=>d.info.levels=="Level 1")
+                if(level1.length >0){
+                  console.log(level1);
+                  dsListLevels1(level1)
+                  document.querySelector(".dslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".dslistBull1").style.display='none'
+                }
+              const level2 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".dslistBull2").style.display='block'
+                console.log(level2);
+                dsListLevels2(level2)
+              
+              }else{
+                document.querySelector(".dslistBull2").style.display='none'
+              }
+              const level3 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".dslistBull3").style.display='block'
+                dsListLevels3(level3)
+            
+              }else{
+                document.querySelector(".dslistBull3").style.display='none'
+              }
+              const level4 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".dslistBull4").style.display='block'
+          
+                dsListLevels4(level4)
+              
+              }else{
+                document.querySelector(".dslistBull4").style.display='none'
+              }
       
-             if(level1.length >0){
-               console.log(level1);
-               imListLevels1(level1)
-               document.querySelector(".imlistBull1").style.display='block'
-             }else{
-               document.querySelector(".imlistBull1").style.display='none'
-             }
-           const level2 = InformationManagement.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".imlistBull2").style.display='block'
-             console.log(level2);
-             imListLevels2(level2)
-           
-           }else{
-             document.querySelector(".imlistBull2").style.display='none'
-           }
-           const level3 = InformationManagement.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".imlistBull3").style.display='block'
-             imListLevels3(level3)
-         
-           }else{
-             document.querySelector(".imlistBull3").style.display='none'
-           }
-           const level4 = InformationManagement.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".imlistBull4").style.display='block'
-       
-             imListLevels4(level4)
-           
-           }else{
-             document.querySelector(".imlistBull4").style.display='none'
-           }
-   
-  }
-  const   ResearchandAnalysis  = response.filter((d) => d.info.areas=="Research and Analysis");
-  if (ResearchandAnalysis.length>0) {
-   document.querySelector(".flush-heading36").style.display="block"
-   const level1 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               raListLevels1(level1)
-               document.querySelector(".ralistBull1").style.display='block'
-             }else{
-               document.querySelector(".ralistBull1").style.display='none'
-             }
-           const level2 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".ralistBull2").style.display='block'
-             console.log(level2);
-             raListLevels2(level2)
-           
-           }else{
-             document.querySelector(".ralistBull2").style.display='none'
-           }
-           const level3 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".ralistBull3").style.display='block'
-             raListLevels3(level3)
-         
-           }else{
-             document.querySelector(".ralistBull3").style.display='none'
-           }
-           const level4 = ResearchandAnalysis.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".ralistBull4").style.display='block'
-       
-             raListLevels4(level4)
-           
-           }else{
-             document.querySelector(".ralistBull4").style.display='none'
-           }
-   
-  }
+     }
 
-  const   AdvocacyNegotiation  = response.filter((d) => d.info.areas=="Advocacy / Negotiation");
-  if (AdvocacyNegotiation.length>0) {
-   document.querySelector(".flush-heading37").style.display="block"
-   const level1 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               anListLevels1(level1)
-               document.querySelector(".anlistBull1").style.display='block'
-             }else{
-               document.querySelector(".anlistBull1").style.display='none'
-             }
-           const level2 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".anlistBull2").style.display='block'
-             console.log(level2);
-             anListLevels2(level2)
-           
-           }else{
-             document.querySelector(".anlistBull2").style.display='none'
-           }
-           const level3 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".anlistBull3").style.display='block'
-             anListLevels3(level3)
+         const    CustomerOrientationandCustomerFocus  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
+    if (CustomerOrientationandCustomerFocus.length>0) {
+      document.querySelector(".flush-heading63").style.display="block"
+      const level1 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
          
-           }else{
-             document.querySelector(".anlistBull3").style.display='none'
-           }
-           const level4 = AdvocacyNegotiation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".anlistBull4").style.display='block'
-       
-             anListLevels4(level4)
-           
-           }else{
-             document.querySelector(".anlistBull4").style.display='none'
-           }
-   
-  }
+                if(level1.length >0){
+                  console.log(level1);
+                  wriListLevels1(level1)
+                  document.querySelector(".wrilistBull1").style.display='block'
+                }else{
+                  document.querySelector(".wrilistBull1").style.display='none'
+                }
+              const level2 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".wrilistBull2").style.display='block'
+                console.log(level2);
+                wriListLevels2(level2)
+              
+              }else{
+                document.querySelector(".wrilistBull2").style.display='none'
+              }
+              const level3 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".wrilistBull3").style.display='block'
+                wriListLevels3(level3)
+            
+              }else{
+                document.querySelector(".wrilistBull3").style.display='none'
+              }
+              const level4 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".wrilistBull4").style.display='block'
+          
+                wriListLevels4(level4)
+              
+              }else{
+                document.querySelector(".wrilistBull4").style.display='none'
+              }
+      
+     }
 
-  const   EthicsandProfessionalism  = response.filter((d) => d.info.areas=="Ethics and Professionalism");
-  if (EthicsandProfessionalism.length>0) {
-   document.querySelector(".flush-heading38").style.display="block"
-   const level1 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               epListLevels1(level1)
-               document.querySelector(".eplistBull1").style.display='block'
-             }else{
-               document.querySelector(".eplistBull1").style.display='none'
-             }
-           const level2 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".eplistBull2").style.display='block'
-             console.log(level2);
-             epListLevels2(level2)
+    //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
+    //  if (ServiceDeliveryOrientation.length>0) {
+    //    document.querySelector(".flush-heading64").style.display="block"
+    //    const level1 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 1")
+          
+    //              if(level1.length >0){
+    //                console.log(level1);
+    //                sdoListLevels1(level1)
+    //                document.querySelector(".sdolistBull1").style.display='block'
+    //              }else{
+    //                document.querySelector(".sdolistBull1").style.display='none'
+    //              }
+    //            const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
+    //            if(level2.length>0){
+    //              document.querySelector(".sdolistBull2").style.display='block'
+    //              console.log(level2);
+    //              sdoListLevels2(level2)
+               
+    //            }else{
+    //              document.querySelector(".sdolistBull2").style.display='none'
+    //            }
+    //            const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
+    //            if(level3.length!==0){
+    //              document.querySelector(".sdolistBull3").style.display='block'
+    //              sdoListLevels3(level3)
+             
+    //            }else{
+    //              document.querySelector(".sdolistBull3").style.display='none'
+    //            }
+    //            const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
+    //            if(level4.length!==0){
+    //              console.log(level4);
+    //              document.querySelector(".sdolistBull4").style.display='block'
            
-           }else{
-             document.querySelector(".eplistBull2").style.display='none'
-           }
-           const level3 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".eplistBull3").style.display='block'
-             epListLevels3(level3)
-         
-           }else{
-             document.querySelector(".eplistBull3").style.display='none'
-           }
-           const level4 = EthicsandProfessionalism.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".eplistBull4").style.display='block'
+    //              sdoListLevels4(level4)
+               
+    //            }else{
+    //              document.querySelector(".sdolistBull4").style.display='none'
+    //            }
        
-             epListLevels4(level4)
-           
-           }else{
-             document.querySelector(".eplistBull4").style.display='none'
-           }
-   
-  }
-  const   StrategicCapability  = response.filter((d) => d.info.areas=="Strategic Capability / Leadership or Direction Setting");
-  if (StrategicCapability.length>0) {
-   document.querySelector(".flush-heading39").style.display="block"
-   const level1 = StrategicCapability.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               scListLevels1(level1)
-               document.querySelector(".sclistBull1").style.display='block'
-             }else{
-               document.querySelector(".sclistBull1").style.display='none'
-             }
-           const level2 = StrategicCapability.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".sclistBull2").style.display='block'
-             console.log(level2);
-             scListLevels2(level2)
-           
-           }else{
-             document.querySelector(".sclistBull2").style.display='none'
-           }
-           const level3 = StrategicCapability.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".sclistBull3").style.display='block'
-             scListLevels3(level3)
-         
-           }else{
-             document.querySelector(".sclistBull3").style.display='none'
-           }
-           const level4 = StrategicCapability.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".sclistBull4").style.display='block'
-       
-             scListLevels4(level4)
-           
-           }else{
-             document.querySelector(".sclistBull4").style.display='none'
-           }
-   
-  }
-
-  const   ChangeReadiness  = response.filter((d) => d.info.areas=="Change Readiness");
-  if (ChangeReadiness.length>0) {
-   document.querySelector(".flush-heading40").style.display="block"
-   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               crListLevels1(level1)
-               document.querySelector(".crlistBull1").style.display='block'
-             }else{
-               document.querySelector(".crlistBull1").style.display='none'
-             }
-           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".crlistBull2").style.display='block'
-             console.log(level2);
-             crListLevels2(level2)
-           
-           }else{
-             document.querySelector(".crlistBull2").style.display='none'
-           }
-           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".crlistBull3").style.display='block'
-             crListLevels3(level3)
-         
-           }else{
-             document.querySelector(".crlistBull3").style.display='none'
-           }
-           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".crlistBull4").style.display='block'
-       
-             crListLevels4(level4)
-           
-           }else{
-             document.querySelector(".crlistBull4").style.display='none'
-           }
-   
-  }
-
-  const   CognitiveAbility  = response.filter((d) => d.info.areas=="Cognitive Ability");
-  if (CognitiveAbility.length>0) {
-   document.querySelector(".flush-heading41").style.display="block"
-   const level1 = CognitiveAbility.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               caListLevels1(level1)
-               document.querySelector(".calistBull1").style.display='block'
-             }else{
-               document.querySelector(".calistBull1").style.display='none'
-             }
-           const level2 = CognitiveAbility.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".calistBull2").style.display='block'
-             console.log(level2);
-             caListLevels2(level2)
-           
-           }else{
-             document.querySelector(".calistBull2").style.display='none'
-           }
-           const level3 = CognitiveAbility.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".calistBull3").style.display='block'
-             caListLevels3(level3)
-         
-           }else{
-             document.querySelector(".calistBull3").style.display='none'
-           }
-           const level4 = CognitiveAbility.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".calistBull4").style.display='block'
-       
-             caListLevels4(level4)
-           
-           }else{
-             document.querySelector(".calistBull4").style.display='none'
-           }
-   
-  }
-
-  const   CustomerOrientation  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
-  if (CustomerOrientation.length>0) {
-   document.querySelector(".flush-heading42").style.display="block"
-   const level1 = CustomerOrientation.filter((d)=>d.info.levels=="Level 1")
-      
-             if(level1.length >0){
-               console.log(level1);
-               ccListLevels1(level1)
-               document.querySelector(".cclistBull1").style.display='block'
-             }else{
-               document.querySelector(".cclistBull1").style.display='none'
-             }
-           const level2 = CustomerOrientation.filter((d)=>d.info.levels=="Level 2")
-           if(level2.length>0){
-             document.querySelector(".cclistBull2").style.display='block'
-             console.log(level2);
-             ccListLevels2(level2)
-           
-           }else{
-             document.querySelector(".cclistBull2").style.display='none'
-           }
-           const level3 = CustomerOrientation.filter((d)=>d.info.levels=="Level 3")
-           if(level3.length!==0){
-             document.querySelector(".cclistBull3").style.display='block'
-             ccListLevels3(level3)
-         
-           }else{
-             document.querySelector(".cclistBull3").style.display='none'
-           }
-           const level4 = CustomerOrientation.filter((d)=>d.info.levels=="Level 4")
-           if(level4.length!==0){
-             console.log(level4);
-             document.querySelector(".cclistBull4").style.display='block'
-       
-             ccListLevels4(level4)
-           
-           }else{
-             document.querySelector(".cclistBull4").style.display='none'
-           }
-   
-  }
+    //   }
 //   // let option =""
 //   // let html =""
 //   // let list = document.querySelector(".listdata124")
@@ -14645,7 +21685,7 @@ function Personal(response) {
   }else{
    document.querySelector(".listBull2").style.display='none'
   }
-  const level3 = written.filter((d)=>d.levels=="Level 3")
+  const level3 = written.filter((d)=>d.info.levels=="Level 3")
   if(level3.length!==0){
    document.querySelector(".listBull3").style.display='block'
    ListLevels3(level3)
@@ -14653,7 +21693,7 @@ function Personal(response) {
   }else{
    document.querySelector(".listBull3").style.display='none'
   }
-  const level4 = written.filter((d)=>d.levels=="Level 4")
+  const level4 = written.filter((d)=>d.info.levels=="Level 4")
   if(level4.length!==0){
    document.querySelector(".listBull4").style.display='block'
   
@@ -15507,7 +22547,7 @@ function Personal(response) {
            }
    
   }
-   const Delivery = response.filter((d) => d.info.areas=="Service Delivery orientation");
+   const Delivery = response.filter((d) => d.info.areas=="Service Delivery Orientation");
    if (Delivery.length>0) {
      document.querySelector(".flush-heading20").style.display="block"
      const level1 = Delivery.filter((d)=>d.info.levels=="Level 1")
@@ -16465,7 +23505,893 @@ function Personal(response) {
            }
    
   }
-//   // let option =""
+
+  const   LitigationManagement  = response.filter((d) => d.info.areas=="Litigation Management");
+  if (LitigationManagement.length>0) {
+   document.querySelector(".flush-heading43").style.display="block"
+   const level1 = LitigationManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               manaListLevels1(level1)
+               document.querySelector(".manalistBull1").style.display='block'
+             }else{
+               document.querySelector(".manalistBull1").style.display='none'
+             }
+           const level2 = LitigationManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".manalistBull2").style.display='block'
+             console.log(level2);
+             manaListLevels2(level2)
+           
+           }else{
+             document.querySelector(".manalistBull2").style.display='none'
+           }
+           const level3 = LitigationManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".manalistBull3").style.display='block'
+             manaListLevels3(level3)
+         
+           }else{
+             document.querySelector(".manalistBull3").style.display='none'
+           }
+           const level4 = LitigationManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".manalistBull4").style.display='block'
+       
+             manaListLevels4(level4)
+           
+           }else{
+             document.querySelector(".manalistBull4").style.display='none'
+           }
+   
+  }
+
+  
+  const   WrittenCommunicationDrafting  = response.filter((d) => d.info.areas=="Written Communication / Drafting");
+  if (WrittenCommunicationDrafting.length>0) {
+   document.querySelector(".flush-heading44").style.display="block"
+   const level1 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               wcdListLevels1(level1)
+               document.querySelector(".wcdlistBull1").style.display='block'
+             }else{
+               document.querySelector(".wcdlistBull1").style.display='none'
+             }
+           const level2 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".wcdlistBull2").style.display='block'
+             console.log(level2);
+             wcdListLevels2(level2)
+           
+           }else{
+             document.querySelector(".wcdlistBull2").style.display='none'
+           }
+           const level3 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".wcdlistBull3").style.display='block'
+             wcdListLevels3(level3)
+         
+           }else{
+             document.querySelector(".wcdlistBull3").style.display='none'
+           }
+           const level4 = WrittenCommunicationDrafting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".wcdlistBull4").style.display='block'
+       
+             wcdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".wcdlistBull4").style.display='none'
+           }
+   
+  }
+
+
+  const   Accounting  = response.filter((d) => d.info.areas=="Accounting");
+  if (Accounting.length>0) {
+   document.querySelector(".flush-heading45").style.display="block"
+   const level1 = Accounting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               accountListLevels1(level1)
+               document.querySelector(".accountlistBull1").style.display='block'
+             }else{
+               document.querySelector(".accountlistBull1").style.display='none'
+             }
+           const level2 = Accounting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".accountlistBull2").style.display='block'
+             console.log(level2);
+             accountListLevels2(level2)
+           
+           }else{
+             document.querySelector(".accountlistBull2").style.display='none'
+           }
+           const level3 = Accounting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".accountlistBull3").style.display='block'
+             accountListLevels3(level3)
+         
+           }else{
+             document.querySelector(".accountlistBull3").style.display='none'
+           }
+           const level4 = Accounting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".accountlistBull4").style.display='block'
+       
+             accountListLevels4(level4)
+           
+           }else{
+             document.querySelector(".accountlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Procurement  = response.filter((d) => d.info.areas=="Procurement");
+  if (Procurement.length>0) {
+   document.querySelector(".flush-heading46").style.display="block"
+   const level1 = Procurement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               procurementListLevels1(level1)
+               document.querySelector(".procurementlistBull1").style.display='block'
+             }else{
+               document.querySelector(".procurementlistBull1").style.display='none'
+             }
+           const level2 = Procurement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".procurementlistBull2").style.display='block'
+             console.log(level2);
+             procurementListLevels2(level2)
+           
+           }else{
+             document.querySelector(".procurementlistBull2").style.display='none'
+           }
+           const level3 = Procurement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".procurementlistBull3").style.display='block'
+             procurementListLevels3(level3)
+         
+           }else{
+             document.querySelector(".procurementlistBull3").style.display='none'
+           }
+           const level4 = Procurement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".procurementlistBull4").style.display='block'
+       
+             procurementListLevels4(level4)
+           
+           }else{
+             document.querySelector(".procurementlistBull4").style.display='none'
+           }
+   
+  }
+
+   const   Budgeting = response.filter((d) => d.info.areas=="Budgeting");
+  if (Budgeting.length>0) {
+   document.querySelector(".flush-heading47").style.display="block"
+   const level1 = Budgeting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               budgetListLevels1(level1)
+               document.querySelector(".budgetlistBull1").style.display='block'
+             }else{
+               document.querySelector(".budgetlistBull1").style.display='none'
+             }
+           const level2 = Budgeting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".budgetlistBull2").style.display='block'
+             console.log(level2);
+             budgetListLevels2(level2)
+           
+           }else{
+             document.querySelector(".budgetlistBull2").style.display='none'
+           }
+           const level3 = Budgeting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".budgetlistBull3").style.display='block'
+             budgetListLevels3(level3)
+         
+           }else{
+             document.querySelector(".budgetlistBull3").style.display='none'
+           }
+           const level4 = Budgeting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".budgetlistBull4").style.display='block'
+       
+             budgetListLevels4(level4)
+           
+           }else{
+             document.querySelector(".budgetlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialManagement = response.filter((d) => d.info.areas=="Financial Management");
+  if (FinancialManagement.length>0) {
+   document.querySelector(".flush-heading48").style.display="block"
+   const level1 = FinancialManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               financeListLevels1(level1)
+               document.querySelector(".financelistBull1").style.display='block'
+             }else{
+               document.querySelector(".financelistBull1").style.display='none'
+             }
+           const level2 = FinancialManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".financelistBull2").style.display='block'
+             console.log(level2);
+             financeListLevels2(level2)
+           
+           }else{
+             document.querySelector(".financelistBull2").style.display='none'
+           }
+           const level3 = FinancialManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".financelistBull3").style.display='block'
+             financeListLevels3(level3)
+         
+           }else{
+             document.querySelector(".financelistBull3").style.display='none'
+           }
+           const level4 = FinancialManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".financelistBull4").style.display='block'
+       
+             financeListLevels4(level4)
+           
+           }else{
+             document.querySelector(".financelistBull4").style.display='none'
+           }
+   
+  }
+
+  const   Costing = response.filter((d) => d.info.areas=="Costing");
+  if (Costing.length>0) {
+   document.querySelector(".flush-heading49").style.display="block"
+   const level1 = Costing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               costListLevels1(level1)
+               document.querySelector(".costlistBull1").style.display='block'
+             }else{
+               document.querySelector(".costlistBull1").style.display='none'
+             }
+           const level2 = Costing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".costlistBull2").style.display='block'
+             console.log(level2);
+             costListLevels2(level2)
+           
+           }else{
+             document.querySelector(".costlistBull2").style.display='none'
+           }
+           const level3 = Costing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".costlistBull3").style.display='block'
+             costListLevels3(level3)
+         
+           }else{
+             document.querySelector(".costlistBull3").style.display='none'
+           }
+           const level4 = Costing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".costlistBull4").style.display='block'
+       
+             costListLevels4(level4)
+           
+           }else{
+             document.querySelector(".costlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialReporting = response.filter((d) => d.info.areas=="Financial Reporting");
+  if (FinancialReporting.length>0) {
+   document.querySelector(".flush-heading50").style.display="block"
+   const level1 = FinancialReporting.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               freportListLevels1(level1)
+               document.querySelector(".freportlistBull1").style.display='block'
+             }else{
+               document.querySelector(".freportlistBull1").style.display='none'
+             }
+           const level2 = FinancialReporting.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".freportlistBull2").style.display='block'
+             console.log(level2);
+             freportListLevels2(level2)
+           
+           }else{
+             document.querySelector(".freportlistBull2").style.display='none'
+           }
+           const level3 = FinancialReporting.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".freportlistBull3").style.display='block'
+             freportListLevels3(level3)
+         
+           }else{
+             document.querySelector(".freportlistBull3").style.display='none'
+           }
+           const level4 = FinancialReporting.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".freportlistBull4").style.display='block'
+       
+             freportListLevels4(level4)
+           
+           }else{
+             document.querySelector(".freportlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   FinancialProcessManagement = response.filter((d) => d.info.areas=="Financial Process Management");
+  if (FinancialProcessManagement.length>0) {
+   document.querySelector(".flush-heading51").style.display="block"
+   const level1 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               fmListLevels1(level1)
+               document.querySelector(".fmlistBull1").style.display='block'
+             }else{
+               document.querySelector(".fmlistBull1").style.display='none'
+             }
+           const level2 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".fmlistBull2").style.display='block'
+             console.log(level2);
+             fmListLevels2(level2)
+           
+           }else{
+             document.querySelector(".fmlistBull2").style.display='none'
+           }
+           const level3 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".fmlistBull3").style.display='block'
+             fmListLevels3(level3)
+         
+           }else{
+             document.querySelector(".fmlistBull3").style.display='none'
+           }
+           const level4 = FinancialProcessManagement.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".fmlistBull4").style.display='block'
+       
+             fmListLevels4(level4)
+           
+           }else{
+             document.querySelector(".fmlistBull4").style.display='none'
+           }
+   
+  }
+
+  const   ProblemSolving = response.filter((d) => d.info.areas=="Problem Solving");
+  if (ProblemSolving.length>0) {
+   document.querySelector(".flush-heading52").style.display="block"
+   const level1 = ProblemSolving.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               spListLevels1(level1)
+               document.querySelector(".splistBull1").style.display='block'
+             }else{
+               document.querySelector(".splistBull1").style.display='none'
+             }
+           const level2 = ProblemSolving.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".splistBull2").style.display='block'
+             console.log(level2);
+             spListLevels2(level2)
+           
+           }else{
+             document.querySelector(".splistBull2").style.display='none'
+           }
+           const level3 = ProblemSolving.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".splistBull3").style.display='block'
+             spListLevels3(level3)
+         
+           }else{
+             document.querySelector(".splistBull3").style.display='none'
+           }
+           const level4 = ProblemSolving.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".splistBull4").style.display='block'
+       
+             spListLevels4(level4)
+           
+           }else{
+             document.querySelector(".splistBull4").style.display='none'
+           }
+   
+  }
+
+  const   AttentiontoDetail = response.filter((d) => d.info.areas=="Attention to Detail");
+  if (AttentiontoDetail.length>0) {
+   document.querySelector(".flush-heading53").style.display="block"
+   const level1 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               atdListLevels1(level1)
+               document.querySelector(".atdlistBull1").style.display='block'
+             }else{
+               document.querySelector(".atdlistBull1").style.display='none'
+             }
+           const level2 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".atdlistBull2").style.display='block'
+             console.log(level2);
+             atdListLevels2(level2)
+           
+           }else{
+             document.querySelector(".atdlistBull2").style.display='none'
+           }
+           const level3 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".atdlistBull3").style.display='block'
+             atdListLevels3(level3)
+         
+           }else{
+             document.querySelector(".atdlistBull3").style.display='none'
+           }
+           const level4 = AttentiontoDetail.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".atdlistBull4").style.display='block'
+       
+             atdListLevels4(level4)
+           
+           }else{
+             document.querySelector(".atdlistBull4").style.display='none'
+           }
+   
+  }
+
+  
+  const   Influencing = response.filter((d) => d.info.areas=="Influencing");
+  
+  if (Influencing.length>0) {
+   document.querySelector(".flush-heading54").style.display="block"
+   const level1 = Influencing.filter((d)=>d.info.levels=="Level 1")
+      
+             if(level1.length >0){
+               console.log(level1);
+               intflListLevels1(level1)
+               document.querySelector(".intfllistBull1").style.display='block'
+             }else{
+               document.querySelector(".intfllistBull1").style.display='none'
+             }
+           const level2 = Influencing.filter((d)=>d.info.levels=="Level 2")
+           if(level2.length>0){
+             document.querySelector(".intfllistBull2").style.display='block'
+             console.log(level2);
+             intflListLevels2(level2)
+           
+           }else{
+             document.querySelector(".intfllistBull2").style.display='none'
+           }
+           const level3 = Influencing.filter((d)=>d.info.levels=="Level 3")
+           if(level3.length!==0){
+             document.querySelector(".intfllistBull3").style.display='block'
+             intflListLevels3(level3)
+         
+           }else{
+             document.querySelector(".intfllistBull3").style.display='none'
+           }
+           const level4 = Influencing.filter((d)=>d.info.levels=="Level 4")
+           if(level4.length!==0){
+             console.log(level4);
+             document.querySelector(".intfllistBull4").style.display='block'
+       
+             intflListLevels4(level4)
+           
+           }else{
+             document.querySelector(".intfllistBull4").style.display='none'
+           }
+   
+  }
+
+  const   BusinessProcess = response.filter((d) => d.info.areas=="Business Process");
+  if (BusinessProcess.length>0) {
+    document.querySelector(".flush-heading55").style.display="block"
+    const level1 = BusinessProcess.filter((d)=>d.info.levels=="Level 1")
+       
+              if(level1.length >0){
+                console.log(level1);
+                bppListLevels1(level1)
+                document.querySelector(".bpplistBull1").style.display='block'
+              }else{
+                document.querySelector(".bpplistBull1").style.display='none'
+              }
+            const level2 = BusinessProcess.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".bpplistBull2").style.display='block'
+              console.log(level2);
+              bppListLevels2(level2)
+            
+            }else{
+              document.querySelector(".bpplistBull2").style.display='none'
+            }
+            const level3 = BusinessProcess.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".bpplistBull3").style.display='block'
+              bppListLevels3(level3)
+          
+            }else{
+              document.querySelector(".bpplistBull3").style.display='none'
+            }
+            const level4 = BusinessProcess.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".bpplistBull4").style.display='block'
+        
+              bppListLevels4(level4)
+            
+            }else{
+              document.querySelector(".bpplistBull4").style.display='none'
+            }
+    
+   }
+
+   const   UseofTechnology = response.filter((d) => d.info.areas=="Use of Technology");
+  if (UseofTechnology.length>0) {
+    document.querySelector(".flush-heading56").style.display="block"
+    const level1 = UseofTechnology.filter((d)=>d.info.levels=="Level 1")
+       
+              if(level1.length >0){
+                console.log(level1);
+                useListLevels1(level1)
+                document.querySelector(".uselistBull1").style.display='block'
+              }else{
+                document.querySelector(".uselistBull1").style.display='none'
+              }
+            const level2 = UseofTechnology.filter((d)=>d.info.levels=="Level 2")
+            if(level2.length>0){
+              document.querySelector(".uselistBull2").style.display='block'
+              console.log(level2);
+              useListLevels2(level2)
+            
+            }else{
+              document.querySelector(".uselistBull2").style.display='none'
+            }
+            const level3 = UseofTechnology.filter((d)=>d.info.levels=="Level 3")
+            if(level3.length!==0){
+              document.querySelector(".uselistBull3").style.display='block'
+              useListLevels3(level3)
+          
+            }else{
+              document.querySelector(".uselistBull3").style.display='none'
+            }
+            const level4 = UseofTechnology.filter((d)=>d.info.levels=="Level 4")
+            if(level4.length!==0){
+              console.log(level4);
+              document.querySelector(".uselistBull4").style.display='block'
+        
+              useListLevels4(level4)
+            
+            }else{
+              document.querySelector(".uselistBull4").style.display='none'
+            }
+    
+   }
+
+   const   DataProcessingAnalysis   = response.filter((d) => d.info.areas=="Data Processing & Analysis");
+   if (DataProcessingAnalysis.length>0) {
+     document.querySelector(".flush-heading57").style.display="block"
+     const level1 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 dpaListLevels1(level1)
+                 document.querySelector(".dpalistBull1").style.display='block'
+               }else{
+                 document.querySelector(".dpalistBull1").style.display='none'
+               }
+             const level2 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".dpalistBull2").style.display='block'
+               console.log(level2);
+               dpaListLevels2(level2)
+             
+             }else{
+               document.querySelector(".dpalistBull2").style.display='none'
+             }
+             const level3 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".dpalistBull3").style.display='block'
+               dpaListLevels3(level3)
+           
+             }else{
+               document.querySelector(".dpalistBull3").style.display='none'
+             }
+             const level4 = DataProcessingAnalysis.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".dpalistBull4").style.display='block'
+         
+               dpaListLevels4(level4)
+             
+             }else{
+               document.querySelector(".dpalistBull4").style.display='none'
+             }
+     
+    }
+
+    const   ClientOrientationandCustomerFocus    = response.filter((d) => d.info.areas=="Client Orientation and Customer Focus");
+   if (ClientOrientationandCustomerFocus.length>0) {
+     document.querySelector(".flush-heading58").style.display="block"
+     const level1 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
+        
+               if(level1.length >0){
+                 console.log(level1);
+                 coListLevels1(level1)
+                 document.querySelector(".colistBull1").style.display='block'
+               }else{
+                 document.querySelector(".colistBull1").style.display='none'
+               }
+             const level2 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
+             if(level2.length>0){
+               document.querySelector(".colistBull2").style.display='block'
+               console.log(level2);
+               coListLevels2(level2)
+             
+             }else{
+               document.querySelector(".colistBull2").style.display='none'
+             }
+             const level3 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
+             if(level3.length!==0){
+               document.querySelector(".colistBull3").style.display='block'
+               coListLevels3(level3)
+           
+             }else{
+               document.querySelector(".colistBull3").style.display='none'
+             }
+             const level4 = ClientOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
+             if(level4.length!==0){
+               console.log(level4);
+               document.querySelector(".colistBull4").style.display='block'
+         
+               coListLevels4(level4)
+             
+             }else{
+               document.querySelector(".colistBull4").style.display='none'
+             }
+     
+    }
+
+    const    ActionOrientation    = response.filter((d) => d.info.areas=="Action Orientation");
+    if (ActionOrientation.length>0) {
+      document.querySelector(".flush-heading59").style.display="block"
+      const level1 = ActionOrientation.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  asListLevels1(level1)
+                  document.querySelector(".aslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".aslistBull1").style.display='none'
+                }
+              const level2 = ActionOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".aslistBull2").style.display='block'
+                console.log(level2);
+                asListLevels2(level2)
+              
+              }else{
+                document.querySelector(".aslistBull2").style.display='none'
+              }
+              const level3 = ActionOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".aslistBull3").style.display='block'
+                asListLevels3(level3)
+            
+              }else{
+                document.querySelector(".aslistBull3").style.display='none'
+              }
+              const level4 = ActionOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".aslistBull4").style.display='block'
+          
+                asListLevels4(level4)
+              
+              }else{
+                document.querySelector(".aslistBull4").style.display='none'
+              }
+      
+     }
+
+     const    QualityOrientation    = response.filter((d) => d.info.areas=="Quality Orientation");
+    if (QualityOrientation.length>0) {
+      document.querySelector(".flush-heading60").style.display="block"
+      const level1 = QualityOrientation.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  qoListLevels1(level1)
+                  document.querySelector(".qolistBull1").style.display='block'
+                }else{
+                  document.querySelector(".qolistBull1").style.display='none'
+                }
+              const level2 = QualityOrientation.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".qolistBull2").style.display='block'
+                console.log(level2);
+                qoListLevels2(level2)
+              
+              }else{
+                document.querySelector(".qolistBull2").style.display='none'
+              }
+              const level3 = QualityOrientation.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".qolistBull3").style.display='block'
+                qoListLevels3(level3)
+            
+              }else{
+                document.querySelector(".qolistBull3").style.display='none'
+              }
+              const level4 = QualityOrientation.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".qolistBull4").style.display='block'
+          
+                qoListLevels4(level4)
+              
+              }else{
+                document.querySelector(".qolistBull4").style.display='none'
+              }
+      
+     }
+
+       const    DisciplineSpecificSkills    = response.filter((d) => d.info.areas=="Discipline Specific Skills");
+    if (DisciplineSpecificSkills.length>0) {
+      document.querySelector(".flush-heading62").style.display="block"
+      const level1 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  dsListLevels1(level1)
+                  document.querySelector(".dslistBull1").style.display='block'
+                }else{
+                  document.querySelector(".dslistBull1").style.display='none'
+                }
+              const level2 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".dslistBull2").style.display='block'
+                console.log(level2);
+                dsListLevels2(level2)
+              
+              }else{
+                document.querySelector(".dslistBull2").style.display='none'
+              }
+              const level3 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".dslistBull3").style.display='block'
+                dsListLevels3(level3)
+            
+              }else{
+                document.querySelector(".dslistBull3").style.display='none'
+              }
+              const level4 = DisciplineSpecificSkills.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".dslistBull4").style.display='block'
+          
+                dsListLevels4(level4)
+              
+              }else{
+                document.querySelector(".dslistBull4").style.display='none'
+              }
+      
+     }
+
+         const    CustomerOrientationandCustomerFocus  = response.filter((d) => d.info.areas=="Customer Orientation and Customer Focus");
+    if (CustomerOrientationandCustomerFocus.length>0) {
+      document.querySelector(".flush-heading63").style.display="block"
+      const level1 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 1")
+         
+                if(level1.length >0){
+                  console.log(level1);
+                  wriListLevels1(level1)
+                  document.querySelector(".wrilistBull1").style.display='block'
+                }else{
+                  document.querySelector(".wrilistBull1").style.display='none'
+                }
+              const level2 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 2")
+              if(level2.length>0){
+                document.querySelector(".wrilistBull2").style.display='block'
+                console.log(level2);
+                wriListLevels2(level2)
+              
+              }else{
+                document.querySelector(".wrilistBull2").style.display='none'
+              }
+              const level3 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 3")
+              if(level3.length!==0){
+                document.querySelector(".wrilistBull3").style.display='block'
+                wriListLevels3(level3)
+            
+              }else{
+                document.querySelector(".wrilistBull3").style.display='none'
+              }
+              const level4 = CustomerOrientationandCustomerFocus.filter((d)=>d.info.levels=="Level 4")
+              if(level4.length!==0){
+                console.log(level4);
+                document.querySelector(".wrilistBull4").style.display='block'
+          
+                wriListLevels4(level4)
+              
+              }else{
+                document.querySelector(".wrilistBull4").style.display='none'
+              }
+      
+     }
+
+//      const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
+//      if (ServiceDeliveryOrientation.length>0) {
+//        document.querySelector(".flush-heading64").style.display="block"
+//        const level1 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 1")
+          
+//                  if(level1.length >0){
+//                    console.log(level1);
+//                    sdoListLevels1(level1)
+//                    document.querySelector(".sdolistBull1").style.display='block'
+//                  }else{
+//                    document.querySelector(".sdolistBull1").style.display='none'
+//                  }
+//                const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
+//                if(level2.length>0){
+//                  document.querySelector(".sdolistBull2").style.display='block'
+//                  console.log(level2);
+//                  sdoListLevels2(level2)
+               
+//                }else{
+//                  document.querySelector(".sdolistBull2").style.display='none'
+//                }
+//                const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
+//                if(level3.length!==0){
+//                  document.querySelector(".sdolistBull3").style.display='block'
+//                  sdoListLevels3(level3)
+             
+//                }else{
+//                  document.querySelector(".sdolistBull3").style.display='none'
+//                }
+//                const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
+//                if(level4.length!==0){
+//                  console.log(level4);
+//                  document.querySelector(".sdolistBull4").style.display='block'
+           
+//                  sdoListLevels4(level4)
+               
+//                }else{
+//                  document.querySelector(".sdolistBull4").style.display='none'
+//                }
+       
+//       }
+// //   // let option =""
 //   // let html =""
 //   // let list = document.querySelector(".listdata124")
  
@@ -16547,8 +24473,36 @@ function Position() {
       document.querySelector(".flush-heading30").style.display="none"
       document.querySelector(".flush-heading31").style.display="none"
       document.querySelector(".flush-heading32").style.display="none"
-     
-
+      document.querySelector(".flush-heading33").style.display="none"
+      document.querySelector(".flush-heading34").style.display="none"
+      document.querySelector(".flush-heading35").style.display="none"
+      document.querySelector(".flush-heading36").style.display="none"
+      document.querySelector(".flush-heading37").style.display="none"
+      document.querySelector(".flush-heading38").style.display="none"
+      document.querySelector(".flush-heading39").style.display="none"
+      document.querySelector(".flush-heading40").style.display="none"
+      document.querySelector(".flush-heading41").style.display="none"
+      document.querySelector(".flush-heading42").style.display="none"
+      document.querySelector(".flush-heading43").style.display="none"
+      document.querySelector(".flush-heading44").style.display="none"
+      document.querySelector(".flush-heading45").style.display="none"
+      document.querySelector(".flush-heading46").style.display="none"
+      document.querySelector(".flush-heading47").style.display="none"
+      document.querySelector(".flush-heading48").style.display="none"
+      document.querySelector(".flush-heading49").style.display="none"
+      document.querySelector(".flush-heading50").style.display="none"
+      document.querySelector(".flush-heading51").style.display="none"
+      document.querySelector(".flush-heading52").style.display="none"
+      document.querySelector(".flush-heading53").style.display="none"
+      document.querySelector(".flush-heading54").style.display="none"
+      document.querySelector(".flush-heading55").style.display="none"
+      document.querySelector(".flush-heading56").style.display="none"
+      document.querySelector(".flush-heading57").style.display="none"
+      document.querySelector(".flush-heading58").style.display="none"
+      document.querySelector(".flush-heading59").style.display="none"
+      document.querySelector(".flush-heading60").style.display="none"
+      document.querySelector(".flush-heading61").style.display="none"
+      document.querySelector(".flush-heading62").style.display="none"
       console.log(response.data);
      
     
