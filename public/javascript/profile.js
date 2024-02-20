@@ -10636,6 +10636,314 @@ function mwListLevels4(result) {
 
 
 
+function wpsListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".wpslistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function wpsListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".wpslistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function wpsListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".wpslistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function wpsListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".wpslistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
+function fwmListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".fwmlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+}
+function fwmListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".fwmlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+}
+
+function fwmListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".fwmlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+function fwmListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".fwmlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+}
+
+
 function Professional(response) {
   console.log(response);
  
@@ -13367,6 +13675,131 @@ function Professional(response) {
        
       }
 
+      const WorkPlaceSafety = response.filter((d) => d.info.areas=="Work Place Safety");
+      if (WorkPlaceSafety.length>0) {
+        document.querySelector(".flush-heading65").style.display="block"
+        const level1 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 1")
+           
+                  if(level1.length >0){
+                    console.log(level1);
+                    wpsListLevels1(level1)
+                    document.querySelector(".wpslistBull1").style.display='block'
+                  }else{
+                    document.querySelector(".wpslistBull1").style.display='none'
+                  }
+                const level2 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 2")
+                if(level2.length>0){
+                  document.querySelector(".wpslistBull2").style.display='block'
+                  console.log(level2);
+                  wpsListLevels2(level2)
+                
+                }else{
+                  document.querySelector(".wpslistBull2").style.display='none'
+                }
+                const level3 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 3")
+                if(level3.length!==0){
+                  document.querySelector(".wpslistBull3").style.display='block'
+                  wpsListLevels3(level3)
+              
+                }else{
+                  document.querySelector(".wpslistBull3").style.display='none'
+                }
+                const level4 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 4")
+                if(level4.length!==0){
+                  console.log(level4);
+                  document.querySelector(".wpslistBull4").style.display='block'
+            
+                  wpsListLevels4(level4)
+                
+                }else{
+                  document.querySelector(".wpslistBull4").style.display='none'
+                }
+        
+       }
+ 
+       const FacilitySpecificSkills = response.filter((d) => d.info.areas=="Facility Specific Skills");
+       if (FacilitySpecificSkills.length>0) {
+         document.querySelector(".flush-heading66").style.display="block"
+         const level1 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     fwmListLevels1(level1)
+                     document.querySelector(".fwmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".fwmlistBull1").style.display='none'
+                   }
+                 const level2 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".fwmlistBull2").style.display='block'
+                   console.log(level2);
+                   fwmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull2").style.display='none'
+                 }
+                 const level3 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".fwmlistBull3").style.display='block'
+                   fwmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".fwmlistBull3").style.display='none'
+                 }
+                 const level4 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".fwmlistBull4").style.display='block'
+             
+                   fwmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
+        // if (ChangeReadiness.length>0) {
+        //   document.querySelector(".flush-heading66").style.display="block"
+        //   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
+             
+        //             if(level1.length >0){
+        //               console.log(level1);
+        //               cuListLevels1(level1)
+        //               document.querySelector(".culistBull1").style.display='block'
+        //             }else{
+        //               document.querySelector(".culistBull1").style.display='none'
+        //             }
+        //           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
+        //           if(level2.length>0){
+        //             document.querySelector(".culistBull2").style.display='block'
+        //             console.log(level2);
+        //             cuListLevels2(level2)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull2").style.display='none'
+        //           }
+        //           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
+        //           if(level3.length!==0){
+        //             document.querySelector(".fwmlistBull3").style.display='block'
+        //             fwmListLevels3(level3)
+                
+        //           }else{
+        //             document.querySelector(".fwmlistBull3").style.display='none'
+        //           }
+        //           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
+        //           if(level4.length!==0){
+        //             console.log(level4);
+        //             document.querySelector(".fwmlistBull4").style.display='block'
+              
+        //             fwmListLevels4(level4)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull4").style.display='none'
+        //           }
+          
+        //  }
     //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
     //  console.log(ServiceDeliveryOrientation);
     //  if (ServiceDeliveryOrientation.length>0) {
@@ -16113,7 +16546,174 @@ function Functional(response) {
       
      }
 
-    //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientation");
+     const MangingWork  = response.filter((d) => d.info.areas=="Managing Work");
+     if (MangingWork.length>0) {
+       document.querySelector(".flush-heading64").style.display="block"
+       const level1 = MangingWork.filter((d)=>d.info.levels=="Level 1")
+          
+                 if(level1.length >0){
+                   console.log(level1);
+                   mwListLevels1(level1)
+                   document.querySelector(".mwlistBull1").style.display='block'
+                 }else{
+                   document.querySelector(".mwlistBull1").style.display='none'
+                 }
+               const level2 = MangingWork.filter((d)=>d.info.levels=="Level 2")
+               if(level2.length>0){
+                 document.querySelector(".mwlistBull2").style.display='block'
+                 console.log(level2);
+                 mwListLevels2(level2)
+               
+               }else{
+                 document.querySelector(".mwlistBull2").style.display='none'
+               }
+               const level3 = MangingWork.filter((d)=>d.info.levels=="Level 3")
+               if(level3.length!==0){
+                 document.querySelector(".mwlistBull3").style.display='block'
+                 mwListLevels3(level3)
+             
+               }else{
+                 document.querySelector(".mwlistBull3").style.display='none'
+               }
+               const level4 = MangingWork.filter((d)=>d.info.levels=="Level 4")
+               if(level4.length!==0){
+                 console.log(level4);
+                 document.querySelector(".mwlistBull4").style.display='block'
+           
+                 mwListLevels4(level4)
+               
+               }else{
+                 document.querySelector(".mwlistBull4").style.display='none'
+               }
+       
+      }
+
+      const WorkPlaceSafety = response.filter((d) => d.info.areas=="Work Place Safety");
+      if (WorkPlaceSafety.length>0) {
+        document.querySelector(".flush-heading65").style.display="block"
+        const level1 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 1")
+           
+                  if(level1.length >0){
+                    console.log(level1);
+                    wpsListLevels1(level1)
+                    document.querySelector(".wpslistBull1").style.display='block'
+                  }else{
+                    document.querySelector(".wpslistBull1").style.display='none'
+                  }
+                const level2 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 2")
+                if(level2.length>0){
+                  document.querySelector(".wpslistBull2").style.display='block'
+                  console.log(level2);
+                  wpsListLevels2(level2)
+                
+                }else{
+                  document.querySelector(".wpslistBull2").style.display='none'
+                }
+                const level3 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 3")
+                if(level3.length!==0){
+                  document.querySelector(".wpslistBull3").style.display='block'
+                  wpsListLevels3(level3)
+              
+                }else{
+                  document.querySelector(".wpslistBull3").style.display='none'
+                }
+                const level4 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 4")
+                if(level4.length!==0){
+                  console.log(level4);
+                  document.querySelector(".wpslistBull4").style.display='block'
+            
+                  wpsListLevels4(level4)
+                
+                }else{
+                  document.querySelector(".wpslistBull4").style.display='none'
+                }
+        
+       }
+ 
+       const FacilitySpecificSkills = response.filter((d) => d.info.areas=="Facility Specific Skills");
+       if (FacilitySpecificSkills.length>0) {
+         document.querySelector(".flush-heading66").style.display="block"
+         const level1 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     fwmListLevels1(level1)
+                     document.querySelector(".fwmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".fwmlistBull1").style.display='none'
+                   }
+                 const level2 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".fwmlistBull2").style.display='block'
+                   console.log(level2);
+                   fwmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull2").style.display='none'
+                 }
+                 const level3 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".fwmlistBull3").style.display='block'
+                   fwmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".fwmlistBull3").style.display='none'
+                 }
+                 const level4 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".fwmlistBull4").style.display='block'
+             
+                   fwmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
+        // if (ChangeReadiness.length>0) {
+        //   document.querySelector(".flush-heading66").style.display="block"
+        //   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
+             
+        //             if(level1.length >0){
+        //               console.log(level1);
+        //               cuListLevels1(level1)
+        //               document.querySelector(".culistBull1").style.display='block'
+        //             }else{
+        //               document.querySelector(".culistBull1").style.display='none'
+        //             }
+        //           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
+        //           if(level2.length>0){
+        //             document.querySelector(".culistBull2").style.display='block'
+        //             console.log(level2);
+        //             cuListLevels2(level2)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull2").style.display='none'
+        //           }
+        //           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
+        //           if(level3.length!==0){
+        //             document.querySelector(".fwmlistBull3").style.display='block'
+        //             fwmListLevels3(level3)
+                
+        //           }else{
+        //             document.querySelector(".fwmlistBull3").style.display='none'
+        //           }
+        //           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
+        //           if(level4.length!==0){
+        //             console.log(level4);
+        //             document.querySelector(".fwmlistBull4").style.display='block'
+              
+        //             fwmListLevels4(level4)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull4").style.display='none'
+        //           }
+          
+        //  }
+    //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
     //  console.log(ServiceDeliveryOrientation);
     //  if (ServiceDeliveryOrientation.length>0) {
     //    document.querySelector(".flush-heading64").style.display="block"
@@ -16121,37 +16721,37 @@ function Functional(response) {
           
     //              if(level1.length >0){
     //                console.log(level1);
-    //                sdoListLevels1(level1)
-    //                document.querySelector(".sdolistBull1").style.display='block'
+    //                sdListLevels1(level1)
+    //                document.querySelector(".sdlistBull1").style.display='block'
     //              }else{
-    //                document.querySelector(".sdolistBull1").style.display='none'
+    //                document.querySelector(".sdlistBull1").style.display='none'
     //              }
     //            const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
     //            if(level2.length>0){
-    //              document.querySelector(".sdolistBull2").style.display='block'
+    //              document.querySelector(".sdlistBull2").style.display='block'
     //              console.log(level2);
-    //              sdoListLevels2(level2)
+    //              sdListLevels2(level2)
                
     //            }else{
-    //              document.querySelector(".sdolistBull2").style.display='none'
+    //              document.querySelector(".sdlistBull2").style.display='none'
     //            }
     //            const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
     //            if(level3.length!==0){
-    //              document.querySelector(".sdolistBull3").style.display='block'
-    //              sdoListLevels3(level3)
+    //              document.querySelector(".sdlistBull3").style.display='block'
+    //              sdListLevels3(level3)
              
     //            }else{
-    //              document.querySelector(".sdolistBull3").style.display='none'
+    //              document.querySelector(".sdlistBull3").style.display='none'
     //            }
     //            const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
     //            if(level4.length!==0){
     //              console.log(level4);
-    //              document.querySelector(".sdolistBull4").style.display='block'
+    //              document.querySelector(".sdlistBull4").style.display='block'
            
-    //              sdoListLevels4(level4)
+    //              sdListLevels4(level4)
                
     //            }else{
-    //              document.querySelector(".sdolistBull4").style.display='none'
+    //              document.querySelector(".sdlistBull4").style.display='none'
     //            }
        
     //   }
@@ -18860,44 +19460,212 @@ function PublicManagement(response) {
       
      }
 
+     const MangingWork  = response.filter((d) => d.info.areas=="Managing Work");
+     if (MangingWork.length>0) {
+       document.querySelector(".flush-heading64").style.display="block"
+       const level1 = MangingWork.filter((d)=>d.info.levels=="Level 1")
+          
+                 if(level1.length >0){
+                   console.log(level1);
+                   mwListLevels1(level1)
+                   document.querySelector(".mwlistBull1").style.display='block'
+                 }else{
+                   document.querySelector(".mwlistBull1").style.display='none'
+                 }
+               const level2 = MangingWork.filter((d)=>d.info.levels=="Level 2")
+               if(level2.length>0){
+                 document.querySelector(".mwlistBull2").style.display='block'
+                 console.log(level2);
+                 mwListLevels2(level2)
+               
+               }else{
+                 document.querySelector(".mwlistBull2").style.display='none'
+               }
+               const level3 = MangingWork.filter((d)=>d.info.levels=="Level 3")
+               if(level3.length!==0){
+                 document.querySelector(".mwlistBull3").style.display='block'
+                 mwListLevels3(level3)
+             
+               }else{
+                 document.querySelector(".mwlistBull3").style.display='none'
+               }
+               const level4 = MangingWork.filter((d)=>d.info.levels=="Level 4")
+               if(level4.length!==0){
+                 console.log(level4);
+                 document.querySelector(".mwlistBull4").style.display='block'
+           
+                 mwListLevels4(level4)
+               
+               }else{
+                 document.querySelector(".mwlistBull4").style.display='none'
+               }
+       
+      }
+
+      const WorkPlaceSafety = response.filter((d) => d.info.areas=="Work Place Safety");
+      if (WorkPlaceSafety.length>0) {
+        document.querySelector(".flush-heading65").style.display="block"
+        const level1 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 1")
+           
+                  if(level1.length >0){
+                    console.log(level1);
+                    wpsListLevels1(level1)
+                    document.querySelector(".wpslistBull1").style.display='block'
+                  }else{
+                    document.querySelector(".wpslistBull1").style.display='none'
+                  }
+                const level2 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 2")
+                if(level2.length>0){
+                  document.querySelector(".wpslistBull2").style.display='block'
+                  console.log(level2);
+                  wpsListLevels2(level2)
+                
+                }else{
+                  document.querySelector(".wpslistBull2").style.display='none'
+                }
+                const level3 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 3")
+                if(level3.length!==0){
+                  document.querySelector(".wpslistBull3").style.display='block'
+                  wpsListLevels3(level3)
+              
+                }else{
+                  document.querySelector(".wpslistBull3").style.display='none'
+                }
+                const level4 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 4")
+                if(level4.length!==0){
+                  console.log(level4);
+                  document.querySelector(".wpslistBull4").style.display='block'
+            
+                  wpsListLevels4(level4)
+                
+                }else{
+                  document.querySelector(".wpslistBull4").style.display='none'
+                }
+        
+       }
+ 
+       const FacilitySpecificSkills = response.filter((d) => d.info.areas=="Facility Specific Skills");
+       if (FacilitySpecificSkills.length>0) {
+         document.querySelector(".flush-heading66").style.display="block"
+         const level1 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     fwmListLevels1(level1)
+                     document.querySelector(".fwmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".fwmlistBull1").style.display='none'
+                   }
+                 const level2 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".fwmlistBull2").style.display='block'
+                   console.log(level2);
+                   fwmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull2").style.display='none'
+                 }
+                 const level3 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".fwmlistBull3").style.display='block'
+                   fwmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".fwmlistBull3").style.display='none'
+                 }
+                 const level4 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".fwmlistBull4").style.display='block'
+             
+                   fwmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
+        // if (ChangeReadiness.length>0) {
+        //   document.querySelector(".flush-heading66").style.display="block"
+        //   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
+             
+        //             if(level1.length >0){
+        //               console.log(level1);
+        //               cuListLevels1(level1)
+        //               document.querySelector(".culistBull1").style.display='block'
+        //             }else{
+        //               document.querySelector(".culistBull1").style.display='none'
+        //             }
+        //           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
+        //           if(level2.length>0){
+        //             document.querySelector(".culistBull2").style.display='block'
+        //             console.log(level2);
+        //             cuListLevels2(level2)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull2").style.display='none'
+        //           }
+        //           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
+        //           if(level3.length!==0){
+        //             document.querySelector(".fwmlistBull3").style.display='block'
+        //             fwmListLevels3(level3)
+                
+        //           }else{
+        //             document.querySelector(".fwmlistBull3").style.display='none'
+        //           }
+        //           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
+        //           if(level4.length!==0){
+        //             console.log(level4);
+        //             document.querySelector(".fwmlistBull4").style.display='block'
+              
+        //             fwmListLevels4(level4)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull4").style.display='none'
+        //           }
+          
+        //  }
     //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
+    //  console.log(ServiceDeliveryOrientation);
     //  if (ServiceDeliveryOrientation.length>0) {
     //    document.querySelector(".flush-heading64").style.display="block"
     //    const level1 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 1")
           
     //              if(level1.length >0){
     //                console.log(level1);
-    //                sdoListLevels1(level1)
-    //                document.querySelector(".sdolistBull1").style.display='block'
+    //                sdListLevels1(level1)
+    //                document.querySelector(".sdlistBull1").style.display='block'
     //              }else{
-    //                document.querySelector(".sdolistBull1").style.display='none'
+    //                document.querySelector(".sdlistBull1").style.display='none'
     //              }
     //            const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
     //            if(level2.length>0){
-    //              document.querySelector(".sdolistBull2").style.display='block'
+    //              document.querySelector(".sdlistBull2").style.display='block'
     //              console.log(level2);
-    //              sdoListLevels2(level2)
+    //              sdListLevels2(level2)
                
     //            }else{
-    //              document.querySelector(".sdolistBull2").style.display='none'
+    //              document.querySelector(".sdlistBull2").style.display='none'
     //            }
     //            const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
     //            if(level3.length!==0){
-    //              document.querySelector(".sdolistBull3").style.display='block'
-    //              sdoListLevels3(level3)
+    //              document.querySelector(".sdlistBull3").style.display='block'
+    //              sdListLevels3(level3)
              
     //            }else{
-    //              document.querySelector(".sdolistBull3").style.display='none'
+    //              document.querySelector(".sdlistBull3").style.display='none'
     //            }
     //            const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
     //            if(level4.length!==0){
     //              console.log(level4);
-    //              document.querySelector(".sdolistBull4").style.display='block'
+    //              document.querySelector(".sdlistBull4").style.display='block'
            
-    //              sdoListLevels4(level4)
+    //              sdListLevels4(level4)
                
     //            }else{
-    //              document.querySelector(".sdolistBull4").style.display='none'
+    //              document.querySelector(".sdlistBull4").style.display='none'
     //            }
        
     //   }
@@ -19802,7 +20570,7 @@ function Leadership(response) {
            }
    
   }
-   const Delivery = response.filter((d) => d.info.areas=="Service Delivery orientation");
+   const Delivery = response.filter((d) => d.info.areas=="Service Delivery Orientation");
    if (Delivery.length>0) {
      document.querySelector(".flush-heading20").style.display="block"
      const level1 = Delivery.filter((d)=>d.info.levels=="Level 1")
@@ -21605,44 +22373,212 @@ function Leadership(response) {
       
      }
 
+     const MangingWork  = response.filter((d) => d.info.areas=="Managing Work");
+     if (MangingWork.length>0) {
+       document.querySelector(".flush-heading64").style.display="block"
+       const level1 = MangingWork.filter((d)=>d.info.levels=="Level 1")
+          
+                 if(level1.length >0){
+                   console.log(level1);
+                   mwListLevels1(level1)
+                   document.querySelector(".mwlistBull1").style.display='block'
+                 }else{
+                   document.querySelector(".mwlistBull1").style.display='none'
+                 }
+               const level2 = MangingWork.filter((d)=>d.info.levels=="Level 2")
+               if(level2.length>0){
+                 document.querySelector(".mwlistBull2").style.display='block'
+                 console.log(level2);
+                 mwListLevels2(level2)
+               
+               }else{
+                 document.querySelector(".mwlistBull2").style.display='none'
+               }
+               const level3 = MangingWork.filter((d)=>d.info.levels=="Level 3")
+               if(level3.length!==0){
+                 document.querySelector(".mwlistBull3").style.display='block'
+                 mwListLevels3(level3)
+             
+               }else{
+                 document.querySelector(".mwlistBull3").style.display='none'
+               }
+               const level4 = MangingWork.filter((d)=>d.info.levels=="Level 4")
+               if(level4.length!==0){
+                 console.log(level4);
+                 document.querySelector(".mwlistBull4").style.display='block'
+           
+                 mwListLevels4(level4)
+               
+               }else{
+                 document.querySelector(".mwlistBull4").style.display='none'
+               }
+       
+      }
+
+      const WorkPlaceSafety = response.filter((d) => d.info.areas=="Work Place Safety");
+      if (WorkPlaceSafety.length>0) {
+        document.querySelector(".flush-heading65").style.display="block"
+        const level1 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 1")
+           
+                  if(level1.length >0){
+                    console.log(level1);
+                    wpsListLevels1(level1)
+                    document.querySelector(".wpslistBull1").style.display='block'
+                  }else{
+                    document.querySelector(".wpslistBull1").style.display='none'
+                  }
+                const level2 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 2")
+                if(level2.length>0){
+                  document.querySelector(".wpslistBull2").style.display='block'
+                  console.log(level2);
+                  wpsListLevels2(level2)
+                
+                }else{
+                  document.querySelector(".wpslistBull2").style.display='none'
+                }
+                const level3 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 3")
+                if(level3.length!==0){
+                  document.querySelector(".wpslistBull3").style.display='block'
+                  wpsListLevels3(level3)
+              
+                }else{
+                  document.querySelector(".wpslistBull3").style.display='none'
+                }
+                const level4 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 4")
+                if(level4.length!==0){
+                  console.log(level4);
+                  document.querySelector(".wpslistBull4").style.display='block'
+            
+                  wpsListLevels4(level4)
+                
+                }else{
+                  document.querySelector(".wpslistBull4").style.display='none'
+                }
+        
+       }
+ 
+       const FacilitySpecificSkills = response.filter((d) => d.info.areas=="Facility Specific Skills");
+       if (FacilitySpecificSkills.length>0) {
+         document.querySelector(".flush-heading66").style.display="block"
+         const level1 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     fwmListLevels1(level1)
+                     document.querySelector(".fwmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".fwmlistBull1").style.display='none'
+                   }
+                 const level2 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".fwmlistBull2").style.display='block'
+                   console.log(level2);
+                   fwmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull2").style.display='none'
+                 }
+                 const level3 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".fwmlistBull3").style.display='block'
+                   fwmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".fwmlistBull3").style.display='none'
+                 }
+                 const level4 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".fwmlistBull4").style.display='block'
+             
+                   fwmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
+        // if (ChangeReadiness.length>0) {
+        //   document.querySelector(".flush-heading66").style.display="block"
+        //   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
+             
+        //             if(level1.length >0){
+        //               console.log(level1);
+        //               cuListLevels1(level1)
+        //               document.querySelector(".culistBull1").style.display='block'
+        //             }else{
+        //               document.querySelector(".culistBull1").style.display='none'
+        //             }
+        //           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
+        //           if(level2.length>0){
+        //             document.querySelector(".culistBull2").style.display='block'
+        //             console.log(level2);
+        //             cuListLevels2(level2)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull2").style.display='none'
+        //           }
+        //           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
+        //           if(level3.length!==0){
+        //             document.querySelector(".fwmlistBull3").style.display='block'
+        //             fwmListLevels3(level3)
+                
+        //           }else{
+        //             document.querySelector(".fwmlistBull3").style.display='none'
+        //           }
+        //           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
+        //           if(level4.length!==0){
+        //             console.log(level4);
+        //             document.querySelector(".fwmlistBull4").style.display='block'
+              
+        //             fwmListLevels4(level4)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull4").style.display='none'
+        //           }
+          
+        //  }
     //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
+    //  console.log(ServiceDeliveryOrientation);
     //  if (ServiceDeliveryOrientation.length>0) {
     //    document.querySelector(".flush-heading64").style.display="block"
     //    const level1 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 1")
           
     //              if(level1.length >0){
     //                console.log(level1);
-    //                sdoListLevels1(level1)
-    //                document.querySelector(".sdolistBull1").style.display='block'
+    //                sdListLevels1(level1)
+    //                document.querySelector(".sdlistBull1").style.display='block'
     //              }else{
-    //                document.querySelector(".sdolistBull1").style.display='none'
+    //                document.querySelector(".sdlistBull1").style.display='none'
     //              }
     //            const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
     //            if(level2.length>0){
-    //              document.querySelector(".sdolistBull2").style.display='block'
+    //              document.querySelector(".sdlistBull2").style.display='block'
     //              console.log(level2);
-    //              sdoListLevels2(level2)
+    //              sdListLevels2(level2)
                
     //            }else{
-    //              document.querySelector(".sdolistBull2").style.display='none'
+    //              document.querySelector(".sdlistBull2").style.display='none'
     //            }
     //            const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
     //            if(level3.length!==0){
-    //              document.querySelector(".sdolistBull3").style.display='block'
-    //              sdoListLevels3(level3)
+    //              document.querySelector(".sdlistBull3").style.display='block'
+    //              sdListLevels3(level3)
              
     //            }else{
-    //              document.querySelector(".sdolistBull3").style.display='none'
+    //              document.querySelector(".sdlistBull3").style.display='none'
     //            }
     //            const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
     //            if(level4.length!==0){
     //              console.log(level4);
-    //              document.querySelector(".sdolistBull4").style.display='block'
+    //              document.querySelector(".sdlistBull4").style.display='block'
            
-    //              sdoListLevels4(level4)
+    //              sdListLevels4(level4)
                
     //            }else{
-    //              document.querySelector(".sdolistBull4").style.display='none'
+    //              document.querySelector(".sdlistBull4").style.display='none'
     //            }
        
     //   }
@@ -24350,48 +25286,216 @@ function Personal(response) {
       
      }
 
-//      const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
-//      if (ServiceDeliveryOrientation.length>0) {
-//        document.querySelector(".flush-heading64").style.display="block"
-//        const level1 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 1")
+     const MangingWork  = response.filter((d) => d.info.areas=="Managing Work");
+     if (MangingWork.length>0) {
+       document.querySelector(".flush-heading64").style.display="block"
+       const level1 = MangingWork.filter((d)=>d.info.levels=="Level 1")
           
-//                  if(level1.length >0){
-//                    console.log(level1);
-//                    sdoListLevels1(level1)
-//                    document.querySelector(".sdolistBull1").style.display='block'
-//                  }else{
-//                    document.querySelector(".sdolistBull1").style.display='none'
-//                  }
-//                const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
-//                if(level2.length>0){
-//                  document.querySelector(".sdolistBull2").style.display='block'
-//                  console.log(level2);
-//                  sdoListLevels2(level2)
+                 if(level1.length >0){
+                   console.log(level1);
+                   mwListLevels1(level1)
+                   document.querySelector(".mwlistBull1").style.display='block'
+                 }else{
+                   document.querySelector(".mwlistBull1").style.display='none'
+                 }
+               const level2 = MangingWork.filter((d)=>d.info.levels=="Level 2")
+               if(level2.length>0){
+                 document.querySelector(".mwlistBull2").style.display='block'
+                 console.log(level2);
+                 mwListLevels2(level2)
                
-//                }else{
-//                  document.querySelector(".sdolistBull2").style.display='none'
-//                }
-//                const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
-//                if(level3.length!==0){
-//                  document.querySelector(".sdolistBull3").style.display='block'
-//                  sdoListLevels3(level3)
+               }else{
+                 document.querySelector(".mwlistBull2").style.display='none'
+               }
+               const level3 = MangingWork.filter((d)=>d.info.levels=="Level 3")
+               if(level3.length!==0){
+                 document.querySelector(".mwlistBull3").style.display='block'
+                 mwListLevels3(level3)
              
-//                }else{
-//                  document.querySelector(".sdolistBull3").style.display='none'
-//                }
-//                const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
-//                if(level4.length!==0){
-//                  console.log(level4);
-//                  document.querySelector(".sdolistBull4").style.display='block'
+               }else{
+                 document.querySelector(".mwlistBull3").style.display='none'
+               }
+               const level4 = MangingWork.filter((d)=>d.info.levels=="Level 4")
+               if(level4.length!==0){
+                 console.log(level4);
+                 document.querySelector(".mwlistBull4").style.display='block'
            
-//                  sdoListLevels4(level4)
+                 mwListLevels4(level4)
                
-//                }else{
-//                  document.querySelector(".sdolistBull4").style.display='none'
-//                }
+               }else{
+                 document.querySelector(".mwlistBull4").style.display='none'
+               }
        
-//       }
-// //   // let option =""
+      }
+
+      const WorkPlaceSafety = response.filter((d) => d.info.areas=="Work Place Safety");
+      if (WorkPlaceSafety.length>0) {
+        document.querySelector(".flush-heading65").style.display="block"
+        const level1 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 1")
+           
+                  if(level1.length >0){
+                    console.log(level1);
+                    wpsListLevels1(level1)
+                    document.querySelector(".wpslistBull1").style.display='block'
+                  }else{
+                    document.querySelector(".wpslistBull1").style.display='none'
+                  }
+                const level2 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 2")
+                if(level2.length>0){
+                  document.querySelector(".wpslistBull2").style.display='block'
+                  console.log(level2);
+                  wpsListLevels2(level2)
+                
+                }else{
+                  document.querySelector(".wpslistBull2").style.display='none'
+                }
+                const level3 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 3")
+                if(level3.length!==0){
+                  document.querySelector(".wpslistBull3").style.display='block'
+                  wpsListLevels3(level3)
+              
+                }else{
+                  document.querySelector(".wpslistBull3").style.display='none'
+                }
+                const level4 = WorkPlaceSafety.filter((d)=>d.info.levels=="Level 4")
+                if(level4.length!==0){
+                  console.log(level4);
+                  document.querySelector(".wpslistBull4").style.display='block'
+            
+                  wpsListLevels4(level4)
+                
+                }else{
+                  document.querySelector(".wpslistBull4").style.display='none'
+                }
+        
+       }
+ 
+       const FacilitySpecificSkills = response.filter((d) => d.info.areas=="Facility Specific Skills");
+       if (FacilitySpecificSkills.length>0) {
+         document.querySelector(".flush-heading66").style.display="block"
+         const level1 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     fwmListLevels1(level1)
+                     document.querySelector(".fwmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".fwmlistBull1").style.display='none'
+                   }
+                 const level2 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".fwmlistBull2").style.display='block'
+                   console.log(level2);
+                   fwmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull2").style.display='none'
+                 }
+                 const level3 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".fwmlistBull3").style.display='block'
+                   fwmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".fwmlistBull3").style.display='none'
+                 }
+                 const level4 = FacilitySpecificSkills.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".fwmlistBull4").style.display='block'
+             
+                   fwmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".fwmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
+        // if (ChangeReadiness.length>0) {
+        //   document.querySelector(".flush-heading66").style.display="block"
+        //   const level1 = ChangeReadiness.filter((d)=>d.info.levels=="Level 1")
+             
+        //             if(level1.length >0){
+        //               console.log(level1);
+        //               cuListLevels1(level1)
+        //               document.querySelector(".culistBull1").style.display='block'
+        //             }else{
+        //               document.querySelector(".culistBull1").style.display='none'
+        //             }
+        //           const level2 = ChangeReadiness.filter((d)=>d.info.levels=="Level 2")
+        //           if(level2.length>0){
+        //             document.querySelector(".culistBull2").style.display='block'
+        //             console.log(level2);
+        //             cuListLevels2(level2)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull2").style.display='none'
+        //           }
+        //           const level3 = ChangeReadiness.filter((d)=>d.info.levels=="Level 3")
+        //           if(level3.length!==0){
+        //             document.querySelector(".fwmlistBull3").style.display='block'
+        //             fwmListLevels3(level3)
+                
+        //           }else{
+        //             document.querySelector(".fwmlistBull3").style.display='none'
+        //           }
+        //           const level4 = ChangeReadiness.filter((d)=>d.info.levels=="Level 4")
+        //           if(level4.length!==0){
+        //             console.log(level4);
+        //             document.querySelector(".fwmlistBull4").style.display='block'
+              
+        //             fwmListLevels4(level4)
+                  
+        //           }else{
+        //             document.querySelector(".fwmlistBull4").style.display='none'
+        //           }
+          
+        //  }
+    //  const    ServiceDeliveryOrientation  = response.filter((d) => d.info.areas=="Service Delivery Orientations");
+    //  console.log(ServiceDeliveryOrientation);
+    //  if (ServiceDeliveryOrientation.length>0) {
+    //    document.querySelector(".flush-heading64").style.display="block"
+    //    const level1 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 1")
+          
+    //              if(level1.length >0){
+    //                console.log(level1);
+    //                sdListLevels1(level1)
+    //                document.querySelector(".sdlistBull1").style.display='block'
+    //              }else{
+    //                document.querySelector(".sdlistBull1").style.display='none'
+    //              }
+    //            const level2 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 2")
+    //            if(level2.length>0){
+    //              document.querySelector(".sdlistBull2").style.display='block'
+    //              console.log(level2);
+    //              sdListLevels2(level2)
+               
+    //            }else{
+    //              document.querySelector(".sdlistBull2").style.display='none'
+    //            }
+    //            const level3 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 3")
+    //            if(level3.length!==0){
+    //              document.querySelector(".sdlistBull3").style.display='block'
+    //              sdListLevels3(level3)
+             
+    //            }else{
+    //              document.querySelector(".sdlistBull3").style.display='none'
+    //            }
+    //            const level4 = ServiceDeliveryOrientation.filter((d)=>d.info.levels=="Level 4")
+    //            if(level4.length!==0){
+    //              console.log(level4);
+    //              document.querySelector(".sdlistBull4").style.display='block'
+           
+    //              sdListLevels4(level4)
+               
+    //            }else{
+    //              document.querySelector(".sdlistBull4").style.display='none'
+    //            }
+       
+    //   }
+//   // let option =""
 //   // let html =""
 //   // let list = document.querySelector(".listdata124")
  
@@ -24438,7 +25542,7 @@ function Position() {
     axios.post('/position',{
       position:code,
        
-    })
+    }) 
     .then(function (response) {
       document.querySelector(".flush-heading0").style.display="none"
       document.querySelector(".flush-heading1").style.display="none"
@@ -24503,6 +25607,11 @@ function Position() {
       document.querySelector(".flush-heading60").style.display="none"
       document.querySelector(".flush-heading61").style.display="none"
       document.querySelector(".flush-heading62").style.display="none"
+      document.querySelector(".flush-heading63").style.display="none"
+      document.querySelector(".flush-heading64").style.display="none"
+      document.querySelector(".flush-heading65").style.display="none"
+      document.querySelector(".flush-heading66").style.display="none"
+      document.querySelector(".flush-heading67").style.display="none"
       console.log(response.data);
      
     
