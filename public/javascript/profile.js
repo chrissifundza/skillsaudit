@@ -12609,6 +12609,2533 @@ function ssListLevels4(result) {
   getRatedCompetency(result)
 }
 
+
+function moListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".molistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function moListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".molistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function moListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".molistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function moListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".molistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+function taListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".talistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function taListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".talistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function taListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".talistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function taListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".talistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function omsListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".omslistdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function omsListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".omslistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function omsListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".omslistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function omsListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".omslistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function qcaListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".qcalistdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function qcaListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".qcalistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function qcaListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".qcalistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function qcaListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".qcalistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function ocListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".oclistdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function ocListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".oclistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function ocListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".oclistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function ocListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".oclistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+function trouListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".troulistdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function trouListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".troulistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function trouListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".troulistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function trouListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".troulistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+
+function g1ListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".g1listdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function g1ListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g1listdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function g1ListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g1listdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function g1ListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g1listdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+function g2ListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".g2listdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function g2ListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g2listdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function g2ListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g2listdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function g2ListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g2listdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+function g3ListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".g3listdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function g3ListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g3listdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function g3ListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g3listdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function g3ListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g3listdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+
+function g4ListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".g4listdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function g4ListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g4listdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function g4ListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g4listdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function g4ListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g4listdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+function g5ListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".g5listdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function g5ListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g5listdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function g5ListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g5listdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function g5ListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".g5listdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function dbListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".dblistdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function dbListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".dblistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function dbListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".dblistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function dbListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".dblistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function leListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".lelistdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function leListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".lelistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function leListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".lelistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function leListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".lelistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function olListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".ollistdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function olListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".ollistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function olListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".ollistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function olListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".ollistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+function vsListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".vslistdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function vsListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".vslistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function vsListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".vslistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function vsListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".vslistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+
+function vscListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".vsclistdata121") 
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function vscListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".vsclistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function vscListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".vsclistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function vscListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".vsclistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+
 function Professional(response) {
   console.log(response);
  
@@ -15802,6 +18329,685 @@ function Professional(response) {
                      }
              
             }
+
+            const  ManagingWorkOperationWork = response.filter((d) => d.info.areas=="Managing Work - Operation Work");
+            if (ManagingWorkOperationWork.length>0) {
+              document.querySelector(".flush-heading76").style.display="block"
+              const level1 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 1")
+                 
+                        if(level1.length >0){
+                          console.log(level1);
+                          moListLevels1(level1)
+                          document.querySelector(".molistBull1").style.display='block'
+                        }else{
+                          document.querySelector(".molistBull1").style.display='none'
+                        }
+                      const level2 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 2")
+                      if(level2.length>0){
+                        document.querySelector(".molistBull2").style.display='block'
+                        console.log(level2);
+                        moListLevels2(level2)
+                      
+                      }else{
+                        document.querySelector(".molistBull2").style.display='none'
+                      }
+                      const level3 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 3")
+                      if(level3.length!==0){
+                        document.querySelector(".molistBull3").style.display='block'
+                        moListLevels3(level3)
+                    
+                      }else{
+                        document.querySelector(".molistBull3").style.display='none'
+                      }
+                      const level4 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 4")
+                      if(level4.length!==0){
+                        console.log(level4);
+                        document.querySelector(".molistBull4").style.display='block'
+                  
+                        moListLevels4(level4)
+                      
+                      }else{
+                        document.querySelector(".molistBull4").style.display='none'
+                      }
+              
+             }
+
+             const  TaskAccountability = response.filter((d) => d.info.areas=="Task Accountability");
+             if (TaskAccountability.length>0) {
+               document.querySelector(".flush-heading77").style.display="block"
+               const level1 = TaskAccountability.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           taListLevels1(level1)
+                           document.querySelector(".talistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".talistBull1").style.display='none'
+                         }
+                       const level2 = TaskAccountability.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".talistBull2").style.display='block'
+                         console.log(level2);
+                         taListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".talistBull2").style.display='none'
+                       }
+                       const level3 = TaskAccountability.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".talistBull3").style.display='block'
+                         taListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".talistBull3").style.display='none'
+                       }
+                       const level4 = TaskAccountability.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".talistBull4").style.display='block'
+                   
+                         taListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".talistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  OperationMonitoring = response.filter((d) => d.info.areas=="Operation Monitoring - Small Plant");
+             if (OperationMonitoring.length>0) {
+               document.querySelector(".flush-heading78").style.display="block"
+               const level1 = OperationMonitoring.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           omsListLevels1(level1)
+                           document.querySelector(".omslistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".omslistBull1").style.display='none'
+                         }
+                       const level2 = OperationMonitoring.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".omslistBull2").style.display='block'
+                         console.log(level2);
+                         omsListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".omslistBull2").style.display='none'
+                       }
+                       const level3 = OperationMonitoring.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".omslistBull3").style.display='block'
+                         omsListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".omslistBull3").style.display='none'
+                       }
+                       const level4 = OperationMonitoring.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".omslistBull4").style.display='block'
+                   
+                         omsListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".omslistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  QualityControlAnalysis = response.filter((d) => d.info.areas=="Quality Control Analysis");
+              if (QualityControlAnalysis.length>0) {
+                document.querySelector(".flush-heading79").style.display="block"
+                const level1 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            qcaListLevels1(level1)
+                            document.querySelector(".qcalistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".qcalistBull1").style.display='none'
+                          }
+                        const level2 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".qcalistBull2").style.display='block'
+                          console.log(level2);
+                          qcaListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull2").style.display='none'
+                        }
+                        const level3 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".qcalistBull3").style.display='block'
+                          qcaListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".qcalistBull3").style.display='none'
+                        }
+                        const level4 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".qcalistBull4").style.display='block'
+                    
+                          qcaListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  OperationandControl = response.filter((d) => d.info.areas=="Operation and Control");
+              if (OperationandControl.length>0) {
+                document.querySelector(".flush-heading80").style.display="block"
+                const level1 = OperationandControl.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            ocListLevels1(level1)
+                            document.querySelector(".oclistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".oclistBull1").style.display='none'
+                          }
+                        const level2 = OperationandControl.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".oclistBull2").style.display='block'
+                          console.log(level2);
+                          ocListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".oclistBull2").style.display='none'
+                        }
+                        const level3 = OperationandControl.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".oclistBull3").style.display='block'
+                          ocListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".oclistBull3").style.display='none'
+                        }
+                        const level4 = OperationandControl.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".oclistBull4").style.display='block'
+                    
+                          ocListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".oclistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  Troubleshooting = response.filter((d) => d.info.areas=="Troubleshooting");
+               if (Troubleshooting.length>0) {
+                 document.querySelector(".flush-heading81").style.display="block"
+                 const level1 = Troubleshooting.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             trouListLevels1(level1)
+                             document.querySelector(".troulistBull1").style.display='block'
+                           }else{
+                             document.querySelector(".troulistBull1").style.display='none'
+                           }
+                         const level2 = Troubleshooting.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".troulistBull2").style.display='block'
+                           console.log(level2);
+                           trouListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".troulistBull2").style.display='none'
+                         }
+                         const level3 = Troubleshooting.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".troulistBull3").style.display='block'
+                           trouListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".troulistBull3").style.display='none'
+                         }
+                         const level4 = Troubleshooting.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".troulistBull4").style.display='block'
+                     
+                           trouListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".troulistBull4").style.display='none'
+                         }
+                 
+                }
+
+                 const  grade1 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 1");
+               if (grade1.length>0) {
+                 document.querySelector(".flush-heading82").style.display="block"
+                 const level1 = grade1.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             g1ListLevels1(level1)
+                             document.querySelector(".g1listBull1").style.display='block'
+                           }else{
+                             document.querySelector(".g1listBull1").style.display='none'
+                           }
+                         const level2 = grade1.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".g1listBull2").style.display='block'
+                           console.log(level2);
+                           g1ListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".g1listBull2").style.display='none'
+                         }
+                         const level3 = grade1.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".g1listBull3").style.display='block'
+                           g1ListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".g1listBull3").style.display='none'
+                         }
+                         const level4 = grade1.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".g1listBull4").style.display='block'
+                     
+                           g1ListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".g1listBull4").style.display='none'
+                         }
+                 
+                }
+
+                
+                const  grade2 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 2");
+                if (grade2.length>0) {
+                  document.querySelector(".flush-heading83").style.display="block"
+                  const level1 = grade2.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g2ListLevels1(level1)
+                              document.querySelector(".g2listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g2listBull1").style.display='none'
+                            }
+                          const level2 = grade2.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g2listBull2").style.display='block'
+                            console.log(level2);
+                            g2ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g2listBull2").style.display='none'
+                          }
+                          const level3 = grade2.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g2listBull3").style.display='block'
+                            g2ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g2listBull3").style.display='none'
+                          }
+                          const level4 = grade2.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g2listBull4").style.display='block'
+                      
+                            g2ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g2listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                            
+                const  grade3 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3");
+                if (grade3.length>0) {
+                  document.querySelector(".flush-heading84").style.display="block"
+                  const level1 = grade3.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g3ListLevels1(level1)
+                              document.querySelector(".g3listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g3listBull1").style.display='none'
+                            }
+                          const level2 = grade3.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g3listBull2").style.display='block'
+                            console.log(level2);
+                            g3ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g3listBull2").style.display='none'
+                          }
+                          const level3 = grade3.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g3listBull3").style.display='block'
+                            g3ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g3listBull3").style.display='none'
+                          }
+                          const level4 = grade3.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g3listBull4").style.display='block'
+                      
+                            g3ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g3listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                 const  grade4 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 4");
+                 if (grade4.length>0) {
+                   document.querySelector(".flush-heading85").style.display="block"
+                   const level1 = grade4.filter((d)=>d.info.levels=="Level 1")
+                      
+                             if(level1.length >0){
+                               console.log(level1);
+                               g4ListLevels1(level1)
+                               document.querySelector(".g4listBull1").style.display='block'
+                             }else{
+                               document.querySelector(".g4listBull1").style.display='none'
+                             }
+                           const level2 = grade4.filter((d)=>d.info.levels=="Level 2")
+                           if(level2.length>0){
+                             document.querySelector(".g4listBull2").style.display='block'
+                             console.log(level2);
+                             g4ListLevels2(level2)
+                           
+                           }else{
+                             document.querySelector(".g4listBull2").style.display='none'
+                           }
+                           const level3 = grade4.filter((d)=>d.info.levels=="Level 3")
+                           if(level3.length!==0){
+                             document.querySelector(".g4listBull3").style.display='block'
+                             g4ListLevels3(level3)
+                         
+                           }else{
+                             document.querySelector(".g4listBull3").style.display='none'
+                           }
+                           const level4 = grade4.filter((d)=>d.info.levels=="Level 4")
+                           if(level4.length!==0){
+                             console.log(level4);
+                             document.querySelector(".g4listBull4").style.display='block'
+                       
+                             g4ListLevels4(level4)
+                           
+                           }else{
+                             document.querySelector(".g4listBull4").style.display='none'
+                           }
+                   
+                  }
+
+                  const  grade5 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 5");
+                  if (grade5.length>0) {
+                    document.querySelector(".flush-heading86").style.display="block"
+                    const level1 = grade5.filter((d)=>d.info.levels=="Level 1")
+                       
+                              if(level1.length >0){
+                                console.log(level1);
+                                g5ListLevels1(level1)
+                                document.querySelector(".g5listBull1").style.display='block'
+                              }else{
+                                document.querySelector(".g5listBull1").style.display='none'
+                              }
+                            const level2 = grade5.filter((d)=>d.info.levels=="Level 2")
+                            if(level2.length>0){
+                              document.querySelector(".g5listBull2").style.display='block'
+                              console.log(level2);
+                              g5ListLevels2(level2)
+                            
+                            }else{
+                              document.querySelector(".g5listBull2").style.display='none'
+                            }
+                            const level3 = grade5.filter((d)=>d.info.levels=="Level 3")
+                            if(level3.length!==0){
+                              document.querySelector(".g5listBull3").style.display='block'
+                              g5ListLevels3(level3)
+                          
+                            }else{
+                              document.querySelector(".g5listBull3").style.display='none'
+                            }
+                            const level4 = grade5.filter((d)=>d.info.levels=="Level 4")
+                            if(level4.length!==0){
+                              console.log(level4);
+                              document.querySelector(".g5listBull4").style.display='block'
+                        
+                              g5ListLevels4(level4)
+                            
+                            }else{
+                              document.querySelector(".g5listBull4").style.display='none'
+                            }
+                    
+                   }
+
+                   
+                   const  DrivingBehaviour = response.filter((d) => d.info.areas=="Driving Behaviour");
+                   if (DrivingBehaviour.length>0) {
+                     document.querySelector(".flush-heading87").style.display="block"
+                     const level1 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 1")
+                        
+                               if(level1.length >0){
+                                 console.log(level1);
+                                 dbListLevels1(level1)
+                                 document.querySelector(".dblistBull1").style.display='block'
+                               }else{
+                                 document.querySelector(".dblistBull1").style.display='none'
+                               }
+                             const level2 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 2")
+                             if(level2.length>0){
+                               document.querySelector(".dblistBull2").style.display='block'
+                               console.log(level2);
+                               dbListLevels2(level2)
+                             
+                             }else{
+                               document.querySelector(".dblistBull2").style.display='none'
+                             }
+                             const level3 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 3")
+                             if(level3.length!==0){
+                               document.querySelector(".dblistBull3").style.display='block'
+                               dbListLevels3(level3)
+                           
+                             }else{
+                               document.querySelector(".dblistBull3").style.display='none'
+                             }
+                             const level4 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 4")
+                             if(level4.length!==0){
+                               console.log(level4);
+                               document.querySelector(".dblistBull4").style.display='block'
+                         
+                               dbListLevels4(level4)
+                             
+                             }else{
+                               document.querySelector(".dblistBull4").style.display='none'
+                             }
+                     
+                    }
+ 
+                               
+                    const  OperatioMonitoringLighEquipment = response.filter((d) => d.info.areas=="Operation Monitoring - Light Equipment");
+                    if (OperatioMonitoringLighEquipment.length>0) {
+                      document.querySelector(".flush-heading88").style.display="block"
+                      const level1 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 1")
+                         
+                                if(level1.length >0){
+                                  console.log(level1);
+                                  leListLevels1(level1)
+                                  document.querySelector(".lelistBull1").style.display='block'
+                                }else{
+                                  document.querySelector(".lelistBull1").style.display='none'
+                                }
+                              const level2 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 2")
+                              if(level2.length>0){
+                                document.querySelector(".lelistBull2").style.display='block'
+                                console.log(level2);
+                                leListLevels2(level2)
+                              
+                              }else{
+                                document.querySelector(".lelistBull2").style.display='none'
+                              }
+                              const level3 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 3")
+                              if(level3.length!==0){
+                                document.querySelector(".lelistBull3").style.display='block'
+                                leListLevels3(level3)
+                            
+                              }else{
+                                document.querySelector(".lelistBull3").style.display='none'
+                              }
+                              const level4 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 4")
+                              if(level4.length!==0){
+                                console.log(level4);
+                                document.querySelector(".lelistBull4").style.display='block'
+                          
+                                leListLevels4(level4)
+                              
+                              }else{
+                                document.querySelector(".lelistBull4").style.display='none'
+                              }
+                      
+                     }        
+ 
+                     const  OperationMonitoringMechanicalPlant = response.filter((d) => d.info.areas=="Operation Monitoring - Mechanical Plant");
+                     if (OperationMonitoringMechanicalPlant.length>0) {
+                       document.querySelector(".flush-heading89").style.display="block"
+                       const level1 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 1")
+                          
+                                 if(level1.length >0){
+                                   console.log(level1);
+                                   olListLevels1(level1)
+                                   document.querySelector(".ollistBull1").style.display='block'
+                                 }else{
+                                   document.querySelector(".ollistBull1").style.display='none'
+                                 }
+                               const level2 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 2")
+                               if(level2.length>0){
+                                 document.querySelector(".ollistBull2").style.display='block'
+                                 console.log(level2);
+                                 olListLevels2(level2)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull2").style.display='none'
+                               }
+                               const level3 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 3")
+                               if(level3.length!==0){
+                                 document.querySelector(".ollistBull3").style.display='block'
+                                 olListLevels3(level3)
+                             
+                               }else{
+                                 document.querySelector(".ollistBull3").style.display='none'
+                               }
+                               const level4 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 4")
+                               if(level4.length!==0){
+                                 console.log(level4);
+                                 document.querySelector(".ollistBull4").style.display='block'
+                           
+                                 olListLevels4(level4)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull4").style.display='none'
+                               }
+                       
+                      } 
+
+
+                      const  vehiclesafety = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3 / Special Category");
+                      if (vehiclesafety.length>0) {
+                        document.querySelector(".flush-heading90").style.display="block"
+                        const level1 = vehiclesafety.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vsListLevels1(level1)
+                                    document.querySelector(".vslistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vslistBull1").style.display='none'
+                                  }
+                                const level2 = vehiclesafety.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vslistBull2").style.display='block'
+                                  console.log(level2);
+                                  vsListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull2").style.display='none'
+                                }
+                                const level3 = vehiclesafety.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vslistBull3").style.display='block'
+                                  vsListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vslistBull3").style.display='none'
+                                }
+                                const level4 = vehiclesafety.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vslistBull4").style.display='block'
+                            
+                                  vsListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull4").style.display='none'
+                                }
+                        
+                       } 
+
+                         const  VehicleSafetyChauffeur = response.filter((d) => d.info.areas=="Vehicle Safety - Chauffeur");
+                      if (VehicleSafetyChauffeur.length>0) {
+                        document.querySelector(".flush-heading91").style.display="block"
+                        const level1 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vscListLevels1(level1)
+                                    document.querySelector(".vsclistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vsclistBull1").style.display='none'
+                                  }
+                                const level2 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vsclistBull2").style.display='block'
+                                  console.log(level2);
+                                  vscListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull2").style.display='none'
+                                }
+                                const level3 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vsclistBull3").style.display='block'
+                                  vscListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vsclistBull3").style.display='none'
+                                }
+                                const level4 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vsclistBull4").style.display='block'
+                            
+                                  vscListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull4").style.display='none'
+                                }
+                        
+                       } 
+ 
+ 
         // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
         // if (ChangeReadiness.length>0) {
         //   document.querySelector(".flush-heading66").style.display="block"
@@ -18715,6 +21921,1063 @@ function Functional(response) {
          
         }
 
+        const PeopleManagement = response.filter((d) => d.info.areas=="People Management");
+       if (PeopleManagement.length>0) {
+         document.querySelector(".flush-heading67").style.display="block"
+         const level1 = PeopleManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     pmListLevels1(level1)
+                     document.querySelector(".pmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".pmlistBull1").style.display='none'
+                   }
+                 const level2 = PeopleManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".pmlistBull2").style.display='block'
+                   console.log(level2);
+                   pmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull2").style.display='none'
+                 }
+                 const level3 = PeopleManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".pmlistBull3").style.display='block'
+                   pmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".pmlistBull3").style.display='none'
+                 }
+                 const level4 = PeopleManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".pmlistBull4").style.display='block'
+             
+                   pmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        
+        const TaskManagement = response.filter((d) => d.info.areas=="Task Management");
+       if (TaskManagement.length>0) {
+         document.querySelector(".flush-heading68").style.display="block"
+         const level1 = TaskManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     txListLevels1(level1)
+                     document.querySelector(".txlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".txlistBull1").style.display='none'
+                   }
+                 const level2 = TaskManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".txlistBull2").style.display='block'
+                   console.log(level2);
+                   txListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".txlistBull2").style.display='none'
+                 }
+                 const level3 = TaskManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".txlistBull3").style.display='block'
+                   txListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".txlistBull3").style.display='none'
+                 }
+                 const level4 = TaskManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".txlistBull4").style.display='block'
+             
+                   txListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".txlistBull4").style.display='none'
+                 }
+         
+        }
+
+        const SpatialPlanning = response.filter((d) => d.info.areas=="Spatial Planning");
+        if (SpatialPlanning.length>0) {
+          document.querySelector(".flush-heading69").style.display="block"
+          const level1 = SpatialPlanning.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      spaListLevels1(level1)
+                      document.querySelector(".spalistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".spalistBull1").style.display='none'
+                    }
+                  const level2 = SpatialPlanning.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".spalistBull2").style.display='block'
+                    console.log(level2);
+                    spaListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".spalistBull2").style.display='none'
+                  }
+                  const level3 = SpatialPlanning.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".spalistBull3").style.display='block'
+                    spaListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".spalistBull3").style.display='none'
+                  }
+                  const level4 = SpatialPlanning.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".spalistBull4").style.display='block'
+              
+                    spaListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".spalistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  UrbanDesign = response.filter((d) => d.info.areas=="Urban Design");
+        if (UrbanDesign.length>0) {
+          document.querySelector(".flush-heading70").style.display="block"
+          const level1 = UrbanDesign.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      udListLevels1(level1)
+                      document.querySelector(".udlistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".udlistBull1").style.display='none'
+                    }
+                  const level2 = UrbanDesign.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".udlistBull2").style.display='block'
+                    console.log(level2);
+                    udListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".udlistBull2").style.display='none'
+                  }
+                  const level3 = UrbanDesign.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".udlistBull3").style.display='block'
+                    udListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".udlistBull3").style.display='none'
+                  }
+                  const level4 = UrbanDesign.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".udlistBull4").style.display='block'
+              
+                    udListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".udlistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  LandUseManagement = response.filter((d) => d.info.areas=="Land Use Management");
+         if (LandUseManagement.length>0) {
+           document.querySelector(".flush-heading71").style.display="block"
+           const level1 = LandUseManagement.filter((d)=>d.info.levels=="Level 1")
+              
+                     if(level1.length >0){
+                       console.log(level1);
+                       lumListLevels1(level1)
+                       document.querySelector(".lumlistBull1").style.display='block'
+                     }else{
+                       document.querySelector(".lumlistBull1").style.display='none'
+                     }
+                   const level2 = LandUseManagement.filter((d)=>d.info.levels=="Level 2")
+                   if(level2.length>0){
+                     document.querySelector(".lumlistBull2").style.display='block'
+                     console.log(level2);
+                     lumListLevels2(level2)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull2").style.display='none'
+                   }
+                   const level3 = LandUseManagement.filter((d)=>d.info.levels=="Level 3")
+                   if(level3.length!==0){
+                     document.querySelector(".lumlistBull3").style.display='block'
+                     lumListLevels3(level3)
+                 
+                   }else{
+                     document.querySelector(".lumlistBull3").style.display='none'
+                   }
+                   const level4 = LandUseManagement.filter((d)=>d.info.levels=="Level 4")
+                   if(level4.length!==0){
+                     console.log(level4);
+                     document.querySelector(".lumdlistBull4").style.display='block'
+               
+                     lumListLevels4(level4)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull4").style.display='none'
+                   }
+           
+          }
+
+          const  LandUseMaResearchInformationAnalysisandPolicynagement = response.filter((d) => d.info.areas=="Research, Information Analysis and Policy");
+          if (LandUseMaResearchInformationAnalysisandPolicynagement.length>0) {
+            document.querySelector(".flush-heading72").style.display="block"
+            const level1 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        riaListLevels1(level1)
+                        document.querySelector(".rialistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".rialistBull1").style.display='none'
+                      }
+                    const level2 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".rialistBull2").style.display='block'
+                      console.log(level2);
+                      riaListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".rialistBull2").style.display='none'
+                    }
+                    const level3 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".rialistBull3").style.display='block'
+                      riaListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".rialistBull3").style.display='none'
+                    }
+                    const level4 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".rialistBull4").style.display='block'
+                
+                      riaListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".rialistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  KnowledgeManagement = response.filter((d) => d.info.areas=="Knowledge Management");
+          if (KnowledgeManagement.length>0) {
+            document.querySelector(".flush-heading73").style.display="block"
+            const level1 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        kmListLevels1(level1)
+                        document.querySelector(".kmlistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".kmlistBull1").style.display='none'
+                      }
+                    const level2 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".kmlistBull2").style.display='block'
+                      console.log(level2);
+                      kmListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull2").style.display='none'
+                    }
+                    const level3 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".kmlistBull3").style.display='block'
+                      kmListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".kmlistBull3").style.display='none'
+                    }
+                    const level4 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".kmlistBull4").style.display='block'
+                
+                      kmListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  PublicConsultation = response.filter((d) => d.info.areas=="Public Consultation");
+           if (PublicConsultation.length>0) {
+             document.querySelector(".flush-heading74").style.display="block"
+             const level1 = PublicConsultation.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         pcListLevels1(level1)
+                         document.querySelector(".pclistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".pclistBull1").style.display='none'
+                       }
+                     const level2 = PublicConsultation.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".pclistBull2").style.display='block'
+                       console.log(level2);
+                       pcListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".pclistBull2").style.display='none'
+                     }
+                     const level3 = PublicConsultation.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".pclistBull3").style.display='block'
+                       pcListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".pclistBull3").style.display='none'
+                     }
+                     const level4 = PublicConsultation.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".pclistBull4").style.display='block'
+                 
+                       pcListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".pclistBull4").style.display='none'
+                     }
+             
+            }
+
+            const  SocioEconomicSocioAwareness = response.filter((d) => d.info.areas=="Socio-Economic / Socio-Political Awareness");
+           if (SocioEconomicSocioAwareness.length>0) {
+             document.querySelector(".flush-heading75").style.display="block"
+             const level1 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         ssListLevels1(level1)
+                         document.querySelector(".sslistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".sslistBull1").style.display='none'
+                       }
+                     const level2 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".sslistBull2").style.display='block'
+                       console.log(level2);
+                       ssListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".sslistBull2").style.display='none'
+                     }
+                     const level3 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".sslistBull3").style.display='block'
+                       ssListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".sslistBull3").style.display='none'
+                     }
+                     const level4 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".sslistBull4").style.display='block'
+                 
+                       ssListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".sslistBull4").style.display='none'
+                     }
+             
+            }
+
+            const  ManagingWorkOperationWork = response.filter((d) => d.info.areas=="Managing Work - Operation Work");
+            if (ManagingWorkOperationWork.length>0) {
+              document.querySelector(".flush-heading76").style.display="block"
+              const level1 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 1")
+                 
+                        if(level1.length >0){
+                          console.log(level1);
+                          moListLevels1(level1)
+                          document.querySelector(".molistBull1").style.display='block'
+                        }else{
+                          document.querySelector(".molistBull1").style.display='none'
+                        }
+                      const level2 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 2")
+                      if(level2.length>0){
+                        document.querySelector(".molistBull2").style.display='block'
+                        console.log(level2);
+                        moListLevels2(level2)
+                      
+                      }else{
+                        document.querySelector(".molistBull2").style.display='none'
+                      }
+                      const level3 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 3")
+                      if(level3.length!==0){
+                        document.querySelector(".molistBull3").style.display='block'
+                        moListLevels3(level3)
+                    
+                      }else{
+                        document.querySelector(".molistBull3").style.display='none'
+                      }
+                      const level4 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 4")
+                      if(level4.length!==0){
+                        console.log(level4);
+                        document.querySelector(".molistBull4").style.display='block'
+                  
+                        moListLevels4(level4)
+                      
+                      }else{
+                        document.querySelector(".molistBull4").style.display='none'
+                      }
+              
+             }
+
+             const  TaskAccountability = response.filter((d) => d.info.areas=="Task Accountability");
+             if (TaskAccountability.length>0) {
+               document.querySelector(".flush-heading77").style.display="block"
+               const level1 = TaskAccountability.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           taListLevels1(level1)
+                           document.querySelector(".talistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".talistBull1").style.display='none'
+                         }
+                       const level2 = TaskAccountability.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".talistBull2").style.display='block'
+                         console.log(level2);
+                         taListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".talistBull2").style.display='none'
+                       }
+                       const level3 = TaskAccountability.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".talistBull3").style.display='block'
+                         taListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".talistBull3").style.display='none'
+                       }
+                       const level4 = TaskAccountability.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".talistBull4").style.display='block'
+                   
+                         taListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".talistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  OperationMonitoring = response.filter((d) => d.info.areas=="Operation Monitoring - Small Plant");
+             if (OperationMonitoring.length>0) {
+               document.querySelector(".flush-heading78").style.display="block"
+               const level1 = OperationMonitoring.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           omsListLevels1(level1)
+                           document.querySelector(".omslistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".omslistBull1").style.display='none'
+                         }
+                       const level2 = OperationMonitoring.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".omslistBull2").style.display='block'
+                         console.log(level2);
+                         omsListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".omslistBull2").style.display='none'
+                       }
+                       const level3 = OperationMonitoring.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".omslistBull3").style.display='block'
+                         omsListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".omslistBull3").style.display='none'
+                       }
+                       const level4 = OperationMonitoring.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".omslistBull4").style.display='block'
+                   
+                         omsListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".omslistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  QualityControlAnalysis = response.filter((d) => d.info.areas=="Quality Control Analysis");
+              if (QualityControlAnalysis.length>0) {
+                document.querySelector(".flush-heading79").style.display="block"
+                const level1 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            qcaListLevels1(level1)
+                            document.querySelector(".qcalistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".qcalistBull1").style.display='none'
+                          }
+                        const level2 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".qcalistBull2").style.display='block'
+                          console.log(level2);
+                          qcaListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull2").style.display='none'
+                        }
+                        const level3 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".qcalistBull3").style.display='block'
+                          qcaListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".qcalistBull3").style.display='none'
+                        }
+                        const level4 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".qcalistBull4").style.display='block'
+                    
+                          qcaListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  OperationandControl = response.filter((d) => d.info.areas=="Operation and Control");
+              if (OperationandControl.length>0) {
+                document.querySelector(".flush-heading80").style.display="block"
+                const level1 = OperationandControl.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            ocListLevels1(level1)
+                            document.querySelector(".oclistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".oclistBull1").style.display='none'
+                          }
+                        const level2 = OperationandControl.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".oclistBull2").style.display='block'
+                          console.log(level2);
+                          ocListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".oclistBull2").style.display='none'
+                        }
+                        const level3 = OperationandControl.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".oclistBull3").style.display='block'
+                          ocListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".oclistBull3").style.display='none'
+                        }
+                        const level4 = OperationandControl.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".oclistBull4").style.display='block'
+                    
+                          ocListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".oclistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  Troubleshooting = response.filter((d) => d.info.areas=="Troubleshooting");
+               if (Troubleshooting.length>0) {
+                 document.querySelector(".flush-heading81").style.display="block"
+                 const level1 = Troubleshooting.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             trouListLevels1(level1)
+                             document.querySelector(".troulistBull1").style.display='block'
+                           }else{
+                             document.querySelector(".troulistBull1").style.display='none'
+                           }
+                         const level2 = Troubleshooting.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".troulistBull2").style.display='block'
+                           console.log(level2);
+                           trouListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".troulistBull2").style.display='none'
+                         }
+                         const level3 = Troubleshooting.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".troulistBull3").style.display='block'
+                           trouListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".troulistBull3").style.display='none'
+                         }
+                         const level4 = Troubleshooting.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".troulistBull4").style.display='block'
+                     
+                           trouListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".troulistBull4").style.display='none'
+                         }
+                 
+                }
+
+                 const  grade1 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 1");
+               if (grade1.length>0) {
+                 document.querySelector(".flush-heading82").style.display="block"
+                 const level1 = grade1.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             g1ListLevels1(level1)
+                             document.querySelector(".g1listBull1").style.display='block'
+                           }else{
+                             document.querySelector(".g1listBull1").style.display='none'
+                           }
+                         const level2 = grade1.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".g1listBull2").style.display='block'
+                           console.log(level2);
+                           g1ListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".g1listBull2").style.display='none'
+                         }
+                         const level3 = grade1.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".g1listBull3").style.display='block'
+                           g1ListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".g1listBull3").style.display='none'
+                         }
+                         const level4 = grade1.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".g1listBull4").style.display='block'
+                     
+                           g1ListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".g1listBull4").style.display='none'
+                         }
+                 
+                }
+
+                
+                const  grade2 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 2");
+                if (grade2.length>0) {
+                  document.querySelector(".flush-heading83").style.display="block"
+                  const level1 = grade2.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g2ListLevels1(level1)
+                              document.querySelector(".g2listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g2listBull1").style.display='none'
+                            }
+                          const level2 = grade2.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g2listBull2").style.display='block'
+                            console.log(level2);
+                            g2ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g2listBull2").style.display='none'
+                          }
+                          const level3 = grade2.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g2listBull3").style.display='block'
+                            g2ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g2listBull3").style.display='none'
+                          }
+                          const level4 = grade2.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g2listBull4").style.display='block'
+                      
+                            g2ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g2listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                            
+                const  grade3 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3");
+                if (grade3.length>0) {
+                  document.querySelector(".flush-heading84").style.display="block"
+                  const level1 = grade3.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g3ListLevels1(level1)
+                              document.querySelector(".g3listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g3listBull1").style.display='none'
+                            }
+                          const level2 = grade3.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g3listBull2").style.display='block'
+                            console.log(level2);
+                            g3ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g3listBull2").style.display='none'
+                          }
+                          const level3 = grade3.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g3listBull3").style.display='block'
+                            g3ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g3listBull3").style.display='none'
+                          }
+                          const level4 = grade3.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g3listBull4").style.display='block'
+                      
+                            g3ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g3listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                 const  grade4 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 4");
+                 if (grade4.length>0) {
+                   document.querySelector(".flush-heading85").style.display="block"
+                   const level1 = grade4.filter((d)=>d.info.levels=="Level 1")
+                      
+                             if(level1.length >0){
+                               console.log(level1);
+                               g4ListLevels1(level1)
+                               document.querySelector(".g4listBull1").style.display='block'
+                             }else{
+                               document.querySelector(".g4listBull1").style.display='none'
+                             }
+                           const level2 = grade4.filter((d)=>d.info.levels=="Level 2")
+                           if(level2.length>0){
+                             document.querySelector(".g4listBull2").style.display='block'
+                             console.log(level2);
+                             g4ListLevels2(level2)
+                           
+                           }else{
+                             document.querySelector(".g4listBull2").style.display='none'
+                           }
+                           const level3 = grade4.filter((d)=>d.info.levels=="Level 3")
+                           if(level3.length!==0){
+                             document.querySelector(".g4listBull3").style.display='block'
+                             g4ListLevels3(level3)
+                         
+                           }else{
+                             document.querySelector(".g4listBull3").style.display='none'
+                           }
+                           const level4 = grade4.filter((d)=>d.info.levels=="Level 4")
+                           if(level4.length!==0){
+                             console.log(level4);
+                             document.querySelector(".g4listBull4").style.display='block'
+                       
+                             g4ListLevels4(level4)
+                           
+                           }else{
+                             document.querySelector(".g4listBull4").style.display='none'
+                           }
+                   
+                  }
+
+                  const  grade5 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 5");
+                  if (grade5.length>0) {
+                    document.querySelector(".flush-heading86").style.display="block"
+                    const level1 = grade5.filter((d)=>d.info.levels=="Level 1")
+                       
+                              if(level1.length >0){
+                                console.log(level1);
+                                g5ListLevels1(level1)
+                                document.querySelector(".g5listBull1").style.display='block'
+                              }else{
+                                document.querySelector(".g5listBull1").style.display='none'
+                              }
+                            const level2 = grade5.filter((d)=>d.info.levels=="Level 2")
+                            if(level2.length>0){
+                              document.querySelector(".g5listBull2").style.display='block'
+                              console.log(level2);
+                              g5ListLevels2(level2)
+                            
+                            }else{
+                              document.querySelector(".g5listBull2").style.display='none'
+                            }
+                            const level3 = grade5.filter((d)=>d.info.levels=="Level 3")
+                            if(level3.length!==0){
+                              document.querySelector(".g5listBull3").style.display='block'
+                              g5ListLevels3(level3)
+                          
+                            }else{
+                              document.querySelector(".g5listBull3").style.display='none'
+                            }
+                            const level4 = grade5.filter((d)=>d.info.levels=="Level 4")
+                            if(level4.length!==0){
+                              console.log(level4);
+                              document.querySelector(".g5listBull4").style.display='block'
+                        
+                              g5ListLevels4(level4)
+                            
+                            }else{
+                              document.querySelector(".g5listBull4").style.display='none'
+                            }
+                    
+                   }
+
+                   
+                   const  DrivingBehaviour = response.filter((d) => d.info.areas=="Driving Behaviour");
+                   if (DrivingBehaviour.length>0) {
+                     document.querySelector(".flush-heading87").style.display="block"
+                     const level1 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 1")
+                        
+                               if(level1.length >0){
+                                 console.log(level1);
+                                 dbListLevels1(level1)
+                                 document.querySelector(".dblistBull1").style.display='block'
+                               }else{
+                                 document.querySelector(".dblistBull1").style.display='none'
+                               }
+                             const level2 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 2")
+                             if(level2.length>0){
+                               document.querySelector(".dblistBull2").style.display='block'
+                               console.log(level2);
+                               dbListLevels2(level2)
+                             
+                             }else{
+                               document.querySelector(".dblistBull2").style.display='none'
+                             }
+                             const level3 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 3")
+                             if(level3.length!==0){
+                               document.querySelector(".dblistBull3").style.display='block'
+                               dbListLevels3(level3)
+                           
+                             }else{
+                               document.querySelector(".dblistBull3").style.display='none'
+                             }
+                             const level4 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 4")
+                             if(level4.length!==0){
+                               console.log(level4);
+                               document.querySelector(".dblistBull4").style.display='block'
+                         
+                               dbListLevels4(level4)
+                             
+                             }else{
+                               document.querySelector(".dblistBull4").style.display='none'
+                             }
+                     
+                    }
+ 
+                               
+                    const  OperatioMonitoringLighEquipment = response.filter((d) => d.info.areas=="Operation Monitoring - Light Equipment");
+                    if (OperatioMonitoringLighEquipment.length>0) {
+                      document.querySelector(".flush-heading88").style.display="block"
+                      const level1 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 1")
+                         
+                                if(level1.length >0){
+                                  console.log(level1);
+                                  leListLevels1(level1)
+                                  document.querySelector(".lelistBull1").style.display='block'
+                                }else{
+                                  document.querySelector(".lelistBull1").style.display='none'
+                                }
+                              const level2 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 2")
+                              if(level2.length>0){
+                                document.querySelector(".lelistBull2").style.display='block'
+                                console.log(level2);
+                                leListLevels2(level2)
+                              
+                              }else{
+                                document.querySelector(".lelistBull2").style.display='none'
+                              }
+                              const level3 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 3")
+                              if(level3.length!==0){
+                                document.querySelector(".lelistBull3").style.display='block'
+                                leListLevels3(level3)
+                            
+                              }else{
+                                document.querySelector(".lelistBull3").style.display='none'
+                              }
+                              const level4 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 4")
+                              if(level4.length!==0){
+                                console.log(level4);
+                                document.querySelector(".lelistBull4").style.display='block'
+                          
+                                leListLevels4(level4)
+                              
+                              }else{
+                                document.querySelector(".lelistBull4").style.display='none'
+                              }
+                      
+                     }        
+ 
+                     const  OperationMonitoringMechanicalPlant = response.filter((d) => d.info.areas=="Operation Monitoring - Mechanical Plant");
+                     if (OperationMonitoringMechanicalPlant.length>0) {
+                       document.querySelector(".flush-heading89").style.display="block"
+                       const level1 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 1")
+                          
+                                 if(level1.length >0){
+                                   console.log(level1);
+                                   olListLevels1(level1)
+                                   document.querySelector(".ollistBull1").style.display='block'
+                                 }else{
+                                   document.querySelector(".ollistBull1").style.display='none'
+                                 }
+                               const level2 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 2")
+                               if(level2.length>0){
+                                 document.querySelector(".ollistBull2").style.display='block'
+                                 console.log(level2);
+                                 olListLevels2(level2)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull2").style.display='none'
+                               }
+                               const level3 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 3")
+                               if(level3.length!==0){
+                                 document.querySelector(".ollistBull3").style.display='block'
+                                 olListLevels3(level3)
+                             
+                               }else{
+                                 document.querySelector(".ollistBull3").style.display='none'
+                               }
+                               const level4 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 4")
+                               if(level4.length!==0){
+                                 console.log(level4);
+                                 document.querySelector(".ollistBull4").style.display='block'
+                           
+                                 olListLevels4(level4)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull4").style.display='none'
+                               }
+                       
+                      } 
+
+
+                      const  vehiclesafety = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3 / Special Category");
+                      if (vehiclesafety.length>0) {
+                        document.querySelector(".flush-heading90").style.display="block"
+                        const level1 = vehiclesafety.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vsListLevels1(level1)
+                                    document.querySelector(".vslistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vslistBull1").style.display='none'
+                                  }
+                                const level2 = vehiclesafety.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vslistBull2").style.display='block'
+                                  console.log(level2);
+                                  vsListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull2").style.display='none'
+                                }
+                                const level3 = vehiclesafety.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vslistBull3").style.display='block'
+                                  vsListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vslistBull3").style.display='none'
+                                }
+                                const level4 = vehiclesafety.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vslistBull4").style.display='block'
+                            
+                                  vsListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull4").style.display='none'
+                                }
+                        
+                       } 
+
+                         const  VehicleSafetyChauffeur = response.filter((d) => d.info.areas=="Vehicle Safety - Chauffeur");
+                      if (VehicleSafetyChauffeur.length>0) {
+                        document.querySelector(".flush-heading91").style.display="block"
+                        const level1 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vscListLevels1(level1)
+                                    document.querySelector(".vsclistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vsclistBull1").style.display='none'
+                                  }
+                                const level2 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vsclistBull2").style.display='block'
+                                  console.log(level2);
+                                  vscListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull2").style.display='none'
+                                }
+                                const level3 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vsclistBull3").style.display='block'
+                                  vscListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vsclistBull3").style.display='none'
+                                }
+                                const level4 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vsclistBull4").style.display='block'
+                            
+                                  vscListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull4").style.display='none'
+                                }
+                        
+                       } 
+ 
+ 
         // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
         // if (ChangeReadiness.length>0) {
         //   document.querySelector(".flush-heading66").style.display="block"
@@ -21629,6 +25892,1063 @@ function PublicManagement(response) {
          
         }
 
+        const PeopleManagement = response.filter((d) => d.info.areas=="People Management");
+       if (PeopleManagement.length>0) {
+         document.querySelector(".flush-heading67").style.display="block"
+         const level1 = PeopleManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     pmListLevels1(level1)
+                     document.querySelector(".pmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".pmlistBull1").style.display='none'
+                   }
+                 const level2 = PeopleManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".pmlistBull2").style.display='block'
+                   console.log(level2);
+                   pmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull2").style.display='none'
+                 }
+                 const level3 = PeopleManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".pmlistBull3").style.display='block'
+                   pmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".pmlistBull3").style.display='none'
+                 }
+                 const level4 = PeopleManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".pmlistBull4").style.display='block'
+             
+                   pmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        
+        const TaskManagement = response.filter((d) => d.info.areas=="Task Management");
+       if (TaskManagement.length>0) {
+         document.querySelector(".flush-heading68").style.display="block"
+         const level1 = TaskManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     txListLevels1(level1)
+                     document.querySelector(".txlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".txlistBull1").style.display='none'
+                   }
+                 const level2 = TaskManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".txlistBull2").style.display='block'
+                   console.log(level2);
+                   txListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".txlistBull2").style.display='none'
+                 }
+                 const level3 = TaskManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".txlistBull3").style.display='block'
+                   txListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".txlistBull3").style.display='none'
+                 }
+                 const level4 = TaskManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".txlistBull4").style.display='block'
+             
+                   txListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".txlistBull4").style.display='none'
+                 }
+         
+        }
+
+        const SpatialPlanning = response.filter((d) => d.info.areas=="Spatial Planning");
+        if (SpatialPlanning.length>0) {
+          document.querySelector(".flush-heading69").style.display="block"
+          const level1 = SpatialPlanning.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      spaListLevels1(level1)
+                      document.querySelector(".spalistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".spalistBull1").style.display='none'
+                    }
+                  const level2 = SpatialPlanning.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".spalistBull2").style.display='block'
+                    console.log(level2);
+                    spaListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".spalistBull2").style.display='none'
+                  }
+                  const level3 = SpatialPlanning.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".spalistBull3").style.display='block'
+                    spaListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".spalistBull3").style.display='none'
+                  }
+                  const level4 = SpatialPlanning.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".spalistBull4").style.display='block'
+              
+                    spaListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".spalistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  UrbanDesign = response.filter((d) => d.info.areas=="Urban Design");
+        if (UrbanDesign.length>0) {
+          document.querySelector(".flush-heading70").style.display="block"
+          const level1 = UrbanDesign.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      udListLevels1(level1)
+                      document.querySelector(".udlistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".udlistBull1").style.display='none'
+                    }
+                  const level2 = UrbanDesign.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".udlistBull2").style.display='block'
+                    console.log(level2);
+                    udListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".udlistBull2").style.display='none'
+                  }
+                  const level3 = UrbanDesign.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".udlistBull3").style.display='block'
+                    udListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".udlistBull3").style.display='none'
+                  }
+                  const level4 = UrbanDesign.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".udlistBull4").style.display='block'
+              
+                    udListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".udlistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  LandUseManagement = response.filter((d) => d.info.areas=="Land Use Management");
+         if (LandUseManagement.length>0) {
+           document.querySelector(".flush-heading71").style.display="block"
+           const level1 = LandUseManagement.filter((d)=>d.info.levels=="Level 1")
+              
+                     if(level1.length >0){
+                       console.log(level1);
+                       lumListLevels1(level1)
+                       document.querySelector(".lumlistBull1").style.display='block'
+                     }else{
+                       document.querySelector(".lumlistBull1").style.display='none'
+                     }
+                   const level2 = LandUseManagement.filter((d)=>d.info.levels=="Level 2")
+                   if(level2.length>0){
+                     document.querySelector(".lumlistBull2").style.display='block'
+                     console.log(level2);
+                     lumListLevels2(level2)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull2").style.display='none'
+                   }
+                   const level3 = LandUseManagement.filter((d)=>d.info.levels=="Level 3")
+                   if(level3.length!==0){
+                     document.querySelector(".lumlistBull3").style.display='block'
+                     lumListLevels3(level3)
+                 
+                   }else{
+                     document.querySelector(".lumlistBull3").style.display='none'
+                   }
+                   const level4 = LandUseManagement.filter((d)=>d.info.levels=="Level 4")
+                   if(level4.length!==0){
+                     console.log(level4);
+                     document.querySelector(".lumdlistBull4").style.display='block'
+               
+                     lumListLevels4(level4)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull4").style.display='none'
+                   }
+           
+          }
+
+          const  LandUseMaResearchInformationAnalysisandPolicynagement = response.filter((d) => d.info.areas=="Research, Information Analysis and Policy");
+          if (LandUseMaResearchInformationAnalysisandPolicynagement.length>0) {
+            document.querySelector(".flush-heading72").style.display="block"
+            const level1 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        riaListLevels1(level1)
+                        document.querySelector(".rialistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".rialistBull1").style.display='none'
+                      }
+                    const level2 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".rialistBull2").style.display='block'
+                      console.log(level2);
+                      riaListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".rialistBull2").style.display='none'
+                    }
+                    const level3 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".rialistBull3").style.display='block'
+                      riaListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".rialistBull3").style.display='none'
+                    }
+                    const level4 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".rialistBull4").style.display='block'
+                
+                      riaListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".rialistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  KnowledgeManagement = response.filter((d) => d.info.areas=="Knowledge Management");
+          if (KnowledgeManagement.length>0) {
+            document.querySelector(".flush-heading73").style.display="block"
+            const level1 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        kmListLevels1(level1)
+                        document.querySelector(".kmlistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".kmlistBull1").style.display='none'
+                      }
+                    const level2 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".kmlistBull2").style.display='block'
+                      console.log(level2);
+                      kmListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull2").style.display='none'
+                    }
+                    const level3 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".kmlistBull3").style.display='block'
+                      kmListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".kmlistBull3").style.display='none'
+                    }
+                    const level4 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".kmlistBull4").style.display='block'
+                
+                      kmListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  PublicConsultation = response.filter((d) => d.info.areas=="Public Consultation");
+           if (PublicConsultation.length>0) {
+             document.querySelector(".flush-heading74").style.display="block"
+             const level1 = PublicConsultation.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         pcListLevels1(level1)
+                         document.querySelector(".pclistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".pclistBull1").style.display='none'
+                       }
+                     const level2 = PublicConsultation.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".pclistBull2").style.display='block'
+                       console.log(level2);
+                       pcListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".pclistBull2").style.display='none'
+                     }
+                     const level3 = PublicConsultation.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".pclistBull3").style.display='block'
+                       pcListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".pclistBull3").style.display='none'
+                     }
+                     const level4 = PublicConsultation.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".pclistBull4").style.display='block'
+                 
+                       pcListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".pclistBull4").style.display='none'
+                     }
+             
+            }
+
+            const  SocioEconomicSocioAwareness = response.filter((d) => d.info.areas=="Socio-Economic / Socio-Political Awareness");
+           if (SocioEconomicSocioAwareness.length>0) {
+             document.querySelector(".flush-heading75").style.display="block"
+             const level1 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         ssListLevels1(level1)
+                         document.querySelector(".sslistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".sslistBull1").style.display='none'
+                       }
+                     const level2 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".sslistBull2").style.display='block'
+                       console.log(level2);
+                       ssListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".sslistBull2").style.display='none'
+                     }
+                     const level3 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".sslistBull3").style.display='block'
+                       ssListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".sslistBull3").style.display='none'
+                     }
+                     const level4 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".sslistBull4").style.display='block'
+                 
+                       ssListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".sslistBull4").style.display='none'
+                     }
+             
+            }
+
+            const  ManagingWorkOperationWork = response.filter((d) => d.info.areas=="Managing Work - Operation Work");
+            if (ManagingWorkOperationWork.length>0) {
+              document.querySelector(".flush-heading76").style.display="block"
+              const level1 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 1")
+                 
+                        if(level1.length >0){
+                          console.log(level1);
+                          moListLevels1(level1)
+                          document.querySelector(".molistBull1").style.display='block'
+                        }else{
+                          document.querySelector(".molistBull1").style.display='none'
+                        }
+                      const level2 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 2")
+                      if(level2.length>0){
+                        document.querySelector(".molistBull2").style.display='block'
+                        console.log(level2);
+                        moListLevels2(level2)
+                      
+                      }else{
+                        document.querySelector(".molistBull2").style.display='none'
+                      }
+                      const level3 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 3")
+                      if(level3.length!==0){
+                        document.querySelector(".molistBull3").style.display='block'
+                        moListLevels3(level3)
+                    
+                      }else{
+                        document.querySelector(".molistBull3").style.display='none'
+                      }
+                      const level4 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 4")
+                      if(level4.length!==0){
+                        console.log(level4);
+                        document.querySelector(".molistBull4").style.display='block'
+                  
+                        moListLevels4(level4)
+                      
+                      }else{
+                        document.querySelector(".molistBull4").style.display='none'
+                      }
+              
+             }
+
+             const  TaskAccountability = response.filter((d) => d.info.areas=="Task Accountability");
+             if (TaskAccountability.length>0) {
+               document.querySelector(".flush-heading77").style.display="block"
+               const level1 = TaskAccountability.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           taListLevels1(level1)
+                           document.querySelector(".talistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".talistBull1").style.display='none'
+                         }
+                       const level2 = TaskAccountability.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".talistBull2").style.display='block'
+                         console.log(level2);
+                         taListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".talistBull2").style.display='none'
+                       }
+                       const level3 = TaskAccountability.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".talistBull3").style.display='block'
+                         taListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".talistBull3").style.display='none'
+                       }
+                       const level4 = TaskAccountability.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".talistBull4").style.display='block'
+                   
+                         taListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".talistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  OperationMonitoring = response.filter((d) => d.info.areas=="Operation Monitoring - Small Plant");
+             if (OperationMonitoring.length>0) {
+               document.querySelector(".flush-heading78").style.display="block"
+               const level1 = OperationMonitoring.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           omsListLevels1(level1)
+                           document.querySelector(".omslistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".omslistBull1").style.display='none'
+                         }
+                       const level2 = OperationMonitoring.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".omslistBull2").style.display='block'
+                         console.log(level2);
+                         omsListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".omslistBull2").style.display='none'
+                       }
+                       const level3 = OperationMonitoring.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".omslistBull3").style.display='block'
+                         omsListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".omslistBull3").style.display='none'
+                       }
+                       const level4 = OperationMonitoring.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".omslistBull4").style.display='block'
+                   
+                         omsListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".omslistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  QualityControlAnalysis = response.filter((d) => d.info.areas=="Quality Control Analysis");
+              if (QualityControlAnalysis.length>0) {
+                document.querySelector(".flush-heading79").style.display="block"
+                const level1 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            qcaListLevels1(level1)
+                            document.querySelector(".qcalistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".qcalistBull1").style.display='none'
+                          }
+                        const level2 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".qcalistBull2").style.display='block'
+                          console.log(level2);
+                          qcaListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull2").style.display='none'
+                        }
+                        const level3 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".qcalistBull3").style.display='block'
+                          qcaListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".qcalistBull3").style.display='none'
+                        }
+                        const level4 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".qcalistBull4").style.display='block'
+                    
+                          qcaListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  OperationandControl = response.filter((d) => d.info.areas=="Operation and Control");
+              if (OperationandControl.length>0) {
+                document.querySelector(".flush-heading80").style.display="block"
+                const level1 = OperationandControl.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            ocListLevels1(level1)
+                            document.querySelector(".oclistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".oclistBull1").style.display='none'
+                          }
+                        const level2 = OperationandControl.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".oclistBull2").style.display='block'
+                          console.log(level2);
+                          ocListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".oclistBull2").style.display='none'
+                        }
+                        const level3 = OperationandControl.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".oclistBull3").style.display='block'
+                          ocListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".oclistBull3").style.display='none'
+                        }
+                        const level4 = OperationandControl.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".oclistBull4").style.display='block'
+                    
+                          ocListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".oclistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  Troubleshooting = response.filter((d) => d.info.areas=="Troubleshooting");
+               if (Troubleshooting.length>0) {
+                 document.querySelector(".flush-heading81").style.display="block"
+                 const level1 = Troubleshooting.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             trouListLevels1(level1)
+                             document.querySelector(".troulistBull1").style.display='block'
+                           }else{
+                             document.querySelector(".troulistBull1").style.display='none'
+                           }
+                         const level2 = Troubleshooting.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".troulistBull2").style.display='block'
+                           console.log(level2);
+                           trouListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".troulistBull2").style.display='none'
+                         }
+                         const level3 = Troubleshooting.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".troulistBull3").style.display='block'
+                           trouListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".troulistBull3").style.display='none'
+                         }
+                         const level4 = Troubleshooting.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".troulistBull4").style.display='block'
+                     
+                           trouListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".troulistBull4").style.display='none'
+                         }
+                 
+                }
+
+                 const  grade1 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 1");
+               if (grade1.length>0) {
+                 document.querySelector(".flush-heading82").style.display="block"
+                 const level1 = grade1.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             g1ListLevels1(level1)
+                             document.querySelector(".g1listBull1").style.display='block'
+                           }else{
+                             document.querySelector(".g1listBull1").style.display='none'
+                           }
+                         const level2 = grade1.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".g1listBull2").style.display='block'
+                           console.log(level2);
+                           g1ListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".g1listBull2").style.display='none'
+                         }
+                         const level3 = grade1.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".g1listBull3").style.display='block'
+                           g1ListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".g1listBull3").style.display='none'
+                         }
+                         const level4 = grade1.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".g1listBull4").style.display='block'
+                     
+                           g1ListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".g1listBull4").style.display='none'
+                         }
+                 
+                }
+
+                
+                const  grade2 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 2");
+                if (grade2.length>0) {
+                  document.querySelector(".flush-heading83").style.display="block"
+                  const level1 = grade2.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g2ListLevels1(level1)
+                              document.querySelector(".g2listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g2listBull1").style.display='none'
+                            }
+                          const level2 = grade2.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g2listBull2").style.display='block'
+                            console.log(level2);
+                            g2ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g2listBull2").style.display='none'
+                          }
+                          const level3 = grade2.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g2listBull3").style.display='block'
+                            g2ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g2listBull3").style.display='none'
+                          }
+                          const level4 = grade2.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g2listBull4").style.display='block'
+                      
+                            g2ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g2listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                            
+                const  grade3 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3");
+                if (grade3.length>0) {
+                  document.querySelector(".flush-heading84").style.display="block"
+                  const level1 = grade3.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g3ListLevels1(level1)
+                              document.querySelector(".g3listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g3listBull1").style.display='none'
+                            }
+                          const level2 = grade3.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g3listBull2").style.display='block'
+                            console.log(level2);
+                            g3ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g3listBull2").style.display='none'
+                          }
+                          const level3 = grade3.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g3listBull3").style.display='block'
+                            g3ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g3listBull3").style.display='none'
+                          }
+                          const level4 = grade3.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g3listBull4").style.display='block'
+                      
+                            g3ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g3listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                 const  grade4 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 4");
+                 if (grade4.length>0) {
+                   document.querySelector(".flush-heading85").style.display="block"
+                   const level1 = grade4.filter((d)=>d.info.levels=="Level 1")
+                      
+                             if(level1.length >0){
+                               console.log(level1);
+                               g4ListLevels1(level1)
+                               document.querySelector(".g4listBull1").style.display='block'
+                             }else{
+                               document.querySelector(".g4listBull1").style.display='none'
+                             }
+                           const level2 = grade4.filter((d)=>d.info.levels=="Level 2")
+                           if(level2.length>0){
+                             document.querySelector(".g4listBull2").style.display='block'
+                             console.log(level2);
+                             g4ListLevels2(level2)
+                           
+                           }else{
+                             document.querySelector(".g4listBull2").style.display='none'
+                           }
+                           const level3 = grade4.filter((d)=>d.info.levels=="Level 3")
+                           if(level3.length!==0){
+                             document.querySelector(".g4listBull3").style.display='block'
+                             g4ListLevels3(level3)
+                         
+                           }else{
+                             document.querySelector(".g4listBull3").style.display='none'
+                           }
+                           const level4 = grade4.filter((d)=>d.info.levels=="Level 4")
+                           if(level4.length!==0){
+                             console.log(level4);
+                             document.querySelector(".g4listBull4").style.display='block'
+                       
+                             g4ListLevels4(level4)
+                           
+                           }else{
+                             document.querySelector(".g4listBull4").style.display='none'
+                           }
+                   
+                  }
+
+                  const  grade5 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 5");
+                  if (grade5.length>0) {
+                    document.querySelector(".flush-heading86").style.display="block"
+                    const level1 = grade5.filter((d)=>d.info.levels=="Level 1")
+                       
+                              if(level1.length >0){
+                                console.log(level1);
+                                g5ListLevels1(level1)
+                                document.querySelector(".g5listBull1").style.display='block'
+                              }else{
+                                document.querySelector(".g5listBull1").style.display='none'
+                              }
+                            const level2 = grade5.filter((d)=>d.info.levels=="Level 2")
+                            if(level2.length>0){
+                              document.querySelector(".g5listBull2").style.display='block'
+                              console.log(level2);
+                              g5ListLevels2(level2)
+                            
+                            }else{
+                              document.querySelector(".g5listBull2").style.display='none'
+                            }
+                            const level3 = grade5.filter((d)=>d.info.levels=="Level 3")
+                            if(level3.length!==0){
+                              document.querySelector(".g5listBull3").style.display='block'
+                              g5ListLevels3(level3)
+                          
+                            }else{
+                              document.querySelector(".g5listBull3").style.display='none'
+                            }
+                            const level4 = grade5.filter((d)=>d.info.levels=="Level 4")
+                            if(level4.length!==0){
+                              console.log(level4);
+                              document.querySelector(".g5listBull4").style.display='block'
+                        
+                              g5ListLevels4(level4)
+                            
+                            }else{
+                              document.querySelector(".g5listBull4").style.display='none'
+                            }
+                    
+                   }
+
+                   
+                   const  DrivingBehaviour = response.filter((d) => d.info.areas=="Driving Behaviour");
+                   if (DrivingBehaviour.length>0) {
+                     document.querySelector(".flush-heading87").style.display="block"
+                     const level1 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 1")
+                        
+                               if(level1.length >0){
+                                 console.log(level1);
+                                 dbListLevels1(level1)
+                                 document.querySelector(".dblistBull1").style.display='block'
+                               }else{
+                                 document.querySelector(".dblistBull1").style.display='none'
+                               }
+                             const level2 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 2")
+                             if(level2.length>0){
+                               document.querySelector(".dblistBull2").style.display='block'
+                               console.log(level2);
+                               dbListLevels2(level2)
+                             
+                             }else{
+                               document.querySelector(".dblistBull2").style.display='none'
+                             }
+                             const level3 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 3")
+                             if(level3.length!==0){
+                               document.querySelector(".dblistBull3").style.display='block'
+                               dbListLevels3(level3)
+                           
+                             }else{
+                               document.querySelector(".dblistBull3").style.display='none'
+                             }
+                             const level4 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 4")
+                             if(level4.length!==0){
+                               console.log(level4);
+                               document.querySelector(".dblistBull4").style.display='block'
+                         
+                               dbListLevels4(level4)
+                             
+                             }else{
+                               document.querySelector(".dblistBull4").style.display='none'
+                             }
+                     
+                    }
+ 
+                               
+                    const  OperatioMonitoringLighEquipment = response.filter((d) => d.info.areas=="Operation Monitoring - Light Equipment");
+                    if (OperatioMonitoringLighEquipment.length>0) {
+                      document.querySelector(".flush-heading88").style.display="block"
+                      const level1 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 1")
+                         
+                                if(level1.length >0){
+                                  console.log(level1);
+                                  leListLevels1(level1)
+                                  document.querySelector(".lelistBull1").style.display='block'
+                                }else{
+                                  document.querySelector(".lelistBull1").style.display='none'
+                                }
+                              const level2 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 2")
+                              if(level2.length>0){
+                                document.querySelector(".lelistBull2").style.display='block'
+                                console.log(level2);
+                                leListLevels2(level2)
+                              
+                              }else{
+                                document.querySelector(".lelistBull2").style.display='none'
+                              }
+                              const level3 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 3")
+                              if(level3.length!==0){
+                                document.querySelector(".lelistBull3").style.display='block'
+                                leListLevels3(level3)
+                            
+                              }else{
+                                document.querySelector(".lelistBull3").style.display='none'
+                              }
+                              const level4 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 4")
+                              if(level4.length!==0){
+                                console.log(level4);
+                                document.querySelector(".lelistBull4").style.display='block'
+                          
+                                leListLevels4(level4)
+                              
+                              }else{
+                                document.querySelector(".lelistBull4").style.display='none'
+                              }
+                      
+                     }        
+ 
+                     const  OperationMonitoringMechanicalPlant = response.filter((d) => d.info.areas=="Operation Monitoring - Mechanical Plant");
+                     if (OperationMonitoringMechanicalPlant.length>0) {
+                       document.querySelector(".flush-heading89").style.display="block"
+                       const level1 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 1")
+                          
+                                 if(level1.length >0){
+                                   console.log(level1);
+                                   olListLevels1(level1)
+                                   document.querySelector(".ollistBull1").style.display='block'
+                                 }else{
+                                   document.querySelector(".ollistBull1").style.display='none'
+                                 }
+                               const level2 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 2")
+                               if(level2.length>0){
+                                 document.querySelector(".ollistBull2").style.display='block'
+                                 console.log(level2);
+                                 olListLevels2(level2)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull2").style.display='none'
+                               }
+                               const level3 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 3")
+                               if(level3.length!==0){
+                                 document.querySelector(".ollistBull3").style.display='block'
+                                 olListLevels3(level3)
+                             
+                               }else{
+                                 document.querySelector(".ollistBull3").style.display='none'
+                               }
+                               const level4 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 4")
+                               if(level4.length!==0){
+                                 console.log(level4);
+                                 document.querySelector(".ollistBull4").style.display='block'
+                           
+                                 olListLevels4(level4)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull4").style.display='none'
+                               }
+                       
+                      } 
+
+
+                      const  vehiclesafety = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3 / Special Category");
+                      if (vehiclesafety.length>0) {
+                        document.querySelector(".flush-heading90").style.display="block"
+                        const level1 = vehiclesafety.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vsListLevels1(level1)
+                                    document.querySelector(".vslistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vslistBull1").style.display='none'
+                                  }
+                                const level2 = vehiclesafety.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vslistBull2").style.display='block'
+                                  console.log(level2);
+                                  vsListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull2").style.display='none'
+                                }
+                                const level3 = vehiclesafety.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vslistBull3").style.display='block'
+                                  vsListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vslistBull3").style.display='none'
+                                }
+                                const level4 = vehiclesafety.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vslistBull4").style.display='block'
+                            
+                                  vsListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull4").style.display='none'
+                                }
+                        
+                       } 
+
+                         const  VehicleSafetyChauffeur = response.filter((d) => d.info.areas=="Vehicle Safety - Chauffeur");
+                      if (VehicleSafetyChauffeur.length>0) {
+                        document.querySelector(".flush-heading91").style.display="block"
+                        const level1 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vscListLevels1(level1)
+                                    document.querySelector(".vsclistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vsclistBull1").style.display='none'
+                                  }
+                                const level2 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vsclistBull2").style.display='block'
+                                  console.log(level2);
+                                  vscListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull2").style.display='none'
+                                }
+                                const level3 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vsclistBull3").style.display='block'
+                                  vscListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vsclistBull3").style.display='none'
+                                }
+                                const level4 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vsclistBull4").style.display='block'
+                            
+                                  vscListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull4").style.display='none'
+                                }
+                        
+                       } 
+ 
+ 
         // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
         // if (ChangeReadiness.length>0) {
         //   document.querySelector(".flush-heading66").style.display="block"
@@ -24542,6 +29862,1063 @@ function Leadership(response) {
          
         }
 
+        const PeopleManagement = response.filter((d) => d.info.areas=="People Management");
+       if (PeopleManagement.length>0) {
+         document.querySelector(".flush-heading67").style.display="block"
+         const level1 = PeopleManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     pmListLevels1(level1)
+                     document.querySelector(".pmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".pmlistBull1").style.display='none'
+                   }
+                 const level2 = PeopleManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".pmlistBull2").style.display='block'
+                   console.log(level2);
+                   pmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull2").style.display='none'
+                 }
+                 const level3 = PeopleManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".pmlistBull3").style.display='block'
+                   pmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".pmlistBull3").style.display='none'
+                 }
+                 const level4 = PeopleManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".pmlistBull4").style.display='block'
+             
+                   pmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        
+        const TaskManagement = response.filter((d) => d.info.areas=="Task Management");
+       if (TaskManagement.length>0) {
+         document.querySelector(".flush-heading68").style.display="block"
+         const level1 = TaskManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     txListLevels1(level1)
+                     document.querySelector(".txlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".txlistBull1").style.display='none'
+                   }
+                 const level2 = TaskManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".txlistBull2").style.display='block'
+                   console.log(level2);
+                   txListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".txlistBull2").style.display='none'
+                 }
+                 const level3 = TaskManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".txlistBull3").style.display='block'
+                   txListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".txlistBull3").style.display='none'
+                 }
+                 const level4 = TaskManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".txlistBull4").style.display='block'
+             
+                   txListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".txlistBull4").style.display='none'
+                 }
+         
+        }
+
+        const SpatialPlanning = response.filter((d) => d.info.areas=="Spatial Planning");
+        if (SpatialPlanning.length>0) {
+          document.querySelector(".flush-heading69").style.display="block"
+          const level1 = SpatialPlanning.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      spaListLevels1(level1)
+                      document.querySelector(".spalistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".spalistBull1").style.display='none'
+                    }
+                  const level2 = SpatialPlanning.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".spalistBull2").style.display='block'
+                    console.log(level2);
+                    spaListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".spalistBull2").style.display='none'
+                  }
+                  const level3 = SpatialPlanning.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".spalistBull3").style.display='block'
+                    spaListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".spalistBull3").style.display='none'
+                  }
+                  const level4 = SpatialPlanning.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".spalistBull4").style.display='block'
+              
+                    spaListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".spalistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  UrbanDesign = response.filter((d) => d.info.areas=="Urban Design");
+        if (UrbanDesign.length>0) {
+          document.querySelector(".flush-heading70").style.display="block"
+          const level1 = UrbanDesign.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      udListLevels1(level1)
+                      document.querySelector(".udlistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".udlistBull1").style.display='none'
+                    }
+                  const level2 = UrbanDesign.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".udlistBull2").style.display='block'
+                    console.log(level2);
+                    udListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".udlistBull2").style.display='none'
+                  }
+                  const level3 = UrbanDesign.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".udlistBull3").style.display='block'
+                    udListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".udlistBull3").style.display='none'
+                  }
+                  const level4 = UrbanDesign.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".udlistBull4").style.display='block'
+              
+                    udListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".udlistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  LandUseManagement = response.filter((d) => d.info.areas=="Land Use Management");
+         if (LandUseManagement.length>0) {
+           document.querySelector(".flush-heading71").style.display="block"
+           const level1 = LandUseManagement.filter((d)=>d.info.levels=="Level 1")
+              
+                     if(level1.length >0){
+                       console.log(level1);
+                       lumListLevels1(level1)
+                       document.querySelector(".lumlistBull1").style.display='block'
+                     }else{
+                       document.querySelector(".lumlistBull1").style.display='none'
+                     }
+                   const level2 = LandUseManagement.filter((d)=>d.info.levels=="Level 2")
+                   if(level2.length>0){
+                     document.querySelector(".lumlistBull2").style.display='block'
+                     console.log(level2);
+                     lumListLevels2(level2)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull2").style.display='none'
+                   }
+                   const level3 = LandUseManagement.filter((d)=>d.info.levels=="Level 3")
+                   if(level3.length!==0){
+                     document.querySelector(".lumlistBull3").style.display='block'
+                     lumListLevels3(level3)
+                 
+                   }else{
+                     document.querySelector(".lumlistBull3").style.display='none'
+                   }
+                   const level4 = LandUseManagement.filter((d)=>d.info.levels=="Level 4")
+                   if(level4.length!==0){
+                     console.log(level4);
+                     document.querySelector(".lumdlistBull4").style.display='block'
+               
+                     lumListLevels4(level4)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull4").style.display='none'
+                   }
+           
+          }
+
+          const  LandUseMaResearchInformationAnalysisandPolicynagement = response.filter((d) => d.info.areas=="Research, Information Analysis and Policy");
+          if (LandUseMaResearchInformationAnalysisandPolicynagement.length>0) {
+            document.querySelector(".flush-heading72").style.display="block"
+            const level1 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        riaListLevels1(level1)
+                        document.querySelector(".rialistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".rialistBull1").style.display='none'
+                      }
+                    const level2 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".rialistBull2").style.display='block'
+                      console.log(level2);
+                      riaListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".rialistBull2").style.display='none'
+                    }
+                    const level3 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".rialistBull3").style.display='block'
+                      riaListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".rialistBull3").style.display='none'
+                    }
+                    const level4 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".rialistBull4").style.display='block'
+                
+                      riaListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".rialistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  KnowledgeManagement = response.filter((d) => d.info.areas=="Knowledge Management");
+          if (KnowledgeManagement.length>0) {
+            document.querySelector(".flush-heading73").style.display="block"
+            const level1 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        kmListLevels1(level1)
+                        document.querySelector(".kmlistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".kmlistBull1").style.display='none'
+                      }
+                    const level2 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".kmlistBull2").style.display='block'
+                      console.log(level2);
+                      kmListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull2").style.display='none'
+                    }
+                    const level3 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".kmlistBull3").style.display='block'
+                      kmListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".kmlistBull3").style.display='none'
+                    }
+                    const level4 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".kmlistBull4").style.display='block'
+                
+                      kmListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  PublicConsultation = response.filter((d) => d.info.areas=="Public Consultation");
+           if (PublicConsultation.length>0) {
+             document.querySelector(".flush-heading74").style.display="block"
+             const level1 = PublicConsultation.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         pcListLevels1(level1)
+                         document.querySelector(".pclistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".pclistBull1").style.display='none'
+                       }
+                     const level2 = PublicConsultation.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".pclistBull2").style.display='block'
+                       console.log(level2);
+                       pcListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".pclistBull2").style.display='none'
+                     }
+                     const level3 = PublicConsultation.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".pclistBull3").style.display='block'
+                       pcListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".pclistBull3").style.display='none'
+                     }
+                     const level4 = PublicConsultation.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".pclistBull4").style.display='block'
+                 
+                       pcListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".pclistBull4").style.display='none'
+                     }
+             
+            }
+
+            const  SocioEconomicSocioAwareness = response.filter((d) => d.info.areas=="Socio-Economic / Socio-Political Awareness");
+           if (SocioEconomicSocioAwareness.length>0) {
+             document.querySelector(".flush-heading75").style.display="block"
+             const level1 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         ssListLevels1(level1)
+                         document.querySelector(".sslistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".sslistBull1").style.display='none'
+                       }
+                     const level2 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".sslistBull2").style.display='block'
+                       console.log(level2);
+                       ssListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".sslistBull2").style.display='none'
+                     }
+                     const level3 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".sslistBull3").style.display='block'
+                       ssListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".sslistBull3").style.display='none'
+                     }
+                     const level4 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".sslistBull4").style.display='block'
+                 
+                       ssListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".sslistBull4").style.display='none'
+                     }
+             
+            }
+
+            const  ManagingWorkOperationWork = response.filter((d) => d.info.areas=="Managing Work - Operation Work");
+            if (ManagingWorkOperationWork.length>0) {
+              document.querySelector(".flush-heading76").style.display="block"
+              const level1 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 1")
+                 
+                        if(level1.length >0){
+                          console.log(level1);
+                          moListLevels1(level1)
+                          document.querySelector(".molistBull1").style.display='block'
+                        }else{
+                          document.querySelector(".molistBull1").style.display='none'
+                        }
+                      const level2 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 2")
+                      if(level2.length>0){
+                        document.querySelector(".molistBull2").style.display='block'
+                        console.log(level2);
+                        moListLevels2(level2)
+                      
+                      }else{
+                        document.querySelector(".molistBull2").style.display='none'
+                      }
+                      const level3 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 3")
+                      if(level3.length!==0){
+                        document.querySelector(".molistBull3").style.display='block'
+                        moListLevels3(level3)
+                    
+                      }else{
+                        document.querySelector(".molistBull3").style.display='none'
+                      }
+                      const level4 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 4")
+                      if(level4.length!==0){
+                        console.log(level4);
+                        document.querySelector(".molistBull4").style.display='block'
+                  
+                        moListLevels4(level4)
+                      
+                      }else{
+                        document.querySelector(".molistBull4").style.display='none'
+                      }
+              
+             }
+
+             const  TaskAccountability = response.filter((d) => d.info.areas=="Task Accountability");
+             if (TaskAccountability.length>0) {
+               document.querySelector(".flush-heading77").style.display="block"
+               const level1 = TaskAccountability.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           taListLevels1(level1)
+                           document.querySelector(".talistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".talistBull1").style.display='none'
+                         }
+                       const level2 = TaskAccountability.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".talistBull2").style.display='block'
+                         console.log(level2);
+                         taListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".talistBull2").style.display='none'
+                       }
+                       const level3 = TaskAccountability.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".talistBull3").style.display='block'
+                         taListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".talistBull3").style.display='none'
+                       }
+                       const level4 = TaskAccountability.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".talistBull4").style.display='block'
+                   
+                         taListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".talistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  OperationMonitoring = response.filter((d) => d.info.areas=="Operation Monitoring - Small Plant");
+             if (OperationMonitoring.length>0) {
+               document.querySelector(".flush-heading78").style.display="block"
+               const level1 = OperationMonitoring.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           omsListLevels1(level1)
+                           document.querySelector(".omslistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".omslistBull1").style.display='none'
+                         }
+                       const level2 = OperationMonitoring.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".omslistBull2").style.display='block'
+                         console.log(level2);
+                         omsListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".omslistBull2").style.display='none'
+                       }
+                       const level3 = OperationMonitoring.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".omslistBull3").style.display='block'
+                         omsListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".omslistBull3").style.display='none'
+                       }
+                       const level4 = OperationMonitoring.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".omslistBull4").style.display='block'
+                   
+                         omsListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".omslistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  QualityControlAnalysis = response.filter((d) => d.info.areas=="Quality Control Analysis");
+              if (QualityControlAnalysis.length>0) {
+                document.querySelector(".flush-heading79").style.display="block"
+                const level1 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            qcaListLevels1(level1)
+                            document.querySelector(".qcalistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".qcalistBull1").style.display='none'
+                          }
+                        const level2 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".qcalistBull2").style.display='block'
+                          console.log(level2);
+                          qcaListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull2").style.display='none'
+                        }
+                        const level3 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".qcalistBull3").style.display='block'
+                          qcaListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".qcalistBull3").style.display='none'
+                        }
+                        const level4 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".qcalistBull4").style.display='block'
+                    
+                          qcaListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  OperationandControl = response.filter((d) => d.info.areas=="Operation and Control");
+              if (OperationandControl.length>0) {
+                document.querySelector(".flush-heading80").style.display="block"
+                const level1 = OperationandControl.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            ocListLevels1(level1)
+                            document.querySelector(".oclistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".oclistBull1").style.display='none'
+                          }
+                        const level2 = OperationandControl.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".oclistBull2").style.display='block'
+                          console.log(level2);
+                          ocListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".oclistBull2").style.display='none'
+                        }
+                        const level3 = OperationandControl.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".oclistBull3").style.display='block'
+                          ocListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".oclistBull3").style.display='none'
+                        }
+                        const level4 = OperationandControl.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".oclistBull4").style.display='block'
+                    
+                          ocListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".oclistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  Troubleshooting = response.filter((d) => d.info.areas=="Troubleshooting");
+               if (Troubleshooting.length>0) {
+                 document.querySelector(".flush-heading81").style.display="block"
+                 const level1 = Troubleshooting.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             trouListLevels1(level1)
+                             document.querySelector(".troulistBull1").style.display='block'
+                           }else{
+                             document.querySelector(".troulistBull1").style.display='none'
+                           }
+                         const level2 = Troubleshooting.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".troulistBull2").style.display='block'
+                           console.log(level2);
+                           trouListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".troulistBull2").style.display='none'
+                         }
+                         const level3 = Troubleshooting.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".troulistBull3").style.display='block'
+                           trouListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".troulistBull3").style.display='none'
+                         }
+                         const level4 = Troubleshooting.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".troulistBull4").style.display='block'
+                     
+                           trouListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".troulistBull4").style.display='none'
+                         }
+                 
+                }
+
+                 const  grade1 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 1");
+               if (grade1.length>0) {
+                 document.querySelector(".flush-heading82").style.display="block"
+                 const level1 = grade1.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             g1ListLevels1(level1)
+                             document.querySelector(".g1listBull1").style.display='block'
+                           }else{
+                             document.querySelector(".g1listBull1").style.display='none'
+                           }
+                         const level2 = grade1.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".g1listBull2").style.display='block'
+                           console.log(level2);
+                           g1ListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".g1listBull2").style.display='none'
+                         }
+                         const level3 = grade1.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".g1listBull3").style.display='block'
+                           g1ListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".g1listBull3").style.display='none'
+                         }
+                         const level4 = grade1.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".g1listBull4").style.display='block'
+                     
+                           g1ListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".g1listBull4").style.display='none'
+                         }
+                 
+                }
+
+                
+                const  grade2 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 2");
+                if (grade2.length>0) {
+                  document.querySelector(".flush-heading83").style.display="block"
+                  const level1 = grade2.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g2ListLevels1(level1)
+                              document.querySelector(".g2listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g2listBull1").style.display='none'
+                            }
+                          const level2 = grade2.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g2listBull2").style.display='block'
+                            console.log(level2);
+                            g2ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g2listBull2").style.display='none'
+                          }
+                          const level3 = grade2.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g2listBull3").style.display='block'
+                            g2ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g2listBull3").style.display='none'
+                          }
+                          const level4 = grade2.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g2listBull4").style.display='block'
+                      
+                            g2ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g2listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                            
+                const  grade3 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3");
+                if (grade3.length>0) {
+                  document.querySelector(".flush-heading84").style.display="block"
+                  const level1 = grade3.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g3ListLevels1(level1)
+                              document.querySelector(".g3listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g3listBull1").style.display='none'
+                            }
+                          const level2 = grade3.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g3listBull2").style.display='block'
+                            console.log(level2);
+                            g3ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g3listBull2").style.display='none'
+                          }
+                          const level3 = grade3.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g3listBull3").style.display='block'
+                            g3ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g3listBull3").style.display='none'
+                          }
+                          const level4 = grade3.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g3listBull4").style.display='block'
+                      
+                            g3ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g3listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                 const  grade4 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 4");
+                 if (grade4.length>0) {
+                   document.querySelector(".flush-heading85").style.display="block"
+                   const level1 = grade4.filter((d)=>d.info.levels=="Level 1")
+                      
+                             if(level1.length >0){
+                               console.log(level1);
+                               g4ListLevels1(level1)
+                               document.querySelector(".g4listBull1").style.display='block'
+                             }else{
+                               document.querySelector(".g4listBull1").style.display='none'
+                             }
+                           const level2 = grade4.filter((d)=>d.info.levels=="Level 2")
+                           if(level2.length>0){
+                             document.querySelector(".g4listBull2").style.display='block'
+                             console.log(level2);
+                             g4ListLevels2(level2)
+                           
+                           }else{
+                             document.querySelector(".g4listBull2").style.display='none'
+                           }
+                           const level3 = grade4.filter((d)=>d.info.levels=="Level 3")
+                           if(level3.length!==0){
+                             document.querySelector(".g4listBull3").style.display='block'
+                             g4ListLevels3(level3)
+                         
+                           }else{
+                             document.querySelector(".g4listBull3").style.display='none'
+                           }
+                           const level4 = grade4.filter((d)=>d.info.levels=="Level 4")
+                           if(level4.length!==0){
+                             console.log(level4);
+                             document.querySelector(".g4listBull4").style.display='block'
+                       
+                             g4ListLevels4(level4)
+                           
+                           }else{
+                             document.querySelector(".g4listBull4").style.display='none'
+                           }
+                   
+                  }
+
+                  const  grade5 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 5");
+                  if (grade5.length>0) {
+                    document.querySelector(".flush-heading86").style.display="block"
+                    const level1 = grade5.filter((d)=>d.info.levels=="Level 1")
+                       
+                              if(level1.length >0){
+                                console.log(level1);
+                                g5ListLevels1(level1)
+                                document.querySelector(".g5listBull1").style.display='block'
+                              }else{
+                                document.querySelector(".g5listBull1").style.display='none'
+                              }
+                            const level2 = grade5.filter((d)=>d.info.levels=="Level 2")
+                            if(level2.length>0){
+                              document.querySelector(".g5listBull2").style.display='block'
+                              console.log(level2);
+                              g5ListLevels2(level2)
+                            
+                            }else{
+                              document.querySelector(".g5listBull2").style.display='none'
+                            }
+                            const level3 = grade5.filter((d)=>d.info.levels=="Level 3")
+                            if(level3.length!==0){
+                              document.querySelector(".g5listBull3").style.display='block'
+                              g5ListLevels3(level3)
+                          
+                            }else{
+                              document.querySelector(".g5listBull3").style.display='none'
+                            }
+                            const level4 = grade5.filter((d)=>d.info.levels=="Level 4")
+                            if(level4.length!==0){
+                              console.log(level4);
+                              document.querySelector(".g5listBull4").style.display='block'
+                        
+                              g5ListLevels4(level4)
+                            
+                            }else{
+                              document.querySelector(".g5listBull4").style.display='none'
+                            }
+                    
+                   }
+
+                   
+                   const  DrivingBehaviour = response.filter((d) => d.info.areas=="Driving Behaviour");
+                   if (DrivingBehaviour.length>0) {
+                     document.querySelector(".flush-heading87").style.display="block"
+                     const level1 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 1")
+                        
+                               if(level1.length >0){
+                                 console.log(level1);
+                                 dbListLevels1(level1)
+                                 document.querySelector(".dblistBull1").style.display='block'
+                               }else{
+                                 document.querySelector(".dblistBull1").style.display='none'
+                               }
+                             const level2 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 2")
+                             if(level2.length>0){
+                               document.querySelector(".dblistBull2").style.display='block'
+                               console.log(level2);
+                               dbListLevels2(level2)
+                             
+                             }else{
+                               document.querySelector(".dblistBull2").style.display='none'
+                             }
+                             const level3 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 3")
+                             if(level3.length!==0){
+                               document.querySelector(".dblistBull3").style.display='block'
+                               dbListLevels3(level3)
+                           
+                             }else{
+                               document.querySelector(".dblistBull3").style.display='none'
+                             }
+                             const level4 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 4")
+                             if(level4.length!==0){
+                               console.log(level4);
+                               document.querySelector(".dblistBull4").style.display='block'
+                         
+                               dbListLevels4(level4)
+                             
+                             }else{
+                               document.querySelector(".dblistBull4").style.display='none'
+                             }
+                     
+                    }
+ 
+                               
+                    const  OperatioMonitoringLighEquipment = response.filter((d) => d.info.areas=="Operation Monitoring - Light Equipment");
+                    if (OperatioMonitoringLighEquipment.length>0) {
+                      document.querySelector(".flush-heading88").style.display="block"
+                      const level1 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 1")
+                         
+                                if(level1.length >0){
+                                  console.log(level1);
+                                  leListLevels1(level1)
+                                  document.querySelector(".lelistBull1").style.display='block'
+                                }else{
+                                  document.querySelector(".lelistBull1").style.display='none'
+                                }
+                              const level2 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 2")
+                              if(level2.length>0){
+                                document.querySelector(".lelistBull2").style.display='block'
+                                console.log(level2);
+                                leListLevels2(level2)
+                              
+                              }else{
+                                document.querySelector(".lelistBull2").style.display='none'
+                              }
+                              const level3 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 3")
+                              if(level3.length!==0){
+                                document.querySelector(".lelistBull3").style.display='block'
+                                leListLevels3(level3)
+                            
+                              }else{
+                                document.querySelector(".lelistBull3").style.display='none'
+                              }
+                              const level4 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 4")
+                              if(level4.length!==0){
+                                console.log(level4);
+                                document.querySelector(".lelistBull4").style.display='block'
+                          
+                                leListLevels4(level4)
+                              
+                              }else{
+                                document.querySelector(".lelistBull4").style.display='none'
+                              }
+                      
+                     }        
+ 
+                     const  OperationMonitoringMechanicalPlant = response.filter((d) => d.info.areas=="Operation Monitoring - Mechanical Plant");
+                     if (OperationMonitoringMechanicalPlant.length>0) {
+                       document.querySelector(".flush-heading89").style.display="block"
+                       const level1 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 1")
+                          
+                                 if(level1.length >0){
+                                   console.log(level1);
+                                   olListLevels1(level1)
+                                   document.querySelector(".ollistBull1").style.display='block'
+                                 }else{
+                                   document.querySelector(".ollistBull1").style.display='none'
+                                 }
+                               const level2 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 2")
+                               if(level2.length>0){
+                                 document.querySelector(".ollistBull2").style.display='block'
+                                 console.log(level2);
+                                 olListLevels2(level2)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull2").style.display='none'
+                               }
+                               const level3 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 3")
+                               if(level3.length!==0){
+                                 document.querySelector(".ollistBull3").style.display='block'
+                                 olListLevels3(level3)
+                             
+                               }else{
+                                 document.querySelector(".ollistBull3").style.display='none'
+                               }
+                               const level4 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 4")
+                               if(level4.length!==0){
+                                 console.log(level4);
+                                 document.querySelector(".ollistBull4").style.display='block'
+                           
+                                 olListLevels4(level4)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull4").style.display='none'
+                               }
+                       
+                      } 
+
+
+                      const  vehiclesafety = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3 / Special Category");
+                      if (vehiclesafety.length>0) {
+                        document.querySelector(".flush-heading90").style.display="block"
+                        const level1 = vehiclesafety.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vsListLevels1(level1)
+                                    document.querySelector(".vslistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vslistBull1").style.display='none'
+                                  }
+                                const level2 = vehiclesafety.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vslistBull2").style.display='block'
+                                  console.log(level2);
+                                  vsListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull2").style.display='none'
+                                }
+                                const level3 = vehiclesafety.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vslistBull3").style.display='block'
+                                  vsListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vslistBull3").style.display='none'
+                                }
+                                const level4 = vehiclesafety.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vslistBull4").style.display='block'
+                            
+                                  vsListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull4").style.display='none'
+                                }
+                        
+                       } 
+
+                         const  VehicleSafetyChauffeur = response.filter((d) => d.info.areas=="Vehicle Safety - Chauffeur");
+                      if (VehicleSafetyChauffeur.length>0) {
+                        document.querySelector(".flush-heading91").style.display="block"
+                        const level1 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vscListLevels1(level1)
+                                    document.querySelector(".vsclistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vsclistBull1").style.display='none'
+                                  }
+                                const level2 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vsclistBull2").style.display='block'
+                                  console.log(level2);
+                                  vscListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull2").style.display='none'
+                                }
+                                const level3 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vsclistBull3").style.display='block'
+                                  vscListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vsclistBull3").style.display='none'
+                                }
+                                const level4 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vsclistBull4").style.display='block'
+                            
+                                  vscListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull4").style.display='none'
+                                }
+                        
+                       } 
+ 
+ 
         // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
         // if (ChangeReadiness.length>0) {
         //   document.querySelector(".flush-heading66").style.display="block"
@@ -27455,6 +33832,1063 @@ function Personal(response) {
          
         }
 
+        const PeopleManagement = response.filter((d) => d.info.areas=="People Management");
+       if (PeopleManagement.length>0) {
+         document.querySelector(".flush-heading67").style.display="block"
+         const level1 = PeopleManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     pmListLevels1(level1)
+                     document.querySelector(".pmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".pmlistBull1").style.display='none'
+                   }
+                 const level2 = PeopleManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".pmlistBull2").style.display='block'
+                   console.log(level2);
+                   pmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull2").style.display='none'
+                 }
+                 const level3 = PeopleManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".pmlistBull3").style.display='block'
+                   pmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".pmlistBull3").style.display='none'
+                 }
+                 const level4 = PeopleManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".pmlistBull4").style.display='block'
+             
+                   pmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        
+        const TaskManagement = response.filter((d) => d.info.areas=="Task Management");
+       if (TaskManagement.length>0) {
+         document.querySelector(".flush-heading68").style.display="block"
+         const level1 = TaskManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     txListLevels1(level1)
+                     document.querySelector(".txlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".txlistBull1").style.display='none'
+                   }
+                 const level2 = TaskManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".txlistBull2").style.display='block'
+                   console.log(level2);
+                   txListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".txlistBull2").style.display='none'
+                 }
+                 const level3 = TaskManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".txlistBull3").style.display='block'
+                   txListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".txlistBull3").style.display='none'
+                 }
+                 const level4 = TaskManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".txlistBull4").style.display='block'
+             
+                   txListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".txlistBull4").style.display='none'
+                 }
+         
+        }
+
+        const SpatialPlanning = response.filter((d) => d.info.areas=="Spatial Planning");
+        if (SpatialPlanning.length>0) {
+          document.querySelector(".flush-heading69").style.display="block"
+          const level1 = SpatialPlanning.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      spaListLevels1(level1)
+                      document.querySelector(".spalistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".spalistBull1").style.display='none'
+                    }
+                  const level2 = SpatialPlanning.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".spalistBull2").style.display='block'
+                    console.log(level2);
+                    spaListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".spalistBull2").style.display='none'
+                  }
+                  const level3 = SpatialPlanning.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".spalistBull3").style.display='block'
+                    spaListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".spalistBull3").style.display='none'
+                  }
+                  const level4 = SpatialPlanning.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".spalistBull4").style.display='block'
+              
+                    spaListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".spalistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  UrbanDesign = response.filter((d) => d.info.areas=="Urban Design");
+        if (UrbanDesign.length>0) {
+          document.querySelector(".flush-heading70").style.display="block"
+          const level1 = UrbanDesign.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      udListLevels1(level1)
+                      document.querySelector(".udlistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".udlistBull1").style.display='none'
+                    }
+                  const level2 = UrbanDesign.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".udlistBull2").style.display='block'
+                    console.log(level2);
+                    udListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".udlistBull2").style.display='none'
+                  }
+                  const level3 = UrbanDesign.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".udlistBull3").style.display='block'
+                    udListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".udlistBull3").style.display='none'
+                  }
+                  const level4 = UrbanDesign.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".udlistBull4").style.display='block'
+              
+                    udListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".udlistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  LandUseManagement = response.filter((d) => d.info.areas=="Land Use Management");
+         if (LandUseManagement.length>0) {
+           document.querySelector(".flush-heading71").style.display="block"
+           const level1 = LandUseManagement.filter((d)=>d.info.levels=="Level 1")
+              
+                     if(level1.length >0){
+                       console.log(level1);
+                       lumListLevels1(level1)
+                       document.querySelector(".lumlistBull1").style.display='block'
+                     }else{
+                       document.querySelector(".lumlistBull1").style.display='none'
+                     }
+                   const level2 = LandUseManagement.filter((d)=>d.info.levels=="Level 2")
+                   if(level2.length>0){
+                     document.querySelector(".lumlistBull2").style.display='block'
+                     console.log(level2);
+                     lumListLevels2(level2)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull2").style.display='none'
+                   }
+                   const level3 = LandUseManagement.filter((d)=>d.info.levels=="Level 3")
+                   if(level3.length!==0){
+                     document.querySelector(".lumlistBull3").style.display='block'
+                     lumListLevels3(level3)
+                 
+                   }else{
+                     document.querySelector(".lumlistBull3").style.display='none'
+                   }
+                   const level4 = LandUseManagement.filter((d)=>d.info.levels=="Level 4")
+                   if(level4.length!==0){
+                     console.log(level4);
+                     document.querySelector(".lumdlistBull4").style.display='block'
+               
+                     lumListLevels4(level4)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull4").style.display='none'
+                   }
+           
+          }
+
+          const  LandUseMaResearchInformationAnalysisandPolicynagement = response.filter((d) => d.info.areas=="Research, Information Analysis and Policy");
+          if (LandUseMaResearchInformationAnalysisandPolicynagement.length>0) {
+            document.querySelector(".flush-heading72").style.display="block"
+            const level1 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        riaListLevels1(level1)
+                        document.querySelector(".rialistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".rialistBull1").style.display='none'
+                      }
+                    const level2 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".rialistBull2").style.display='block'
+                      console.log(level2);
+                      riaListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".rialistBull2").style.display='none'
+                    }
+                    const level3 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".rialistBull3").style.display='block'
+                      riaListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".rialistBull3").style.display='none'
+                    }
+                    const level4 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".rialistBull4").style.display='block'
+                
+                      riaListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".rialistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  KnowledgeManagement = response.filter((d) => d.info.areas=="Knowledge Management");
+          if (KnowledgeManagement.length>0) {
+            document.querySelector(".flush-heading73").style.display="block"
+            const level1 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        kmListLevels1(level1)
+                        document.querySelector(".kmlistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".kmlistBull1").style.display='none'
+                      }
+                    const level2 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".kmlistBull2").style.display='block'
+                      console.log(level2);
+                      kmListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull2").style.display='none'
+                    }
+                    const level3 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".kmlistBull3").style.display='block'
+                      kmListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".kmlistBull3").style.display='none'
+                    }
+                    const level4 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".kmlistBull4").style.display='block'
+                
+                      kmListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  PublicConsultation = response.filter((d) => d.info.areas=="Public Consultation");
+           if (PublicConsultation.length>0) {
+             document.querySelector(".flush-heading74").style.display="block"
+             const level1 = PublicConsultation.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         pcListLevels1(level1)
+                         document.querySelector(".pclistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".pclistBull1").style.display='none'
+                       }
+                     const level2 = PublicConsultation.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".pclistBull2").style.display='block'
+                       console.log(level2);
+                       pcListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".pclistBull2").style.display='none'
+                     }
+                     const level3 = PublicConsultation.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".pclistBull3").style.display='block'
+                       pcListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".pclistBull3").style.display='none'
+                     }
+                     const level4 = PublicConsultation.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".pclistBull4").style.display='block'
+                 
+                       pcListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".pclistBull4").style.display='none'
+                     }
+             
+            }
+
+            const  SocioEconomicSocioAwareness = response.filter((d) => d.info.areas=="Socio-Economic / Socio-Political Awareness");
+           if (SocioEconomicSocioAwareness.length>0) {
+             document.querySelector(".flush-heading75").style.display="block"
+             const level1 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         ssListLevels1(level1)
+                         document.querySelector(".sslistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".sslistBull1").style.display='none'
+                       }
+                     const level2 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".sslistBull2").style.display='block'
+                       console.log(level2);
+                       ssListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".sslistBull2").style.display='none'
+                     }
+                     const level3 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".sslistBull3").style.display='block'
+                       ssListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".sslistBull3").style.display='none'
+                     }
+                     const level4 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".sslistBull4").style.display='block'
+                 
+                       ssListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".sslistBull4").style.display='none'
+                     }
+             
+            }
+
+            const  ManagingWorkOperationWork = response.filter((d) => d.info.areas=="Managing Work - Operation Work");
+            if (ManagingWorkOperationWork.length>0) {
+              document.querySelector(".flush-heading76").style.display="block"
+              const level1 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 1")
+                 
+                        if(level1.length >0){
+                          console.log(level1);
+                          moListLevels1(level1)
+                          document.querySelector(".molistBull1").style.display='block'
+                        }else{
+                          document.querySelector(".molistBull1").style.display='none'
+                        }
+                      const level2 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 2")
+                      if(level2.length>0){
+                        document.querySelector(".molistBull2").style.display='block'
+                        console.log(level2);
+                        moListLevels2(level2)
+                      
+                      }else{
+                        document.querySelector(".molistBull2").style.display='none'
+                      }
+                      const level3 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 3")
+                      if(level3.length!==0){
+                        document.querySelector(".molistBull3").style.display='block'
+                        moListLevels3(level3)
+                    
+                      }else{
+                        document.querySelector(".molistBull3").style.display='none'
+                      }
+                      const level4 = ManagingWorkOperationWork.filter((d)=>d.info.levels=="Level 4")
+                      if(level4.length!==0){
+                        console.log(level4);
+                        document.querySelector(".molistBull4").style.display='block'
+                  
+                        moListLevels4(level4)
+                      
+                      }else{
+                        document.querySelector(".molistBull4").style.display='none'
+                      }
+              
+             }
+
+             const  TaskAccountability = response.filter((d) => d.info.areas=="Task Accountability");
+             if (TaskAccountability.length>0) {
+               document.querySelector(".flush-heading77").style.display="block"
+               const level1 = TaskAccountability.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           taListLevels1(level1)
+                           document.querySelector(".talistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".talistBull1").style.display='none'
+                         }
+                       const level2 = TaskAccountability.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".talistBull2").style.display='block'
+                         console.log(level2);
+                         taListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".talistBull2").style.display='none'
+                       }
+                       const level3 = TaskAccountability.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".talistBull3").style.display='block'
+                         taListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".talistBull3").style.display='none'
+                       }
+                       const level4 = TaskAccountability.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".talistBull4").style.display='block'
+                   
+                         taListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".talistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  OperationMonitoring = response.filter((d) => d.info.areas=="Operation Monitoring - Small Plant");
+             if (OperationMonitoring.length>0) {
+               document.querySelector(".flush-heading78").style.display="block"
+               const level1 = OperationMonitoring.filter((d)=>d.info.levels=="Level 1")
+                  
+                         if(level1.length >0){
+                           console.log(level1);
+                           omsListLevels1(level1)
+                           document.querySelector(".omslistBull1").style.display='block'
+                         }else{
+                           document.querySelector(".omslistBull1").style.display='none'
+                         }
+                       const level2 = OperationMonitoring.filter((d)=>d.info.levels=="Level 2")
+                       if(level2.length>0){
+                         document.querySelector(".omslistBull2").style.display='block'
+                         console.log(level2);
+                         omsListLevels2(level2)
+                       
+                       }else{
+                         document.querySelector(".omslistBull2").style.display='none'
+                       }
+                       const level3 = OperationMonitoring.filter((d)=>d.info.levels=="Level 3")
+                       if(level3.length!==0){
+                         document.querySelector(".omslistBull3").style.display='block'
+                         omsListLevels3(level3)
+                     
+                       }else{
+                         document.querySelector(".omslistBull3").style.display='none'
+                       }
+                       const level4 = OperationMonitoring.filter((d)=>d.info.levels=="Level 4")
+                       if(level4.length!==0){
+                         console.log(level4);
+                         document.querySelector(".omslistBull4").style.display='block'
+                   
+                         omsListLevels4(level4)
+                       
+                       }else{
+                         document.querySelector(".omslistBull4").style.display='none'
+                       }
+               
+              }
+
+              const  QualityControlAnalysis = response.filter((d) => d.info.areas=="Quality Control Analysis");
+              if (QualityControlAnalysis.length>0) {
+                document.querySelector(".flush-heading79").style.display="block"
+                const level1 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            qcaListLevels1(level1)
+                            document.querySelector(".qcalistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".qcalistBull1").style.display='none'
+                          }
+                        const level2 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".qcalistBull2").style.display='block'
+                          console.log(level2);
+                          qcaListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull2").style.display='none'
+                        }
+                        const level3 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".qcalistBull3").style.display='block'
+                          qcaListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".qcalistBull3").style.display='none'
+                        }
+                        const level4 = QualityControlAnalysis.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".qcalistBull4").style.display='block'
+                    
+                          qcaListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".qcalistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  OperationandControl = response.filter((d) => d.info.areas=="Operation and Control");
+              if (OperationandControl.length>0) {
+                document.querySelector(".flush-heading80").style.display="block"
+                const level1 = OperationandControl.filter((d)=>d.info.levels=="Level 1")
+                   
+                          if(level1.length >0){
+                            console.log(level1);
+                            ocListLevels1(level1)
+                            document.querySelector(".oclistBull1").style.display='block'
+                          }else{
+                            document.querySelector(".oclistBull1").style.display='none'
+                          }
+                        const level2 = OperationandControl.filter((d)=>d.info.levels=="Level 2")
+                        if(level2.length>0){
+                          document.querySelector(".oclistBull2").style.display='block'
+                          console.log(level2);
+                          ocListLevels2(level2)
+                        
+                        }else{
+                          document.querySelector(".oclistBull2").style.display='none'
+                        }
+                        const level3 = OperationandControl.filter((d)=>d.info.levels=="Level 3")
+                        if(level3.length!==0){
+                          document.querySelector(".oclistBull3").style.display='block'
+                          ocListLevels3(level3)
+                      
+                        }else{
+                          document.querySelector(".oclistBull3").style.display='none'
+                        }
+                        const level4 = OperationandControl.filter((d)=>d.info.levels=="Level 4")
+                        if(level4.length!==0){
+                          console.log(level4);
+                          document.querySelector(".oclistBull4").style.display='block'
+                    
+                          ocListLevels4(level4)
+                        
+                        }else{
+                          document.querySelector(".oclistBull4").style.display='none'
+                        }
+                
+               } 
+
+               const  Troubleshooting = response.filter((d) => d.info.areas=="Troubleshooting");
+               if (Troubleshooting.length>0) {
+                 document.querySelector(".flush-heading81").style.display="block"
+                 const level1 = Troubleshooting.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             trouListLevels1(level1)
+                             document.querySelector(".troulistBull1").style.display='block'
+                           }else{
+                             document.querySelector(".troulistBull1").style.display='none'
+                           }
+                         const level2 = Troubleshooting.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".troulistBull2").style.display='block'
+                           console.log(level2);
+                           trouListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".troulistBull2").style.display='none'
+                         }
+                         const level3 = Troubleshooting.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".troulistBull3").style.display='block'
+                           trouListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".troulistBull3").style.display='none'
+                         }
+                         const level4 = Troubleshooting.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".troulistBull4").style.display='block'
+                     
+                           trouListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".troulistBull4").style.display='none'
+                         }
+                 
+                }
+
+                 const  grade1 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 1");
+               if (grade1.length>0) {
+                 document.querySelector(".flush-heading82").style.display="block"
+                 const level1 = grade1.filter((d)=>d.info.levels=="Level 1")
+                    
+                           if(level1.length >0){
+                             console.log(level1);
+                             g1ListLevels1(level1)
+                             document.querySelector(".g1listBull1").style.display='block'
+                           }else{
+                             document.querySelector(".g1listBull1").style.display='none'
+                           }
+                         const level2 = grade1.filter((d)=>d.info.levels=="Level 2")
+                         if(level2.length>0){
+                           document.querySelector(".g1listBull2").style.display='block'
+                           console.log(level2);
+                           g1ListLevels2(level2)
+                         
+                         }else{
+                           document.querySelector(".g1listBull2").style.display='none'
+                         }
+                         const level3 = grade1.filter((d)=>d.info.levels=="Level 3")
+                         if(level3.length!==0){
+                           document.querySelector(".g1listBull3").style.display='block'
+                           g1ListLevels3(level3)
+                       
+                         }else{
+                           document.querySelector(".g1listBull3").style.display='none'
+                         }
+                         const level4 = grade1.filter((d)=>d.info.levels=="Level 4")
+                         if(level4.length!==0){
+                           console.log(level4);
+                           document.querySelector(".g1listBull4").style.display='block'
+                     
+                           g1ListLevels4(level4)
+                         
+                         }else{
+                           document.querySelector(".g1listBull4").style.display='none'
+                         }
+                 
+                }
+
+                
+                const  grade2 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 2");
+                if (grade2.length>0) {
+                  document.querySelector(".flush-heading83").style.display="block"
+                  const level1 = grade2.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g2ListLevels1(level1)
+                              document.querySelector(".g2listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g2listBull1").style.display='none'
+                            }
+                          const level2 = grade2.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g2listBull2").style.display='block'
+                            console.log(level2);
+                            g2ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g2listBull2").style.display='none'
+                          }
+                          const level3 = grade2.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g2listBull3").style.display='block'
+                            g2ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g2listBull3").style.display='none'
+                          }
+                          const level4 = grade2.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g2listBull4").style.display='block'
+                      
+                            g2ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g2listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                            
+                const  grade3 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3");
+                if (grade3.length>0) {
+                  document.querySelector(".flush-heading84").style.display="block"
+                  const level1 = grade3.filter((d)=>d.info.levels=="Level 1")
+                     
+                            if(level1.length >0){
+                              console.log(level1);
+                              g3ListLevels1(level1)
+                              document.querySelector(".g3listBull1").style.display='block'
+                            }else{
+                              document.querySelector(".g3listBull1").style.display='none'
+                            }
+                          const level2 = grade3.filter((d)=>d.info.levels=="Level 2")
+                          if(level2.length>0){
+                            document.querySelector(".g3listBull2").style.display='block'
+                            console.log(level2);
+                            g3ListLevels2(level2)
+                          
+                          }else{
+                            document.querySelector(".g3listBull2").style.display='none'
+                          }
+                          const level3 = grade3.filter((d)=>d.info.levels=="Level 3")
+                          if(level3.length!==0){
+                            document.querySelector(".g3listBull3").style.display='block'
+                            g3ListLevels3(level3)
+                        
+                          }else{
+                            document.querySelector(".g3listBull3").style.display='none'
+                          }
+                          const level4 = grade3.filter((d)=>d.info.levels=="Level 4")
+                          if(level4.length!==0){
+                            console.log(level4);
+                            document.querySelector(".g3listBull4").style.display='block'
+                      
+                            g3ListLevels4(level4)
+                          
+                          }else{
+                            document.querySelector(".g3listBull4").style.display='none'
+                          }
+                  
+                 }
+
+                 const  grade4 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 4");
+                 if (grade4.length>0) {
+                   document.querySelector(".flush-heading85").style.display="block"
+                   const level1 = grade4.filter((d)=>d.info.levels=="Level 1")
+                      
+                             if(level1.length >0){
+                               console.log(level1);
+                               g4ListLevels1(level1)
+                               document.querySelector(".g4listBull1").style.display='block'
+                             }else{
+                               document.querySelector(".g4listBull1").style.display='none'
+                             }
+                           const level2 = grade4.filter((d)=>d.info.levels=="Level 2")
+                           if(level2.length>0){
+                             document.querySelector(".g4listBull2").style.display='block'
+                             console.log(level2);
+                             g4ListLevels2(level2)
+                           
+                           }else{
+                             document.querySelector(".g4listBull2").style.display='none'
+                           }
+                           const level3 = grade4.filter((d)=>d.info.levels=="Level 3")
+                           if(level3.length!==0){
+                             document.querySelector(".g4listBull3").style.display='block'
+                             g4ListLevels3(level3)
+                         
+                           }else{
+                             document.querySelector(".g4listBull3").style.display='none'
+                           }
+                           const level4 = grade4.filter((d)=>d.info.levels=="Level 4")
+                           if(level4.length!==0){
+                             console.log(level4);
+                             document.querySelector(".g4listBull4").style.display='block'
+                       
+                             g4ListLevels4(level4)
+                           
+                           }else{
+                             document.querySelector(".g4listBull4").style.display='none'
+                           }
+                   
+                  }
+
+                  const  grade5 = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 5");
+                  if (grade5.length>0) {
+                    document.querySelector(".flush-heading86").style.display="block"
+                    const level1 = grade5.filter((d)=>d.info.levels=="Level 1")
+                       
+                              if(level1.length >0){
+                                console.log(level1);
+                                g5ListLevels1(level1)
+                                document.querySelector(".g5listBull1").style.display='block'
+                              }else{
+                                document.querySelector(".g5listBull1").style.display='none'
+                              }
+                            const level2 = grade5.filter((d)=>d.info.levels=="Level 2")
+                            if(level2.length>0){
+                              document.querySelector(".g5listBull2").style.display='block'
+                              console.log(level2);
+                              g5ListLevels2(level2)
+                            
+                            }else{
+                              document.querySelector(".g5listBull2").style.display='none'
+                            }
+                            const level3 = grade5.filter((d)=>d.info.levels=="Level 3")
+                            if(level3.length!==0){
+                              document.querySelector(".g5listBull3").style.display='block'
+                              g5ListLevels3(level3)
+                          
+                            }else{
+                              document.querySelector(".g5listBull3").style.display='none'
+                            }
+                            const level4 = grade5.filter((d)=>d.info.levels=="Level 4")
+                            if(level4.length!==0){
+                              console.log(level4);
+                              document.querySelector(".g5listBull4").style.display='block'
+                        
+                              g5ListLevels4(level4)
+                            
+                            }else{
+                              document.querySelector(".g5listBull4").style.display='none'
+                            }
+                    
+                   }
+
+                   
+                   const  DrivingBehaviour = response.filter((d) => d.info.areas=="Driving Behaviour");
+                   if (DrivingBehaviour.length>0) {
+                     document.querySelector(".flush-heading87").style.display="block"
+                     const level1 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 1")
+                        
+                               if(level1.length >0){
+                                 console.log(level1);
+                                 dbListLevels1(level1)
+                                 document.querySelector(".dblistBull1").style.display='block'
+                               }else{
+                                 document.querySelector(".dblistBull1").style.display='none'
+                               }
+                             const level2 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 2")
+                             if(level2.length>0){
+                               document.querySelector(".dblistBull2").style.display='block'
+                               console.log(level2);
+                               dbListLevels2(level2)
+                             
+                             }else{
+                               document.querySelector(".dblistBull2").style.display='none'
+                             }
+                             const level3 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 3")
+                             if(level3.length!==0){
+                               document.querySelector(".dblistBull3").style.display='block'
+                               dbListLevels3(level3)
+                           
+                             }else{
+                               document.querySelector(".dblistBull3").style.display='none'
+                             }
+                             const level4 = DrivingBehaviour.filter((d)=>d.info.levels=="Level 4")
+                             if(level4.length!==0){
+                               console.log(level4);
+                               document.querySelector(".dblistBull4").style.display='block'
+                         
+                               dbListLevels4(level4)
+                             
+                             }else{
+                               document.querySelector(".dblistBull4").style.display='none'
+                             }
+                     
+                    }
+ 
+                               
+                    const  OperatioMonitoringLighEquipment = response.filter((d) => d.info.areas=="Operation Monitoring - Light Equipment");
+                    if (OperatioMonitoringLighEquipment.length>0) {
+                      document.querySelector(".flush-heading88").style.display="block"
+                      const level1 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 1")
+                         
+                                if(level1.length >0){
+                                  console.log(level1);
+                                  leListLevels1(level1)
+                                  document.querySelector(".lelistBull1").style.display='block'
+                                }else{
+                                  document.querySelector(".lelistBull1").style.display='none'
+                                }
+                              const level2 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 2")
+                              if(level2.length>0){
+                                document.querySelector(".lelistBull2").style.display='block'
+                                console.log(level2);
+                                leListLevels2(level2)
+                              
+                              }else{
+                                document.querySelector(".lelistBull2").style.display='none'
+                              }
+                              const level3 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 3")
+                              if(level3.length!==0){
+                                document.querySelector(".lelistBull3").style.display='block'
+                                leListLevels3(level3)
+                            
+                              }else{
+                                document.querySelector(".lelistBull3").style.display='none'
+                              }
+                              const level4 = OperatioMonitoringLighEquipment.filter((d)=>d.info.levels=="Level 4")
+                              if(level4.length!==0){
+                                console.log(level4);
+                                document.querySelector(".lelistBull4").style.display='block'
+                          
+                                leListLevels4(level4)
+                              
+                              }else{
+                                document.querySelector(".lelistBull4").style.display='none'
+                              }
+                      
+                     }        
+ 
+                     const  OperationMonitoringMechanicalPlant = response.filter((d) => d.info.areas=="Operation Monitoring - Mechanical Plant");
+                     if (OperationMonitoringMechanicalPlant.length>0) {
+                       document.querySelector(".flush-heading89").style.display="block"
+                       const level1 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 1")
+                          
+                                 if(level1.length >0){
+                                   console.log(level1);
+                                   olListLevels1(level1)
+                                   document.querySelector(".ollistBull1").style.display='block'
+                                 }else{
+                                   document.querySelector(".ollistBull1").style.display='none'
+                                 }
+                               const level2 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 2")
+                               if(level2.length>0){
+                                 document.querySelector(".ollistBull2").style.display='block'
+                                 console.log(level2);
+                                 olListLevels2(level2)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull2").style.display='none'
+                               }
+                               const level3 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 3")
+                               if(level3.length!==0){
+                                 document.querySelector(".ollistBull3").style.display='block'
+                                 olListLevels3(level3)
+                             
+                               }else{
+                                 document.querySelector(".ollistBull3").style.display='none'
+                               }
+                               const level4 = OperationMonitoringMechanicalPlant.filter((d)=>d.info.levels=="Level 4")
+                               if(level4.length!==0){
+                                 console.log(level4);
+                                 document.querySelector(".ollistBull4").style.display='block'
+                           
+                                 olListLevels4(level4)
+                               
+                               }else{
+                                 document.querySelector(".ollistBull4").style.display='none'
+                               }
+                       
+                      } 
+
+
+                      const  vehiclesafety = response.filter((d) => d.info.areas=="Vehicle Safety - Driver Grade 3 / Special Category");
+                      if (vehiclesafety.length>0) {
+                        document.querySelector(".flush-heading90").style.display="block"
+                        const level1 = vehiclesafety.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vsListLevels1(level1)
+                                    document.querySelector(".vslistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vslistBull1").style.display='none'
+                                  }
+                                const level2 = vehiclesafety.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vslistBull2").style.display='block'
+                                  console.log(level2);
+                                  vsListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull2").style.display='none'
+                                }
+                                const level3 = vehiclesafety.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vslistBull3").style.display='block'
+                                  vsListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vslistBull3").style.display='none'
+                                }
+                                const level4 = vehiclesafety.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vslistBull4").style.display='block'
+                            
+                                  vsListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vslistBull4").style.display='none'
+                                }
+                        
+                       } 
+
+                         const  VehicleSafetyChauffeur = response.filter((d) => d.info.areas=="Vehicle Safety - Chauffeur");
+                      if (VehicleSafetyChauffeur.length>0) {
+                        document.querySelector(".flush-heading91").style.display="block"
+                        const level1 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 1")
+                           
+                                  if(level1.length >0){
+                                    console.log(level1);
+                                    vscListLevels1(level1)
+                                    document.querySelector(".vsclistBull1").style.display='block'
+                                  }else{
+                                    document.querySelector(".vsclistBull1").style.display='none'
+                                  }
+                                const level2 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 2")
+                                if(level2.length>0){
+                                  document.querySelector(".vsclistBull2").style.display='block'
+                                  console.log(level2);
+                                  vscListLevels2(level2)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull2").style.display='none'
+                                }
+                                const level3 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 3")
+                                if(level3.length!==0){
+                                  document.querySelector(".vsclistBull3").style.display='block'
+                                  vscListLevels3(level3)
+                              
+                                }else{
+                                  document.querySelector(".vsclistBull3").style.display='none'
+                                }
+                                const level4 = VehicleSafetyChauffeur.filter((d)=>d.info.levels=="Level 4")
+                                if(level4.length!==0){
+                                  console.log(level4);
+                                  document.querySelector(".vsclistBull4").style.display='block'
+                            
+                                  vscListLevels4(level4)
+                                
+                                }else{
+                                  document.querySelector(".vsclistBull4").style.display='none'
+                                }
+                        
+                       } 
+ 
+ 
         // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
         // if (ChangeReadiness.length>0) {
         //   document.querySelector(".flush-heading66").style.display="block"
@@ -27655,6 +35089,31 @@ function Position() {
       document.querySelector(".flush-heading65").style.display="none"
       document.querySelector(".flush-heading66").style.display="none"
       document.querySelector(".flush-heading67").style.display="none"
+      document.querySelector(".flush-heading68").style.display="none"
+      document.querySelector(".flush-heading69").style.display="none"
+      document.querySelector(".flush-heading70").style.display="none"
+      document.querySelector(".flush-heading71").style.display="none"
+      document.querySelector(".flush-heading72").style.display="none"
+      document.querySelector(".flush-heading73").style.display="none"
+      document.querySelector(".flush-heading74").style.display="none"
+      document.querySelector(".flush-heading75").style.display="none"
+      document.querySelector(".flush-heading76").style.display="none"
+      document.querySelector(".flush-heading77").style.display="none"
+      document.querySelector(".flush-heading78").style.display="none"
+      document.querySelector(".flush-heading79").style.display="none"
+      document.querySelector(".flush-heading80").style.display="none"
+      document.querySelector(".flush-heading81").style.display="none"
+      document.querySelector(".flush-heading82").style.display="none"
+      document.querySelector(".flush-heading83").style.display="none"
+      document.querySelector(".flush-heading84").style.display="none"
+      document.querySelector(".flush-heading85").style.display="none"
+      document.querySelector(".flush-heading86").style.display="none"
+      document.querySelector(".flush-heading87").style.display="none"
+      document.querySelector(".flush-heading88").style.display="none"
+      document.querySelector(".flush-heading89").style.display="none"
+      document.querySelector(".flush-heading90").style.display="none"
+      document.querySelector(".flush-heading91").style.display="none"
+     
       console.log(response.data);
      
     
