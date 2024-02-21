@@ -608,14 +608,60 @@ function validateRadioInputs(departmentId) {
   const radioInputs = document.querySelectorAll(`input[name="${departmentId}"]:checked`);
   return radioInputs.length > 0;
 }
+function getRatedCompetency(result) {
+  const query = window.location.search;
+	const url = new URLSearchParams(query);
+	const ID = url.get("User");
+  console.log(ID);
+  axios.post('/getratedcompetency',{
+      ID:ID
+       
+    })
+    .then(function (response) {
+     console.log(response.data);
+     
+     for (let i = 0; i < result.length; i++) {
+      const loadedcompetency = result[i];
+          for (let index = 0; index < response.data.length; index++) {
+            const savedcompetency = response.data[index];
+            if (loadedcompetency.info.details==savedcompetency.info.details) {
+              console.log("rate is:"+savedcompetency.info.rate);
+              if (savedcompetency.info.rate =="1"&&loadedcompetency.info.details==savedcompetency.info.details) {
+                let input= document.getElementById(loadedcompetency.id+"1")
+                input.checked=true
+               }
 
+               if (savedcompetency.info.rate =="2"&&loadedcompetency.info.details==savedcompetency.info.details) {
+                let input= document.getElementById(loadedcompetency.id+"2")
+                input.checked=true
+               }
+
+               if (savedcompetency.info.rate =="3"&&loadedcompetency.info.details==savedcompetency.info.details) {
+                let input= document.getElementById(loadedcompetency.id+"3")
+                input.checked=true
+               }
+               if (savedcompetency.info.rate =="4"&&loadedcompetency.info.details==savedcompetency.info.details) {
+                let input= document.getElementById(loadedcompetency.id+"4")
+                input.checked=true
+               }
+
+               if (savedcompetency.info.rate =="5"&&loadedcompetency.info.details==savedcompetency.info.details) {
+                let input= document.getElementById(loadedcompetency.id+"5")
+                input.checked=true
+               }
+            }
+          }
+     }
+    })
+
+}
 function ListLevels1(result) {
 
   console.log(result);
   let option =""
   let html =""
   let list = document.querySelector(".listdata121")
- 
+  
   result.forEach((department,i )=> {
     console.log(department.info.details);
   
@@ -653,6 +699,8 @@ function ListLevels1(result) {
       list.innerHTML=html;
       
   });
+
+  getRatedCompetency(result)
 }
 
 
@@ -696,6 +744,7 @@ function ListLevels2(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function ListLevels3(result) {
   let option =""
@@ -736,6 +785,7 @@ function ListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function ListLevels4(result) {
@@ -777,6 +827,8 @@ function ListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function oListLevels1(result) {
@@ -821,6 +873,7 @@ function oListLevels1(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function oListLevels2(result) {
   let option =""
@@ -862,6 +915,7 @@ function oListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function oListLevels3(result) {
@@ -903,6 +957,7 @@ function oListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function oListLevels4(result) {
   let option =""
@@ -942,6 +997,7 @@ function oListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function pListLevels1(result) {
@@ -985,6 +1041,7 @@ function pListLevels1(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function pListLevels2(result) {
   let option =""
@@ -1023,6 +1080,7 @@ function pListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function pListLevels3(result) {
@@ -1061,6 +1119,7 @@ function pListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function pListLevels4(result) {
   let option =""
@@ -1098,6 +1157,7 @@ function pListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -1140,6 +1200,7 @@ function mListLevels1(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function mListLevels2(result) {
   let option =""
@@ -1177,6 +1238,7 @@ function mListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function mListLevels3(result) {
@@ -1215,6 +1277,8 @@ function mListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function mListLevels4(result) {
   let option =""
@@ -1252,6 +1316,8 @@ function mListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 
@@ -1294,6 +1360,8 @@ function cListLevels1(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function cListLevels2(result) {
   let option =""
@@ -1331,6 +1399,8 @@ function cListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function cListLevels3(result) {
@@ -1369,6 +1439,8 @@ function cListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function cListLevels4(result) {
   let option =""
@@ -1407,6 +1479,8 @@ function cListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function nListLevels1(result) {
@@ -1449,6 +1523,8 @@ function nListLevels1(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function nListLevels2(result) {
   let option =""
@@ -1487,6 +1563,8 @@ function nListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function nListLevels3(result) {
@@ -1526,6 +1604,8 @@ function nListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function nListLevels4(result) {
   let option =""
@@ -1563,6 +1643,8 @@ function nListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function orListLevels1(result) {
@@ -1605,6 +1687,8 @@ function orListLevels1(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function orListLevels2(result) {
   let option =""
@@ -1643,6 +1727,8 @@ function orListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function orListLevels3(result) {
@@ -1682,6 +1768,8 @@ function orListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function orListLevels4(result) {
   let option =""
@@ -1720,6 +1808,8 @@ function orListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function ldListLevels1(result) {
@@ -1762,6 +1852,8 @@ function ldListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function ldListLevels2(result) {
   let option =""
@@ -1800,6 +1892,8 @@ function ldListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function ldListLevels3(result) {
@@ -1839,6 +1933,8 @@ function ldListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function ldListLevels4(result) {
   let option =""
@@ -1877,6 +1973,8 @@ function ldListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function aListLevels1(result) {
@@ -1919,6 +2017,8 @@ function aListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function aListLevels2(result) {
   let option =""
@@ -1957,6 +2057,8 @@ function aListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function aListLevels3(result) {
@@ -1996,6 +2098,8 @@ function aListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function aListLevels4(result) {
   let option =""
@@ -2034,6 +2138,8 @@ function aListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function cmListLevels1(result) {
@@ -2075,6 +2181,8 @@ function cmListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function cmListLevels2(result) {
   let option =""
@@ -2112,6 +2220,8 @@ function cmListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function cmListLevels3(result) {
@@ -2150,6 +2260,8 @@ function cmListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function cmListLevels4(result) {
   let option =""
@@ -2187,6 +2299,8 @@ function cmListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function tListLevels1(result) {
@@ -2228,6 +2342,8 @@ function tListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function tListLevels2(result) {
   let option =""
@@ -2265,6 +2381,8 @@ function tListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function tListLevels3(result) {
@@ -2303,6 +2421,8 @@ function tListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function tListLevels4(result) {
   let option =""
@@ -2340,6 +2460,8 @@ function tListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 
@@ -2382,6 +2504,8 @@ function sListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function sListLevels2(result) {
   let option =""
@@ -2419,6 +2543,7 @@ function sListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function sListLevels3(result) {
@@ -2457,6 +2582,8 @@ function sListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function sListLevels4(result) {
   let option =""
@@ -2494,6 +2621,8 @@ function sListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function tmListLevels1(result) {
@@ -2535,6 +2664,7 @@ function tmListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function tmListLevels2(result) {
   let option =""
@@ -2574,6 +2704,7 @@ function tmListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function tmListLevels3(result) {
@@ -2614,6 +2745,8 @@ function tmListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function tmListLevels4(result) {
   let option =""
@@ -2653,6 +2786,8 @@ function tmListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function wListLevels1(result) {
@@ -2696,6 +2831,8 @@ function wListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function wListLevels2(result) {
   let option =""
@@ -2733,6 +2870,8 @@ function wListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function wListLevels3(result) {
@@ -2771,6 +2910,8 @@ function wListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function wListLevels4(result) {
   let option =""
@@ -2808,6 +2949,8 @@ function wListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 
@@ -2851,6 +2994,8 @@ function dlListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function dlListLevels2(result) {
   let option =""
@@ -2888,6 +3033,8 @@ function dlListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function dlListLevels3(result) {
@@ -2926,6 +3073,8 @@ function dlListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function dlListLevels4(result) {
   let option =""
@@ -2963,6 +3112,8 @@ function dlListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function ohListLevels1(result) {
@@ -3004,6 +3155,7 @@ function ohListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function ohListLevels2(result) {
   let option =""
@@ -3041,6 +3193,8 @@ function ohListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function ohListLevels3(result) {
@@ -3079,6 +3233,8 @@ function ohListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function ohListLevels4(result) {
   let option =""
@@ -3116,6 +3272,8 @@ function ohListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function intListLevels1(result) {
@@ -3157,6 +3315,8 @@ function intListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function intListLevels2(result) {
   let option =""
@@ -3194,6 +3354,8 @@ function intListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function intListLevels3(result) {
@@ -3232,6 +3394,8 @@ function intListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function intListLevels4(result) {
   let option =""
@@ -3269,6 +3433,8 @@ function intListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 
@@ -3311,6 +3477,8 @@ function inListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function inListLevels2(result) {
   let option =""
@@ -3348,6 +3516,8 @@ function inListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function inListLevels3(result) {
@@ -3386,6 +3556,8 @@ function inListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function inListLevels4(result) {
   let option =""
@@ -3423,6 +3595,8 @@ function inListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function peListLevels1(result) {
@@ -3464,6 +3638,7 @@ function peListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function peListLevels2(result) {
   let option =""
@@ -3501,6 +3676,7 @@ function peListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function peListLevels3(result) {
@@ -3539,6 +3715,8 @@ function peListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function peListLevels4(result) {
   let option =""
@@ -3576,6 +3754,8 @@ function peListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function comListLevels1(result) {
@@ -3617,6 +3797,8 @@ function comListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function comListLevels2(result) {
   let option =""
@@ -3654,6 +3836,8 @@ function comListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function comListLevels3(result) {
@@ -3692,6 +3876,8 @@ function comListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function comListLevels4(result) {
   let option =""
@@ -3729,6 +3915,8 @@ function comListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function sdoListLevels1(result) {
@@ -3770,6 +3958,8 @@ function sdoListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function sdoListLevels2(result) {
   let option =""
@@ -3807,6 +3997,8 @@ function sdoListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function sdoListLevels3(result) {
@@ -3845,6 +4037,8 @@ function sdoListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function sdoListLevels4(result) {
   let option =""
@@ -3882,6 +4076,8 @@ function sdoListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function actListLevels1(result) {
@@ -3923,6 +4119,8 @@ function actListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function actListLevels2(result) {
   let option =""
@@ -3960,6 +4158,8 @@ function actListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function actListLevels3(result) {
@@ -3998,6 +4198,8 @@ function actListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function actListLevels4(result) {
   let option =""
@@ -4035,6 +4237,8 @@ function actListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function conListLevels1(result) {
@@ -4076,6 +4280,8 @@ function conListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function conListLevels2(result) {
   let option =""
@@ -4113,6 +4319,8 @@ function conListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function conListLevels3(result) {
@@ -4151,6 +4359,8 @@ function conListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function conListLevels4(result) {
   let option =""
@@ -4188,6 +4398,7 @@ function conListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function loListLevels1(result) {
@@ -4229,6 +4440,8 @@ function loListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function loListLevels2(result) {
   let option =""
@@ -4266,6 +4479,8 @@ function loListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function loListLevels3(result) {
@@ -4304,6 +4519,8 @@ function loListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function loListLevels4(result) {
   let option =""
@@ -4341,6 +4558,8 @@ function loListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function aeListLevels1(result) {
@@ -4382,6 +4601,8 @@ function aeListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function aeListLevels2(result) {
   let option =""
@@ -4419,6 +4640,8 @@ function aeListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function aeListLevels3(result) {
@@ -4457,6 +4680,8 @@ function aeListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function aeListLevels4(result) {
   let option =""
@@ -4494,6 +4719,7 @@ function aeListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -4536,6 +4762,7 @@ function psListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function psListLevels2(result) {
   let option =""
@@ -4573,6 +4800,7 @@ function psListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function psListLevels3(result) {
@@ -4611,6 +4839,7 @@ function psListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function psListLevels4(result) {
   let option =""
@@ -4648,6 +4877,7 @@ function psListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -4691,6 +4921,7 @@ function cbListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function cbListLevels2(result) {
   let option =""
@@ -4728,6 +4959,8 @@ function cbListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function cbListLevels3(result) {
@@ -4766,6 +4999,8 @@ function cbListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function cbListLevels4(result) {
   let option =""
@@ -4803,6 +5038,7 @@ function cbListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function ewListLevels1(result) {
@@ -4844,6 +5080,7 @@ function ewListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function ewListLevels2(result) {
   let option =""
@@ -4881,6 +5118,8 @@ function ewListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function ewListLevels3(result) {
@@ -4919,6 +5158,8 @@ function ewListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function ewListLevels4(result) {
   let option =""
@@ -4956,6 +5197,8 @@ function ewListLevels4(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 
 function rsListLevels1(result) {
@@ -4997,6 +5240,8 @@ function rsListLevels1(result) {
      console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 function rsListLevels2(result) {
   let option =""
@@ -5034,6 +5279,8 @@ function rsListLevels2(result) {
     console.log(option);
       
   });
+
+  getRatedCompetency(result)
 }
 
 function rsListLevels3(result) {
@@ -5072,6 +5319,8 @@ function rsListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function rsListLevels4(result) {
   let option =""
@@ -5109,6 +5358,7 @@ function rsListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function drListLevels1(result) {
@@ -5150,6 +5400,7 @@ function drListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function drListLevels2(result) {
   let option =""
@@ -5187,6 +5438,7 @@ function drListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function drListLevels3(result) {
@@ -5225,6 +5477,7 @@ function drListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function drListLevels4(result) {
   let option =""
@@ -5262,6 +5515,7 @@ function drListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -5304,6 +5558,7 @@ function iiListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function iiListLevels2(result) {
   let option =""
@@ -5341,6 +5596,7 @@ function iiListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function iiListLevels3(result) {
@@ -5379,6 +5635,7 @@ function iiListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function iiListLevels4(result) {
   let option =""
@@ -5416,6 +5673,7 @@ function iiListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -5458,6 +5716,7 @@ function menListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function menListLevels2(result) {
   let option =""
@@ -5495,6 +5754,7 @@ function menListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function menListLevels3(result) {
@@ -5533,6 +5793,7 @@ function menListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function menListLevels4(result) {
   let option =""
@@ -5570,6 +5831,7 @@ function menListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function toListLevels1(result) {
@@ -5611,6 +5873,7 @@ function toListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function toListLevels2(result) {
   let option =""
@@ -5648,6 +5911,7 @@ function toListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function toListLevels3(result) {
@@ -5686,6 +5950,7 @@ function toListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function toListLevels4(result) {
   let option =""
@@ -5723,6 +5988,7 @@ function toListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function emListLevels1(result) {
@@ -5764,6 +6030,7 @@ function emListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function emListLevels2(result) {
   let option =""
@@ -5801,6 +6068,7 @@ function emListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function emListLevels3(result) {
@@ -5839,6 +6107,7 @@ function emListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function emListLevels4(result) {
   let option =""
@@ -5876,6 +6145,7 @@ function emListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -5918,6 +6188,7 @@ function ioListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function ioListLevels2(result) {
   let option =""
@@ -5955,6 +6226,7 @@ function ioListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function ioListLevels3(result) {
@@ -5993,6 +6265,7 @@ function ioListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function ioListLevels4(result) {
   let option =""
@@ -6030,6 +6303,7 @@ function ioListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function imListLevels1(result) {
@@ -6071,6 +6345,7 @@ function imListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function imListLevels2(result) {
   let option =""
@@ -6108,6 +6383,7 @@ function imListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function imListLevels3(result) {
@@ -6146,6 +6422,7 @@ function imListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function imListLevels4(result) {
   let option =""
@@ -6183,6 +6460,7 @@ function imListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function raListLevels1(result) {
@@ -6224,6 +6502,7 @@ function raListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function raListLevels2(result) {
   let option =""
@@ -6261,6 +6540,7 @@ function raListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function raListLevels3(result) {
@@ -6299,6 +6579,7 @@ function raListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function raListLevels4(result) {
   let option =""
@@ -6336,6 +6617,7 @@ function raListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function anListLevels1(result) {
@@ -6377,6 +6659,7 @@ function anListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function anListLevels2(result) {
   let option =""
@@ -6414,6 +6697,7 @@ function anListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function anListLevels3(result) {
@@ -6452,6 +6736,7 @@ function anListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function anListLevels4(result) {
   let option =""
@@ -6489,6 +6774,7 @@ function anListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -6531,6 +6817,7 @@ function epListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function epListLevels2(result) {
   let option =""
@@ -6568,6 +6855,7 @@ function epListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function epListLevels3(result) {
@@ -6606,6 +6894,8 @@ function epListLevels3(result) {
      
       
   });
+
+  getRatedCompetency(result)
 }
 function epListLevels4(result) {
   let option =""
@@ -6643,6 +6933,7 @@ function epListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function scListLevels1(result) {
@@ -6684,6 +6975,7 @@ function scListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function scListLevels2(result) {
   let option =""
@@ -6721,6 +7013,7 @@ function scListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function scListLevels3(result) {
@@ -6759,6 +7052,7 @@ function scListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function scListLevels4(result) {
   let option =""
@@ -6796,6 +7090,7 @@ function scListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function crListLevels1(result) {
@@ -6837,6 +7132,7 @@ function crListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function crListLevels2(result) {
   let option =""
@@ -6874,6 +7170,7 @@ function crListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function crListLevels3(result) {
@@ -6912,6 +7209,7 @@ function crListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function crListLevels4(result) {
   let option =""
@@ -6949,6 +7247,7 @@ function crListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function caListLevels1(result) {
@@ -6990,6 +7289,7 @@ function caListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function caListLevels2(result) {
   let option =""
@@ -7027,6 +7327,7 @@ function caListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function caListLevels3(result) {
@@ -7065,6 +7366,7 @@ function caListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function caListLevels4(result) {
   let option =""
@@ -7102,6 +7404,7 @@ function caListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -7144,6 +7447,7 @@ function ccListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function ccListLevels2(result) {
   let option =""
@@ -7181,6 +7485,7 @@ function ccListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function ccListLevels3(result) {
@@ -7219,6 +7524,7 @@ function ccListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function ccListLevels4(result) {
   let option =""
@@ -7256,6 +7562,7 @@ function ccListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function manaListLevels1(result) {
@@ -7297,6 +7604,7 @@ function manaListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function manaListLevels2(result) {
   let option =""
@@ -7334,6 +7642,7 @@ function manaListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function manaListLevels3(result) {
@@ -7372,6 +7681,7 @@ function manaListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function manaListLevels4(result) {
   let option =""
@@ -7409,6 +7719,7 @@ function manaListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -7451,6 +7762,7 @@ function wcdListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function wcdListLevels2(result) {
   let option =""
@@ -7488,6 +7800,7 @@ function wcdListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function wcdListLevels3(result) {
@@ -7526,6 +7839,7 @@ function wcdListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function wcdListLevels4(result) {
   let option =""
@@ -7563,6 +7877,7 @@ function wcdListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -7605,6 +7920,7 @@ function accountListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function accountListLevels2(result) {
   let option =""
@@ -7642,6 +7958,7 @@ function accountListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function accountListLevels3(result) {
@@ -7680,6 +7997,7 @@ function accountListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function accountListLevels4(result) {
   let option =""
@@ -7717,6 +8035,7 @@ function accountListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -7759,6 +8078,7 @@ function procurementListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function procurementListLevels2(result) {
   let option =""
@@ -7796,6 +8116,7 @@ function procurementListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function procurementListLevels3(result) {
@@ -7834,6 +8155,7 @@ function procurementListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function procurementListLevels4(result) {
   let option =""
@@ -7871,6 +8193,7 @@ function procurementListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -7913,6 +8236,7 @@ function budgetListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function budgetListLevels2(result) {
   let option =""
@@ -7950,6 +8274,7 @@ function budgetListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function budgetListLevels3(result) {
@@ -7988,6 +8313,7 @@ function budgetListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function budgetListLevels4(result) {
   let option =""
@@ -8025,6 +8351,7 @@ function budgetListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function financeListLevels1(result) {
@@ -8066,6 +8393,7 @@ function financeListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function financeListLevels2(result) {
   let option =""
@@ -8103,6 +8431,7 @@ function financeListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function financeListLevels3(result) {
@@ -8141,6 +8470,7 @@ function financeListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function financeListLevels4(result) {
   let option =""
@@ -8178,6 +8508,7 @@ function financeListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function costListLevels1(result) {
@@ -8219,6 +8550,7 @@ function costListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function costListLevels2(result) {
   let option =""
@@ -8256,6 +8588,7 @@ function costListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function costListLevels3(result) {
@@ -8294,6 +8627,7 @@ function costListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function costListLevels4(result) {
   let option =""
@@ -8331,6 +8665,7 @@ function costListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -8373,6 +8708,7 @@ function freportListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function freportListLevels2(result) {
   let option =""
@@ -8410,6 +8746,7 @@ function freportListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function freportListLevels3(result) {
@@ -8448,6 +8785,7 @@ function freportListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function freportListLevels4(result) {
   let option =""
@@ -8485,6 +8823,7 @@ function freportListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function fmListLevels1(result) {
@@ -8526,6 +8865,7 @@ function fmListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function fmListLevels2(result) {
   let option =""
@@ -8563,6 +8903,7 @@ function fmListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function fmListLevels3(result) {
@@ -8601,6 +8942,7 @@ function fmListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function fmListLevels4(result) {
   let option =""
@@ -8638,6 +8980,7 @@ function fmListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function spListLevels1(result) {
@@ -8679,6 +9022,7 @@ function spListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function spListLevels2(result) {
   let option =""
@@ -8716,6 +9060,7 @@ function spListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function spListLevels3(result) {
@@ -8754,6 +9099,7 @@ function spListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function spListLevels4(result) {
   let option =""
@@ -8791,6 +9137,7 @@ function spListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function atdListLevels1(result) {
@@ -8832,6 +9179,7 @@ function atdListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function atdListLevels2(result) {
   let option =""
@@ -8869,6 +9217,7 @@ function atdListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function atdListLevels3(result) {
@@ -8907,6 +9256,7 @@ function atdListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function atdListLevels4(result) {
   let option =""
@@ -8944,6 +9294,7 @@ function atdListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function intflListLevels1(result) {
@@ -8985,6 +9336,7 @@ function intflListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function intflListLevels2(result) {
   let option =""
@@ -9022,6 +9374,7 @@ function intflListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function intflListLevels3(result) {
@@ -9060,6 +9413,7 @@ function intflListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function intflListLevels4(result) {
   let option =""
@@ -9097,6 +9451,7 @@ function intflListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -9140,6 +9495,7 @@ function bppListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function bppListLevels2(result) {
   let option =""
@@ -9177,6 +9533,7 @@ function bppListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function bppListLevels3(result) {
@@ -9215,6 +9572,7 @@ function bppListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function bppListLevels4(result) {
   let option =""
@@ -9252,6 +9610,7 @@ function bppListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -9294,6 +9653,7 @@ function useListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function useListLevels2(result) {
   let option =""
@@ -9331,6 +9691,7 @@ function useListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function useListLevels3(result) {
@@ -9366,9 +9727,9 @@ function useListLevels3(result) {
     </tr>`;
       html +=option;
       list.innerHTML=html;
-     
-      
+       
   });
+  getRatedCompetency(result)
 }
 function useListLevels4(result) {
   let option =""
@@ -9406,6 +9767,7 @@ function useListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -9448,6 +9810,7 @@ function dpaListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function dpaListLevels2(result) {
   let option =""
@@ -9485,6 +9848,7 @@ function dpaListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function dpaListLevels3(result) {
@@ -9523,6 +9887,7 @@ function dpaListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function dpaListLevels4(result) {
   let option =""
@@ -9560,6 +9925,7 @@ function dpaListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -9602,6 +9968,7 @@ function coListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function coListLevels2(result) {
   let option =""
@@ -9639,6 +10006,7 @@ function coListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function coListLevels3(result) {
@@ -9677,6 +10045,7 @@ function coListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function coListLevels4(result) {
   let option =""
@@ -9714,6 +10083,7 @@ function coListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function asListLevels1(result) {
@@ -9755,6 +10125,7 @@ function asListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function asListLevels2(result) {
   let option =""
@@ -9792,6 +10163,7 @@ function asListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function asListLevels3(result) {
@@ -9830,6 +10202,7 @@ function asListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function asListLevels4(result) {
   let option =""
@@ -9867,6 +10240,7 @@ function asListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -9909,6 +10283,7 @@ function qoListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function qoListLevels2(result) {
   let option =""
@@ -9946,6 +10321,7 @@ function qoListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function qoListLevels3(result) {
@@ -9984,6 +10360,7 @@ function qoListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function qoListLevels4(result) {
   let option =""
@@ -10021,6 +10398,7 @@ function qoListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 function dsListLevels1(result) {
@@ -10062,6 +10440,7 @@ function dsListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function dsListLevels2(result) {
   let option =""
@@ -10099,6 +10478,7 @@ function dsListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function dsListLevels3(result) {
@@ -10137,6 +10517,7 @@ function dsListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function dsListLevels4(result) {
   let option =""
@@ -10174,6 +10555,7 @@ function dsListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -10216,6 +10598,7 @@ function wriListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function wriListLevels2(result) {
   let option =""
@@ -10253,6 +10636,7 @@ function wriListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function wriListLevels3(result) {
@@ -10291,6 +10675,7 @@ function wriListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function wriListLevels4(result) {
   let option =""
@@ -10328,6 +10713,7 @@ function wriListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -10370,6 +10756,7 @@ function sdListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function sdListLevels2(result) {
   let option =""
@@ -10407,6 +10794,7 @@ function sdListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function sdListLevels3(result) {
@@ -10445,6 +10833,7 @@ function sdListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function sdListLevels4(result) {
   let option =""
@@ -10482,6 +10871,7 @@ function sdListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -10524,6 +10914,7 @@ function mwListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function mwListLevels2(result) {
   let option =""
@@ -10561,6 +10952,7 @@ function mwListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function mwListLevels3(result) {
@@ -10599,6 +10991,7 @@ function mwListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function mwListLevels4(result) {
   let option =""
@@ -10636,6 +11029,7 @@ function mwListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -10679,6 +11073,7 @@ function wpsListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function wpsListLevels2(result) {
   let option =""
@@ -10716,6 +11111,7 @@ function wpsListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function wpsListLevels3(result) {
@@ -10754,6 +11150,7 @@ function wpsListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function wpsListLevels4(result) {
   let option =""
@@ -10791,6 +11188,7 @@ function wpsListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
 
@@ -10833,6 +11231,7 @@ function fwmListLevels1(result) {
      console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 function fwmListLevels2(result) {
   let option =""
@@ -10870,6 +11269,7 @@ function fwmListLevels2(result) {
     console.log(option);
       
   });
+  getRatedCompetency(result)
 }
 
 function fwmListLevels3(result) {
@@ -10908,6 +11308,7 @@ function fwmListLevels3(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 function fwmListLevels4(result) {
   let option =""
@@ -10945,8 +11346,1268 @@ function fwmListLevels4(result) {
      
       
   });
+  getRatedCompetency(result)
 }
 
+
+function pmListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".pmlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function pmListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".pmlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function pmListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".pmlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function pmListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".pmlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+function spaListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".spalistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function spaListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".spalistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function spaListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".spalistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function spaListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".spalistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+function udListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".udlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function udListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".udlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function udListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".udlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function udListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".udlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+
+function lumListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".lumlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function lumListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".lumlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function lumListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".lumlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function lumListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".lumlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function riaListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".rialistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function riaListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".rialistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function riaListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".rialistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function riaListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".rialistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function kmListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".kmlistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function kmListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".kmlistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function kmListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".kmlistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function kmListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".kmlistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function pcListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".pclistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function pcListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".pclistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function pcListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".pclistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function pcListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".pclistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+
+function ssListLevels1(result) {
+
+  console.log(result);
+  let option =""
+  let html =""
+  let list = document.querySelector(".sslistdata121")
+ 
+  result.forEach(department => {
+    console.log(department.details);
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+function ssListLevels2(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".sslistdata122e")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+    console.log(option);
+      
+  });
+  getRatedCompetency(result)
+}
+
+function ssListLevels3(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".sslistdata123")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
+function ssListLevels4(result) {
+  let option =""
+  let html =""
+  let list = document.querySelector(".sslistdata124")
+ 
+  result.forEach(department => {
+       option=`  <tr>
+      <td scope="col-10" class="details">
+      ${department.info.details}
+      </td>
+      <td class="rating form-group">
+        <span>1</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}1,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="1" name="" id="${department.id}1">
+      </td>
+      <td class="rating form-group">
+        <span>2</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}2,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="2" id="${department.id}2">
+      </td>
+      <td class="rating form-group">
+        <span>3</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}3,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="3" id="${department.id}3">
+      </td>
+      <td class="rating form-group">
+        <span>4</span>
+        <input type="radio"   name="${department.id}" onclick="Audit('${department.id}4,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="4" id="${department.id}4">
+      </td>
+      <td class="rating form-group">
+        <span>5</span>
+        <input type="radio"  name="${department.id}" onclick="Audit('${department.id}5,${department.info.areas},${department.info.levels},${department.info.details},${department.info.code},${department.info.competencyDivision},${department.info.division},${department.info.title},${department.id}')" value="5" id="${department.id}5">
+      </td>
+    </tr>`;
+      html +=option;
+      list.innerHTML=html;
+     
+      
+  });
+  getRatedCompetency(result)
+}
 
 function Professional(response) {
   console.log(response);
@@ -13763,6 +15424,384 @@ function Professional(response) {
          
         }
 
+        const PeopleManagement = response.filter((d) => d.info.areas=="People Management");
+       if (PeopleManagement.length>0) {
+         document.querySelector(".flush-heading67").style.display="block"
+         const level1 = PeopleManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     pmListLevels1(level1)
+                     document.querySelector(".pmlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".pmlistBull1").style.display='none'
+                   }
+                 const level2 = PeopleManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".pmlistBull2").style.display='block'
+                   console.log(level2);
+                   pmListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull2").style.display='none'
+                 }
+                 const level3 = PeopleManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".pmlistBull3").style.display='block'
+                   pmListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".pmlistBull3").style.display='none'
+                 }
+                 const level4 = PeopleManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".pmlistBull4").style.display='block'
+             
+                   pmListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".pmlistBull4").style.display='none'
+                 }
+         
+        }
+
+        
+        const TaskManagement = response.filter((d) => d.info.areas=="Task Management");
+       if (TaskManagement.length>0) {
+         document.querySelector(".flush-heading68").style.display="block"
+         const level1 = TaskManagement.filter((d)=>d.info.levels=="Level 1")
+            
+                   if(level1.length >0){
+                     console.log(level1);
+                     txListLevels1(level1)
+                     document.querySelector(".txlistBull1").style.display='block'
+                   }else{
+                     document.querySelector(".txlistBull1").style.display='none'
+                   }
+                 const level2 = TaskManagement.filter((d)=>d.info.levels=="Level 2")
+                 if(level2.length>0){
+                   document.querySelector(".txlistBull2").style.display='block'
+                   console.log(level2);
+                   txListLevels2(level2)
+                 
+                 }else{
+                   document.querySelector(".txlistBull2").style.display='none'
+                 }
+                 const level3 = TaskManagement.filter((d)=>d.info.levels=="Level 3")
+                 if(level3.length!==0){
+                   document.querySelector(".txlistBull3").style.display='block'
+                   txListLevels3(level3)
+               
+                 }else{
+                   document.querySelector(".txlistBull3").style.display='none'
+                 }
+                 const level4 = TaskManagement.filter((d)=>d.info.levels=="Level 4")
+                 if(level4.length!==0){
+                   console.log(level4);
+                   document.querySelector(".txlistBull4").style.display='block'
+             
+                   txListLevels4(level4)
+                 
+                 }else{
+                   document.querySelector(".txlistBull4").style.display='none'
+                 }
+         
+        }
+
+        const SpatialPlanning = response.filter((d) => d.info.areas=="Spatial Planning");
+        if (SpatialPlanning.length>0) {
+          document.querySelector(".flush-heading69").style.display="block"
+          const level1 = SpatialPlanning.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      spaListLevels1(level1)
+                      document.querySelector(".spalistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".spalistBull1").style.display='none'
+                    }
+                  const level2 = SpatialPlanning.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".spalistBull2").style.display='block'
+                    console.log(level2);
+                    spaListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".spalistBull2").style.display='none'
+                  }
+                  const level3 = SpatialPlanning.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".spalistBull3").style.display='block'
+                    spaListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".spalistBull3").style.display='none'
+                  }
+                  const level4 = SpatialPlanning.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".spalistBull4").style.display='block'
+              
+                    spaListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".spalistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  UrbanDesign = response.filter((d) => d.info.areas=="Urban Design");
+        if (UrbanDesign.length>0) {
+          document.querySelector(".flush-heading70").style.display="block"
+          const level1 = UrbanDesign.filter((d)=>d.info.levels=="Level 1")
+             
+                    if(level1.length >0){
+                      console.log(level1);
+                      udListLevels1(level1)
+                      document.querySelector(".udlistBull1").style.display='block'
+                    }else{
+                      document.querySelector(".udlistBull1").style.display='none'
+                    }
+                  const level2 = UrbanDesign.filter((d)=>d.info.levels=="Level 2")
+                  if(level2.length>0){
+                    document.querySelector(".udlistBull2").style.display='block'
+                    console.log(level2);
+                    udListLevels2(level2)
+                  
+                  }else{
+                    document.querySelector(".udlistBull2").style.display='none'
+                  }
+                  const level3 = UrbanDesign.filter((d)=>d.info.levels=="Level 3")
+                  if(level3.length!==0){
+                    document.querySelector(".udlistBull3").style.display='block'
+                    udListLevels3(level3)
+                
+                  }else{
+                    document.querySelector(".udlistBull3").style.display='none'
+                  }
+                  const level4 = UrbanDesign.filter((d)=>d.info.levels=="Level 4")
+                  if(level4.length!==0){
+                    console.log(level4);
+                    document.querySelector(".udlistBull4").style.display='block'
+              
+                    udListLevels4(level4)
+                  
+                  }else{
+                    document.querySelector(".udlistBull4").style.display='none'
+                  }
+          
+         }
+
+         const  LandUseManagement = response.filter((d) => d.info.areas=="Land Use Management");
+         if (LandUseManagement.length>0) {
+           document.querySelector(".flush-heading71").style.display="block"
+           const level1 = LandUseManagement.filter((d)=>d.info.levels=="Level 1")
+              
+                     if(level1.length >0){
+                       console.log(level1);
+                       lumListLevels1(level1)
+                       document.querySelector(".lumlistBull1").style.display='block'
+                     }else{
+                       document.querySelector(".lumlistBull1").style.display='none'
+                     }
+                   const level2 = LandUseManagement.filter((d)=>d.info.levels=="Level 2")
+                   if(level2.length>0){
+                     document.querySelector(".lumlistBull2").style.display='block'
+                     console.log(level2);
+                     lumListLevels2(level2)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull2").style.display='none'
+                   }
+                   const level3 = LandUseManagement.filter((d)=>d.info.levels=="Level 3")
+                   if(level3.length!==0){
+                     document.querySelector(".lumlistBull3").style.display='block'
+                     lumListLevels3(level3)
+                 
+                   }else{
+                     document.querySelector(".lumlistBull3").style.display='none'
+                   }
+                   const level4 = LandUseManagement.filter((d)=>d.info.levels=="Level 4")
+                   if(level4.length!==0){
+                     console.log(level4);
+                     document.querySelector(".lumdlistBull4").style.display='block'
+               
+                     lumListLevels4(level4)
+                   
+                   }else{
+                     document.querySelector(".lumlistBull4").style.display='none'
+                   }
+           
+          }
+
+          const  LandUseMaResearchInformationAnalysisandPolicynagement = response.filter((d) => d.info.areas=="Research, Information Analysis and Policy");
+          if (LandUseMaResearchInformationAnalysisandPolicynagement.length>0) {
+            document.querySelector(".flush-heading72").style.display="block"
+            const level1 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        riaListLevels1(level1)
+                        document.querySelector(".rialistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".rialistBull1").style.display='none'
+                      }
+                    const level2 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".rialistBull2").style.display='block'
+                      console.log(level2);
+                      riaListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".rialistBull2").style.display='none'
+                    }
+                    const level3 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".rialistBull3").style.display='block'
+                      riaListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".rialistBull3").style.display='none'
+                    }
+                    const level4 = LandUseMaResearchInformationAnalysisandPolicynagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".rialistBull4").style.display='block'
+                
+                      riaListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".rialistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  KnowledgeManagement = response.filter((d) => d.info.areas=="Knowledge Management");
+          if (KnowledgeManagement.length>0) {
+            document.querySelector(".flush-heading73").style.display="block"
+            const level1 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 1")
+               
+                      if(level1.length >0){
+                        console.log(level1);
+                        kmListLevels1(level1)
+                        document.querySelector(".kmlistBull1").style.display='block'
+                      }else{
+                        document.querySelector(".kmlistBull1").style.display='none'
+                      }
+                    const level2 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 2")
+                    if(level2.length>0){
+                      document.querySelector(".kmlistBull2").style.display='block'
+                      console.log(level2);
+                      kmListLevels2(level2)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull2").style.display='none'
+                    }
+                    const level3 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 3")
+                    if(level3.length!==0){
+                      document.querySelector(".kmlistBull3").style.display='block'
+                      kmListLevels3(level3)
+                  
+                    }else{
+                      document.querySelector(".kmlistBull3").style.display='none'
+                    }
+                    const level4 = KnowledgeManagement.filter((d)=>d.info.levels=="Level 4")
+                    if(level4.length!==0){
+                      console.log(level4);
+                      document.querySelector(".kmlistBull4").style.display='block'
+                
+                      kmListLevels4(level4)
+                    
+                    }else{
+                      document.querySelector(".kmlistBull4").style.display='none'
+                    }
+            
+           }
+
+           const  PublicConsultation = response.filter((d) => d.info.areas=="Public Consultation");
+           if (PublicConsultation.length>0) {
+             document.querySelector(".flush-heading74").style.display="block"
+             const level1 = PublicConsultation.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         pcListLevels1(level1)
+                         document.querySelector(".pclistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".pclistBull1").style.display='none'
+                       }
+                     const level2 = PublicConsultation.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".pclistBull2").style.display='block'
+                       console.log(level2);
+                       pcListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".pclistBull2").style.display='none'
+                     }
+                     const level3 = PublicConsultation.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".pclistBull3").style.display='block'
+                       pcListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".pclistBull3").style.display='none'
+                     }
+                     const level4 = PublicConsultation.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".pclistBull4").style.display='block'
+                 
+                       pcListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".pclistBull4").style.display='none'
+                     }
+             
+            }
+
+            const  SocioEconomicSocioAwareness = response.filter((d) => d.info.areas=="Socio-Economic / Socio-Political Awareness");
+           if (SocioEconomicSocioAwareness.length>0) {
+             document.querySelector(".flush-heading75").style.display="block"
+             const level1 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 1")
+                
+                       if(level1.length >0){
+                         console.log(level1);
+                         ssListLevels1(level1)
+                         document.querySelector(".sslistBull1").style.display='block'
+                       }else{
+                         document.querySelector(".sslistBull1").style.display='none'
+                       }
+                     const level2 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 2")
+                     if(level2.length>0){
+                       document.querySelector(".sslistBull2").style.display='block'
+                       console.log(level2);
+                       ssListLevels2(level2)
+                     
+                     }else{
+                       document.querySelector(".sslistBull2").style.display='none'
+                     }
+                     const level3 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 3")
+                     if(level3.length!==0){
+                       document.querySelector(".sslistBull3").style.display='block'
+                       ssListLevels3(level3)
+                   
+                     }else{
+                       document.querySelector(".sslistBull3").style.display='none'
+                     }
+                     const level4 = SocioEconomicSocioAwareness.filter((d)=>d.info.levels=="Level 4")
+                     if(level4.length!==0){
+                       console.log(level4);
+                       document.querySelector(".sslistBull4").style.display='block'
+                 
+                       ssListLevels4(level4)
+                     
+                     }else{
+                       document.querySelector(".sslistBull4").style.display='none'
+                     }
+             
+            }
         // const ChangeReadiness = response.filter((d) => d.info.areas=="Change Readiness");
         // if (ChangeReadiness.length>0) {
         //   document.querySelector(".flush-heading66").style.display="block"

@@ -5,6 +5,23 @@ import { SendEmail } from "./email.js";
 import { doc, setDoc, getDoc, collection, getDocs,query ,where, addDoc, deleteDoc} from "firebase/firestore"; 
 
 
+export const  getratedcompetency= async (req, res)=>{
+         
+  const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "competencies"));
+  
+  let data=[]
+  querySnapshot.forEach((doc) => {
+     let newD={id:doc.id,
+      info:doc.data()
+    }
+  
+    data.push(newD)
+   
+  });
+  
+  res.status(200).json(data);  
+  }
+
 export const  deleteperience= async (req, res)=>{
   
   deleteDoc(doc(db, "users2", req.body.ID,"otherexperience", req.body.id)).then(()=>{
