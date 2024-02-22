@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+   
+
+   
+}
+.searchLine {
+    display: flex;
+    flex-direction: column;
+    
+}
+.searchLine #division{
+    padding: 20px !important;
+}
+.uploader,.UpProgress{
+    display: none;
+}
+.uploader.active,.UpProgress.active{
+    display: flex;
+}
+
+.uploader2,.UpProgress2{
+    display: none;
+}
+.uploader2.active,.UpProgress2.active{
+    display: flex;
+}
+.othercertificate{
+    width: 100%;
+    
+}
+.othercertificate button{
+    width: 100%;
+    background-color: #444444 !important;
+}
+.otherexperience{
+    width: 100%;
+}
+.otherexperience button{
+    width: 100%; 
+}
+.uploader3,.UpProgress3{
+    display: none;
+}
+.uploader3.active,.UpProgress3.active{
+    display: flex;
+}
+.listBull2,.listBull1,.listBull3,.listBull4{
+    display: none;
+}
+.sub-btn1,.sub-btn2,.sub-btn3,.sub-btn4,.sub-btn5{
+    display: none;
+}
+
+.hidden {
+    display: none;
+  }
+  .hidden.active{
+    display: block;
+  }
+.user-details .dropdown  button{
+    background-color: transparent;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 50%;
+    border: 0;
+}
+.nav {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+   padding: 10px;
+}
+.nav ul{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+
+}
+.nav ul li{
+    display: block;
+list-style: none;
+margin-right: 30px;
+
+
+font-weight: 500;
+}
+.nav ul li a{
+    text-decoration: none;
+    color: rgb(85, 85, 85);
+}
+.nav ul li a:hover{
+    color: black;
+}
+.container-profile{
+
+margin-top: 20px;
+display: flex;
+flex-direction: row;
+margin-right: 100px;
+margin-left: 100px;
+padding-bottom: 20px;
+
+}
+.container-profile .button-links{
+position: relative;
+width: 0%;
+left: -35% !important;
+padding-right: 24px;
+display: flex;
+flex-direction: column;
+transition: all 300ms ease-in-out;
+
+
+}
+.container-profile .button-links.active{
+    
+    left: 0% !important;
+    width: 27%;
+    
+    }
+.container-profile .button-links button{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 8px;
+    border: 1px solid black;
+    font-family: 'DM Sans', sans-serif!important;
+    background-color: rgb(112, 187, 201);
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+.container-profile .button-links button.active{
+    background-color: #000;
+    color: white;
+}
+.container-profile .content{
+    width: 73%;
+    padding-left: 20px;
+    border-left: 4px solid #000;
+    transition: all 300ms ease-in-out;
+}
+.container-profile .fomD.active{
+width: 100%;
+left: -37% !important;
+padding-left: 20px;
+margin-left: -20px;
+}
+.container-profile .content .title-profile h1{
+    color: black;
+    font-family: 'Poppins', sans-serif !important;
+  
+}
+.container-profile .content .title-profile{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.container-profile .content .title-profile button{
+    padding: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    background-color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    
+}
+.container-profile .content form{
+    width: 70%;
+   
+}
+
+.container-profile .content .competency{
+    width: 100%;
+}
+.container-profile .content .cont{
+    display: none;
+}
+.container-profile .content .cont.active{
+    display: block;
+}
+.container-profile .content form .form-group{
+    margin-bottom: 15px;
+}
+.container-profile .content form .form-group label{
+color: rgb(0, 0, 0);
+/* font-weight: 100; */
+font-size: 9.6;
+font-family: 'DM Sans', sans-serif;
+
+}
+.container-profile .content form .form-group input{
+    padding: 9px;
+    background-color: rgb(230, 230, 230);
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+
+.container-profile .content form .form-group select{
+    padding: 9px;
+    background-color: rgb(230, 230, 230);
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+.container-profile .content form .form-group input::placeholder{
+    font-weight: 100;
+}
+.container-profile .content form button{
+    padding: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    background-color: #000;   
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+     font-family: 'Poppins', sans-serif;
+    
+}
+.sub-content{
+    position: relative;
+    display:  flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+.sub-content .sub-buttons{
+    width: 22%;
+    padding-right: 24px;
+    display: flex;
+    flex-direction: column;  
+}
+.sub-content .sub-buttons button{
+    margin-bottom: 20px;
+    border-radius: 0;
+    padding: 18px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    text-align: center;
+    background-color: rgb(112, 187, 201) !important; 
+    color: #000;
+}
+.sub-content .sub-buttons button.active{
+    background-color: #111 !important; 
+    color: white; 
+}
+.sub-content .sub-content-info{
+    width: 78%;
+    padding-left: 20px;
+    border-left: 2px solid #000;
+}
+.accordion-button {
+    background-color:white !important;
+    outline: 0 !important;
+    border: 0 !important;
+}
+.accordion-button:focus{
+    outline: 0 !important;
+    border: 0 !important;   
+}
+.accordion-button .title{
+    display: flex !important;
+    flex-direction: column !important;
+   
+}
+.accordion-button H3{
+    color: #000 !important;
+    font-size: 15px !important;
+}
+.accordion-button p{
+    color: grey;
+    font-weight: 400;
+    text-transform: none !important;
+}
+.sub-content-info{
+    width: 100%;
+}
+.sub-content-info .sub{
+    display: none;
+}
+.sub-content-info .sub.active{
+    display: block;
+} 
+
+.container-profile .content ul li{
+    color: grey;
+}
+.container-profile .content .subqua{
+    display: none;
+}
+.container-profile .content .subqua.active{
+    display: block;
+}
+.container-profile .content .subqua form{
+    width: 100%;
+}
+.container-profile .content .subqua form .upload{
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+}
+.container-profile .sub-content .sub-buttons .sub-btn{
+    background-color: black !important;
+    font-family: 'DM Sans', sans-serif!important;
+    padding: 8px !important;
+    color: white;
+}
+.container-profile .sub-content .sub-buttons .sub-btn.add{
+    background-color: rgb(112, 187, 201) !important;
+    font-family: 'DM Sans', sans-serif!important;
+}
+.save-delete .btn-danger{
+    background-color: transparent !important;
+    color: red;
+}
+.save-delete .btn-danger:hover{
+    color: rgb(192, 13, 13) !important;
+  
+}
+.save-delete .btn-danger:focus{
+    color:  rgb(192, 13, 13) !important;
+}
+.container-profile .content .subexp form
+{
+    width: 75%;
+}
+.container-profile .content .subexp{
+    display: none;
+}
+.container-profile .content .subexp.active{
+    display: block;
+}
+.container-profile .content .subreg form
+{
+    width: 75%;
+}
+.container-profile .content .subreg{
+    display: none;
+}
+.container-profile .content .subreg.active{
+    display: block;
+}
+.save-delete.language{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
