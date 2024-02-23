@@ -7,7 +7,7 @@ import { doc, setDoc, getDoc, collection, getDocs,query ,where, addDoc, deleteDo
 
 export const  getratedcompetency= async (req, res)=>{
          
-  const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "competencies"));
+  const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "competencies3"));
   
   let data=[]
   querySnapshot.forEach((doc) => {
@@ -232,7 +232,7 @@ export const  updateArea= async (req, res)=>{
 export const  getRate= async (req, res)=>{
   let info = req.body.data;
    console.log(req.body.ID);
-const CompetenceRef = await getDocs(collection(db, "users2",req.body.ID,"competencies"));
+const CompetenceRef = await getDocs(collection(db, "users2",req.body.ID,"competencies3"));
 
 
 let data=[]
@@ -252,7 +252,7 @@ export const  addCompetency= async (req, res)=>{
 console.log(info.idcomp);
 // const collectionRef = collection(database, "users", uid, "invoices");
 // addD
-  setDoc(doc(db, "users2", req.body.ID,"competencies",info.idcomp), {
+  setDoc(doc(db, "users2", req.body.ID,"competencies3",info.idcomp), {
     areas:info.areas,
     levels:info.levels,
     details:info.details,
@@ -415,7 +415,7 @@ export const  displayqualification= async (req, res)=>{
 export const  getcompetencies= async (req, res)=>{
   let data=[]
   console.log(req.body.position);
-  const CompetenceRef = collection(db, "competencies");
+  const CompetenceRef = collection(db, "competencies3");
   const q1 = query(CompetenceRef, where("competencyDivison", "==", "CORE PROFESSIONAL COMPETENCIES"), where("code", "==","EK-001-01"));
   const querySnapshot = await getDocs(q1);
   querySnapshot.forEach((doc) => {
@@ -429,7 +429,7 @@ export const  getcompetencies= async (req, res)=>{
 export const  position= async (req, res)=>{
   let data=[]
   console.log(req.body.position);
-  const q = query(collection(db, "competencies"), where("code", "==",  req.body.position));
+  const q = query(collection(db, "competencies3"), where("code", "==",  req.body.position));
 
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
@@ -443,7 +443,7 @@ querySnapshot.forEach((doc) => {
 }
 export const  fetchcomp= async (req, res)=>{
   let data=[]
-  const q = query(collection(db, "competencies"), where("code", "==",  req.body.compcode));
+  const q = query(collection(db, "competencies3"), where("code", "==",  req.body.compcode));
 
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
