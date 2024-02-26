@@ -67211,7 +67211,7 @@ if(typeof userData.finalsubmi !== "undefined" && userData.finalsubmi=="submitted
 }
   console.log(userData.employeeNameS);
   if (typeof userData.Surname !== "undefined" && typeof userData.Name !== "undefined") {
-    document.getElementById("username").innerHTML = userData.Name + " " + userData.Surname
+    document.getElementById("username").innerHTML = userData.employeeNameS + " " + userData.employeeSurname
   }
   if (typeof userData.employeeNameS !== "undefined") {
     document.getElementById("Name").value = userData.employeeNameS
@@ -67222,6 +67222,19 @@ if(typeof userData.finalsubmi !== "undefined" && userData.finalsubmi=="submitted
   if (typeof userData.employeeSurname !== "undefined") {
     document.getElementById("Surname").value = userData.employeeSurname
 
+  }
+  
+
+   if (typeof userData.employeeNameS !== "undefined") {
+    document.getElementById("tname").innerHTML = userData.employeeNameS
+  }
+ 
+  if (typeof userData.employeeSurname !== "undefined") {
+    document.getElementById("tsurname").innerHTML = userData.employeeSurname
+
+  }
+  if (typeof userData.empCode !== "undefined") {
+    document.getElementById("iemployeenumber").innerHTML = userData.empCode
   }
   if (typeof userData.dateOfBirth !== "undefined") {
     document.getElementById("Birth").value = userData.dateOfBirth
