@@ -5,9 +5,49 @@ import { SendEmail } from "./email.js";
 import { doc, setDoc, getDoc, collection, getDocs,query ,where, addDoc, deleteDoc} from "firebase/firestore"; 
 
 
+export const removesubmit =(req, res)=>{ 
+ 
+  const user = req.body.ID
+    
+    setDoc(doc(db, "users2", user), {
+     finalsubmi:"withdrawn submission",
+  
+    },{ merge: true }).then(()=>{
+  
+      const status ="success"
+      const response={
+        status:status
+      }
+      res.status(200).json(response);
+    }).catch((error) => {
+
+      res.json( error.message);
+    });
+  
+    }
+export const finalsubmit =(req, res)=>{
+ 
+  const user = req.body.ID
+    
+    setDoc(doc(db, "users2", user), {
+     finalsubmi:"submitted",
+  
+    },{ merge: true }).then(()=>{
+  
+      const status ="success"
+      const response={
+        status:status
+      }
+      res.status(200).json(response);
+    }).catch((error) => {
+
+      res.json( error.message);
+    });
+  
+    }
 export const  getratedcompetency= async (req, res)=>{
          
-  const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "competencies3"));
+  const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "competencies"));
   
   let data=[]
   querySnapshot.forEach((doc) => {
@@ -232,7 +272,7 @@ export const  updateArea= async (req, res)=>{
 export const  getRate= async (req, res)=>{
   let info = req.body.data;
    console.log(req.body.ID);
-const CompetenceRef = await getDocs(collection(db, "users2",req.body.ID,"competencies3"));
+const CompetenceRef = await getDocs(collection(db, "users2",req.body.ID,"competencies"));
 
 
 let data=[]
@@ -252,7 +292,8 @@ export const  addCompetency= async (req, res)=>{
 console.log(info.idcomp);
 // const collectionRef = collection(database, "users", uid, "invoices");
 // addD
-  setDoc(doc(db, "users2", req.body.ID,"competencies3",info.idcomp), {
+console.log(info.idcomp);
+  setDoc(doc(db, "users2", req.body.ID,"competencies",info.idcomp), {
     areas:info.areas,
     levels:info.levels,
     details:info.details,
@@ -324,7 +365,7 @@ export const  uploadqualifications= async (req, res)=>{
       res.status(200).json(response);
   }).catch((error) => {
        
-    res.json(error)
+    res.json(error) 
   });
   
     }

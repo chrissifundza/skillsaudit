@@ -60,7 +60,33 @@
     </nav>
 
     <div class="container-profile" >
-     
+     <div class="submitted-container table-responsive" style="display: none;">
+      <table class="table table-bordered ">
+        <thead >
+          <tr>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Employeenumber</th>
+            <th scope="col">Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kuyalunga</td>
+            <td>Sifundza</td>
+            <td>S2343543</td>
+            <td>Submitted</td>
+            <td class="textdanger" onclick="RemoveSubmit()">Edit submission</td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+     </div>
+     <div class="onloading">
+      <div class="loader"></div>
+     </div>
       <div class="button-links active">
         <button class="bt btn0 active" onclick="DisplayButton(0)">USER PROFILE</button>
         <button class="bt btn1" onclick="DisplayButton(1)">COMPETENCY REQUIREMENTS</button>
@@ -119,7 +145,7 @@
                     <div class="formb row">
                       <div class="form-group searchLine col-md-6">
                         <label for="inputZip">COMPETENCY TITLE</label>
-                        <select onchange="Department()" class="form-select selectvalue" aria-label="Default select example" id="division">
+                        <select onchange="Department()" disabled class="form-select selectvalue" aria-label="Default select example" id="division">
                          
                           </select>
                       </div> 
@@ -17973,9 +17999,12 @@
                     <div class="save-delete language ">
     
                         <button type="button" class="btn  btn-dark" onclick="SaveLanguage()">Save</button>
+                       
                       
                     </div>
-
+                        <div class="finalButton">
+                          <button type="button" class="btn  btn-danger" onclick="fnalSubmission()">Final Submission</button>
+                        </div>
                 </form>
             </div>
         </div>  

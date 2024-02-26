@@ -99,8 +99,9 @@ font-weight: 500;
 .nav ul li a:hover{
     color: black;
 }
-.container-profile{
 
+.container-profile{
+position: relative;
 margin-top: 20px;
 display: flex;
 flex-direction: row;
@@ -109,6 +110,64 @@ margin-left: 100px;
 padding-bottom: 20px;
 
 }
+.container-profile .submitted-container{
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+    padding-top: 80px;
+}
+.container-profile .submitted-container .textdanger{
+   color: brown;
+   font-weight: bold;
+   cursor: pointer;
+}
+.container-profile .submitted-container .textdanger:hover{
+    color: red;
+}
+.finalButton{
+    position: relative;
+   margin-top: 60px;
+}
+.finalButton button{
+    background-color: transparent !important;
+    color: brown;
+}
+.finalButton button:hover{
+    color: red !important;
+}
+.container-profile .onloading {
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    z-index: 200000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-profile .onloading .loader {
+    margin-top: -120px;
+    border: 16px solid #6eb5f7;
+    border-radius: 50%;
+    border-top: 16px solid rgb(57, 57, 255);
+    border-bottom: 16px solid rgb(57, 57, 255);
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 .container-profile .button-links{
 position: relative;
 width: 0%;
@@ -175,7 +234,15 @@ margin-left: -20px;
     font-size: 13px;
     font-family: 'Poppins', sans-serif;
     color: white;
-    
+     
+}
+.flush-heading180 a{
+    width: 100% !important;
+    background-color: transparent !important;
+    color:brown;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
 }
 .container-profile .content form{
     width: 70%;

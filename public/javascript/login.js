@@ -19,14 +19,25 @@ axios.post('/login', {
 })
 .then(function (response) {
   console.log(response);
-  axios.post('/fetchuser', {
-    ID: response.data.user.uid,
+  if (response.data=="Firebase: Error (auth/invalid-login-credentials).") {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Invalid login credentials",
+    });
+    return false
+  }else{
+    axios.post('/fetchuser', {
+      ID: response.data.user.uid,
+    
+    })
+    .then(function (response) {
+      console.log(response);
+      location.href="/profile/?User="+response.data
+    })
+  }
+ 
   
-  })
-  .then(function (response) {
-    console.log(response);
-    location.href="/profile/?User="+response.data
-  })
   // location.href="/profile/?User="+response.data.user.uid
 })
  
