@@ -5,9 +5,6 @@
 body{
     margin: 0;
     padding: 0;
-   
-
-   
 }
 .searchLine {
     display: flex;
@@ -243,12 +240,15 @@ margin-left: -20px;
     text-align: center;
     text-decoration: none;
     margin-top: 10px;
+    border: 1px solid brown;
 }
 .container-profile .content form{
     width: 70%;
-   
 }
-
+.dropdown-menu{
+    position: relative;
+    z-index: 400000000000 !important;
+}
 .container-profile .content .competency{
     width: 100%;
 }

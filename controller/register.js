@@ -269,6 +269,38 @@ export const  updateArea= async (req, res)=>{
 });
 
   }
+
+  export const  validate= async (req, res)=>{
+    let info = req.body.data;
+    console.log("called");
+    let competency =req.body.competencyDivision
+    if(req.body.competencyDivision=="MANAGEMENT/LEADERSHIPCOMPETENCIES"){
+      competency="MANAGEMENTLEADERSHIPCOMPETENCIES"
+    }
+    setDoc(doc(db, "users2", req.body.ID), {
+     [competency]:req.body.status
+  },{ merge: true }).then(()=>{
+    const status ="success"
+      const response={
+        status:status,
+      }
+      res.status(200).json(response);
+  }).catch((error) => {
+       
+    res.json(error)
+  });
+  
+    }
+
+    export const  getcmpetencydivision= async (req, res)=>{
+  
+      const CompetenceRef = await getDoc(doc(db, "users2",req.body.ID));
+
+
+  
+      
+      res.status(200).json(CompetenceRef.data());
+      }
 export const  getRate= async (req, res)=>{
   let info = req.body.data;
    console.log(req.body.ID);
@@ -532,9 +564,9 @@ export const UpdateUser =(req, res)=>{
     employeeMiddleNameS:req.body.middlename,
     employeeSurname:req.body.surname,
     employeeNameS:req.body.Name,
-  Birth:req.body.birth,
-  EmployeeNumber:req.body.employeeNumber,
-  Age:req.body.age
+    Birth:req.body.birth,
+    EmployeeNumber:req.body.employeeNumber,
+    Age:req.body.age
 },{ merge: true }).then(()=>{
   const status ="success"
     const response={
