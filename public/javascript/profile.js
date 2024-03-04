@@ -475,6 +475,7 @@ docid=response.data.docid
 }
 
 function calculateRate(database, data) {
+  console.log(database+" uu "+data);
   const query = window.location.search;
 	const url = new URLSearchParams(query);
 	const ID = url.get("User");
@@ -501,7 +502,9 @@ axios.post('/updatearea',{
 .then(function (response) {
  console.log(response.data);
 
-})
+}).catch(function (error) {
+  console.log(error);
+});
 }
 function getRate(data) {
   console.log("running");

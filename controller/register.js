@@ -290,7 +290,7 @@ export const  language= async (req, res)=>{
 
 export const  updateArea= async (req, res)=>{
   let info = req.body.data;
-  
+  console.log("Running"+req.body.num);
   setDoc(doc(db, "users2", req.body.ID), {
    [info.areas.replace(/\s/g, '')]:req.body.num
 },{ merge: true }).then(()=>{
@@ -350,6 +350,7 @@ CompetenceRef.forEach((doc) => {
   data.push(doc.data())
 
 });
+res.status(200).json(data);
 }
 export const  getRatesup= async (req, res)=>{
   let info = req.body.data;
