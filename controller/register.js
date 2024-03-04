@@ -4,7 +4,28 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPassword
 import { SendEmail } from "./email.js";
 import { doc, setDoc, getDoc, collection, getDocs,query ,where, addDoc, deleteDoc} from "firebase/firestore"; 
 
+export const findmyemployees =async (req, res)=>{
 
+  let data=[]
+  let id =''
+  const q = query(collection(db, "users2"), where("linemanager", "==",  req.body.empCode));
+  
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  let newD={id:doc.id,
+    info:doc.data()
+  }
+
+  data.push(newD)
+  
+  });
+  if (data.length>=0) {
+    res.status(200).json(data);
+  }
+ 
+
+  }
 export const removesubmit =(req, res)=>{ 
  
   const user = req.body.ID
@@ -61,7 +82,22 @@ export const  getratedcompetency= async (req, res)=>{
   
   res.status(200).json(data);  
   }
-
+  export const  getratedcompetencysup= async (req, res)=>{
+         
+    const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "supervisor"));
+    
+    let data=[]
+    querySnapshot.forEach((doc) => {
+       let newD={id:doc.id,
+        info:doc.data()
+      }
+    
+      data.push(newD)
+     
+    });
+    
+    res.status(200).json(data);  
+    }
 export const  deleteperience= async (req, res)=>{
   
   deleteDoc(doc(db, "users2", req.body.ID,"otherexperience", req.body.id)).then(()=>{
@@ -314,6 +350,20 @@ CompetenceRef.forEach((doc) => {
   data.push(doc.data())
 
 });
+}
+export const  getRatesup= async (req, res)=>{
+  let info = req.body.data;
+   console.log(req.body.ID);
+const CompetenceRef = await getDocs(collection(db, "users2",req.body.ID,"supervisor"));
+
+
+let data=[]
+CompetenceRef.forEach((doc) => {
+   
+ 
+  data.push(doc.data())
+
+});
 
 res.status(200).json(data);
 
@@ -347,6 +397,49 @@ console.log(info.idcomp);
 });
 
   }
+  export const  addCompetencysup= async (req, res)=>{
+    let info = req.body.data;
+  console.log(info.idcomp);
+  // const collectionRef = collection(database, "users", uid, "invoices");
+  // addD
+  console.log(info.idcomp);
+ let sup="Supervisor"
+    setDoc(doc(db, "users2", req.body.ID), {
+      [sup+info.areas.replace(/\s/g, '')]:info.rate,
+      
+  },{ merge: true }).then(()=>{
+    const status ="success"
+      const response={
+        status:status,
+      }
+      setDoc(doc(db, "users2", req.body.ID,"supervisor",info.idcomp), {
+        [sup+info.areas.replace(/\s/g, '')]:info.rate,
+        levels:info.levels,
+        details:info.details,
+        code:info.code,
+        competencyDivision:info.competencyDivision,
+        division:info.division,
+        title:info.title,
+        rate:info.rate,
+        idcomp:info.idcomp
+        
+    },{ merge: true }).then(()=>{
+      const status ="success"
+        const response={
+          status:status,
+        }
+        res.status(200).json(response);
+    }).catch((error) => {
+         
+      res.json(error)
+    });
+    
+  }).catch((error) => {
+       
+    res.json(error)
+  });
+  
+    }
 export const  highestqualification= async (req, res)=>{
   
   setDoc(doc(db, "users2", req.body.ID), {

@@ -6,6 +6,12 @@ let functional = false;
 let publicf = false;
 let managementleadership = false;
 let personalf = false;
+function supervisor(){
+  const query = window.location.search;
+	const url = new URLSearchParams(query);
+	const ID = url.get("User");
+  window.location.href = "/supervisor?User="+ID;
+}
 function RemoveSubmit(){
   const query = window.location.search;
 	const url = new URLSearchParams(query);
@@ -67900,11 +67906,12 @@ function Home() {
 }
 function toggleInput(num) {
   document.querySelector(".select1").classList.remove("active")
-  document.querySelector(".select2").classList.remove("active")
+  document.querySelector(".select0").classList.remove("active")
   document.querySelector(".select3").classList.remove("active")
   document.querySelector(".select4").classList.remove("active")
 
-  let cont = `.select${num}`
+  let cont = `.select${num}`;
+  console.log(cont);
   document.querySelector(cont).classList.add("active")
 
 }
@@ -67981,7 +67988,6 @@ function DisplayButtonExperience(num) {
 function DisplayButtonReg(num) {
   document.querySelector(".sub-btn-reg1").classList.remove("active")
   document.querySelector(".sub-btn-reg2").classList.remove("active")
-
 
   document.querySelector(".sub-reg1").classList.remove("active")
   document.querySelector(".sub-reg2").classList.remove("active")

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-  
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 .body{
     margin: 0;
     padding: 0;
@@ -47,6 +49,20 @@ display: flex;
     padding-left: 10px;
     padding-right: 30px;
 }
+.input-search.supervisor input{
+    outline: 0;
+    border: 0;
+    background-color: rgb(237, 241, 243);
+    padding: 5px;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 400px;
+    text-align: center;
+}
+.input-search.supervisor input::placeholder{
+    font-weight: lighter;
+}
 .user-details .input-search input::placeholder{
     font-weight: lighter;
 }
@@ -61,6 +77,11 @@ display: flex;
 .user-details .input-search i{
     color: gray;
     
+}
+.input-search.supervisor span{
+    color: white;
+    font-family: 'Poppins', sans-serif !important;
+    margin-right: 10px;
 }
 .profile{
     position: relative;

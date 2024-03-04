@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills Audit | Profile</title>
+    <title>Supervisor | Skills Audit </title>
 <link rel="stylesheet" href="/css/login.css">
 <link rel="stylesheet" href="/css/profile.css">
 <link rel="stylesheet" href="/css/sidebar.css">
@@ -36,10 +36,11 @@
         <div onclick="Home()" class="title">
         <h3>Skills Audit</h3> 
     </div>
+    <div class="input-search supervisor">
+        <span>Loaded-User</span> <input type="text" id="loadeProRate" placeholder="Search">
+     </div>
     <div class="user-details">
-        <div class="input-search">
-            <input type="text" placeholder="Search"><button><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
+        
         <div class="dropdown">
          
           <button class="btn btn-secondary " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,9 +50,8 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item"  id="username" href="#">UserName</a></li>
-            <li><a class="dropdown-item"  id="supervisor" onclick="supervisor()" href="#">Supervisor</a></li>
+            <li><a class="dropdown-item"  id="supervisor" onclick="supervisor()" href="#">Switch to Normal-User</a></li>
             <li><a class="dropdown-item" href="#" onclick="SignOut()">Sign Out</a></li>
-    
           </ul>
         </div>
        
@@ -88,18 +88,13 @@
      <div class="onloading">
       <div class="loader"></div>
      </div>
-      <div class="button-links active">
-        <button class="bt btn0 active" onclick="DisplayButton(0)">USER PROFILE</button>
-        <button class="bt btn1" onclick="DisplayButton(1)">COMPETENCY REQUIREMENTS</button>
-        <button class="bt btn2" onclick="DisplayButton(2)">QUALIFICATIONS</button>
-        <button class="bt btn3" onclick="DisplayButton(3)">EXPERIENCE</button>
-        <button class="bt btn4" onclick="DisplayButton(4)">PROFESIONAL REGISTRATION</button>
-        <button class="bt btn5" onclick="DisplayButton(5)">LANGUAGES</button>
+      <div class="button-links active" id="myempoyeelist">
+      
     </div>
      
         
         <div class="content fomD">
-            <div class="cont data-container0 active">
+            <div class="cont data-container1 ">
             <div class="title-profile">
                 <h1 >USER PROFILE</h1>
                <button onclick="SideBar()" class="toggle-btn btn" id="toggle-btn"><i class="fa-solid fa-bars"></i></button>
@@ -137,7 +132,10 @@
                   <button type="button" class="btn  btn-dark" onclick="UpdateUser()" >Save</button>
               </form>
             </div>  
-            <div class="cont data-container1">
+            <div class="cont data-container0 active">
+                <div class="onloading2">
+                    <div class="loader"></div>
+                   </div>
                 <div class="title-profile">
                     <h1>COMPETENCY REQUIREMENTS</h1>
                     <button onclick="SideBar()" class="toggle-btn btn btn-dark" id="toggle-btn"><i class="fa-solid fa-bars"></i></button>
@@ -157,7 +155,9 @@
                             
                           </select>
                         </div> 
-                       
+                        <div class="form-group col-md-12">
+                           
+                        </div>
                           <!-- <div class="form-group col-md-4">
                             <label for="inputZip">POSITION / DESIGNATION</label>
                             <select onchange="GetCompetencies()" class="form-select" id="position1" aria-label="Default select example">
@@ -395,12 +395,8 @@
                                           <div class="accordion-body">
                   
                                             <div class="chek-data pl2listBull1 bullet active">
-                                              <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                  Level 1
-                                                </label>
-                                              </div>
+                                           
+                                         
                                               <div class="data">
                                                 <!-- <ul class="listdata121 " id="listdata12 ">
                                                                         
@@ -408,7 +404,7 @@
                   
                                                 <table class="table table-bordered">
                   
-                                                  <tbody class="pl2listdata121 " id="pl2listdata121 ">
+                                                  <tbody class="pl2listdata121 " id="pl2listdata121">
                   
                                                   </tbody>
                                                 </table>
@@ -16814,10 +16810,10 @@
                                           </div>
                                         </div>
                                       </div>
-                  
                                       <div class="accordion-item flush-heading180" >
                                         <a class="btn" onclick="validateone()">Verify completion</a>
                                       </div>
+                                      
                                     </div>
                                   </div>
                                   <div class="sub-info2 sub">
@@ -17402,7 +17398,7 @@
                                     id="showInput2"
                                     name="term"
                                     value="Informal"
-                                    onclick="toggleInput(0)"
+                                    onclick="toggleInput(2)"
                                     class="checks">
                                     <label for="formFile" class="form-label">INFORMAL</label>
                                     
@@ -17441,36 +17437,24 @@
                                   <label for="exampleInputPassword1">LEVEL / GRADE</label>
                                   <select id="level" class="form-select" aria-label="Default select example">
                                     <option selected>Select</option>
-                                    <option value="Doctoral Degree">Doctoral Degree</option>
-                                    <option value="Masters Degree">Masters Degree</option>
-                            
-                                    <option value="Honours Degree">Honours Degree / Postgraduate Diploma</option>
-                                    <option value="Professional Qualification Degree">Professional Qualification Degree </option>
-                                    <option value="Postgraduate Diploma">Postgraduate Diploma</option>
-                                    <option value="Bachelors Degree">Bachelors Degree</option>
-                                    
-                                    <option value="Advanced Diploma">Advanced Diploma</option>
+                                    <option value="Masters">Masters</option>
+                                    <option value="Dr">Dr</option>
+                                    <option value="Honours">Honours</option>
+                                    <option value="Degree">Degree</option>
                                     <option value="Diploma">Diploma</option>
-                                    <option value="Advanced Certificate">Advanced Certificate</option>
-                                    <option value="Higher Certificate">Higher  Certificate</option>
-                                    <option value="National Senior Certificate (Grade 12)">National Senior Certificate (Grade 12) </option>
-                                    <option value="Senior Certificate (Colleges) ">Senior Certificate (Colleges)</option>
-                                    <option value="National Certificate (Vocational) Level 4">National Certificate (Vocational) Level 4</option>
-                                    <option value="National Intermediate Certificate (Grade 11)">National Intermediate Certificate (Grade 11)</option>
-                                    <option value="National Certificate (Vocational) Level 3">National Certificate (Vocational) Level 3</option>
-                                    <option value="National Elementary Certificate (Grade 10)">National Elementary Certificate (Grade 10)</option>
-                                    <option value="National Certificate (Vocational) Level 2">National Certificate (Vocational) Level 2</option>
-                                    <option value="General Certificate">General Certificate</option>
-                                    <option value="(Grade 9/AET Level 4)">(Grade 9/AET Level 4)</option>
+                                    <option value="Certificate">Certificate</option>
+                                    <option value="Grade 12">Grade 12</option>
                                   </select>
                                 </div>
 
-                                <div class="form-group hidden select0"  id="input2">
+                                <div class="form-group hidden select2"  id="input2">
                                   <label for="exampleInputPassword1">LEVEL / GRADE</label>
                                   <select id="level" class="form-select" aria-label="Default select example">
                                     <option selected>Select</option>
                                     <option value="Certificate">Certificate</option>
-                            
+                                    <option value=">Grade 11">Grade 11</option>
+                                    <option value="Grade 10">Grade 10</option>
+                                    <option value="Grade 09">Grade 09</option>
                                     <option value="Grade 08">Grade 08</option>
                                     
                                   </select>
@@ -17549,27 +17533,13 @@
                                
                                     <select id="level2" class="form-select" aria-label="Default select example">
                                       <option selected>Select</option>
-                                    <option value="Doctoral Degree">Doctoral Degree</option>
-                                    <option value="Masters Degree">Masters Degree</option>
-                            
-                                    <option value="Honours Degree">Honours Degree / Postgraduate Diploma</option>
-                                    <option value="Professional Qualification Degree">Professional Qualification Degree </option>
-                                    <option value="Postgraduate Diploma">Postgraduate Diploma</option>
-                                    <option value="Bachelors Degree">Bachelors Degree</option>
-                                    
-                                    <option value="Advanced Diploma">Advanced Diploma</option>
-                                    <option value="Diploma">Diploma</option>
-                                    <option value="Advanced Certificate">Advanced Certificate</option>
-                                    <option value="Higher Certificate">Higher  Certificate</option>
-                                    <option value="National Senior Certificate (Grade 12)">National Senior Certificate (Grade 12) </option>
-                                    <option value="Senior Certificate (Colleges)">Senior Certificate (Colleges)</option>
-                                    <option value="National Certificate (Vocational) Level 4">National Certificate (Vocational) Level 4</option>
-                                    <option value="National Intermediate Certificate (Grade 11)">National Intermediate Certificate (Grade 11)</option>
-                                    <option value="National Certificate (Vocational) Level 3">National Certificate (Vocational) Level 3</option>
-                                    <option value="National Elementary Certificate (Grade 10)">National Elementary Certificate (Grade 10)</option>
-                                    <option value="National Certificate (Vocational) Level 2">National Certificate (Vocational) Level 2</option>
-                                    <option value="General Certificate">General Certificate</option>
-                                    <option value="(Grade 9/AET Level 4)">(Grade 9/AET Level 4)</option>
+                                      <option value="Masters">Masters</option>
+                                      <option value="Dr">Dr</option>
+                                      <option value="Honours">Honours</option>
+                                      <option value="Degree">Degree</option>
+                                      <option value="Diploma">Diploma</option>
+                                      <option value="Certificate">Certificate</option>
+                                      <option value="Grade 12">Grade 12</option>
                                     </select>
                            
                                 </div>
@@ -17579,7 +17549,9 @@
                                   <select id="level2" class="form-select" aria-label="Default select example">
                                     <option selected>Select</option>
                                     <option value="Certificate">Certificate</option>
-            
+                                    <option value="Grade 11">Grade 11</option>
+                                    <option value="Grade 10">Grade 10</option>
+                                    <option value="Grade 09">Grade 09</option>
                                     <option value="Grade 08">Grade 08</option>
                                     
                                   </select>
@@ -17659,27 +17631,13 @@
                                
                                     <select id="level3" class="form-select" aria-label="Default select example">
                                       <option selected>Select</option>
-                                    <option value="Doctoral Degree">Doctoral Degree</option>
-                                    <option value="Masters Degree">Masters Degree</option>
-                            
-                                    <option value="Honours Degree">Honours Degree / Postgraduate Diploma</option>
-                                    <option value="Professional Qualification Degree">Professional Qualification Degree </option>
-                                    <option value="Postgraduate Diploma">Postgraduate Diploma</option>
-                                    <option value="Bachelors Degree">Bachelors Degree</option>
-                                    
-                                    <option value="Advanced Diploma">Advanced Diploma</option>
-                                    <option value="Diploma">Diploma</option>
-                                    <option value="Advanced Certificate">Advanced Certificate</option>
-                                    <option value="Higher Certificate">Higher  Certificate</option>
-                                    <option value="National Senior Certificate (Grade 12)">National Senior Certificate (Grade 12) </option>
-                                    <option value="Senior Certificate (Colleges) ">Senior Certificate (Colleges)</option>
-                                    <option value="National Certificate (Vocational) Level 4">National Certificate (Vocational) Level 4</option>
-                                    <option value="National Intermediate Certificate (Grade 11)">National Intermediate Certificate (Grade 11)</option>
-                                    <option value="National Certificate (Vocational) Level 3">National Certificate (Vocational) Level 3</option>
-                                    <option value="National Elementary Certificate (Grade 10)">National Elementary Certificate (Grade 10)</option>
-                                    <option value="National Certificate (Vocational) Level 2">National Certificate (Vocational) Level 2</option>
-                                    <option value="General Certificate">General Certificate</option>
-                                    <option value="(Grade 9/AET Level 4)">(Grade 9/AET Level 4)</option>
+                                      <option value="Masters">Masters</option>
+                                      <option value="Dr">Dr</option>
+                                      <option value="Honours">Honours</option>
+                                      <option value="Degree">Degree</option>
+                                      <option value="Diploma">Diploma</option>
+                                      <option value="Certificate">Certificate</option>
+                                      <option value="Grade 12">Grade 12</option>
                                     </select>
                                 </div>
 
@@ -17688,7 +17646,9 @@
                                   <select id="level3" class="form-select" aria-label="Default select example">
                                     <option selected>Select</option>
                                     <option value="Certificate">Certificate</option>
-                                    
+                                    <option value="Grade 11">Grade 11</option>
+                                    <option value="Grade 10">Grade 10</option>
+                                    <option value="Grade 09">Grade 09</option>
                                     <option value="Grade 08">Grade 08</option>
                                     
                                   </select>
@@ -18075,7 +18035,7 @@
 
 <script src="/javascript/firebase.js"></script>
     <script src="/javascript/sidebar.js"></script>
-    <script src="/javascript/profile.js"></script>
+    <script src="/javascript/supervisor.js"></script>
     
 </body>
 </html>
