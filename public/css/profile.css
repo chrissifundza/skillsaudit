@@ -50,7 +50,7 @@ body{
 .listBull2,.listBull1,.listBull3,.listBull4{
     display: none;
 }
-.sub-btn1,.sub-btn2,.sub-btn3,.sub-btn4,.sub-btn5{
+.sub-btn1,.sub-btn2,.sub-btn3,.sub-btn4,.sub-btn5, .sub-btn6,.sub-btn7{
     display: none;
 }
 
@@ -258,14 +258,15 @@ margin-left: -20px;
     color: white;
      
 }
-.flush-heading180 a{
+.flush-heading188 a{
     width: 100% !important;
-    background-color: transparent !important;
-    color:brown;
+    color:white;
     text-align: center;
     text-decoration: none;
     margin-top: 10px;
+    background-color: brown;
     border: 1px solid brown;
+    text-transform: uppercase;
 }
 .container-profile .content form{
     width: 70%;

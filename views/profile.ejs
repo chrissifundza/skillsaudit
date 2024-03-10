@@ -146,7 +146,7 @@
                     <div class="formb row">
                       <div class="form-group searchLine col-md-6">
                         <label for="inputZip">COMPETENCY TITLE</label>
-                        <select disabled onchange="Department()"  class="form-select selectvalue" aria-label="Default select example" id="division">
+                        <select onchange="Department()"  class="form-select selectvalue" aria-label="Default select example" id="division">
                          
                           </select>
                       </div> 
@@ -173,8 +173,8 @@
                                 <BUtton onclick="DisplayButtonAccordion(3)" type="button" style="display: none;" class="btn sub-btn3 btn-dark">PUBLIC SERVICE ORIENTATION</BUtton>
                                 <BUtton onclick="DisplayButtonAccordion(4)" type="button" style="display: none;" class="btn sub-btn4 btn-dark">MANAGEMENT / LEADERSHIP</BUtton>
                                 <BUtton onclick="DisplayButtonAccordion(5)" type="button" style="display: none;" class="btn sub-btn5 btn-dark">PERSONAL</BUtton>
-                                <BUtton onclick="DisplayButtonAccordion(6)" type="button" style="display: none;" class="btn sub-btn6 btn-dark">FUNCTIONAL / PROFESSIONAL</BUtton>
-                               
+                                <BUtton onclick="DisplayButtonAccordion(6)" type="button" style="display: none;" class="btn sub-btn6 btn-dark">LEADING COMPETENCIES</BUtton>
+                                <BUtton onclick="DisplayButtonAccordion(7)" type="button" style="display: none;" class="btn sub-btn7 btn-dark">CORE COMPETENCIES</BUtton>
                             </div>
                             <div class="sub-content-info">
                                   <div class="sub-info1 sub active">
@@ -16727,95 +16727,762 @@
                                       </div>
                                       <div class="accordion-item flush-heading179" style="display: none;">
                                         <h2 class="accordion-header" id="flush-heading179">
-                                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#flush-collapse179" aria-expanded="false" aria-controls="flush-collapse179">
-                                            <div class="title">
-                                              <H3>Water Monitoring</H3>
-                                              <!-- <p>The ability to communicate in writing as appropriate to specific audiences.</p> -->
-                                            </div>
-                                          </button>
-                                        </h2>
-                                        <div id="flush-collapse179" class="accordion-collapse collapse" aria-labelledby="flush-heading179"
-                                          data-bs-parent="#accordionFlushExample">
-                                          <div class="accordion-body">
-                  
-                                            <div class="chek-data wa179listBull1 bullet active">
-                                              <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                  Level 1
-                                                </label>
-                                              </div>
-                                              <div class="data">
-                                                <!-- <ul class="listdata121 " id="listdata12 ">
-                                                          </ul> -->
-                  
-                                                <table class="table table-bordered">
-                  
-                                                  <tbody class="wa179listdata121 " id="wa179listdata121 ">
-                  
-                                                  </tbody>
-                                                </table>
-                                              </div>
-                                            </div>
-                                            <div class="chek-data wa179listBull2 bullet">
-                                              <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                  Level 2
-                                                </label>
-                                              </div>
-                                              <div class="data">
-                  
-                                                <table class="table table-bordered">
-                  
-                                                  <tbody class="wa179listdata122" id="wa179listdata122">
-                  
-                                                  </tbody>
-                                                </table>
-                                              </div>
-                                            </div>
-                                            <div class="chek-data wa179listBull3 bullet">
-                                              <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                  Level 3
-                                                </label>
-                                              </div>
-                                              <div class="data">
-                  
-                                                <table class="table table-bordered">
-                  
-                                                  <tbody class="wa179listdata123 " id="wa179listdata123 ">
-                  
-                                                  </tbody>
-                                                </table>
-                                              </div>
-                                            </div>
-                  
-                                            <div class="chek-data wa179listBull4 bullet">
-                                              <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                  Level 4
-                                                </label>
-                                              </div>
-                                              <div class="data">
-                                                
-                                                <table class="table table-bordered">
-                  
-                                                  <tbody class="wa179listdata124 " id="wa179listdata124 ">
-                  
-                                                  </tbody>
-                                                </table>
-                                              </div>
-                                            </div>
-                  
-                                          </div>
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse179" aria-expanded="false" aria-controls="flush-collapse179">
+                                        <div class="title">
+                                        <H3>Water Monitoring</H3>
                                         </div>
-                                      </div>
+                                        </button>
+                                        </h2>
+                                       <div id="flush-collapse179" class="accordion-collapse collapse" aria-labelledby="flush-heading179"
+                                       data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                        
+                                        <div class="chek-data wa179listBull1 bullet active">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 1 
+                                        </label>
+                                        </div>
+                                       <div class="data">
+                                        <!-- <ul class="listdata121 " id="listdata12 ">
+                                        </ul> -->
+                                        
+                                        <table class="table table-bordered">
+                                        <tbody class="wa179listdata121 " id="wa179listdata121 ">
+                                        </tbody>
+                                       </table> 
+                                        </div>
+                                        </div>
+                                       <div class="chek-data wa179listBull2 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 2 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                       <table class="table table-bordered">
+                                        
+                                        <tbody class="wa179listdata122 " id="wa179listdata122 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="chek-data wa179listBull3 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 3 
+                                        </label>
+                                        </div>
+                                        <div class="data"> 
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="wa179listdata123 " id="wa179listdata123 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="chek-data wa179listBull4 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 4 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="wa179listdata124 " id="wa179listdata124 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="accordion-item flush-heading180" style="display: none;">
+                                        <h2 class="accordion-header" id="flush-heading180">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse180" aria-expanded="false" aria-controls="flush-collapse180">
+                                        <div class="title">
+                                        <H3>Analysis and Innovation</H3>
+                                        </div>
+                                        </button>
+                                        </h2>
+                                       <div id="flush-collapse180" class="accordion-collapse collapse" aria-labelledby="flush-heading180"
+                                       data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                        
+                                        <div class="chek-data an180listBull1 bullet active">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 1 
+                                        </label>
+                                        </div>
+                                       <div class="data">
+                                        <!-- <ul class="listdata121 " id="listdata12 ">
+                                        </ul> -->
+                                        
+                                        <table class="table table-bordered">
+                                        <tbody class="an180listdata121 " id="an180listdata121 ">
+                                        </tbody>
+                                       </table> 
+                                        </div>
+                                        </div>
+                                       <div class="chek-data an180listBull2 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 2 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                       <table class="table table-bordered">
+                                        
+                                        <tbody class="an180listdata122 " id="an180listdata122 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="chek-data an180listBull3 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 3 
+                                        </label>
+                                        </div>
+                                        <div class="data"> 
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="an180listdata123 " id="an180listdata123 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="chek-data an180listBull4 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 4 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="an180listdata124 " id="an180listdata124 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="accordion-item flush-heading181" style="display: none;">
+                                        <h2 class="accordion-header" id="flush-heading181">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse181" aria-expanded="false" aria-controls="flush-collapse181">
+                                        <div class="title">
+                                        <H3>Change Leadership</H3>
+                                        </div>
+                                        </button>
+                                        </h2>
+                                       <div id="flush-collapse181" class="accordion-collapse collapse" aria-labelledby="flush-heading181"
+                                       data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                        
+                                        <div class="chek-data ch181listBull1 bullet active">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 1 
+                                        </label>
+                                        </div>
+                                       <div class="data">
+                                        <!-- <ul class="listdata121 " id="listdata12 ">
+                                        </ul> -->
+                                        
+                                        <table class="table table-bordered">
+                                        <tbody class="ch181listdata121 " id="ch181listdata121 ">
+                                        </tbody>
+                                       </table> 
+                                        </div>
+                                        </div>
+                                       <div class="chek-data ch181listBull2 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 2 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                       <table class="table table-bordered">
+                                        
+                                        <tbody class="ch181listdata122 " id="ch181listdata122 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="chek-data ch181listBull3 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 3 
+                                        </label>
+                                        </div>
+                                        <div class="data"> 
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="ch181listdata123 " id="ch181listdata123 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="chek-data ch181listBull4 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 4 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="ch181listdata124 " id="ch181listdata124 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="accordion-item flush-heading182" style="display: none;">
+                                        <h2 class="accordion-header" id="flush-heading182">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse182" aria-expanded="false" aria-controls="flush-collapse182">
+                                        <div class="title">
+                                        <H3>Governance Leadership</H3>
+                                        </div>
+                                        </button>
+                                        </h2>
+                                       <div id="flush-collapse182" class="accordion-collapse collapse" aria-labelledby="flush-heading182"
+                                       data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                        
+                                        <div class="chek-data go182listBull1 bullet active">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 1 
+                                        </label>
+                                        </div>
+                                       <div class="data">
+                                        <!-- <ul class="listdata121 " id="listdata12 ">
+                                        </ul> -->
+                                        
+                                        <table class="table table-bordered">
+                                        <tbody class="go182listdata121 " id="go182listdata121 ">
+                                        </tbody>
+                                       </table> 
+                                        </div>
+                                        </div>
+                                       <div class="chek-data go182listBull2 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 2 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                       <table class="table table-bordered">
+                                        
+                                        <tbody class="go182listdata122 " id="go182listdata122 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="chek-data go182listBull3 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 3 
+                                        </label>
+                                        </div>
+                                        <div class="data"> 
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="go182listdata123 " id="go182listdata123 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="chek-data go182listBull4 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 4 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="go182listdata124 " id="go182listdata124 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="accordion-item flush-heading183" style="display: none;">
+                                        <h2 class="accordion-header" id="flush-heading183">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse183" aria-expanded="false" aria-controls="flush-collapse183">
+                                        <div class="title">
+                                        <H3>Knowledge and Information Management</H3>
+                                        </div>
+                                        </button>
+                                        </h2>
+                                       <div id="flush-collapse183" class="accordion-collapse collapse" aria-labelledby="flush-heading183"
+                                       data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                        
+                                        <div class="chek-data kn183listBull1 bullet active">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 1 
+                                        </label>
+                                        </div>
+                                       <div class="data">
+                                        <!-- <ul class="listdata121 " id="listdata12 ">
+                                        </ul> -->
+                                        
+                                        <table class="table table-bordered">
+                                        <tbody class="kn183listdata121 " id="kn183listdata121 ">
+                                        </tbody>
+                                       </table> 
+                                        </div>
+                                        </div>
+                                       <div class="chek-data kn183listBull2 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 2 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                       <table class="table table-bordered">
+                                        
+                                        <tbody class="kn183listdata122 " id="kn183listdata122 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="chek-data kn183listBull3 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 3 
+                                        </label>
+                                        </div>
+                                        <div class="data"> 
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="kn183listdata123 " id="kn183listdata123 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="chek-data kn183listBull4 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 4 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="kn183listdata124 " id="kn183listdata124 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="accordion-item flush-heading184" style="display: none;">
+                                        <h2 class="accordion-header" id="flush-heading184">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse184" aria-expanded="false" aria-controls="flush-collapse184">
+                                        <div class="title">
+                                        <H3>Moral Competence</H3>
+                                        </div>
+                                        </button>
+                                        </h2>
+                                       <div id="flush-collapse184" class="accordion-collapse collapse" aria-labelledby="flush-heading184"
+                                       data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                        
+                                        <div class="chek-data mo184listBull1 bullet active">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 1 
+                                        </label>
+                                        </div>
+                                       <div class="data">
+                                        <!-- <ul class="listdata121 " id="listdata12 ">
+                                        </ul> -->
+                                        
+                                        <table class="table table-bordered">
+                                        <tbody class="mo184listdata121 " id="mo184listdata121 ">
+                                        </tbody>
+                                       </table> 
+                                        </div>
+                                        </div>
+                                       <div class="chek-data mo184listBull2 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 2 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                       <table class="table table-bordered">
+                                        
+                                        <tbody class="mo184listdata122 " id="mo184listdata122 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="chek-data mo184listBull3 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 3 
+                                        </label>
+                                        </div>
+                                        <div class="data"> 
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="mo184listdata123 " id="mo184listdata123 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="chek-data mo184listBull4 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 4 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="mo184listdata124 " id="mo184listdata124 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="accordion-item flush-heading185" style="display: none;">
+                                        <h2 class="accordion-header" id="flush-heading185">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse185" aria-expanded="false" aria-controls="flush-collapse185">
+                                        <div class="title">
+                                        <H3>Program and Project Management</H3>
+                                        </div>
+                                        </button>
+                                        </h2>
+                                       <div id="flush-collapse185" class="accordion-collapse collapse" aria-labelledby="flush-heading185"
+                                       data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                        
+                                        <div class="chek-data pr185listBull1 bullet active">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 1 
+                                        </label>
+                                        </div>
+                                       <div class="data">
+                                        <!-- <ul class="listdata121 " id="listdata12 ">
+                                        </ul> -->
+                                        
+                                        <table class="table table-bordered">
+                                        <tbody class="pr185listdata121 " id="pr185listdata121 ">
+                                        </tbody>
+                                       </table> 
+                                        </div>
+                                        </div>
+                                       <div class="chek-data pr185listBull2 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 2 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                       <table class="table table-bordered">
+                                        
+                                        <tbody class="pr185listdata122 " id="pr185listdata122 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="chek-data pr185listBull3 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 3 
+                                        </label>
+                                        </div>
+                                        <div class="data"> 
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="pr185listdata123 " id="pr185listdata123 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="chek-data pr185listBull4 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 4 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="pr185listdata124 " id="pr185listdata124 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="accordion-item flush-heading186" style="display: none;">
+                                        <h2 class="accordion-header" id="flush-heading186">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse186" aria-expanded="false" aria-controls="flush-collapse186">
+                                        <div class="title">
+                                        <H3>Results and Quality Focused</H3>
+                                        </div>
+                                        </button>
+                                        </h2>
+                                       <div id="flush-collapse186" class="accordion-collapse collapse" aria-labelledby="flush-heading186"
+                                       data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                        
+                                        <div class="chek-data re186listBull1 bullet active">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 1 
+                                        </label>
+                                        </div>
+                                       <div class="data">
+                                        <!-- <ul class="listdata121 " id="listdata12 ">
+                                        </ul> -->
+                                        
+                                        <table class="table table-bordered">
+                                        <tbody class="re186listdata121 " id="re186listdata121 ">
+                                        </tbody>
+                                       </table> 
+                                        </div>
+                                        </div>
+                                       <div class="chek-data re186listBull2 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 2 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                       <table class="table table-bordered">
+                                        
+                                        <tbody class="re186listdata122 " id="re186listdata122 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="chek-data re186listBull3 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 3 
+                                        </label>
+                                        </div>
+                                        <div class="data"> 
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="re186listdata123 " id="re186listdata123 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="chek-data re186listBull4 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 4 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="re186listdata124 " id="re186listdata124 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="accordion-item flush-heading187" style="display: none;">
+                                        <h2 class="accordion-header" id="flush-heading187">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse187" aria-expanded="false" aria-controls="flush-collapse187">
+                                        <div class="title">
+                                        <H3>Strategic Direction and Leadership</H3>
+                                        </div>
+                                        </button>
+                                        </h2>
+                                       <div id="flush-collapse187" class="accordion-collapse collapse" aria-labelledby="flush-heading187"
+                                       data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                        
+                                        <div class="chek-data st187listBull1 bullet active">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 1 
+                                        </label>
+                                        </div>
+                                       <div class="data">
+                                        <!-- <ul class="listdata121 " id="listdata12 ">
+                                        </ul> -->
+                                        
+                                        <table class="table table-bordered">
+                                        <tbody class="st187listdata121 " id="st187listdata121 ">
+                                        </tbody>
+                                       </table> 
+                                        </div>
+                                        </div>
+                                       <div class="chek-data st187listBull2 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 2 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                       <table class="table table-bordered">
+                                        
+                                        <tbody class="st187listdata122 " id="st187listdata122 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <div class="chek-data st187listBull3 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 3 
+                                        </label>
+                                        </div>
+                                        <div class="data"> 
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="st187listdata123 " id="st187listdata123 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="chek-data st187listBull4 bullet">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Level 4 
+                                        </label>
+                                        </div>
+                                        <div class="data">
+                                        
+                                        <table class="table table-bordered">
+                                        
+                                        <tbody class="st187listdata124 " id="st187listdata124 ">
+                                        
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        
+                                        </div>
+                                        </div>
+                                        </div>
                   
-                                      <div class="accordion-item flush-heading180" >
+                                      <div class="accordion-item flush-heading188" >
                                         <a class="btn" onclick="validateone()">Verify completion</a>
                                       </div>
                                     </div>
