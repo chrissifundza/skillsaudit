@@ -84762,6 +84762,14 @@ let res=false
 
   })
     .then(function (response) {
+      document.querySelector(".sub-btn1").style.display = "none"
+      document.querySelector(".sub-btn2").style.display = "none"
+      document.querySelector(".sub-btn3").style.display = "none"
+      document.querySelector(".sub-btn4").style.display = "none"
+      document.querySelector(".sub-btn5").style.display = "none"
+      document.querySelector(".sub-btn6").style.display = "none"
+      document.querySelector(".sub-btn7").style.display = "none"
+
       document.querySelector(".flush-heading0").style.display = "none"
       document.querySelector(".flush-heading1").style.display = "none"
       document.querySelector(".flush-heading2").style.display = "none"
@@ -85018,7 +85026,7 @@ res=response.data
       const personal = response.data.filter((d) => d.info.competencyDivision == "PERSONAL COMPETENCIES")
       if (personal.length > 0) {
         personalf=true
-        
+       
         console.log("personal is here");
         document.querySelector(".sub-btn5").style.display = "block"
         if (section == 5) {
@@ -85032,7 +85040,7 @@ res=response.data
        const LEADINGCOMPETENCIES = response.data.filter((d) => d.info.competencyDivision == "LEADING COMPETENCIES")
       if (LEADINGCOMPETENCIES.length > 0) {
         leading=true
-        
+        console.log(LEADINGCOMPETENCIES);
         console.log("Leading is here");
         document.querySelector(".sub-btn6").style.display = "block"
         if (section == 6) {
