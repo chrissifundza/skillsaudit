@@ -85046,6 +85046,24 @@ res=response.data
         if (section == 6) {
           console.log(section);
           LeadingCompetencies(LEADINGCOMPETENCIES)
+          
+          let arrayInpu=document.querySelectorAll(".form-check-input")
+
+        for (let i = 0; i < arrayInpu.length; i++) {
+          const el = arrayInpu[i];
+          el.style.display="none"
+          
+        }
+
+        
+
+        let arrayClass=document.querySelectorAll(".form-check-label")
+
+        for (let i = 0; i < arrayClass.length; i++) {
+          const element = arrayClass[i];
+          element.style.display="none"
+          
+        }
 
         }
 
@@ -85060,7 +85078,22 @@ res=response.data
         if (section == 7) {
           console.log(section);
           CoreCompetencies(CORECOMPETENCIES)
+          let arrayInpu=document.querySelectorAll(".form-check-input")
 
+        for (let i = 0; i < arrayInpu.length; i++) {
+          const el = arrayInpu[i];
+          el.style.display="none"
+          
+        }
+
+        
+          let arrayClass=document.querySelectorAll(".form-check-label")
+
+          for (let i = 0; i < arrayClass.length; i++) {
+            const element = arrayClass[i];
+            element.style.display="none"
+            
+          }
         }
 
       }
