@@ -1,5 +1,5 @@
-import nodemailer from "nodemailer";
-export const SendEmail = (email)=>{
+const nodemailer = require("nodemailer");
+ const SendEmail = (email)=>{
    
         try {
     
@@ -37,3 +37,6 @@ export const SendEmail = (email)=>{
   
   
 }
+module.exports = {
+    SendEmail
+  };

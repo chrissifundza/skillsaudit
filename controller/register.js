@@ -1,10 +1,31 @@
-import { response } from "express";
-import { auth, db, storage} from "../firebase/config.js"
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail,signOut} from "firebase/auth";
-import { SendEmail } from "./email.js";
-import { doc, setDoc, getDoc, collection, getDocs,query ,where, addDoc, deleteDoc} from "firebase/firestore"; 
 
-export const findmyemployees =async (req, res)=>{
+const { auth, db, storage } = require("../firebase/config.js");
+const { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } = require("firebase/auth");
+const { SendEmail } = require("./email.js");
+const { doc, setDoc, getDoc, collection, getDocs, query, where, addDoc, deleteDoc } = require("firebase/firestore");
+
+
+
+
+const getevryone =async (req, res)=>{
+
+  const CompetenceRef = await getDocs(collection(db, "users2"));
+
+
+  let data=[]
+  CompetenceRef.forEach((doc) => {
+     
+   
+    data.push(doc.data())
+  
+  });
+  
+  res.status(200).json(data);
+ 
+  
+  }
+
+ const findmyemployees =async (req, res)=>{
 
   let data=[]
   let id =''
@@ -15,7 +36,7 @@ export const findmyemployees =async (req, res)=>{
   // doc.data() is never undefined for query doc snapshots
   let newD={id:doc.id,
     info:doc.data()
-  }
+  } 
 
   data.push(newD)
   
@@ -26,7 +47,7 @@ export const findmyemployees =async (req, res)=>{
  
 
   }
-export const removesubmit =(req, res)=>{ 
+ const removesubmit =(req, res)=>{ 
  
   const user = req.body.ID
     
@@ -46,7 +67,7 @@ export const removesubmit =(req, res)=>{
     });
   
     }
-export const finalsubmit =(req, res)=>{
+ const finalsubmit =(req, res)=>{
  
   const user = req.body.ID
     
@@ -66,7 +87,7 @@ export const finalsubmit =(req, res)=>{
     });
   
     }
-export const  getratedcompetency= async (req, res)=>{
+ const  getratedcompetency= async (req, res)=>{
          
   const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "competencies"));
   
@@ -82,7 +103,7 @@ export const  getratedcompetency= async (req, res)=>{
   
   res.status(200).json(data);  
   }
-  export const  getratedcompetencysup= async (req, res)=>{
+   const  getratedcompetencysup= async (req, res)=>{
          
     const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "supervisor"));
     
@@ -98,7 +119,7 @@ export const  getratedcompetency= async (req, res)=>{
     
     res.status(200).json(data);  
     }
-export const  deleteperience= async (req, res)=>{
+ const  deleteperience= async (req, res)=>{
   
   deleteDoc(doc(db, "users2", req.body.ID,"otherexperience", req.body.id)).then(()=>{
   const status ="success"
@@ -114,7 +135,7 @@ export const  deleteperience= async (req, res)=>{
 
   }
 
-export const  upadteaddexperience= async (req, res)=>{
+ const  upadteaddexperience= async (req, res)=>{
 
   
   setDoc(doc(db, "users2", req.body.ID,"otherexperience", req.body.id), {
@@ -137,7 +158,7 @@ export const  upadteaddexperience= async (req, res)=>{
 
   }
 
-export const  displayexperience= async (req, res)=>{
+ const  displayexperience= async (req, res)=>{
          
   const querySnapshot = await getDoc(doc(db, "users2",req.body.ID, "otherexperience",req.body.id));
   
@@ -146,7 +167,7 @@ export const  displayexperience= async (req, res)=>{
   res.status(200).json(data);  
   }
 
-export const  getotherexperience= async (req, res)=>{
+ const  getotherexperience= async (req, res)=>{
          
   const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "otherexperience"));
   
@@ -162,7 +183,7 @@ export const  getotherexperience= async (req, res)=>{
   
   res.status(200).json(data);  
   }
-export const  addmembership= async (req, res)=>{
+ const  addmembership= async (req, res)=>{
  
   addDoc(collection(db, "users2", req.body.ID,"othermember"), {
     tyeofmemeber:req.body.tyeofmemeber,
@@ -182,7 +203,7 @@ export const  addmembership= async (req, res)=>{
 });
 
   }
-  export const  updatexperience= async (req, res)=>{
+   const  updatexperience= async (req, res)=>{
     let info = req.body.data;
     
     addDoc(collection(db, "users2", req.body.ID,"otherexperience"), {
@@ -205,7 +226,7 @@ export const  addmembership= async (req, res)=>{
   
     }
   
-export const  experience= async (req, res)=>{
+ const  experience= async (req, res)=>{
   let info = req.body.data;
   
   setDoc(doc(db, "users2", req.body.ID), {
@@ -229,7 +250,7 @@ export const  experience= async (req, res)=>{
 
   }
 
-export const  language= async (req, res)=>{
+ const  language= async (req, res)=>{
   let info = req.body.data;
   
   setDoc(doc(db, "users2", req.body.ID), {
@@ -247,7 +268,7 @@ export const  language= async (req, res)=>{
 
   }
 
-  export const  otherlanguage= async (req, res)=>{
+   const  otherlanguage= async (req, res)=>{
     let info = req.body.data;
     
     setDoc(doc(db, "users2", req.body.ID), {
@@ -265,7 +286,7 @@ export const  language= async (req, res)=>{
   
     }
   
-  export const  member= async (req, res)=>{
+   const  member= async (req, res)=>{
     let info = req.body.data;
     
     setDoc(doc(db, "users2", req.body.ID), {
@@ -288,7 +309,7 @@ export const  language= async (req, res)=>{
     }
   
 
-export const  updateArea= async (req, res)=>{
+ const  updateArea= async (req, res)=>{
   let info = req.body.data;
   console.log("Running"+req.body.num);
   setDoc(doc(db, "users2", req.body.ID), {
@@ -306,7 +327,7 @@ export const  updateArea= async (req, res)=>{
 
   }
 
-  export const  validate= async (req, res)=>{
+   const  validate= async (req, res)=>{
     let info = req.body.data;
     console.log("called");
     let competency =req.body.competencyDivision
@@ -328,7 +349,7 @@ export const  updateArea= async (req, res)=>{
   
     }
 
-    export const  getcmpetencydivision= async (req, res)=>{
+     const  getcmpetencydivision= async (req, res)=>{
   
       const CompetenceRef = await getDoc(doc(db, "users2",req.body.ID));
 
@@ -337,7 +358,7 @@ export const  updateArea= async (req, res)=>{
       
       res.status(200).json(CompetenceRef.data());
       }
-export const  getRate= async (req, res)=>{
+ const  getRate= async (req, res)=>{
   let info = req.body.data;
    console.log(req.body.ID);
 const CompetenceRef = await getDocs(collection(db, "users2",req.body.ID,"competencies"));
@@ -352,7 +373,7 @@ CompetenceRef.forEach((doc) => {
 });
 res.status(200).json(data);
 }
-export const  getRatesup= async (req, res)=>{
+ const  getRatesup= async (req, res)=>{
   let info = req.body.data;
    console.log(req.body.ID);
 const CompetenceRef = await getDocs(collection(db, "users2",req.body.ID,"supervisor"));
@@ -370,7 +391,7 @@ res.status(200).json(data);
 
   }
 
-export const  addCompetency= async (req, res)=>{
+ const  addCompetency= async (req, res)=>{
   let info = req.body.data;
 console.log(info.idcomp);
 // const collectionRef = collection(database, "users", uid, "invoices");
@@ -398,7 +419,7 @@ console.log(info.idcomp);
 });
 
   }
-  export const  addCompetencysup= async (req, res)=>{
+   const  addCompetencysup= async (req, res)=>{
     let info = req.body.data;
   console.log(info.idcomp);
   // const collectionRef = collection(database, "users", uid, "invoices");
@@ -441,7 +462,7 @@ console.log(info.idcomp);
   });
   
     }
-export const  highestqualification= async (req, res)=>{
+ const  highestqualification= async (req, res)=>{
   
   setDoc(doc(db, "users2", req.body.ID), {
     QualificationName:req.body.Qualification,
@@ -460,7 +481,7 @@ export const  highestqualification= async (req, res)=>{
 
   }
 
-export const  uploadqualifications= async (req, res)=>{
+ const  uploadqualifications= async (req, res)=>{
   const file = req.body.url
   setDoc(doc(db, "users2", req.body.ID), {
     Qualification:file,
@@ -477,7 +498,7 @@ export const  uploadqualifications= async (req, res)=>{
 });
 
   }
-  export const  uploadqualifications2= async (req, res)=>{
+   const  uploadqualifications2= async (req, res)=>{
     const file = req.body.url
     addDoc(collection(db, "users2", req.body.ID,"otherqualification"), {
       Qualification:file,
@@ -496,7 +517,7 @@ export const  uploadqualifications= async (req, res)=>{
   
     }
 
-    export const  highestqualification2= async (req, res)=>{
+     const  highestqualification2= async (req, res)=>{
   
       addDoc(collection(db, "users2", req.body.ID, "otherqualification"), {
         QualificationName:req.body.Qualification,
@@ -517,7 +538,7 @@ export const  uploadqualifications= async (req, res)=>{
       }
 
       
-    export const  updatequalification= async (req, res)=>{
+     const  updatequalification= async (req, res)=>{
   
       setDoc(doc(db, "users2", req.body.ID, "otherqualification",req.body.docid), {
         QualificationName:req.body.Qualification,
@@ -537,7 +558,7 @@ export const  uploadqualifications= async (req, res)=>{
     
       }
 
-      export const  deletequalification= async (req, res)=>{
+       const  deletequalification= async (req, res)=>{
   
         deleteDoc(doc(db, "users2", req.body.ID,"otherqualification", req.body.docid)).then(()=>{
         const status ="success"
@@ -553,7 +574,7 @@ export const  uploadqualifications= async (req, res)=>{
       
         }
 
-export const  getotherqualification= async (req, res)=>{
+ const  getotherqualification= async (req, res)=>{
          
 const querySnapshot = await getDocs(collection(db, "users2",req.body.ID, "otherqualification"));
 
@@ -570,7 +591,7 @@ querySnapshot.forEach((doc) => {
 res.status(200).json(data);  
 }
 
-export const  displayqualification= async (req, res)=>{
+ const  displayqualification= async (req, res)=>{
          
   const querySnapshot = await getDoc(doc(db, "users2",req.body.ID, "otherqualification",req.body.id));
   
@@ -579,7 +600,7 @@ export const  displayqualification= async (req, res)=>{
   res.status(200).json(data);  
   }
   
-export const  getcompetencies= async (req, res)=>{
+ const  getcompetencies= async (req, res)=>{
   let data=[]
   console.log(req.body.position);
   const CompetenceRef = collection(db, "competencies3");
@@ -593,7 +614,7 @@ export const  getcompetencies= async (req, res)=>{
   res.status(200).json(data);
 }
 
-export const  position= async (req, res)=>{
+ const  position= async (req, res)=>{
   let data=[]
   console.log(req.body.position);
   const q = query(collection(db, "competencies3"), where("code", "==",  req.body.position));
@@ -605,10 +626,10 @@ querySnapshot.forEach((doc) => {
   data.push({id:doc.id,info:doc.data()})
 });
 
-  
+   
   res.status(200).json(data);
 }
-export const  fetchcomp= async (req, res)=>{
+ const  fetchcomp= async (req, res)=>{
   let data=[]
   const q = query(collection(db, "competencies3"), where("code", "==",  req.body.compcode));
 
@@ -623,7 +644,7 @@ querySnapshot.forEach((doc) => {
   res.status(200).json(data);
   }
    
-export const  department= async (req, res)=>{
+ const  department= async (req, res)=>{
   let data=[]
   const q = query(collection(db, "positions"), where("division", "==",  req.body.division));
 
@@ -639,7 +660,7 @@ querySnapshot.forEach((doc) => {
   }
    
   
-export const  division= async (req, res)=>{
+ const  division= async (req, res)=>{
   
 const querySnapshot = await getDocs(collection(db, "positions"));
 
@@ -653,7 +674,7 @@ querySnapshot.forEach((doc) => {
 
 res.status(200).json(data);
 }
-export const UpdateUser =(req, res)=>{
+ const UpdateUser =(req, res)=>{
   setDoc(doc(db, "users2", req.body.ID), {
     employeeMiddleNameS:req.body.middlename,
     employeeSurname:req.body.surname,
@@ -672,7 +693,7 @@ export const UpdateUser =(req, res)=>{
   res.json(error)
 });
 }
-export const User =(req, res)=>{
+ const User =(req, res)=>{
 
 
   getDoc(doc(db, "users2", req.body.ID)).then((docSnap)=>{
@@ -693,7 +714,7 @@ export const User =(req, res)=>{
   })
 
   }
-  export const fetchUser =async (req, res)=>{
+   const fetchUser =async (req, res)=>{
 
     let data=[]
     let id =''
@@ -711,7 +732,7 @@ export const User =(req, res)=>{
    
   
     }
-  export const signout=(req, res)=>{
+   const signout=(req, res)=>{
   
     signOut(auth).then(() => {
       
@@ -726,7 +747,7 @@ export const User =(req, res)=>{
     });
   }
 
-export const register =async (req, res)=>{
+ const register =async (req, res)=>{
 console.log(req.body.email);
 let data=[]
 let id =''
@@ -775,7 +796,7 @@ createUserWithEmailAndPassword(auth, req.body.email, req.body.password)
   res.json("User Not Found");
 }
 }
-export const accept =(req, res)=>{
+ const accept =(req, res)=>{
  
 const user = req.body.ID
   
@@ -803,7 +824,7 @@ const user = req.body.ID
   
   
   }
-export const login =(req, res)=>{
+ const login =(req, res)=>{
   //chec existing user
   
   console.log(req.body.email);
@@ -828,7 +849,7 @@ export const login =(req, res)=>{
     });
   
   }
-  export const forgot =(req, res)=>{
+   const forgot =(req, res)=>{
   
    
     sendPasswordResetEmail(auth, req.body.email)
@@ -850,3 +871,65 @@ export const login =(req, res)=>{
     console.log(req.body.email);
     
     }
+    const  loadalluser= async (req, res)=>{
+      let data=[]
+      console.log(req.body.position);
+      const q = query(collection(db, "users2"), where("competencies", "==",  req.body.competencies));
+    
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      
+      data.push({id:doc.id,info:doc.data()})
+    });
+    
+       
+      res.status(200).json(data);
+    }
+    module.exports = {
+      UpdateUser,
+      User,
+      accept,
+      department,
+      forgot,
+      getcompetencies,
+      highestqualification,
+      login,
+      division,
+      position,
+      register,
+      signout,
+      uploadqualifications,
+      addCompetency,
+      getRate,
+      updateArea,
+      language,
+      experience,
+      member,
+      fetchcomp,
+      uploadqualifications2,
+      highestqualification2,
+      getotherqualification,
+      displayqualification,
+      updatequalification,
+      deletequalification,
+      fetchUser,
+      updatexperience,
+      getotherexperience,
+      displayexperience,
+      upadteaddexperience,
+      deleteperience,
+      addmembership,
+      otherlanguage,
+      getratedcompetency,
+      finalsubmit,
+      removesubmit,
+      validate,
+      getcmpetencydivision,
+      findmyemployees,
+      addCompetencysup,
+      getRatesup,
+      getratedcompetencysup,
+      loadalluser,
+      getevryone
+    };

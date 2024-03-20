@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Audit | Profile</title>
+<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="/css/sidebar.css">
+<link rel="stylesheet" href="/css/admin.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/77f72af182.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+
+
+
+
+</head>
+<body onload="loadSelect()">
+    <div class="nav">
+        <ul>
+            <li><a href="">UserProfile</a></li>
+            <li><a href="">MCR</a></li>
+            <li><a href="">Qualifications</a></li>
+            <li><a href="">Experience</a></li>
+            <li><a href="">ProfessionalRegistration</a></li>
+            <li><a href="">Languages</a></li>
+        </ul>
+        
+    </div>
+    <nav>
+        <div onclick="Home()" class="title">
+        <h3>Skills Audit</h3> 
+    </div>
+    <div class="user-details">
+        <div class="input-search">
+            <input type="text" placeholder="Search"><button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="dropdown">
+         
+          <button class="btn btn-secondary " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="profile ">
+              <img src="/img/profile.jpg" alt="">
+          </div>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item"  id="username" href="#">UserName</a></li>
+            <li><a class="dropdown-item"  id="supervisor" onclick="supervisor()" href="#">Supervisor</a></li>
+            <li><a class="dropdown-item" href="#" onclick="SignOut()">Sign Out</a></li>
+    
+          </ul>
+        </div>
+       
+        
+    </div>
+    
+    </nav>
+
+    <div class="container-profile" >
+      
+        <div class="col">
+           
+            <div class="row" style="width: 100vw;">
+
+                <div class="form-group searchLine col-md-6">
+                    <label for="inputZip">COMPETENCY TITLE</label>
+                    <select  onchange="Department()"  class="form-select selectvalue" aria-label="Default select example" id="division">
+                     
+                      </select>
+                  </div> 
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputPassword1">DESIGNATION LEVEL</label>
+                    <select onchange="Position()" class="form-select" id="department" aria-label="Default select example"  >
+                        
+                        
+                      </select>
+                    </div> 
+            </div>
+
+            
+        <div class="table-container">
+            <table class="table table-bordered">
+              
+               
+               <thead>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Work Experience</td>
+                    <td>Educational Qualification</td>
+                    <td class="coreprofessional">Core Professional Competencies</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Functional Competencies</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Management and leadership</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Public Service Orientation</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Personal Competencies</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Core competencies</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Leadign competencies</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+               </thead>
+              
+              <thead>
+                <tr>
+                    <td>No.</td>
+                    <td>Municipality</td>
+                    <td>Name of Employee</td>
+                    <td>EmployeeCode</td>
+                    <td>Position/Job Title</td>
+                    <td>Division</td>
+                    <td>Defined Job Role (MSR)</td>
+                    <td>Competency Code</td>
+                    <td>Level</td>
+                    <td>Employee Years Experience</td>
+                    <td>Employee Highest Qualification</td>
+                    <!-- here -->
+                    <td>Written Communication</td>
+                    <td>Oral Communication</td>
+                    <td>Research and Analysis</td>
+                    <td>Advocacy / Negotiation</td>
+                    <td>Ethics and Professionalism</td>
+                    <td>Organisational Awareness</td>
+                    <td>Business Communication</td>
+                    <td>Consulting</td>
+                    <td>Planning and Organising</td>
+                    <td>Monitoring and Control</td>
+                    <td>Negotiation</td>
+                    <td>Use of Technology</td>
+                    <td>Communication</td>
+                    <td>Conceptual Thinking</td>
+                    <td>Written Communication / Drafting</td>
+                    <td>Planning</td>
+                    <td>Attention to Detail</td>
+                    <td>Problem Solving</td>
+                    <td>Research and Development</td>
+                    <td>Information Management</td>
+                    <td>Influencing</td>
+                    <td>Public Consultation</td>
+                    <td>Socio-Economic / Socio-Political Awareness</td>
+                    <td>Managing Work</td>
+                    <td>Quality Orientation</td>
+                    <td>Discipline Specific Skills</td>
+                    <td>People Management</td>
+                    <td>Task Management</td>
+                    <td>Work Place Safety</td>
+                    <td>Budgeting</td>
+                    <td>Interpersonal Relationships</td>
+                    <td>Service Delivery Orientation</td>
+                    <td>Action and Outcome Orientation</td>
+                    <td>Resilience</td>
+                    <td>Ethics and Accountability</td>
+                    <td>Direction Setting</td>
+                    <td>Impact and Influence</td>
+                    <td>Coaching and Mentoring</td>
+                    <td>Team Orientation</td>
+                    <td>Community and Customer Focus</td>
+                    <td>Negotiation and Influencing</td>
+                    <td>Fire Fighting</td>
+                    <td>Evaluation and Research</td>
+                    <td>Professional / Technical Proficiency</td>
+                    <td>Technical Communication</td>
+                    <td>Decision Making</td>
+                    <td>Advice and Guidance</td>
+                    <td>Computer Literacy</td>
+                    <td>Organisational Awareness / Political Impact</td>
+                    <td>Information Measuring and Monitoring</td>
+                    <td>Monitoring and Reporting</td>
+                    <td>Internal Auditing</td>
+                      <td>Engagement Management</td>
+                      <td>Information Management</td>
+                      <td>Information Strategy</td>
+                      <td>Advice and Guidance</td>
+                      <td>Business and IS&T Planning</td>
+                      <td>Technical Strategy and Planning</td>
+                      <td>Business Change Management </td>
+                      <td>Data Conversion</td>
+                      <td>Operations</td>
+                      <td>Installation and Integration</td>
+                      <td>User Support</td>
+                      <td>People Management</td>
+                      <td>Task Management</td>
+                      <td>Project Management</td>
+                      <td>Financial Management</td>
+                      <td>Information Measuring and Monitoring</td>
+                      <td>Technology Usage</td>
+                      <td>Conceptual Thinking</td>
+                      <td>Litigation Management</td>
+                      <td>Research and Analysis</td>
+                      <td>Interpersonal Relationships</td>
+                      <td>Communication</td>
+                      <td>Service Delivery Orientation</td>
+                      <td>Change Movement</td>
+                      <td>HR Technology Information Management</td>
+                      <td>HR Service Delivery</td>
+                      <td>Talent Management</td>
+                      <td>Workforce Planning</td>
+                      <td>Learning and Development</td>
+                      <td>Occupational Health and Safety</td>
+                      <td>Compensation and Benefits Management</td>
+                      <td>Performance Management</td>
+                      <td>Employee Wellness</td>
+                      <td>Industrial and Labour Relations</td>
+                      <td>Strategic HR Management</td>
+                      <td>Design</td>
+                      <td>Construction</td>
+                      <td>Operations and Maintenance</td>
+                      <td>Accounting</td>
+                      <td>Procurement</td>
+                      <td>Budgeting</td>
+                      <td>Costing</td>
+                      <td>Financial Reporting</td>
+                      <td>Financial Process Management</td>
+                      <td>Procurement and Tenders</td>
+                      <td>Sampling Analyses</td>
+                      <td>Raw Material Inventory</td>
+                      <td>Stakeholder Liason</td>
+                      <td>Spatial Planning</td>
+                      <td>Urban Design</td>
+                      <td>Land Use Management</td>
+                      <td>Research, Information Analysis and Policy</td>
+                      <td>Knowledge Management</td>
+                      <td>Public Consultation</td>
+                      <td>Socio-Economic / Socio-Political Awareness</td>
+                      <td>Policy Conceptualisation</td>
+                      <td>Building Development Control</td>
+                      <td>Building Inspectorate Customer Centricity</td>
+                      <td>Legal Administration</td>
+                      <td>Negotiation and Influencing</td>
+                      <td>Ethics and Professionalism</td>
+                      <td>Professional / Technical Proficiency</td>
+                      <td>Managing Work - Operation Work</td>
+                      <td>Work Place Safety</td>
+                      <td>Task Accountability</td>
+                      <td>Quality Orientation</td>
+                      <td>Oral Communication</td>
+                      <td>Operation Monitoring - Small Plant</td>
+                      <td>Quality Control Analysis</td>
+                      <td>Operation and Control</td>
+                      <td>Troubleshooting</td>
+                      <td>Planning and Organising</td>
+                      <td>Grade 1 Vehicle Safety Driver </td>
+                      <td>Grade 2 Vehicle Safety Driver </td>
+                      <td>Grade 3 Vehicle Safety Driver </td>
+                      <td>Grade 4 Vehicle Safety Driver </td>
+                      <td>Grade 5 Vehicle Safety Driver </td>
+                      <td>Driving Behaviour</td>
+                      <td>Learning Orientation</td>
+                      <td>Operation Monitoring Light Equipment</td>
+                      <td>Grade 6 Vehicle Safety Driver </td>
+                      <td>Operation Monitoring Mechanical Plant</td>
+                      <td>Vehicle Safety Driver Grade 3 Special Category</td>
+                      <td>Vehicle Safety Chauffeur</td>
+                      <td>Discipline Specific Skills</td>
+                      <td>Monitoring and Control</td>
+                      <td>Organisational Awareness</td>
+                      <td>Attention to Detail</td>
+                      <td>Direction Setting</td>
+                      <td>Dispute Resolution</td>
+                      <td>Problem Solving</td>
+                      <td>Negotiation</td>
+                      <td>Data Processing & Analysis</td>
+                      <td>Strategic Planning and Strategy Formulation</td>
+                      <td>Programme and Project Management</td>
+                      <td>Information Products and Reporting</td>
+                      <td>Resilience</td>
+                      <td>Patrol, Enforcement and Emergency Response</td>
+                      <td>Fire Fighting</td>
+                      <td>Rescue Operations</td>
+                      <td>Special Operations (Hazmat, Urban Search and Rescue)</td>
+                      <td>Fire Safety and Prevention</td>
+                      <td>Safety and Welfare</td>
+                      <td>Emergency Medical Care</td>
+                      <td>Call Taking and Dispatch</td>
+                      <td>Analytical Skills</td>
+                      <td>Advocacy / Negotiation</td>
+                      <td>Water Monitoring</td>
+                      <td>Food Control</td>
+                      <td>Waste Management</td>
+                      <td>Health Surveillance of Premises</td>
+                      <td>Communicable Diseases Management (except immunizations)</td>
+                      <td>Environmental Pollution Control</td>
+                      <td>Disposal of the Dead</td>
+                      <td>Health Promotion</td>
+                      <td>Vector Control</td>
+                      <td>Facility Specific Skills</td>
+                      <td>Illegal Land Invasion</td>
+                      <td>Legal Process Administration</td>
+                      <td>Relocation Processes</td>
+                      <td>Surveying Data Management</td>
+                      <td>Disaster Operations</td>
+                      <td>Data Capture</td>
+                      <td>Data Exchange</td>
+                      <td>Database Design & Management</td>
+                      <td>Professional Conduct</td>
+                      <td>GIS Systems and Software</td>
+                      <td>Image Analysis</td>
+                      <td>Spatial Awareness</td>
+                      <td>Spatial Analysis</td>
+                      <td>Information Technology</td>
+                      <td>Consulting</td>
+                      <td>Use of Process Specific Technology / Equipment</td>
+                      <td>Business Process</td>
+                      <td>Use of Technology</td>
+                      <!-- ********************* -->
+                      <td>Impact and Influence</td>
+                      <td>Team Orientation</td>
+                      <td>Coaching and Mentoring</td>
+                      <td>Strategic Capability / Leadership or Direction Setting</td>
+                      <td>Direction Setting</td>
+                      <td>Leadership</td>
+                      <td>Strategic Capability and Leadership</td>
+
+                      <!-- ********************** -->
+
+                      <td>Interpersonal Relationships</td>
+                      <td>Communication</td>
+                      <td>Service Delivery Orientation</td>
+                      <td>Customer Orientation and Customer Focus</td>
+                      <td>Action and Outcome Orientation</td>
+                      <td>Resilience</td>
+                      <td>Cognitive Ability</td>
+                      <td>Learning Orientation</td>
+                      <td>Technology Usage</td>
+                      <td>Accountability and Ethical Conduct</td>
+                      <td>Direction Setting</td>
+                      <td>Impact and Influence</td>
+                      <td>Coaching and Mentoring</td>
+                      <td>Team Orientation</td>
+                      <td>Client Orientation and Customer Focus</td>
+                      <td>Ethics and Accountability</td>
+                      <td>Client Orientation and Customer Service</td>
+
+                      <!-- ************************* -->
+
+                      <td>Action and Outcome Orientation</td>
+                      <td>Resilience</td>
+                      <td>Change Readiness</td>
+                      <td>Cognitive Ability</td>
+                      <td>Learning Orientation</td>
+                      <td>Problem Solving</td>
+                      <td>Accountability and Ethical Conduct</td>
+                      <td>Service Delivery Orientation</td>
+                      <td>Conflict Management</td>
+                      <td>Problem Solving and Analysis</td>
+                      <td>Impact and Influence</td>
+                      <td>Team Orientation</td>
+                      <td>Direction Setting</td>
+                      <td>Coaching and Mentoring</td>
+                      <td>Oral Communication</td>
+                      <td>Written Communication</td>
+                      <td>Organisational Awareness</td>
+                      <td>Planning and Organising</td>
+                      <td>Ethics and Accountability</td>
+                      <td>Information Management</td>
+                      <td>Attention to Detail</td>
+                      <td>Flexibility</td>
+                      <td>Integrity</td>
+                      <td>Management of Learning (Learning Orientation)</td>
+                      <td>Action Orientation</td>
+
+                      <td>Moral Competence</td>
+                      <td>Planning and Organising</td>
+                      <td>Analysis and Innovation</td>
+                      <td>Knowledge and Information Management</td>
+                      <td>Communication</td>
+                      <td>Results and Quality Focused</td>
+
+                      <td>Strategic Direction and Leadership</td>
+                      <td>People Management</td>
+                      <td>Program and Project Management</td>
+                      <td>Financial Management</td>
+                      <td>Change Leadership</td>
+                      <td>Governance Leadership</td>
+
+                   </tr>
+              </thead>
+               
+              <tbody id="listuser">
+             
+              </tbody>
+            
+               
+      
+                    
+
+                
+            </table>   
+        </div>
+        <button id="export">Export to excel</button>
+
+       
+        </div>
+   
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  
+    <script>
+        $(function(){
+      $("#division").select2();
+     }); 
+      document.querySelector(".button-links .toggle-btn").addEventListener("click",(e)=>{
+        console.log("cliked");
+    document.querySelector(".button-links").classList.toggle("active")
+})
+
+
+    </script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+
+<script src="/javascript/firebase.js"></script>
+    <script src="/javascript/sidebar.js"></script>
+    <script src="/javascript/profile.js"></script>
+    <script src="/javascript/spadmin.js"></script>
+    <script src="/javascript/table2excel.js"></script>
+    <script>
+         var table2excel = new Table2Excel();
+
+document.getElementById('export').addEventListener('click', function() {
+  table2excel.export(document.querySelectorAll('table'));
+});
+      </script>
+</body>
+</html>

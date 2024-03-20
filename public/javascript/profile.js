@@ -84762,14 +84762,7 @@ let res=false
 
   })
     .then(function (response) {
-      document.querySelector(".sub-btn1").style.display = "none"
-      document.querySelector(".sub-btn2").style.display = "none"
-      document.querySelector(".sub-btn3").style.display = "none"
-      document.querySelector(".sub-btn4").style.display = "none"
-      document.querySelector(".sub-btn5").style.display = "none"
-      document.querySelector(".sub-btn6").style.display = "none"
-      document.querySelector(".sub-btn7").style.display = "none"
-
+   
       document.querySelector(".flush-heading0").style.display = "none"
       document.querySelector(".flush-heading1").style.display = "none"
       document.querySelector(".flush-heading2").style.display = "none"
@@ -85010,7 +85003,7 @@ res=response.data
       }
 
 
-      const management = response.data.filter((d) => d.info.competencyDivision == "MANAGEMENT / LEADERSHIP COMPETENCIES")
+      const management = response.data.filter((d) => d.info.competencyDivision == "MANAGEMENT/LEADERSHIP COMPETENCIES")
       if (management.length > 0) {
         managementleadership=true
       
@@ -85109,7 +85102,7 @@ res=response.data
 function fetchCompetencyOnload(userData) {
   axios.post('/fetchcomp', { compcode: userData.competencies })
     .then(function (response) {
-
+console.log(response.data);
       Muncipality(response.data, userData)
 
     })
@@ -85307,12 +85300,10 @@ function DisplayExperience(id) {
       document.getElementById("DepartmentEmp3").value = response.data.department
       document.getElementById("MuncipalityEmp3").value = response.data.municipality
       document.getElementById("DurationEmp3").value = response.data.duration
-
       document.getElementById("save-delete55").innerHTML = `
     <button type="button" class="btn  btn-dark" onclick="Updateperience3('${id}')">Save</button>
     <button type="button" class="btn  btn-danger" onclick="DeleteExperience('${id}')" >Delete</button>
     `
-
     })
     .catch(function (error) {
       console.log(error);

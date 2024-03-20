@@ -1,7 +1,7 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth  } from "firebase/auth";
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from "firebase/storage";
+const { initializeApp } = require('firebase/app');
+const { getAuth } = require("firebase/auth");
+const { getFirestore } = require('firebase/firestore');
+const { getStorage } = require("firebase/storage");
 const firebaseConfig = {
   apiKey: "AIzaSyDOzhDiZdtQ7QcvoEjS2VO21BUJfVIy9iU",
   authDomain: "skills-audit-ggxtld.firebaseapp.com",
@@ -14,4 +14,4 @@ const firebaseConfig = {
   const auth = getAuth()  
   const db = getFirestore();
   const storage=getStorage()
-  export {auth,db,storage}
+  module.exports= {auth,db,storage}

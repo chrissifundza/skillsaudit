@@ -1,5 +1,53 @@
-import {UpdateUser, User, accept, department, forgot, getcompetencies, highestqualification, login, division, position, register, signout, uploadqualifications, addCompetency, getRate, updateArea, language, experience, member, fetchcomp, uploadqualifications2, highestqualification2, getotherqualification, displayqualification, updatequalification, deletequalification, fetchUser, updatexperience, getotherexperience, displayexperience, upadteaddexperience, deleteperience, addmembership, otherlanguage, getratedcompetency, finalsubmit, removesubmit, validate, getcmpetencydivision, findmyemployees, addCompetencysup, getRatesup, getratedcompetencysup} from "./controller/register.js";
-import  Express  from 'express';
+const {
+    UpdateUser,
+    User,
+    accept,
+    department,
+    forgot,
+    getcompetencies,
+    highestqualification,
+    login,
+    division,
+    position,
+    register,
+    signout,
+    uploadqualifications,
+    addCompetency,
+    getRate,
+    updateArea,
+    language,
+    experience,
+    member,
+    fetchcomp,
+    uploadqualifications2,
+    highestqualification2,
+    getotherqualification,
+    displayqualification,
+    updatequalification,
+    deletequalification,
+    fetchUser,
+    updatexperience,
+    getotherexperience,
+    displayexperience,
+    upadteaddexperience,
+    deleteperience,
+    addmembership,
+    otherlanguage,
+    getratedcompetency,
+    finalsubmit,
+    removesubmit,
+    validate,
+    getcmpetencydivision,
+    findmyemployees,
+    addCompetencysup,
+    getRatesup,
+    getratedcompetencysup,
+    loadalluser,
+    getevryone
+  } = require("./controller/register.js");
+  
+  const Express = require('express');
+  
 const app = Express();
 app.use(Express.static("public"));
 app.use(Express.json());
@@ -16,6 +64,15 @@ app.get('/', (req, res)=>{
 app.get('/register', (req, res)=>{
  
     res.render('register')
+})
+
+app.get('/admin', (req, res)=>{
+ 
+    res.render('admin')
+})
+app.get('/adsupervisor', (req, res)=>{
+ 
+    res.render('adsupervisor')
 })
 app.get('/login', (req, res)=>{
  
@@ -90,3 +147,5 @@ app.post("/removesubmit",removesubmit)
 app.post("/validate",validate)
 app.post("/getcmpetencydivision",getcmpetencydivision)
 app.post("/findmyemployees",findmyemployees)
+app.post("/loadalluser",loadalluser)
+app.post("/getevryone",getevryone) 

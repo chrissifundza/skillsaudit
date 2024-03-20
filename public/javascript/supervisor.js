@@ -894,20 +894,20 @@ async function validateone() {
                   text: "All questions have been answered!",
                   icon: "success"
                 });
-                //    axios.post('/validate',{
+                   axios.post('/validate',{
  
-                //       ID:ID,
-                //       status:"completed",
-                //       competencyDivision:documentid[0].info.competencyDivision.replace(/\s/g, '')
-                //   })
-                //   .then(async function (response) {
+                      ID:ratedUserid,
+                      status:"superviser completed",
+                      competencyDivision:documentid[0].info.competencyDivision.replace(/\s/g, '')
+                  })
+                  .then(async function (response) {
                   
-                //    console.log(response.data);
+                   console.log(response.data);
                   
-                //   })
-                //   .catch(function (error) {
-                //     console.log(error);
-                //   });
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
 
             } else {
                 
