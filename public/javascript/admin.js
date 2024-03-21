@@ -125,8 +125,8 @@ function Department(userdata) {
                 <td>${element.jobTitle}</td>
                 <td>${element.division}</td>
                 <td>${element.department}</td>
-                <td>${element.competencies}</td>
-                <td>L ${lv[lv.length-1]}</td>
+                <td>(${element.competencies})</td>
+                <td>(L ${lv[lv.length-1]})</td>
                 <td>${yearsDifference}</td>
                 <td>${element.QualificationName}</td>
                 <td>${typeof element.WrittenCommunication=="undefined"?"Blank":element.WrittenCommunication}</td>
