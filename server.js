@@ -43,7 +43,11 @@ const {
     getRatesup,
     getratedcompetencysup,
     loadalluser,
-    getevryone
+    getevryone,
+    fetchAllCompetencyUser,
+    addindividualrate,
+    downloadloadexcel
+    
   } = require("./controller/register.js");
   
   const Express = require('express');
@@ -98,6 +102,7 @@ app.get('/sidebar', (req, res)=>{
     
     res.render('sidebar')
 })
+
 app.get('/accept/:id', (req, res)=>{
     console.log(req.params.id);
     res.render('accept')
@@ -105,6 +110,7 @@ app.get('/accept/:id', (req, res)=>{
  
 
 app.post("/register",register)
+app.post("/download-excel",downloadloadexcel)
 app.post("/login",login)
 app.post("/forgot",forgot)
 app.post("/accept",accept)
@@ -140,6 +146,7 @@ app.post("/getotherexperience",getotherexperience)
 app.post("/membership",member)
 app.post("/fetchcomp",fetchcomp) 
 app.post("/fetchuser",fetchUser)
+app.post("/fetchallcompetencyuser",fetchAllCompetencyUser)
 app.post("/getratedcompetency",getratedcompetency)
 app.post("/getratedcompetencysup",getratedcompetencysup)
 app.post("/finalsubmit",finalsubmit)
@@ -149,3 +156,4 @@ app.post("/getcmpetencydivision",getcmpetencydivision)
 app.post("/findmyemployees",findmyemployees)
 app.post("/loadalluser",loadalluser)
 app.post("/getevryone",getevryone) 
+app.post("/addindividualrate",addindividualrate) 
